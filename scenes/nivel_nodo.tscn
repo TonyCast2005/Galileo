@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://i53mh53uup2y"]
+
+[ext_resource type="Texture2D" uid="uid://b637aw5dreihc" path="res://assets/sprites/icon.svg" id="1_3nhig"]
+[ext_resource type="Script" uid="uid://dnpg0ankrhhbx" path="res://scripts/nivel_nodo.gd" id="1_xrbdf"]
+
+[node name="Button" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "1"
+icon = ExtResource("1_3nhig")
+script = ExtResource("1_xrbdf")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_3nhig")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "122"

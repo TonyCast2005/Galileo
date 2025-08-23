@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvfgua0ii4bxl"]
+
+[ext_resource type="Script" uid="uid://f33wyttb6hrt" path="res://scripts/logro_card.gd" id="1_oul6n"]
+
+[node name="LogroCard" type="HBoxContainer"]
+script = ExtResource("1_oul6n")
+
+[node name="Icono" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+stretch_mode = 5
+
+[node name="Nombre" type="Label" parent="."]
+layout_mode = 2
+text = "buh"

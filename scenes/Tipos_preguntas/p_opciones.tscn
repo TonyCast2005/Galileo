@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=3 uid="uid://dt7snt0na60kp"]
+
+[ext_resource type="Script" uid="uid://b2n7jpxq47krk" path="res://scripts/pregunta_opciones.gd" id="1_1lsc3"]
+[ext_resource type="Shader" uid="uid://bgrogfc76mvka" path="res://login.gdshader" id="2_33k7h"]
+[ext_resource type="Script" uid="uid://dkodglrkbo856" path="res://http_request_firebase.gd" id="3_rvp5j"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xlo4h"]
+shader = ExtResource("2_33k7h")
+shader_parameter/time = 0.0
+shader_parameter/resolution = Vector2(0, 0)
+
+[node name="opcion_multiple" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1lsc3")
+
+[node name="Fondo" type="ColorRect" parent="."]
+z_index = -1
+material = SubResource("ShaderMaterial_xlo4h")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(500, 1270)
+layout_mode = 2
+theme_override_constants/separation = 39
+alignment = 1
+
+[node name="Pregunta" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="opciones_contenedor" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="opcion" type="Label" parent="CenterContainer/VBoxContainer/opciones_contenedor"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 39
+text = "USUAR"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HTTPRequestFirebase" type="HTTPRequest" parent="."]
+script = ExtResource("3_rvp5j")

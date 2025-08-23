@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://dduwfxa4x4hsl"]
+
+[ext_resource type="Script" uid="uid://boqvxgop1owwe" path="res://scripts/logrocontainer.gd" id="1_1q55w"]
+[ext_resource type="Script" uid="uid://jq16ii8c3pvk" path="res://logros/logros_profile/logrocontainer.gd" id="1_8unxc"]
+[ext_resource type="Texture2D" uid="uid://l8p4u3sb3jkn" path="res://assets/sprites/trophies/Pez gordo .png" id="1_rfk0p"]
+
+[node name="Control" type="Control"]
+custom_minimum_size = Vector2(720, 100)
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_1q55w")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -1130.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8unxc")
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_rfk0p")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Nombre" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 34
+text = "Pez gordo"
+
+[node name="descripcion" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Aprueba un examen intermedio o
+avanzado"
