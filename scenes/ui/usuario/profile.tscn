@@ -48,7 +48,7 @@ script = ExtResource("3_lxqef")
 [node name="username_label" type="Label" parent="Panel/VBoxContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "NOMBRE DE USUARIO"
+text = "NOMBRE DE USUARIO :D"
 horizontal_alignment = 1
 
 [node name="username_label2" type="Label" parent="Panel/VBoxContainer/CenterContainer/VBoxContainer"]
