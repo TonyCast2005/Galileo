@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bgo4qt24vrcpg"]
+[gd_scene load_steps=6 format=3 uid="uid://bgo4qt24vrcpg"]
 
 [ext_resource type="Script" uid="uid://gqa0d82b5jl8" path="res://scripts/profile.gd" id="1_nbg5u"]
 [ext_resource type="Texture2D" uid="uid://qkh7smhxqj5v" path="res://assets/sprites/trophies/cajadecartón .png" id="2_nbg5u"]
 [ext_resource type="Script" uid="uid://cxl8o1tbmmaen" path="res://scenes/fotodeperfil.gd" id="3_lxqef"]
 [ext_resource type="Script" uid="uid://b5uo8dyuq0wo8" path="res://scripts/scrolllogros.gd" id="4_dfc80"]
+[ext_resource type="Texture2D" uid="uid://bvmgcumpto0cy" path="res://assets/sprites/ui/engrane.png" id="5_56res"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -14,7 +15,17 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_nbg5u")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.137255, 0.156863, 0.215686, 1)
+
 [node name="Panel" type="Panel" parent="."]
+clip_contents = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -48,7 +59,7 @@ script = ExtResource("3_lxqef")
 [node name="username_label" type="Label" parent="Panel/VBoxContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "NOMBRE DE USUARIO :D"
+text = "NOMBRE DE USUARIO"
 horizontal_alignment = 1
 
 [node name="username_label2" type="Label" parent="Panel/VBoxContainer/CenterContainer/VBoxContainer"]
@@ -98,3 +109,12 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 583.0
+offset_top = 32.0
+offset_right = 839.0
+offset_bottom = 288.0
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("5_56res")

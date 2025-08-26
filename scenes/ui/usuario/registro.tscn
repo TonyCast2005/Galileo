@@ -1,17 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://m87b2xruqn5y"]
+[gd_scene load_steps=7 format=3 uid="uid://m87b2xruqn5y"]
 
 [ext_resource type="Script" uid="uid://dx8f04sdhsyrw" path="res://scripts/inicio de sesion/registro.gd" id="1_132k0"]
-[ext_resource type="Shader" uid="uid://bgrogfc76mvka" path="res://login.gdshader" id="2_emphd"]
 [ext_resource type="Script" uid="uid://c1rk0qn80hw5x" path="res://scripts/inicio de sesion/v_box_container.gd" id="3_tercf"]
 [ext_resource type="Script" uid="uid://d0qkangb8t3yb" path="res://scripts/inicio de sesion/password_input.gd" id="4_80l62"]
 [ext_resource type="Script" uid="uid://dkodglrkbo856" path="res://http_request_firebase.gd" id="5_6uk5y"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xlo4h"]
-shader = ExtResource("2_emphd")
-shader_parameter/time = 0.0
-shader_parameter/resolution = Vector2(0, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tajqu"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qkhvh"]
 bg_color = Color(0.489272, 0.283509, 0.708933, 1)
 border_width_left = 2
 border_width_top = 2
@@ -22,6 +16,10 @@ corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
+corner_detail = 5
+anti_aliasing_size = 10.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_132k0"]
 
 [node name="Registro" type="Control"]
 layout_mode = 3
@@ -34,15 +32,14 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_132k0")
 
-[node name="Fondo" type="ColorRect" parent="."]
-z_index = -1
-material = SubResource("ShaderMaterial_xlo4h")
+[node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0.137255, 0.156863, 0.215686, 1)
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 custom_minimum_size = Vector2(100, 0)
@@ -70,59 +67,64 @@ script = ExtResource("3_tercf")
 
 [node name="mensaje_1" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 31
-text = "REGISTRATE EN GALILEO"
+theme_override_font_sizes/font_size = 35
+text = "Registrarse"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="usernamelabel" type="Label" parent="CenterContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "NOMBRE DE USUARIO"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="username_input" type="LineEdit" parent="CenterContainer/VBoxContainer"]
-custom_minimum_size = Vector2(300, 70)
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-max_length = 300
-
-[node name="passlabel" type="Label" parent="CenterContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 39
-text = "CONTRASEÑA"
-horizontal_alignment = 1
 
 [node name="password_input" type="LineEdit" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 29
+placeholder_text = "Usuario"
 secret = true
 script = ExtResource("4_80l62")
-
-[node name="passlabel2" type="Label" parent="CenterContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 39
-text = "CONFIRMA CONTRASEÑA"
-horizontal_alignment = 1
 
 [node name="password_input2" type="LineEdit" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 29
+placeholder_text = "Contraseña"
 secret = true
+script = ExtResource("4_80l62")
+
+[node name="password_input3" type="LineEdit" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+theme_override_font_sizes/font_size = 25
+placeholder_text = "Confirmar contraseña"
+secret = true
+script = ExtResource("4_80l62")
+
+[node name="password_input4" type="LineEdit" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+placeholder_text = "Correo electrónico"
+secret = true
+script = ExtResource("4_80l62")
 
 [node name="register_button" type="Button" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme_override_font_sizes/font_size = 39
-theme_override_styles/normal = SubResource("StyleBoxFlat_tajqu")
-text = "REGISTRARSE"
+theme_override_styles/normal = SubResource("StyleBoxFlat_qkhvh")
+button_mask = 3
+text = "Aceptar"
 
 [node name="message_label" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 19
+theme_override_font_sizes/font_size = 29
+text = "Ya tienes cuenta?"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="CenterContainer/VBoxContainer"]
+modulate = Color(0.762396, 0.449287, 0.984561, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxEmpty_132k0")
+text = "Inicia sesión"
 
 [node name="HTTPRequestFirebase" type="HTTPRequest" parent="."]
 script = ExtResource("5_6uk5y")
