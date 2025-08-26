@@ -1,0 +1,89 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmth262op7hmk"]
+
+[ext_resource type="Script" uid="uid://gfvwws6gpu0p" path="res://scripts/escenarios/safari_scripts/safari.gd" id="1_jy18e"]
+[ext_resource type="Script" uid="uid://cw0y7814ge7j5" path="res://scripts/escenarios/safari_scripts/button.gd" id="2_k7xtc"]
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(364, 430)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jy18e")
+
+[node name="CommandPanel" type="Panel" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -3.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="panellabel" type="Label" parent="CanvasLayer/Control/CommandPanel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 13.0
+
+[node name="MessageLabel" type="Label" parent="CanvasLayer/Control"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -570.0
+offset_bottom = -555.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 22
+justification_flags = 162
+
+[node name="NextButton" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = -162.0
+offset_right = 3.0
+offset_bottom = -120.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 36
+text = "SIGUIENTE"
+
+[node name="AnimalSprite" type="Sprite2D" parent="CanvasLayer/Control"]
+position = Vector2(400, 390)
+
+[node name="SpawnTimer" type="Timer" parent="CanvasLayer/Control"]
+wait_time = 1.745
+autostart = true
+
+[node name="Button" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -117.0
+offset_top = -58.0
+offset_right = -6.0
+offset_bottom = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 21
+text = "PANEL"
+script = ExtResource("2_k7xtc")
+
+[connection signal="pressed" from="CanvasLayer/Control/NextButton" to="CanvasLayer/Control" method="_on_next_button_pressed"]
+[connection signal="timeout" from="CanvasLayer/Control/SpawnTimer" to="CanvasLayer/Control" method="_on_spawn_timer_timeout"]
