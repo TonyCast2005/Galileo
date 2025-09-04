@@ -30,6 +30,9 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_r8nh2")
 
+[node name="HTTPRequestFirebase" type="HTTPRequest" parent="."]
+script = ExtResource("3_2rpqs")
+
 [node name="Fondo" type="ColorRect" parent="."]
 z_index = -1
 material = SubResource("ShaderMaterial_xlo4h")
@@ -56,7 +59,8 @@ alignment = 1
 
 [node name="usernamelabel" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 39
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 35
 text = "BIENVENIDO A GALILEO"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -64,16 +68,13 @@ vertical_alignment = 1
 [node name="register_button" type="Button" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
-theme_override_font_sizes/font_size = 39
+theme_override_font_sizes/font_size = 31
 theme_override_styles/normal = SubResource("StyleBoxFlat_tajqu")
 text = "EMPEZAR DESDE CERO"
 
 [node name="register_button2" type="Button" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
-theme_override_font_sizes/font_size = 39
+theme_override_font_sizes/font_size = 31
 theme_override_styles/normal = SubResource("StyleBoxFlat_tajqu")
-text = "HACER EXAMEN DE UBICACION"
-
-[node name="HTTPRequestFirebase" type="HTTPRequest" parent="."]
-script = ExtResource("3_2rpqs")
+text = "UBICARME EN UN NIVEL"

@@ -1,35 +1,34 @@
 extends Control
 
-@onready var achievements_list = $Scrolllogros/logroslist
-var logro_scene = preload("res://scenes/ui/logrocontenedor/logrocontainer.tscn")
+@onready var http = $HTTPRequest
+@onready var username_label = $Panel/VBoxContainer/CenterContainer/VBoxContainer/username_label  # 👈 cambia la ruta según tu escena
 
 func _ready():
-    load_test_logros()
+    http.request_completed.connect(_on_HTTPRequestFirebase_request_completed)
+    cargar_datos_usuario()
 
-func load_test_logros():
-    # Datos de prueba
-    var test_data = {
-        "logro1": {
-            "icono": "res://assets/sprites/trophies/Pez gordo .png",
-            "nombre": "Primer Paso",
-            "descripcion": "Completaste tu primera lección."
-        },
-        "logro2": {
-            "icono": "res://assets/sprites/trophies/Pez gordo .png",
-            "nombre": "Aprendiz",
-            "descripcion": "Has desbloqueado 5 logros."
-        },
-        "logro3": {
-            "icono": "res://assets/sprites/trophies/Pez gordo .png",
-            "nombre": "Veterano",
-            "descripcion": "Terminaste 10 lecciones."
-        }
-    }
 
-    # Crear logros en la lista
-    for key in test_data.keys():
-        var info = test_data[key]
-        var logro = logro_scene.instantiate()
-        var tex = load(info["icono"])
-        logro.set_data(tex, info["nombre"], info["descripcion"])
-        achievements_list.add_child(logro)
+func cargar_datos_usuario():
+    var user = User_Globaldata.usuario
+    if user == "":
+        username_label.text = "⚠️ No hay usuario logueado"
+        return
+
+    var url = "https://galileo-af640-default-rtdb.firebaseio.com/usuarios/%s.json" % user
+    var err = http.request(url, [], HTTPClient.METHOD_GET)
+    if err != OK:
+        username_label.text = "Error al conectar"
+
+func _on_HTTPRequestFirebase_request_completed(result, response_code, headers, body):
+    if response_code == 200:
+        var datos = JSON.parse_string(body.get_string_from_utf8())
+        if datos:
+            username_label.text = datos.get("username", "Sin nombre")
+        else:
+            username_label.text = "Usuario no encontrado"
+    else:
+        username_label.text = "Error (%s)" % str(response_code)
+
+
+func _on_texture_button_pressed() -> void:
+ get_tree().change_scene_to_file("res://scenes/ui/usuario/EditarPerfil.tscn")

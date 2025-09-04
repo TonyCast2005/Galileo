@@ -1,16 +1,12 @@
 extends Control
 
+# Botón para ir al perfil y reiniciar nivel
 func _on_btn_empezar_desde_cero_pressed():
-    # Guarda nivel novato
-    Global.user_id = obtener_usuario_actual()  # tu método para obtener user_id
-    asignar_nivel("novato")
-    get_tree().change_scene("res://MenuPrincipal.tscn")
 
+    get_tree().change_scene("res://scenes/ui/usuario/profile.tscn")  # abre el perfil
+
+# Botón para iniciar el test
 func _on_btn_hacer_test_pressed():
-    get_tree().change_scene("res://TestInstrucciones.tscn")
+    get_tree().change_scene("res://scenes/ui/test/TestInstrucciones.tscn")  # abre el test
 
-func asignar_nivel(nivel: String):
-    var url = "https://TU_PROYECTO.firebaseio.com/usuarios/%s/nivel.json" % Global.user_id
-    var body = JSON.print(nivel)
-    var headers = ["Content-Type: application/json"]
-    $HTTPRequest.request(url, headers, true, HTTPClient.METHOD_PUT, body)
+# Guardar nivel en Firebase

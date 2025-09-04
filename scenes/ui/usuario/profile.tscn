@@ -98,3 +98,19 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
+<<<<<<< Updated upstream
+=======
+
+[node name="TextureButton" type="TextureButton" parent="."]
+custom_minimum_size = Vector2(64, 64.115)
+layout_mode = 0
+offset_left = 586.0
+offset_top = 5.0
+offset_right = 842.0
+offset_bottom = 261.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("5_56res")
+stretch_mode = 1
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
+>>>>>>> Stashed changes
