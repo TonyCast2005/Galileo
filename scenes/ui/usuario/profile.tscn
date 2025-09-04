@@ -1,9 +1,21 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=5 format=3 uid="uid://bgo4qt24vrcpg"]
+=======
+[gd_scene load_steps=8 format=3 uid="uid://bgo4qt24vrcpg"]
+>>>>>>> Stashed changes
 
 [ext_resource type="Script" uid="uid://gqa0d82b5jl8" path="res://scripts/profile.gd" id="1_nbg5u"]
 [ext_resource type="Texture2D" uid="uid://qkh7smhxqj5v" path="res://assets/sprites/trophies/cajadecartón .png" id="2_nbg5u"]
 [ext_resource type="Script" uid="uid://cxl8o1tbmmaen" path="res://scenes/fotodeperfil.gd" id="3_lxqef"]
 [ext_resource type="Script" uid="uid://b5uo8dyuq0wo8" path="res://scripts/scrolllogros.gd" id="4_dfc80"]
+<<<<<<< Updated upstream
+=======
+[ext_resource type="Texture2D" uid="uid://bvmgcumpto0cy" path="res://assets/sprites/ui/engrane.png" id="5_56res"]
+[ext_resource type="PackedScene" uid="uid://bcfte6ea4sq5n" path="res://scenes/ui/menu_bar.tscn" id="6_lxqef"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lxqef"]
+texture = ExtResource("5_56res")
+>>>>>>> Stashed changes
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -101,6 +113,7 @@ size_flags_vertical = 3
 <<<<<<< Updated upstream
 =======
 
+<<<<<<< Updated upstream
 [node name="TextureButton" type="TextureButton" parent="."]
 custom_minimum_size = Vector2(64, 64.115)
 layout_mode = 0
@@ -113,4 +126,20 @@ texture_normal = ExtResource("5_56res")
 stretch_mode = 1
 
 [connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
+>>>>>>> Stashed changes
+=======
+[node name="MenuBar" parent="." instance=ExtResource("6_lxqef")]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 1218.0
+offset_right = 725.0
+offset_bottom = 1283.0
+
+[node name="ajustes" type="Button" parent="."]
+layout_mode = 0
+offset_left = 573.0
+offset_top = 17.0
+offset_right = 701.0
+offset_bottom = 137.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_lxqef")
 >>>>>>> Stashed changes

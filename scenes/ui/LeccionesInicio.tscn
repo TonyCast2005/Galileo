@@ -1,0 +1,215 @@
+[gd_scene load_steps=14 format=3 uid="uid://c7wn88g0ai1tq"]
+
+[ext_resource type="Texture2D" uid="uid://d0r1lewmhyssg" path="res://assets/sprites/ui/moradoC.png" id="1_i2nst"]
+[ext_resource type="Texture2D" uid="uid://bpsvmidt6hrgv" path="res://assets/sprites/ui/moradoO.png" id="2_kof45"]
+[ext_resource type="Theme" uid="uid://dp1aqdiitci4a" path="res://assets/sprites/ui/button_theme_pixel.tres" id="3_xerlp"]
+[ext_resource type="Texture2D" uid="uid://dg3kljtcjxb5c" path="res://assets/sprites/ui/flecha1.png" id="4_g1d3v"]
+[ext_resource type="Texture2D" uid="uid://dw8j23165wna5" path="res://assets/sprites/ui/flecha2 .png" id="5_cqnjk"]
+[ext_resource type="Texture2D" uid="uid://b451b7qfuuqby" path="res://assets/sprites/ui/flecha3.png" id="6_xy85j"]
+[ext_resource type="Texture2D" uid="uid://kbyq04m0pv1t" path="res://assets/sprites/ui/flecha4.png" id="7_i8f2v"]
+[ext_resource type="Texture2D" uid="uid://bb2hi30tb0yhf" path="res://assets/sprites/ui/candado.png" id="8_lo1v0"]
+[ext_resource type="PackedScene" uid="uid://bcfte6ea4sq5n" path="res://scenes/ui/menu_bar.tscn" id="9_kof45"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tclqo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i2nst"]
+bg_color = Color(0.396158, 0.384063, 0.731131, 1)
+corner_radius_top_left = 41
+corner_radius_top_right = 41
+corner_radius_bottom_right = 41
+corner_radius_bottom_left = 41
+corner_detail = 20
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i2nst"]
+texture = ExtResource("1_i2nst")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kof45"]
+texture = ExtResource("2_kof45")
+
+[node name="Control" type="Control"]
+material = SubResource("CanvasItemMaterial_tclqo")
+use_parent_material = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -2.0
+offset_right = 1.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.260851, 0.24803, 0.529408, 1)
+
+[node name="Tema" type="Label" parent="."]
+texture_filter = 4
+layout_mode = 0
+offset_left = 54.0
+offset_top = 83.0
+offset_right = 666.0
+offset_bottom = 141.0
+scale = Vector2(1, 1.17119)
+theme = ExtResource("3_xerlp")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/shadow_outline_size = 0
+theme_override_font_sizes/font_size = 34
+theme_override_styles/normal = SubResource("StyleBoxFlat_i2nst")
+text = "Tema de la lección"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="nivel" type="Label" parent="."]
+top_level = true
+light_mask = 512
+layout_mode = 0
+offset_left = 404.0
+offset_top = 198.0
+offset_right = 466.0
+offset_bottom = 304.0
+theme = ExtResource("3_xerlp")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 52
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="nivel2" type="Label" parent="."]
+top_level = true
+light_mask = 512
+layout_mode = 0
+offset_left = 182.0
+offset_top = 356.0
+offset_right = 244.0
+offset_bottom = 462.0
+theme = ExtResource("3_xerlp")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 52
+text = "2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Flecha1" type="Sprite2D" parent="."]
+position = Vector2(364.75, 367)
+scale = Vector2(0.955078, 0.742188)
+texture = ExtResource("4_g1d3v")
+
+[node name="Flecha2" type="Sprite2D" parent="."]
+position = Vector2(290, 527)
+scale = Vector2(0.8125, 0.796875)
+texture = ExtResource("5_cqnjk")
+
+[node name="Flecha3" type="Sprite2D" parent="."]
+position = Vector2(563.5, 615)
+scale = Vector2(0.777344, 0.664063)
+texture = ExtResource("6_xy85j")
+
+[node name="Flecha4" type="Sprite2D" parent="."]
+position = Vector2(517.5, 854.75)
+scale = Vector2(0.792969, 0.654297)
+texture = ExtResource("4_g1d3v")
+
+[node name="Flecha5" type="Sprite2D" parent="."]
+position = Vector2(236.5, 907.5)
+scale = Vector2(0.714844, 0.730469)
+texture = ExtResource("7_i8f2v")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 317.0
+offset_top = 120.0
+offset_right = 558.0
+offset_bottom = 378.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_i2nst")
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 272.0
+offset_right = 331.0
+offset_bottom = 530.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_i2nst")
+
+[node name="Button3" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.123
+anchor_bottom = 0.047
+offset_left = 293.0
+offset_top = 415.0
+offset_right = 457.44
+offset_bottom = 631.84
+theme_override_styles/normal = SubResource("StyleBoxTexture_kof45")
+
+[node name="Button6" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.123
+anchor_bottom = 0.047
+offset_left = 66.0
+offset_top = 907.0
+offset_right = 230.44
+offset_bottom = 1123.84
+theme_override_styles/normal = SubResource("StyleBoxTexture_kof45")
+
+[node name="Button4" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.123
+anchor_bottom = 0.047
+offset_left = 465.0
+offset_top = 607.0
+offset_right = 620.44
+offset_bottom = 816.84
+theme_override_styles/normal = SubResource("StyleBoxTexture_kof45")
+
+[node name="Button5" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.123
+anchor_bottom = 0.047
+offset_left = 236.0
+offset_top = 727.0
+offset_right = 400.44
+offset_bottom = 943.84
+theme_override_styles/normal = SubResource("StyleBoxTexture_kof45")
+
+[node name="Candado" type="Sprite2D" parent="."]
+position = Vector2(418, 551)
+scale = Vector2(0.447266, 0.443359)
+texture = ExtResource("8_lo1v0")
+
+[node name="Candado2" type="Sprite2D" parent="."]
+position = Vector2(191, 1040)
+scale = Vector2(0.447266, 0.443359)
+texture = ExtResource("8_lo1v0")
+
+[node name="Candado4" type="Sprite2D" parent="."]
+position = Vector2(586, 742)
+scale = Vector2(0.447266, 0.443359)
+texture = ExtResource("8_lo1v0")
+
+[node name="Candado3" type="Sprite2D" parent="."]
+position = Vector2(362, 859)
+scale = Vector2(0.447266, 0.443359)
+texture = ExtResource("8_lo1v0")
+
+[node name="MenuBar" parent="." instance=ExtResource("9_kof45")]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1211.0
+offset_right = 723.0
+offset_bottom = 1276.0

@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://dltufq67abbhg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x4fax"]
+bg_color = Color(0.900013, 0, 0.179413, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gwcmv"]
+bg_color = Color(0.21471, 0.717483, 0.0937014, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.137255, 0.156863, 0.215686, 1)
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 411.0
+offset_top = 660.0
+offset_right = 612.0
+offset_bottom = 822.0
+theme_override_colors/font_pressed_color = Color(0.847059, 2.4306e-06, 1.05888e-06, 1)
+theme_override_font_sizes/font_size = 23
+theme_override_styles/normal = SubResource("StyleBoxFlat_x4fax")
+text = "Falso"
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 653.0
+offset_right = 323.0
+offset_bottom = 826.0
+theme_override_font_sizes/font_size = 23
+theme_override_styles/normal = SubResource("StyleBoxFlat_gwcmv")
+text = "Verdero"

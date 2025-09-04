@@ -12,9 +12,13 @@ config_version=5
 
 config/name="GalileoV1"
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 run/main_scene="uid://bgo4qt24vrcpg"
 =======
 run/main_scene="uid://k28p6pcucjf"
+>>>>>>> Stashed changes
+=======
+run/main_scene="uid://bgo4qt24vrcpg"
 >>>>>>> Stashed changes
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://assets/sprites/icon.svg"
