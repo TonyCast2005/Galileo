@@ -28,3 +28,4 @@ mono_crash.*
 # VSCode, JetBrains, etc.
 .vscode/
 .idea/
+.godot/
