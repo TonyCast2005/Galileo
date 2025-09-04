@@ -1,3 +1,30 @@
-# Godot 4+ specific ignores
-.godot/
-/android/
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Carpeta de importación automática de Godot
+.import/
+
+# Archivos de importación generados (pueden regenerarse en cada máquina)
+*.import
+
+# Cache de Godot
+.cache/
+
+# Archivos temporales
+*.tmp
+*.temp
+*.log
+
+# Configuración del editor local (no compartir con el repo)
+.editor_settings-3.tres
+.editor_settings-4.tres
+
+# Archivos de compilación (si usas C# con Godot Mono)
+.mono/
+data_*/
+mono_crash.*
+
+# VSCode, JetBrains, etc.
+.vscode/
+.idea/
