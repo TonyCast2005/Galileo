@@ -1,0 +1,114 @@
+[gd_scene load_steps=3 format=3 uid="uid://l2urkj5bud3a"]
+
+[ext_resource type="FontFile" uid="uid://cu62bdhamv7ue" path="res://assets/fonts/PressStart2P-Regular.ttf" id="1_svshf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wwn0v"]
+bg_color = Color(0.67076, 0.0998491, 0.916668, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.133333, 0.156863, 0.211765, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 175.0
+offset_right = 593.0
+offset_bottom = 272.0
+theme_override_fonts/font = ExtResource("1_svshf")
+theme_override_font_sizes/font_size = 40
+text = "Registrarse"
+
+[node name="usuario" type="TextEdit" parent="."]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 305.0
+offset_right = 633.0
+offset_bottom = 372.0
+theme_override_font_sizes/font_size = 30
+placeholder_text = "Usuario"
+
+[node name="contraseña" type="TextEdit" parent="."]
+layout_mode = 0
+offset_left = 94.0
+offset_top = 417.0
+offset_right = 637.0
+offset_bottom = 484.0
+theme_override_font_sizes/font_size = 30
+placeholder_text = "Contraseña"
+
+[node name="confirmarContraseña" type="TextEdit" parent="."]
+layout_mode = 0
+offset_left = 92.0
+offset_top = 525.0
+offset_right = 635.0
+offset_bottom = 592.0
+theme_override_font_sizes/font_size = 30
+placeholder_text = "Confirmar Contraseña"
+
+[node name="correo" type="TextEdit" parent="."]
+layout_mode = 0
+offset_left = 94.0
+offset_top = 637.0
+offset_right = 637.0
+offset_bottom = 704.0
+theme_override_font_sizes/font_size = 30
+placeholder_text = "Correo electrónico"
+
+[node name="aceptar" type="Button" parent="."]
+layout_mode = 0
+offset_left = 139.0
+offset_top = 761.0
+offset_right = 600.0
+offset_bottom = 838.0
+theme_override_fonts/font = ExtResource("1_svshf")
+theme_override_font_sizes/font_size = 37
+theme_override_styles/normal = SubResource("StyleBoxFlat_wwn0v")
+text = "Aceptar"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 164.0
+offset_top = 883.0
+offset_right = 589.0
+offset_bottom = 955.0
+theme_override_fonts/font = ExtResource("1_svshf")
+theme_override_font_sizes/font_size = 25
+text = "Ya tienes cuenta?"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 214.0
+offset_top = 930.0
+offset_right = 520.0
+offset_bottom = 1007.0
+theme_override_colors/font_color = Color(0.775923, 0.25444, 0.915241, 1)
+theme_override_fonts/font = ExtResource("1_svshf")
+theme_override_font_sizes/font_size = 24
+button_mask = 0
+text = "Inicia sesión"
+flat = true
