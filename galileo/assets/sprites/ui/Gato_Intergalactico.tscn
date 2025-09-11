@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsa6xm3sxc8ac"]
+
+[ext_resource type="Texture2D" uid="uid://b1he0djyilmn5" path="res://assets/sprites/misc/espacioFondo.png" id="1_nqejy"]
+
+[node name="Sprite2D" type="Sprite2D"]
+
+[node name="EspacioFondo" type="Sprite2D" parent="."]
+position = Vector2(362.5, 638)
+scale = Vector2(1.38269, 1.25781)
+texture = ExtResource("1_nqejy")
