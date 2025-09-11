@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bg43svc84f1m"
-path="res://.godot/imported/libroM.png-b0dccc1a1a148c4f1d4c5efce83c7a96.ctex"
+uid="uid://blg67gg5afvfk"
+path="res://.godot/imported/persona B.png-a9b593cd25a077da540586329119a9cf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui/libroM.png"
-dest_files=["res://.godot/imported/libroM.png-b0dccc1a1a148c4f1d4c5efce83c7a96.ctex"]
+source_file="res://assets/sprites/ui/Menu/persona B.png"
+dest_files=["res://.godot/imported/persona B.png-a9b593cd25a077da540586329119a9cf.ctex"]
 
 [params]
 

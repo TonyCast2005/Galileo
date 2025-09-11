@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwih0cv8cpup0"
-path="res://.godot/imported/estadísticaB.png-3c164d3e40db7aa7d1d2b2f93cbd972c.ctex"
+uid="uid://74gmy0qwrspa"
+path="res://.godot/imported/naveverde.png-13c92bfbd88fd593a992022892903e55.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui/estadísticaB.png"
-dest_files=["res://.godot/imported/estadísticaB.png-3c164d3e40db7aa7d1d2b2f93cbd972c.ctex"]
+source_file="res://assets/sprites/ui/Espacio/naveverde.png"
+dest_files=["res://.godot/imported/naveverde.png-13c92bfbd88fd593a992022892903e55.ctex"]
 
 [params]
 

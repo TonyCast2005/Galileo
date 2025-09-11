@@ -1,0 +1,60 @@
+[gd_scene load_steps=3 format=3 uid="uid://dakur4qpeuka6"]
+
+[ext_resource type="Texture2D" uid="uid://dg3hdkwyh3ras" path="res://assets/sprites/primerapresa.png" id="1_4eias"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xxx5m"]
+bg_color = Color(0.567074, 0.15132, 0.818576, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[node name="RecuperarContrasena" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.133333, 0.156863, 0.211765, 1)
+
+[node name="TextEdit" type="TextEdit" parent="ColorRect"]
+layout_mode = 0
+offset_left = 75.0
+offset_top = 590.0
+offset_right = 638.0
+offset_bottom = 648.0
+theme_override_font_sizes/font_size = 22
+placeholder_text = "Correo electrónico"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 520.0
+offset_right = 662.0
+offset_bottom = 550.0
+theme_override_font_sizes/font_size = 30
+text = "Recuperar contraseña"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 182.0
+offset_top = 678.0
+offset_right = 534.0
+offset_bottom = 734.0
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 23
+theme_override_styles/normal = SubResource("StyleBoxFlat_xxx5m")
+text = "recuperar"
+
+[node name="Primerapresa" type="Sprite2D" parent="."]
+position = Vector2(366, 446)
+texture = ExtResource("1_4eias")

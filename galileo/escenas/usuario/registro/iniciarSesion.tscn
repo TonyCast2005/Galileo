@@ -35,56 +35,51 @@ color = Color(0.133333, 0.156863, 0.211765, 1)
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 130.0
-offset_top = 175.0
-offset_right = 593.0
-offset_bottom = 272.0
+offset_left = 126.0
+offset_top = 300.0
+offset_right = 589.0
+offset_bottom = 397.0
 theme_override_fonts/font = ExtResource("1_bywbm")
 theme_override_font_sizes/font_size = 40
 text = "Registrarse"
 
 [node name="usuario" type="TextEdit" parent="."]
 layout_mode = 0
-offset_left = 90.0
-offset_top = 305.0
-offset_right = 633.0
-offset_bottom = 372.0
+offset_left = 86.0
+offset_top = 430.0
+offset_right = 629.0
+offset_bottom = 497.0
 theme_override_font_sizes/font_size = 30
 placeholder_text = "Usuario"
 
 [node name="contraseña" type="TextEdit" parent="."]
 layout_mode = 0
-offset_left = 94.0
-offset_top = 417.0
-offset_right = 637.0
-offset_bottom = 484.0
+offset_left = 90.0
+offset_top = 542.0
+offset_right = 633.0
+offset_bottom = 609.0
 theme_override_font_sizes/font_size = 30
 placeholder_text = "Contraseña"
 
-[node name="confirmarContraseña" type="TextEdit" parent="."]
+[node name="GetPass" type="Button" parent="."]
 layout_mode = 0
-offset_left = 92.0
-offset_top = 525.0
-offset_right = 635.0
-offset_bottom = 592.0
-theme_override_font_sizes/font_size = 30
-placeholder_text = "Confirmar Contraseña"
-
-[node name="correo" type="TextEdit" parent="."]
-layout_mode = 0
-offset_left = 94.0
-offset_top = 637.0
-offset_right = 637.0
-offset_bottom = 704.0
-theme_override_font_sizes/font_size = 30
-placeholder_text = "Correo electrónico"
+offset_left = 204.0
+offset_top = 904.0
+offset_right = 510.0
+offset_bottom = 981.0
+theme_override_colors/font_color = Color(0.775923, 0.25444, 0.915241, 1)
+theme_override_fonts/font = ExtResource("1_bywbm")
+theme_override_font_sizes/font_size = 24
+button_mask = 0
+text = "Registrate"
+flat = true
 
 [node name="aceptar" type="Button" parent="."]
 layout_mode = 0
-offset_left = 139.0
-offset_top = 761.0
-offset_right = 600.0
-offset_bottom = 838.0
+offset_left = 129.0
+offset_top = 735.0
+offset_right = 590.0
+offset_bottom = 812.0
 theme_override_fonts/font = ExtResource("1_bywbm")
 theme_override_font_sizes/font_size = 37
 theme_override_styles/normal = SubResource("StyleBoxFlat_wwn0v")
@@ -92,23 +87,23 @@ text = "Aceptar"
 
 [node name="Label2" type="Label" parent="."]
 layout_mode = 0
-offset_left = 164.0
-offset_top = 883.0
-offset_right = 589.0
-offset_bottom = 955.0
+offset_left = 154.0
+offset_top = 857.0
+offset_right = 579.0
+offset_bottom = 929.0
 theme_override_fonts/font = ExtResource("1_bywbm")
 theme_override_font_sizes/font_size = 25
-text = "Ya tienes cuenta?"
+text = "No tienes cuenta?"
 
-[node name="iniciarSesion" type="Button" parent="."]
+[node name="Registrar" type="Button" parent="."]
 layout_mode = 0
-offset_left = 214.0
-offset_top = 930.0
-offset_right = 520.0
-offset_bottom = 1007.0
-theme_override_colors/font_color = Color(0.775923, 0.25444, 0.915241, 1)
+offset_left = 114.0
+offset_top = 630.0
+offset_right = 602.0
+offset_bottom = 707.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_bywbm")
 theme_override_font_sizes/font_size = 24
 button_mask = 0
-text = "Inicia sesión"
+text = "Recuperar contraseña"
 flat = true
