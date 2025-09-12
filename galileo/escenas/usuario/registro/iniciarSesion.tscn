@@ -35,13 +35,13 @@ color = Color(0.133333, 0.156863, 0.211765, 1)
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 126.0
-offset_top = 300.0
-offset_right = 589.0
-offset_bottom = 397.0
+offset_left = 78.0
+offset_top = 335.0
+offset_right = 638.0
+offset_bottom = 399.0
 theme_override_fonts/font = ExtResource("1_bywbm")
 theme_override_font_sizes/font_size = 40
-text = "Registrarse"
+text = "Iniciar sesion"
 
 [node name="usuario" type="TextEdit" parent="."]
 layout_mode = 0
