@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 [gd_scene format=3 uid="uid://cs6y8btdpwblb"]
 
 [node name="Control" type="Control"]
@@ -13,11 +14,63 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+=======
+[gd_scene load_steps=7 format=3 uid="uid://cs6y8btdpwblb"]
+
+[ext_resource type="Texture2D" uid="uid://blg67gg5afvfk" path="res://assets/sprites/ui/Menu/persona B.png" id="2_ouk20"]
+[ext_resource type="Texture2D" uid="uid://dwih0cv8cpup0" path="res://assets/sprites/ui/Menu/estadísticaB.png" id="3_4hy44"]
+[ext_resource type="Texture2D" uid="uid://bg43svc84f1m" path="res://assets/sprites/ui/Menu/libroM.png" id="4_ytr4m"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4hy44"]
+texture = ExtResource("2_ouk20")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ytr4m"]
+texture = ExtResource("3_4hy44")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l48gv"]
+texture = ExtResource("4_ytr4m")
+
+[node name="MenuBar" type="MenuBar"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 20.109
+offset_left = 5.0
+offset_top = 1185.0
+offset_right = -80.36
+offset_bottom = 1276.0
+>>>>>>> Stashed changes
 grow_horizontal = 2
 grow_vertical = 2
 
+<<<<<<< Updated upstream
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 39
 text = "PRUEBA"
 horizontal_alignment = 1
+=======
+[node name="perfil" type="Button" parent="."]
+offset_left = 495.0
+offset_top = 1190.0
+offset_right = 577.0
+offset_bottom = 1270.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_4hy44")
+
+[node name="estadistica" type="Button" parent="."]
+offset_left = 151.0
+offset_top = 1196.0
+offset_right = 221.0
+offset_bottom = 1264.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_ytr4m")
+
+[node name="leccion" type="Button" parent="."]
+offset_left = 302.0
+offset_top = 1180.0
+offset_right = 414.0
+offset_bottom = 1291.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_l48gv")
+>>>>>>> Stashed changes
