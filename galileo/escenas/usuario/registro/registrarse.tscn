@@ -119,4 +119,5 @@ text = "Inicia sesión"
 flat = true
 script = SubResource("GDScript_x7nj8")
 
+[connection signal="pressed" from="aceptar" to="." method="_on_aceptar_pressed"]
 [connection signal="pressed" from="iniciasSesion" to="." method="_on_inicias_sesion_pressed"]

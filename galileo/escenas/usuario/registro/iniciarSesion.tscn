@@ -4,11 +4,47 @@
 
 [sub_resource type="GDScript" id="GDScript_bywbm"]
 script/source = "extends Control
+
+# Cargar la escena de registro
 var change_scene = preload(\"res://escenas/usuario/registro/registrarse.tscn\")
 
+func _ready():
+    # Opcional: asegurarse que la contraseña se oculte
+    $contrasena.secret = true
+
+
+# Botón: Registrarse
 func _on_registrar_pressed() -> void:
-	get_tree().change_scene_to_packed(change_scene)
-	pass # Replace with function body.
+    get_tree().change_scene_to_packed(change_scene)
+
+
+# Botón: Recuperar contraseña
+func _on_get_pass_2_pressed() -> void:
+    var usuario = $usuario.text
+    if usuario == \"\":
+        print(\"Debes escribir tu usuario para recuperar contraseña.\")
+    else:
+        # Aquí pondrías la lógica real (ej: conexión a BD, Firebase, archivo, etc.)
+        print(\"Enviando recuperación de contraseña para:\", usuario)
+
+
+# Botón: Aceptar / Iniciar sesión
+func _on_aceptar_pressed() -> void:
+    var usuario = $usuario.text
+    var contrasena = $contrasena.text
+
+    if usuario == \"\" or contrasena == \"\":
+        print(\"Faltan datos: usuario o contraseña.\")
+        return
+    
+    # 🔹 Aquí pondrías tu lógica real (comparar contra BD, Firebase, JSON local, etc.)
+    # Por ahora hago un ejemplo simple con usuario fijo
+    if usuario == \"admin\" and contrasena == \"1234\":
+        print(\"Inicio de sesión correcto, entrando...\")
+        # Ejemplo: cambiar a menú principal
+        get_tree().change_scene_to_file(\"res://escenas/menu_principal.tscn\")
+    else:
+        print(\"Usuario o contraseña incorrectos.\")
 "
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wwn0v"]
@@ -120,3 +156,5 @@ text = "Recuperar contraseña"
 flat = true
 
 [connection signal="pressed" from="Registrar" to="." method="_on_registrar_pressed"]
+[connection signal="pressed" from="aceptar" to="." method="_on_aceptar_pressed"]
+[connection signal="pressed" from="GetPass2" to="." method="_on_get_pass_2_pressed"]

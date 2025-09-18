@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbf5humikp1k5"]
+
+[ext_resource type="Texture2D" uid="uid://b13vytyimmly0" path="res://assets/sprites/trophies/PWM.png" id="1_auqce"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 723.0
+offset_bottom = 1280.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.408726, 0.000123889, 0.412854, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 212.0
+offset_top = 129.0
+offset_right = 528.0
+offset_bottom = 395.0
+texture = ExtResource("1_auqce")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 185.0
+offset_top = 424.0
+offset_right = 555.0
+offset_bottom = 481.0
+theme_override_font_sizes/font_size = 35
+text = "NOMBRE DE USUARIO"
