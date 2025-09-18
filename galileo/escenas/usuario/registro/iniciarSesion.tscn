@@ -39,9 +39,28 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = -3.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.133333, 0.156863, 0.211765, 1)
+
+[node name="LineEdit" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 119.0
+offset_top = 439.0
+offset_right = 618.0
+offset_bottom = 504.0
+theme_override_font_sizes/font_size = 35
+text = "USUARIO"
+
+[node name="LineEdit2" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 119.0
+offset_top = 536.0
+offset_right = 618.0
+offset_bottom = 601.0
+theme_override_font_sizes/font_size = 35
+text = "CONTRASEÑA"
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
@@ -52,24 +71,6 @@ offset_bottom = 399.0
 theme_override_fonts/font = ExtResource("1_bywbm")
 theme_override_font_sizes/font_size = 40
 text = "Iniciar sesion"
-
-[node name="usuario" type="TextEdit" parent="."]
-layout_mode = 0
-offset_left = 86.0
-offset_top = 430.0
-offset_right = 629.0
-offset_bottom = 497.0
-theme_override_font_sizes/font_size = 30
-placeholder_text = "Usuario"
-
-[node name="contraseña" type="TextEdit" parent="."]
-layout_mode = 0
-offset_left = 90.0
-offset_top = 542.0
-offset_right = 633.0
-offset_bottom = 609.0
-theme_override_font_sizes/font_size = 30
-placeholder_text = "Contraseña"
 
 [node name="Registrar" type="Button" parent="."]
 layout_mode = 0
@@ -100,7 +101,7 @@ layout_mode = 0
 offset_left = 154.0
 offset_top = 857.0
 offset_right = 579.0
-offset_bottom = 929.0
+offset_bottom = 932.0
 theme_override_fonts/font = ExtResource("1_bywbm")
 theme_override_font_sizes/font_size = 25
 text = "No tienes cuenta?"

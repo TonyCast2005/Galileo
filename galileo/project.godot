@@ -15,6 +15,13 @@ run/main_scene="uid://g7ts28wga55v"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/viewport_width=720
+window/size/viewport_height=1280
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+
 [rendering]
 
 renderer/rendering_method="mobile"

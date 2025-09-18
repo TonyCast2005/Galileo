@@ -41,49 +41,48 @@ color = Color(0.133333, 0.156863, 0.211765, 1)
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 130.0
-offset_top = 175.0
-offset_right = 593.0
-offset_bottom = 272.0
+offset_left = 139.0
+offset_top = 203.0
+offset_right = 602.0
+offset_bottom = 300.0
 theme_override_fonts/font = ExtResource("1_svshf")
 theme_override_font_sizes/font_size = 40
-text = "Registrarse"
+text = "Registrarse
+		en Galileo"
 
-[node name="usuario" type="TextEdit" parent="."]
-layout_mode = 0
-offset_left = 90.0
-offset_top = 305.0
-offset_right = 633.0
-offset_bottom = 372.0
-theme_override_font_sizes/font_size = 30
-placeholder_text = "Usuario"
+[node name="usuario" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.473
+anchor_right = 0.57
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -238.44
+offset_right = 226.6
+offset_bottom = -208.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 28
+placeholder_text = "USUARIO"
 
-[node name="contraseña" type="TextEdit" parent="."]
+[node name="CONTRASEÑA" type="LineEdit" parent="."]
 layout_mode = 0
-offset_left = 94.0
-offset_top = 417.0
+offset_left = 100.0
+offset_top = 634.0
 offset_right = 637.0
-offset_bottom = 484.0
-theme_override_font_sizes/font_size = 30
-placeholder_text = "Contraseña"
+offset_bottom = 699.0
+theme_override_font_sizes/font_size = 28
+placeholder_text = "CONFIRMAR CONTRASEÑA"
 
-[node name="confirmarContraseña" type="TextEdit" parent="."]
+[node name="CONTRASEÑA2" type="LineEdit" parent="."]
 layout_mode = 0
-offset_left = 92.0
-offset_top = 525.0
-offset_right = 635.0
-offset_bottom = 592.0
-theme_override_font_sizes/font_size = 30
-placeholder_text = "Confirmar Contraseña"
-
-[node name="correo" type="TextEdit" parent="."]
-layout_mode = 0
-offset_left = 94.0
-offset_top = 637.0
-offset_right = 637.0
-offset_bottom = 704.0
-theme_override_font_sizes/font_size = 30
-placeholder_text = "Correo electrónico"
+offset_left = 103.0
+offset_top = 493.0
+offset_right = 640.0
+offset_bottom = 558.0
+theme_override_font_sizes/font_size = 28
+placeholder_text = "CONTRASEÑA"
 
 [node name="aceptar" type="Button" parent="."]
 layout_mode = 0
