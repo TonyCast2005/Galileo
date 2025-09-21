@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://mge3hmyswt3d"]
+
+[node name="OpcionMultiple" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextoPregunta" type="Label" parent="."]
+offset_left = 54.0
+offset_top = 108.0
+offset_right = 626.0
+offset_bottom = 287.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Hola esta es una prueba de texto"
+autowrap_mode = 2
+
+[node name="Opcion1" type="Button" parent="."]
+layout_mode = 2
+offset_left = 22.0
+offset_top = 320.0
+offset_right = 626.0
+offset_bottom = 482.0
+theme_override_font_sizes/font_size = 28
+text = "Opcion 1"
+
+[node name="Opcion2" type="Button" parent="."]
+layout_mode = 2
+offset_left = 22.0
+offset_top = 499.0
+offset_right = 626.0
+offset_bottom = 661.0
+theme_override_font_sizes/font_size = 28
+text = "Opcion 2"
+
+[node name="Opcion3" type="Button" parent="."]
+layout_mode = 2
+offset_left = 25.0
+offset_top = 684.0
+offset_right = 629.0
+offset_bottom = 846.0
+theme_override_font_sizes/font_size = 28
+text = "Opcion 3"
+
+[node name="Opcion4" type="Button" parent="."]
+layout_mode = 2
+offset_left = 22.0
+offset_top = 869.0
+offset_right = 626.0
+offset_bottom = 1031.0
+theme_override_font_sizes/font_size = 28
+text = "Opcion 4
+"
