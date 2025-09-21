@@ -132,10 +132,10 @@ text = "NEGATIVA
 
 [node name="Pista" type="Button" parent="."]
 layout_mode = 0
-offset_left = 178.0
-offset_top = 474.0
-offset_right = 384.0
-offset_bottom = 592.0
+offset_left = 163.0
+offset_top = 490.0
+offset_right = 369.0
+offset_bottom = 608.0
 text = "PISTA
 
 "
