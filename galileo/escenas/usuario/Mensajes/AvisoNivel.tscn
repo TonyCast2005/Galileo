@@ -1,0 +1,99 @@
+[gd_scene load_steps=6 format=3 uid="uid://73voitwu6r4c"]
+
+[ext_resource type="Texture2D" uid="uid://bmh67ey51trx4" path="res://assets/sprites/ui/Galileo/Feli.png" id="1_7a7jo"]
+[ext_resource type="Script" uid="uid://cftmxa3i8h0qd" path="res://Scripts/TestUbicacion/AvisoDeNivel/aviso_nivel.gd" id="1_vjyao"]
+[ext_resource type="Script" uid="uid://c7irro3p3n82a" path="res://Scripts/TestUbicacion/AvisoDeNivel/Gato_AvisoNivel.gd" id="3_v1bei"]
+[ext_resource type="Texture2D" uid="uid://cjum5jl505mim" path="res://assets/sprites/ui/Galileo/Galileo Base.png" id="5_05nnh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fwf31"]
+bg_color = Color(0.257484, 0.26195, 0.40107, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vjyao")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1627, 0.14145, 0.229818, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 97.0
+offset_top = 291.0
+offset_right = 630.0
+offset_bottom = 380.0
+theme_override_font_sizes/font_size = 41
+text = "¡Felicidades!
+"
+
+[node name="Feli" type="Sprite2D" parent="."]
+position = Vector2(353, 495)
+rotation = -0.119002
+scale = Vector2(2.13672, 2.00391)
+texture = ExtResource("1_7a7jo")
+script = ExtResource("3_v1bei")
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 699.0
+offset_right = 735.0
+offset_bottom = 894.0
+theme_override_font_sizes/font_size = 28
+text = "Has terminado el examen 
+y esto te posiciona en
+el nivel"
+horizontal_alignment = 1
+
+[node name="nivelLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 825.0
+offset_right = 621.0
+offset_bottom = 941.0
+theme_override_colors/font_color = Color(1, 0.937255, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.172941, 0.0561856, 0.314452, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 42
+text = "Avanzado
+"
+horizontal_alignment = 1
+
+[node name="continuar" type="Button" parent="."]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 914.0
+offset_right = 483.0
+offset_bottom = 966.0
+theme_override_font_sizes/font_size = 21
+theme_override_styles/normal = SubResource("StyleBoxFlat_fwf31")
+text = "Continuar"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(279, 207)
+
+[node name="confetti" type="CPUParticles2D" parent="."]
+position = Vector2(361, 78)
+emitting = false
+amount = 200
+texture = ExtResource("5_05nnh")
+lifetime = 2.26
+one_shot = true
+explosiveness = 1.0
+direction = Vector2(0, 1)
+spread = 180.0
+gravity = Vector2(0, 200)
