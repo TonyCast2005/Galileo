@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://mge3hmyswt3d"]
+[gd_scene load_steps=2 format=3 uid="uid://mge3hmyswt3d"]
+
+[ext_resource type="Script" uid="uid://b0pfi4hdgcwxu" path="res://escenas/Tipos_preguntas/OpcionMultiple/opcion_multiple.gd" id="1_vs0lo"]
 
 [node name="OpcionMultiple" type="Control"]
 layout_mode = 3
@@ -7,6 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_vs0lo")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -54,12 +57,8 @@ offset_bottom = 846.0
 theme_override_font_sizes/font_size = 28
 text = "Opcion 3"
 
-[node name="Opcion4" type="Button" parent="."]
-layout_mode = 2
-offset_left = 22.0
-offset_top = 869.0
-offset_right = 626.0
-offset_bottom = 1031.0
-theme_override_font_sizes/font_size = 28
-text = "Opcion 4
-"
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[connection signal="pressed" from="Opcion1" to="." method="_on_opcion_1_pressed"]
+[connection signal="pressed" from="Opcion2" to="." method="_on_opcion_2_pressed"]
+[connection signal="pressed" from="Opcion3" to="." method="_on_opcion_3_pressed"]

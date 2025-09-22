@@ -7,8 +7,12 @@ extends Control
 @onready var boton_retro = $PanelRetroalimentacion/BotonSiguiente
 @onready var contenedor_preguntas = $ContenedorPreguntas
 
+signal siguiente_pregunta  # ✅ señal pública
+
+# Ejemplo: cuando se presiona el botón de retroalimentación
+
 var preguntas = [
-    preload("res://escenas/Tipos_preguntas/OpcionMultiple.tscn"),
+    preload("res://escenas/Tipos_preguntas/OpcionMultiple/OpcionMultiple.tscn"),
 ]
 
 var velocidad = 0.04
@@ -20,10 +24,12 @@ var frame_idle = preload("res://assets/sprites/ui/Galileo/Galileo Base.png")
 var panel_activo = false
 var indice_actual = 0
 var instancia_actual = null
+var ultima_correcta = false  # Guardamos si fue correcta o no
 
 func _ready():
     panel_retro.visible = false
     cargar_pregunta(indice_actual)
+    boton_retro.pressed.connect(_on_boton_retro_pressed)
 
 # ---------------------------
 # INSTANCIADO DE PREGUNTAS
@@ -31,21 +37,45 @@ func _ready():
 func cargar_pregunta(indice: int):
     if instancia_actual:
         instancia_actual.queue_free()
-    var escena = preguntas[indice].instantiate()
+
+    var escena = preload("res://escenas/Tipos_preguntas/OpcionMultiple/OpcionMultiple.tscn").instantiate()
     contenedor_preguntas.add_child(escena)
     instancia_actual = escena
 
-# ---------------------------
-# FUNCIONES DE LOS BOTONES DE RESPUESTA
-# ---------------------------
-func _on_positiva_pressed() -> void:
-    mostrar_retroalimentacion("✅ ¡Muy bien! Has acertado.", Color(0,1,0))
+    # Pasamos datos de la pregunta (desde Firebase o un array local)
+    if instancia_actual.has_method("set_pregunta"):
+        instancia_actual.set_pregunta(preguntas[indice])
 
-func _on_negativa_pressed() -> void:
-    mostrar_retroalimentacion("❌ Incorrecto... inténtalo otra vez.", Color(1,0,0))
+    # Conectar señal respondida
+    instancia_actual.respondida.connect(_on_pregunta_respondida)
 
-func _on_pista_pressed() -> void:
-    mostrar_retroalimentacion("💡 Pista: recuerda revisar el código del ejemplo.", Color(1,1,0))
+
+# ---------------------------
+# MANEJAR SEÑAL DE PREGUNTA
+# ---------------------------
+func _on_pregunta_respondida(texto: String, color: Color, correcta: bool):
+    ultima_correcta = correcta
+    mostrar_retroalimentacion(texto, color)
+
+# ---------------------------
+# BOTÓN DE RETROALIMENTACIÓN
+# ---------------------------
+func _on_boton_retro_pressed():
+    emit_signal("siguiente_pregunta")
+    cerrar_panel()
+
+    if ultima_correcta:
+        indice_actual += 1
+        if indice_actual < preguntas.size():
+            cargar_pregunta(indice_actual)   # 👈 aquí se cambia la pregunta
+        else:
+            label_retro.text = "🎉 Examen terminado"
+            panel_retro.show()
+            boton_retro.disabled = true
+
+    else:
+        # Si no fue correcta, solo cerramos el panel (sin avanzar)
+        pass
 
 # ---------------------------
 # FUNCIÓN PRINCIPAL DE RETRO
@@ -107,9 +137,14 @@ func mostrar_retroalimentacion(texto: String, color: Color) -> void:
     boton_retro.visible = true
     boton_retro.disabled = false
 
-    await get_tree().create_timer(1.5).timeout
+# ---------------------------
+# CERRAR PANEL
+# ---------------------------
+func cerrar_panel():
+    var viewport_size = get_viewport_rect().size
+    var panel_altura = panel_retro.size.y
+    var fuera_pantalla = viewport_size.y + panel_altura
 
-    # Salida
     var tween_out = create_tween()
     tween_out.tween_property(panel_retro, "position:y", fuera_pantalla, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
     tween_out.tween_callback(func():
