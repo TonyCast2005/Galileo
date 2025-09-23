@@ -3,12 +3,17 @@ var change_scene = preload("res://escenas/usuario/registro/iniciarSesion.tscn")
 
 func _on_inicias_sesion_pressed() -> void:
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     get_tree().change_scene_to_packed(change_scene)
     pass # Replace with function body.
 
 
 func _on_aceptar_pressed() -> void:
     pass # Replace with function body.
+=======
+	get_tree().change_scene_to_packed(change_scene)
+	pass # Replace with function body.
+>>>>>>> Stashed changes
 =======
 	get_tree().change_scene_to_packed(change_scene)
 	pass # Replace with function body.
