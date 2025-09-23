@@ -36,6 +36,7 @@ grow_vertical = 2
 color = Color(0.227451, 0.152941, 0.329412, 1)
 
 [node name="TextoPregunta" type="Label" parent="ColorRect"]
+layout_mode = 0
 offset_left = 66.0
 offset_top = 192.0
 offset_right = 638.0
@@ -60,6 +61,7 @@ text = "Espacio respuesta"
 horizontal_alignment = 1
 
 [node name="validar" type="Button" parent="ColorRect"]
+layout_mode = 0
 offset_left = 210.0
 offset_top = 947.0
 offset_right = 527.0
@@ -70,6 +72,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_88pd7")
 text = "Validar"
 
 [node name="NombreLección" type="Label" parent="ColorRect"]
+layout_mode = 0
 offset_left = 7.0
 offset_top = 10.0
 offset_right = 579.0
@@ -81,6 +84,7 @@ text = "Nombre de la lección"
 autowrap_mode = 2
 
 [node name="Pista" type="Button" parent="ColorRect"]
+layout_mode = 0
 offset_left = 47.0
 offset_top = 928.0
 offset_right = 143.0

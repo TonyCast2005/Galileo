@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://btqowb15bop7l"]
+[gd_scene load_steps=6 format=3 uid="uid://btqowb15bop7l"]
 
 [ext_resource type="Script" uid="uid://c7em3xa1fw77d" path="res://Scripts/TestUbicacion/Examen/examen.gd" id="1_jartc"]
 [ext_resource type="Texture2D" uid="uid://feyahj0mae46" path="res://assets/sprites/globoTexto .png" id="2_18qn3"]
@@ -14,6 +14,13 @@ corner_radius_top_left = 3
 corner_radius_top_right = 4
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ayhl8"]
+bg_color = Color(0.034876, 0.0165234, 0.0686929, 0.447059)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
 
 [node name="Examen" type="Control"]
 layout_mode = 3
@@ -31,7 +38,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.539972, 0.0524385, 0.693837, 1)
+color = Color(0.227451, 0.152941, 0.329412, 1)
 
 [node name="Progreso" type="Label" parent="."]
 layout_mode = 0
@@ -75,7 +82,7 @@ anchor_bottom = 1.0
 offset_top = -166.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.623027, 0.111934, 1, 1)
+color = Color(0.623529, 0.113725, 1, 1)
 
 [node name="NinePatchRect" type="NinePatchRect" parent="PanelRetroalimentacion"]
 layout_mode = 0
@@ -110,7 +117,9 @@ layout_mode = 0
 offset_left = 467.0
 offset_top = 63.0
 offset_right = 692.0
-offset_bottom = 165.0
+offset_bottom = 121.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_ayhl8")
 text = "siguiente"
 
 [node name="Positiva" type="Button" parent="."]

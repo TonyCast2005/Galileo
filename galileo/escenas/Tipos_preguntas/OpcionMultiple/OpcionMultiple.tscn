@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://mge3hmyswt3d"]
 
-[ext_resource type="Script" uid="uid://dpeu1elldtcpy" path="res://escenas/Tipos_preguntas/OpcionMultiple/opcion_multiple.gd" id="1_vs0lo"]
+[ext_resource type="Script" uid="uid://b0pfi4hdgcwxu" path="res://escenas/Tipos_preguntas/OpcionMultiple/opcion_multiple.gd" id="1_vs0lo"]
 [ext_resource type="Texture2D" uid="uid://bgnffnt45rlhx" path="res://assets/sprites/ui/lupa.png" id="2_b1vbc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tlnrb"]

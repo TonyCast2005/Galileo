@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bu2c85jprts0x"]
 
-[ext_resource type="Texture2D" path="res://assets/sprites/ui/lupa.png" id="1_s38dr"]
+[ext_resource type="Texture2D" uid="uid://bgnffnt45rlhx" path="res://assets/sprites/ui/lupa.png" id="1_s38dr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aj4ue"]
 bg_color = Color(0.114014, 0.000167964, 0.217138, 0.466667)
@@ -33,6 +33,7 @@ grow_vertical = 2
 color = Color(0.227451, 0.152941, 0.329412, 1)
 
 [node name="validar" type="Button" parent="ColorRect"]
+layout_mode = 0
 offset_left = 228.0
 offset_top = 1030.0
 offset_right = 486.0
@@ -43,6 +44,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_aj4ue")
 text = "Validar"
 
 [node name="TextoPregunta" type="Label" parent="."]
+layout_mode = 0
 offset_left = 77.0
 offset_top = 113.0
 offset_right = 649.0
@@ -56,6 +58,7 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="nombreLeccion" type="Label" parent="."]
+layout_mode = 0
 offset_left = 19.0
 offset_top = 23.0
 offset_right = 591.0
@@ -67,6 +70,7 @@ text = "Nombre de la lección"
 autowrap_mode = 2
 
 [node name="pista" type="Button" parent="."]
+layout_mode = 0
 offset_left = 57.0
 offset_top = 908.0
 offset_right = 145.0
