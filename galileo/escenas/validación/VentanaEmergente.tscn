@@ -1,0 +1,59 @@
+[gd_scene load_steps=4 format=3 uid="uid://be0w0n0dfsqfh"]
+
+[ext_resource type="Texture2D" uid="uid://baykhnqxwooqw" path="res://assets/sprites/ui/ventana.png" id="1_3o75q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s138y"]
+bg_color = Color(0.435294, 0.74902, 0.243137, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ewuq0"]
+bg_color = Color(0.745098, 0.152941, 0.380392, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Ventana" type="Sprite2D" parent="."]
+position = Vector2(353, 630)
+scale = Vector2(0.555888, 0.52993)
+texture = ExtResource("1_3o75q")
+
+[node name="textoVentana" type="Label" parent="Ventana"]
+offset_left = -459.0
+offset_top = -208.0
+offset_right = 461.0
+offset_bottom = 40.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 35
+text = "Texto ventana emergente"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Aceptar" type="Button" parent="."]
+layout_mode = 0
+offset_left = 138.0
+offset_top = 671.0
+offset_right = 283.0
+offset_bottom = 738.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_s138y")
+text = "Aceptar"
+
+[node name="Cancelar" type="Button" parent="."]
+offset_left = 415.0
+offset_top = 672.0
+offset_right = 560.0
+offset_bottom = 739.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_ewuq0")
+text = "Cancelar"
