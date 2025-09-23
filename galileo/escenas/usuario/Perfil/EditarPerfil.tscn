@@ -1,0 +1,137 @@
+[gd_scene load_steps=7 format=3 uid="uid://tb6s65g7ub4q"]
+
+[ext_resource type="Texture2D" uid="uid://dpu72kxvllbfy" path="res://assets/sprites/ui/Logros/caja de cartón .png" id="1_xvlxl"]
+[ext_resource type="Texture2D" uid="uid://blg67gg5afvfk" path="res://assets/sprites/ui/Menu/persona B.png" id="2_wkyxs"]
+[ext_resource type="Texture2D" uid="uid://1ly7vb0unt2y" path="res://assets/sprites/ui/lápiz.png" id="3_qu4ue"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b45wd"]
+texture = ExtResource("2_wkyxs")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fksbu"]
+texture = ExtResource("3_qu4ue")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gyqkp"]
+bg_color = Color(0.289513, 0.191113, 0.449654, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+
+[node name="EditarPerfil" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.133333, 0.156863, 0.211765, 1)
+
+[node name="FotoPerfil" type="TextureRect" parent="."]
+offset_left = 182.0
+offset_top = 67.0
+offset_right = 527.0
+offset_bottom = 412.0
+texture = ExtResource("1_xvlxl")
+expand_mode = 2
+
+[node name="EditarPerfil" type="Button" parent="."]
+offset_left = 573.0
+offset_top = 39.0
+offset_right = 682.0
+offset_bottom = 143.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_b45wd")
+
+[node name="NombreUsuario" type="Label" parent="."]
+offset_left = 142.0
+offset_top = 538.0
+offset_right = 604.0
+offset_bottom = 632.0
+theme_override_font_sizes/font_size = 26
+text = "Nombre de usuario"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="contraseña" type="Label" parent="."]
+offset_left = 145.0
+offset_top = 639.0
+offset_right = 607.0
+offset_bottom = 719.0
+theme_override_font_sizes/font_size = 26
+text = "contraseña"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="fotoPerfil" type="Label" parent="."]
+offset_left = 136.0
+offset_top = 452.0
+offset_right = 598.0
+offset_bottom = 546.0
+theme_override_font_sizes/font_size = 26
+text = "Foto de perfil"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ed_foto" type="Button" parent="."]
+layout_mode = 0
+offset_left = 122.0
+offset_top = 468.0
+offset_right = 179.0
+offset_bottom = 519.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_fksbu")
+
+[node name="ed_nombre" type="Button" parent="."]
+offset_left = 79.0
+offset_top = 560.0
+offset_right = 136.0
+offset_bottom = 611.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_fksbu")
+
+[node name="ed_contraseña" type="Button" parent="."]
+offset_left = 178.0
+offset_top = 651.0
+offset_right = 235.0
+offset_bottom = 702.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_fksbu")
+
+[node name="guardar" type="Button" parent="."]
+layout_mode = 0
+offset_left = 251.0
+offset_top = 785.0
+offset_right = 467.0
+offset_bottom = 842.0
+theme_override_font_sizes/font_size = 23
+theme_override_styles/normal = SubResource("StyleBoxFlat_gyqkp")
+text = "Guardar
+"
+
+[node name="cerrarSesion" type="Button" parent="."]
+layout_mode = 0
+offset_left = 187.0
+offset_top = 890.0
+offset_right = 535.0
+offset_bottom = 947.0
+theme_override_font_sizes/font_size = 23
+theme_override_styles/normal = SubResource("StyleBoxFlat_gyqkp")
+text = "Cerrar sesión"
+
+[node name="borrarCuenta" type="Button" parent="."]
+layout_mode = 0
+offset_left = 185.0
+offset_top = 991.0
+offset_right = 544.0
+offset_bottom = 1048.0
+theme_override_font_sizes/font_size = 23
+theme_override_styles/normal = SubResource("StyleBoxFlat_gyqkp")
+text = "Borrar cuenta"

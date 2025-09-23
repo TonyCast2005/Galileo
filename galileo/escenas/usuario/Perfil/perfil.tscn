@@ -1,0 +1,73 @@
+[gd_scene load_steps=5 format=3 uid="uid://bevye0qg4wu30"]
+
+[ext_resource type="PackedScene" uid="uid://cs6y8btdpwblb" path="res://menu.tscn" id="1_pw2c4"]
+[ext_resource type="Texture2D" uid="uid://dpu72kxvllbfy" path="res://assets/sprites/ui/Logros/caja de cartón .png" id="2_q3e6x"]
+[ext_resource type="Texture2D" uid="uid://wtavayokovw6" path="res://assets/sprites/ui/Menu/engrane.png" id="3_y0tx0"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_76iub"]
+texture = ExtResource("3_y0tx0")
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.133333, 0.156863, 0.211765, 1)
+
+[node name="FotoPerfil" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 182.0
+offset_top = 67.0
+offset_right = 527.0
+offset_bottom = 412.0
+texture = ExtResource("2_q3e6x")
+expand_mode = 2
+
+[node name="EditarPerfil" type="Button" parent="."]
+layout_mode = 0
+offset_left = 575.0
+offset_top = 9.0
+offset_right = 722.0
+offset_bottom = 160.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_76iub")
+
+[node name="NombreUsuario" type="Label" parent="."]
+layout_mode = 0
+offset_left = 127.0
+offset_top = 411.0
+offset_right = 589.0
+offset_bottom = 505.0
+theme_override_font_sizes/font_size = 26
+text = "Nombre de usuario"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NiveelUsuario" type="Label" parent="."]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 512.0
+offset_right = 594.0
+offset_bottom = 566.0
+theme_override_font_sizes/font_size = 26
+text = "Nivel del usuario"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_left = 99.0
+offset_top = 583.0
+offset_right = 627.0
+offset_bottom = 1102.0
+
+[node name="Control" parent="." instance=ExtResource("1_pw2c4")]
+layout_mode = 1
