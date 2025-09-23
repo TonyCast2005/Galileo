@@ -20,6 +20,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TextoPregunta" type="Label" parent="."]
+layout_mode = 0
 offset_left = 54.0
 offset_top = 108.0
 offset_right = 626.0
