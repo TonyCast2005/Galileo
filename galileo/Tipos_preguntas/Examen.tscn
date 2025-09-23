@@ -82,7 +82,7 @@ anchor_bottom = 1.0
 offset_top = -166.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.623027, 0.111934, 1, 1)
+color = Color(0.623529, 0.113725, 1, 0.360784)
 
 [node name="NinePatchRect" type="NinePatchRect" parent="PanelRetroalimentacion"]
 layout_mode = 0
