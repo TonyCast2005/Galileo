@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bg43svc84f1m"
-path="res://.godot/imported/libroM.png-b0dccc1a1a148c4f1d4c5efce83c7a96.ctex"
+uid="uid://dib2h78ljvrxr"
+path="res://.godot/imported/cohete verde.png-d811e71cc518edac66238023c545efde.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui/libroM.png"
-dest_files=["res://.godot/imported/libroM.png-b0dccc1a1a148c4f1d4c5efce83c7a96.ctex"]
+source_file="res://assets/sprites/ui/Espacio/cohete verde.png"
+dest_files=["res://.godot/imported/cohete verde.png-d811e71cc518edac66238023c545efde.ctex"]
 
 [params]
 

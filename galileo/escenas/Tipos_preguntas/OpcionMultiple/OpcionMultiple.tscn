@@ -1,6 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://mge3hmyswt3d"]
+[gd_scene load_steps=7 format=3 uid="uid://mge3hmyswt3d"]
 
-[ext_resource type="Script" uid="uid://b0pfi4hdgcwxu" path="res://escenas/Tipos_preguntas/OpcionMultiple/opcion_multiple.gd" id="1_vs0lo"]
+[ext_resource type="Script" uid="uid://dpeu1elldtcpy" path="res://escenas/Tipos_preguntas/OpcionMultiple/opcion_multiple.gd" id="1_vs0lo"]
+[ext_resource type="Texture2D" uid="uid://bgnffnt45rlhx" path="res://assets/sprites/ui/lupa.png" id="2_b1vbc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tlnrb"]
+bg_color = Color(0.184314, 0.12549, 0.278431, 0.686275)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sj0es"]
+texture = ExtResource("2_b1vbc")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w5nhc"]
+texture = ExtResource("2_b1vbc")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4rng6"]
+texture = ExtResource("2_b1vbc")
 
 [node name="OpcionMultiple" type="Control"]
 layout_mode = 3
@@ -18,47 +35,78 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0.227451, 0.152941, 0.329412, 1)
 
 [node name="TextoPregunta" type="Label" parent="."]
 layout_mode = 0
-offset_left = 54.0
-offset_top = 108.0
-offset_right = 626.0
-offset_bottom = 287.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+offset_left = 66.0
+offset_top = 192.0
+offset_right = 638.0
+offset_bottom = 371.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 25
 text = "Hola esta es una prueba de texto"
+horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="Opcion1" type="Button" parent="."]
 layout_mode = 2
-offset_left = 22.0
-offset_top = 320.0
-offset_right = 626.0
-offset_bottom = 482.0
+offset_left = 54.0
+offset_top = 394.0
+offset_right = 658.0
+offset_bottom = 556.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_tlnrb")
 text = "Opcion 1"
 
 [node name="Opcion2" type="Button" parent="."]
 layout_mode = 2
-offset_left = 22.0
-offset_top = 499.0
-offset_right = 626.0
-offset_bottom = 661.0
+offset_left = 54.0
+offset_top = 573.0
+offset_right = 658.0
+offset_bottom = 735.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_tlnrb")
 text = "Opcion 2"
 
 [node name="Opcion3" type="Button" parent="."]
 layout_mode = 2
-offset_left = 25.0
-offset_top = 684.0
-offset_right = 629.0
-offset_bottom = 846.0
+offset_left = 57.0
+offset_top = 758.0
+offset_right = 661.0
+offset_bottom = 920.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_tlnrb")
 text = "Opcion 3"
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="NombreLección" type="Label" parent="."]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 10.0
+offset_right = 579.0
+offset_bottom = 68.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Nombre de la lección"
+autowrap_mode = 2
+
+[node name="Pista" type="Button" parent="."]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 928.0
+offset_right = 143.0
+offset_bottom = 1024.0
+theme_override_styles/focus = SubResource("StyleBoxTexture_sj0es")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_w5nhc")
+theme_override_styles/normal = SubResource("StyleBoxTexture_4rng6")
 
 [connection signal="pressed" from="Opcion1" to="." method="_on_opcion_1_pressed"]
 [connection signal="pressed" from="Opcion2" to="." method="_on_opcion_2_pressed"]

@@ -1,0 +1,109 @@
+[gd_scene load_steps=3 format=3 uid="uid://g7ts28wga55v"]
+
+[ext_resource type="FontFile" uid="uid://cu62bdhamv7ue" path="res://assets/fonts/PressStart2P-Regular.ttf" id="1_bywbm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wwn0v"]
+bg_color = Color(0.67076, 0.0998491, 0.916668, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.133333, 0.156863, 0.211765, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 78.0
+offset_top = 335.0
+offset_right = 638.0
+offset_bottom = 399.0
+theme_override_fonts/font = ExtResource("1_bywbm")
+theme_override_font_sizes/font_size = 40
+text = "Iniciar sesion"
+
+[node name="usuario" type="TextEdit" parent="."]
+layout_mode = 0
+offset_left = 86.0
+offset_top = 430.0
+offset_right = 629.0
+offset_bottom = 497.0
+theme_override_font_sizes/font_size = 30
+placeholder_text = "Usuario"
+
+[node name="contraseña" type="TextEdit" parent="."]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 542.0
+offset_right = 633.0
+offset_bottom = 609.0
+theme_override_font_sizes/font_size = 30
+placeholder_text = "Contraseña"
+
+[node name="GetPass" type="Button" parent="."]
+layout_mode = 0
+offset_left = 204.0
+offset_top = 904.0
+offset_right = 510.0
+offset_bottom = 981.0
+theme_override_colors/font_color = Color(0.775923, 0.25444, 0.915241, 1)
+theme_override_fonts/font = ExtResource("1_bywbm")
+theme_override_font_sizes/font_size = 24
+button_mask = 0
+text = "Registrate"
+flat = true
+
+[node name="aceptar" type="Button" parent="."]
+layout_mode = 0
+offset_left = 129.0
+offset_top = 735.0
+offset_right = 590.0
+offset_bottom = 812.0
+theme_override_fonts/font = ExtResource("1_bywbm")
+theme_override_font_sizes/font_size = 37
+theme_override_styles/normal = SubResource("StyleBoxFlat_wwn0v")
+text = "Aceptar"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 154.0
+offset_top = 857.0
+offset_right = 579.0
+offset_bottom = 929.0
+theme_override_fonts/font = ExtResource("1_bywbm")
+theme_override_font_sizes/font_size = 25
+text = "No tienes cuenta?"
+
+[node name="Registrar" type="Button" parent="."]
+layout_mode = 0
+offset_left = 114.0
+offset_top = 630.0
+offset_right = 602.0
+offset_bottom = 707.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_bywbm")
+theme_override_font_sizes/font_size = 24
+button_mask = 0
+text = "Recuperar contraseña"
+flat = true

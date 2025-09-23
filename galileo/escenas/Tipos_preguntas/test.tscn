@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://dh8jberfmd6af"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cww5j"]
+bg_color = Color(0.390993, 0.125577, 0.674499, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.137255, 0.156863, 0.215686, 1)
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 246.0
+offset_top = 1125.0
+offset_right = 454.0
+offset_bottom = 1189.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_cww5j")
+text = "Siguiente"

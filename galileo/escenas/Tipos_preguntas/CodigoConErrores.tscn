@@ -1,0 +1,77 @@
+[gd_scene load_steps=5 format=3 uid="uid://b4qft6c77cmxr"]
+
+[ext_resource type="Texture2D" path="res://assets/sprites/ui/lupa.png" id="1_t2pc7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i1t21"]
+bg_color = Color(0.114014, 0.000167964, 0.217138, 0.466667)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_32hvt"]
+texture = ExtResource("1_t2pc7")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uhjm2"]
+texture = ExtResource("1_t2pc7")
+
+[node name="CodigoConErrores" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.227451, 0.152941, 0.329412, 1)
+
+[node name="validar" type="Button" parent="ColorRect"]
+offset_left = 228.0
+offset_top = 1030.0
+offset_right = 486.0
+offset_bottom = 1084.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_i1t21")
+text = "Validar"
+
+[node name="TextoPregunta" type="Label" parent="."]
+offset_left = 77.0
+offset_top = 113.0
+offset_right = 649.0
+offset_bottom = 292.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Hola esta es una prueba de texto"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="nombreLeccion" type="Label" parent="."]
+offset_left = 19.0
+offset_top = 23.0
+offset_right = 591.0
+offset_bottom = 76.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 19
+text = "Nombre de la lección"
+autowrap_mode = 2
+
+[node name="pista" type="Button" parent="."]
+offset_left = 57.0
+offset_top = 908.0
+offset_right = 145.0
+offset_bottom = 1010.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 28
+theme_override_styles/focus = SubResource("StyleBoxTexture_32hvt")
+theme_override_styles/normal = SubResource("StyleBoxTexture_uhjm2")

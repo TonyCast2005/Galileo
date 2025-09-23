@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dp0ktys2ivxxf"
-path="res://.godot/imported/boton.png-35a6080dbf4f8e392d8599009f06ff9b.ctex"
+uid="uid://blg67gg5afvfk"
+path="res://.godot/imported/persona B.png-a9b593cd25a077da540586329119a9cf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui/boton.png"
-dest_files=["res://.godot/imported/boton.png-35a6080dbf4f8e392d8599009f06ff9b.ctex"]
+source_file="res://assets/sprites/ui/Menu/persona B.png"
+dest_files=["res://.godot/imported/persona B.png-a9b593cd25a077da540586329119a9cf.ctex"]
 
 [params]
 
