@@ -16,7 +16,7 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 9
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ayhl8"]
-bg_color = Color(0.121569, 0, 0.223529, 0.313726)
+bg_color = Color(0.219501, 0.219501, 0.219501, 0.352941)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
@@ -46,7 +46,6 @@ offset_left = 54.0
 offset_top = 22.0
 offset_right = 665.0
 offset_bottom = 88.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 32
 text = "PREGUNTA NUMERO 3"
 horizontal_alignment = 1
@@ -83,7 +82,7 @@ anchor_bottom = 1.0
 offset_top = -166.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.623529, 0.113725, 1, 0.388235)
+color = Color(0.623027, 0.111934, 1, 1)
 
 [node name="NinePatchRect" type="NinePatchRect" parent="PanelRetroalimentacion"]
 layout_mode = 0
@@ -117,17 +116,17 @@ texture = ExtResource("3_yt658")
 layout_mode = 0
 offset_left = 467.0
 offset_top = 63.0
-offset_right = 692.0
-offset_bottom = 165.0
+offset_right = 669.0
+offset_bottom = 118.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_ayhl8")
 text = "siguiente"
 
 [node name="Positiva" type="Button" parent="."]
 layout_mode = 0
-offset_left = 155.0
+offset_left = 151.0
 offset_top = 182.0
-offset_right = 361.0
+offset_right = 357.0
 offset_bottom = 300.0
 text = "POSITIVA"
 
@@ -142,10 +141,10 @@ text = "NEGATIVA
 
 [node name="Pista" type="Button" parent="."]
 layout_mode = 0
-offset_left = 159.0
-offset_top = 472.0
-offset_right = 365.0
-offset_bottom = 590.0
+offset_left = 163.0
+offset_top = 490.0
+offset_right = 369.0
+offset_bottom = 608.0
 text = "PISTA
 
 "
