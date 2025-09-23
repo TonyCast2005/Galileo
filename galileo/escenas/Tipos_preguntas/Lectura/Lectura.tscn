@@ -30,6 +30,7 @@ grow_vertical = 2
 color = Color(0.227451, 0.152941, 0.329412, 1)
 
 [node name="TextoPregunta" type="Label" parent="."]
+layout_mode = 0
 offset_left = 66.0
 offset_top = 73.0
 offset_right = 638.0
@@ -43,6 +44,7 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="NombreLección" type="Label" parent="."]
+layout_mode = 0
 offset_left = 7.0
 offset_top = 10.0
 offset_right = 579.0
@@ -55,18 +57,22 @@ autowrap_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 0
-offset_left = 79.0
+offset_left = 77.0
 offset_top = 235.0
 offset_right = 636.0
 offset_bottom = 1043.0
 
-[node name="Texto" type="Label" parent="ScrollContainer"]
+[node name="textoLectura" type="Label" parent="ScrollContainer"]
+custom_minimum_size = Vector2(550, 800)
 layout_mode = 2
-text = "TEXTO DE LECTURA"
-horizontal_alignment = 3
-vertical_alignment = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 21
+text = "Texto de la lectura "
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="Continuar" type="Button" parent="."]
+layout_mode = 0
 offset_left = 212.0
 offset_top = 1080.0
 offset_right = 497.0
