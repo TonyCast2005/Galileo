@@ -29,17 +29,17 @@ position = Vector2(353, 630)
 scale = Vector2(0.555888, 0.52993)
 texture = ExtResource("1_3o75q")
 
-[node name="textoVentana" type="Label" parent="Ventana"]
-offset_left = -459.0
-offset_top = -208.0
-offset_right = 461.0
-offset_bottom = 40.0
+[node name="TextoVentana" type="Label" parent="Ventana"]
+offset_left = -437.0
+offset_top = -223.0
+offset_right = 446.0
+offset_bottom = 38.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 35
-text = "Texto ventana emergente"
+text = "HOLA PRUEBA"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="Aceptar" type="Button" parent="."]
 layout_mode = 0
@@ -51,6 +51,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_s138y")
 text = "Aceptar"
 
 [node name="Cancelar" type="Button" parent="."]
+layout_mode = 0
 offset_left = 415.0
 offset_top = 672.0
 offset_right = 560.0

@@ -57,16 +57,19 @@ autowrap_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 0
-offset_left = 79.0
+offset_left = 77.0
 offset_top = 235.0
 offset_right = 636.0
 offset_bottom = 1043.0
 
-[node name="Texto" type="Label" parent="ScrollContainer"]
+[node name="textoLectura" type="Label" parent="ScrollContainer"]
+custom_minimum_size = Vector2(550, 800)
 layout_mode = 2
-text = "TEXTO DE LECTURA"
-horizontal_alignment = 3
-vertical_alignment = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 21
+text = "Texto de la lectura "
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="Continuar" type="Button" parent="."]
 layout_mode = 0
