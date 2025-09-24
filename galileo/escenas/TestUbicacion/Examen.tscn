@@ -124,27 +124,27 @@ text = "siguiente"
 
 [node name="Positiva" type="Button" parent="."]
 layout_mode = 0
-offset_left = 151.0
-offset_top = 182.0
-offset_right = 357.0
-offset_bottom = 300.0
+offset_left = 57.0
+offset_top = 716.0
+offset_right = 263.0
+offset_bottom = 834.0
 text = "POSITIVA"
 
 [node name="Negativa" type="Button" parent="."]
 layout_mode = 0
-offset_left = 157.0
-offset_top = 323.0
-offset_right = 363.0
-offset_bottom = 441.0
+offset_left = 270.0
+offset_top = 718.0
+offset_right = 476.0
+offset_bottom = 836.0
 text = "NEGATIVA
 "
 
 [node name="Pista" type="Button" parent="."]
 layout_mode = 0
-offset_left = 163.0
-offset_top = 490.0
-offset_right = 369.0
-offset_bottom = 608.0
+offset_left = 499.0
+offset_top = 716.0
+offset_right = 705.0
+offset_bottom = 834.0
 text = "PISTA
 
 "
