@@ -1,0 +1,99 @@
+[gd_scene load_steps=6 format=3 uid="uid://b4qft6c77cmxr"]
+
+[ext_resource type="Script" uid="uid://btehu3wpq4lm1" path="res://escenas/Tipos_preguntas/CodigoConErrores/CodigoConErrores.gd" id="1_d4enb"]
+[ext_resource type="Texture2D" uid="uid://bgnffnt45rlhx" path="res://assets/sprites/ui/lupa.png" id="1_t2pc7"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_32hvt"]
+texture = ExtResource("1_t2pc7")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uhjm2"]
+texture = ExtResource("1_t2pc7")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i1t21"]
+bg_color = Color(0.114014, 0.000167964, 0.217138, 0.466667)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="CodigoConErrores" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_d4enb")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.227451, 0.152941, 0.329412, 1)
+
+[node name="nombreLeccion" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 41.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 19
+text = "Codigo Con errores"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Instrucciones" type="Label" parent="."]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 60.0
+offset_right = 715.0
+offset_bottom = 123.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -331.0
+offset_top = -489.0
+offset_right = 335.0
+offset_bottom = 376.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="pista" type="Button" parent="."]
+layout_mode = 0
+offset_left = 521.0
+offset_top = 1109.0
+offset_right = 609.0
+offset_bottom = 1211.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 28
+theme_override_styles/focus = SubResource("StyleBoxTexture_32hvt")
+theme_override_styles/normal = SubResource("StyleBoxTexture_uhjm2")
+
+[node name="Input" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 91.0
+offset_top = 1047.0
+offset_right = 644.0
+offset_bottom = 1112.0
+
+[node name="validar" type="Button" parent="."]
+layout_mode = 0
+offset_left = 228.0
+offset_top = 1140.0
+offset_right = 486.0
+offset_bottom = 1194.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_i1t21")
+text = "Validar"
