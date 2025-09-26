@@ -1,46 +1,48 @@
-[gd_scene load_steps=2 format=3 uid="uid://bgipp0h2n871d"]
+[gd_scene load_steps=3 format=3 uid="uid://drv5v3lp26f1f"]
 
 [ext_resource type="Texture2D" uid="uid://b7asksqya2k03" path="res://assets/sprites/ui/Logros/Pez gordo .png" id="1_2ft2g"]
+[ext_resource type="Script" uid="uid://f45grmk3mjy5" path="res://escenas/usuario/Perfil/logro.gd" id="1_6n8fs"]
 
-[node name="Control" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="HBoxContainer" type="HBoxContainer"]
+offset_left = 15.0
+offset_top = 16.0
+offset_right = 623.0
+offset_bottom = 136.0
+script = ExtResource("1_6n8fs")
 
-[node name="Logro" type="HBoxContainer" parent="."]
-layout_direction = 4
-offset_left = 31.0
-offset_top = 422.0
-offset_right = 1284.0
-offset_bottom = 563.0
-
-[node name="ImagenLogro" type="TextureRect" parent="Logro"]
+[node name="ColorRect" type="ColorRect" parent="."]
+show_behind_parent = true
+custom_minimum_size = Vector2(600, 30)
 layout_mode = 2
+size_flags_stretch_ratio = 0.0
+color = Color(0.191969, 0.222431, 0.293454, 1)
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+offset_left = 7.0
+offset_top = -2.0
+offset_right = 127.0
+offset_bottom = 118.0
 texture = ExtResource("1_2ft2g")
-expand_mode = 3
+expand_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Logro"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
 layout_mode = 2
+offset_left = 141.0
+offset_top = 12.0
+offset_right = 586.0
+offset_bottom = 112.0
 
-[node name="Titulo" type="Label" parent="Logro/VBoxContainer"]
+[node name="Nombre" type="Label" parent="ColorRect/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 25
-text = "Pez Gordo "
+text = "Pez Gordo"
 
-[node name="Descripción" type="Label" parent="Logro/VBoxContainer"]
+[node name="textoLectura" type="Label" parent="ColorRect/VBoxContainer"]
+custom_minimum_size = Vector2(10, 70)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 21
-text = "Descripción del logro
-"
-max_lines_visible = 1
-visible_ratio = -0.05
-
-[node name="ColorRect" type="ColorRect" parent="Logro"]
-custom_minimum_size = Vector2(520, 0)
-layout_direction = 1
-layout_mode = 2
-color = Color(0.133333, 0.156863, 0.211765, 1)
+theme_override_font_sizes/font_size = 15
+text = "Descripción del logro"
+vertical_alignment = 1
+autowrap_mode = 2
