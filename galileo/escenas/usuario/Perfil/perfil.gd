@@ -1,6 +1,6 @@
 extends Control
 
-@onready var achievements_list = $ScrollContainer/Control  # mejor que Control sea un VBoxContainer
+@onready var achievements_list = $ScrollContainer # mejor que Control sea un VBoxContainer
 var LogroScene = preload("res://escenas/usuario/Perfil/Logro.tscn")  # cambia a la ruta de tu escena de logro
 
 func add_achievement(icon: Texture, title: String, description: String):

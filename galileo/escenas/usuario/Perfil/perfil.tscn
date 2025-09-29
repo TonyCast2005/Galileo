@@ -64,12 +64,12 @@ theme_override_font_sizes/font_size = 26
 text = "Nivel del usuario"
 horizontal_alignment = 1
 
+[node name="Control" parent="." instance=ExtResource("1_pw2c4")]
+layout_mode = 1
+
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 0
 offset_left = 99.0
 offset_top = 583.0
 offset_right = 627.0
 offset_bottom = 1102.0
-
-[node name="Control" parent="." instance=ExtResource("1_pw2c4")]
-layout_mode = 1
