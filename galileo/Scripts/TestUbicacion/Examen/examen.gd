@@ -6,11 +6,13 @@ extends Control
 @onready var color_rect = $PanelRetroalimentacion/ColorRect
 @onready var boton_retro = $PanelRetroalimentacion/BotonSiguiente
 @onready var contenedor_preguntas = $ContenedorPreguntas
+@onready var progreso = $Progreso
 @onready var http = $HTTPRequest   # 👈 asegúrate de tener un nodo HTTPRequest en tu escena Examen
 
 var puntaje = 0
 var correctas = 0
 var nivel_actual = "novato"
+var contador = 1
 
 signal siguiente_pregunta
 
@@ -91,7 +93,7 @@ func cargar_pregunta(indice: int):
     if instancia_actual.has_method("set_pregunta"):
         instancia_actual.set_pregunta(pregunta)
 
-    # Asegurar que la señal no se conecte varias veces
+  
     if instancia_actual.has_signal("respondida") and not instancia_actual.is_connected("respondida", _on_pregunta_respondida):
         instancia_actual.respondida.connect(_on_pregunta_respondida)
 
@@ -141,6 +143,9 @@ func _on_pregunta_respondida(texto: String, color: Color, correcta: bool):
 func _on_boton_retro_pressed():
     cerrar_panel()
     indice_actual += 1
+    contador += 1   # ✅ suma 1 al contador
+    
+    progreso.text = "PREGUNTA NUMERO " + str(contador)   # ✅ cambia el texto correctamente
     
     if indice_actual < preguntas.size():
         cargar_pregunta(indice_actual)
@@ -162,6 +167,7 @@ func _on_boton_retro_pressed():
         }
         Global.set("resultado_examen", resultado)
         get_tree().change_scene_to_file("res://escenas/usuario/Mensajes/AvisoNivel.tscn")
+
 
 # ================================
 # FUNCIÓN DE RETROALIMENTACIÓN
