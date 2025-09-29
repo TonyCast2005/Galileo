@@ -84,7 +84,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_fwf31")
 text = "Continuar"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(279, 207)
+position = Vector2(339, 226)
 
 [node name="confetti" type="CPUParticles2D" parent="."]
 position = Vector2(361, 78)
