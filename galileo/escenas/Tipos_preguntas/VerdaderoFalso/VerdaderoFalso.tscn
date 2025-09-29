@@ -43,6 +43,7 @@ grow_vertical = 2
 color = Color(0.227451, 0.152941, 0.329412, 1)
 
 [node name="TextoPregunta" type="Label" parent="."]
+layout_mode = 0
 offset_left = 66.0
 offset_top = 433.0
 offset_right = 638.0
@@ -56,6 +57,7 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="Verdadero" type="Button" parent="."]
+layout_mode = 0
 offset_left = 80.0
 offset_top = 635.0
 offset_right = 332.0
@@ -66,6 +68,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_whnp4")
 text = "Verdadero"
 
 [node name="Falso" type="Button" parent="."]
+layout_mode = 0
 offset_left = 394.0
 offset_top = 638.0
 offset_right = 645.0
@@ -76,6 +79,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_wjcnt")
 text = "Falso"
 
 [node name="Pista" type="Button" parent="."]
+layout_mode = 0
 offset_left = 50.0
 offset_top = 849.0
 offset_right = 146.0
@@ -85,6 +89,7 @@ theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_3xcc
 theme_override_styles/normal = SubResource("StyleBoxTexture_bvi8d")
 
 [node name="NombreLección" type="Label" parent="."]
+layout_mode = 0
 offset_left = 7.0
 offset_top = 10.0
 offset_right = 579.0
