@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://dqo0sn3dm02pt"]
+
+[ext_resource type="Texture2D" uid="uid://c4xc5yg8g6sl4" path="res://assets/sprites/ui/moradoC.png" id="1_hyity"]
+[ext_resource type="Texture2D" uid="uid://dfmp2uwb6rvhn" path="res://assets/sprites/ui/bloqueado.png" id="1_pp0b6"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hyity"]
+texture = ExtResource("1_pp0b6")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hf74p"]
+texture = ExtResource("1_pp0b6")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pp0b6"]
+texture = ExtResource("1_hyity")
+
+[node name="Button" type="Button"]
+offset_left = 255.0
+offset_top = 209.0
+offset_right = 449.0
+offset_bottom = 387.0
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxTexture_hyity")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_hf74p")
+theme_override_styles/normal = SubResource("StyleBoxTexture_pp0b6")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1

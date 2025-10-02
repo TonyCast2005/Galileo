@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://drv5v3lp26f1f"]
+[gd_scene load_steps=4 format=3 uid="uid://c0e521un5kajk"]
 
 [ext_resource type="Texture2D" uid="uid://b7asksqya2k03" path="res://assets/sprites/ui/Logros/Pez gordo .png" id="1_2ft2g"]
 [ext_resource type="Script" uid="uid://du4qo4fb3xa58" path="res://escenas/usuario/Perfil/logro.gd" id="1_6n8fs"]
@@ -31,7 +31,7 @@ offset_right = 600.0
 offset_bottom = 120.0
 size_flags_stretch_ratio = 0.0
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+[node name="FotoLogro" type="TextureRect" parent="HBoxContainer"]
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 texture = ExtResource("1_2ft2g")

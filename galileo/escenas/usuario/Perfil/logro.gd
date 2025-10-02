@@ -1,6 +1,6 @@
 extends Panel
 
-@onready var icon_rect = $HBoxContainer/TextureRect
+@onready var icon_rect = $HBoxContainer/FotoLogro
 @onready var title_label = $HBoxContainer/VBoxContainer/Nombre
 @onready var desc_label = $HBoxContainer/VBoxContainer/textoLectura
 

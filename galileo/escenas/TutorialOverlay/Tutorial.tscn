@@ -21,6 +21,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.00392157)
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 0
 offset_left = 126.0
 offset_top = 334.0
 offset_right = 633.0
@@ -28,6 +29,7 @@ offset_bottom = 665.0
 texture = ExtResource("1_bwqtj")
 
 [node name="Texto" type="Label" parent="NinePatchRect"]
+layout_mode = 0
 offset_left = 89.0
 offset_top = 81.0
 offset_right = 415.0
@@ -39,6 +41,7 @@ horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="Galileo" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = 57.0
 offset_top = 575.0
 offset_right = 326.0
