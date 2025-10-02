@@ -1,47 +1,36 @@
 extends Control
 
 @onready var achievements_list = $ScrollContainer/logrosVbox
-@onready var http = $HTTPRequest
 
 var LogroScene = preload("res://escenas/usuario/Perfil/Logro.tscn")
-var firebase_url = "https://galileo-af640-default-rtdb.firebaseio.com/" 
 
-var logros = {}
+# Array de logros de prueba
+var logros_prueba = [
+    {"nombre":"Primer paso", "descripcion":"Completaste el tutorial con éxito", "icono":"res://assets/sprites/ui/Logros/de_noche_todos_los_gatos_son_pardos.png"},
+    {"nombre":"Explorador", "descripcion":"Visitaste todas las secciones del perfil", "icono":"res://assets/sprites/ui/Logros/aprendiz_veloz.png"},
+    {"nombre":"Aprendiz visual", "descripcion":"Completa 10 ejercicios basados en ABE", "icono":"res://assets/sprites/ui/Logros/aprendiz_visual.png"},
+    {"nombre":"Caja de cartón", "descripcion":"Completa todas las lecciones de un nivel", "icono":"res://assets/sprites/ui/Logros/caja_carton.png"},
+    {"nombre":"Cazador de Bugs", "descripcion":"Corrige 10 errores de código", "icono":"res://assets/sprites/ui/Logros/cazador_bugs.png"},
+    {"nombre":"Pez gordo", "descripcion":"Aprueba un examen de nivel Intermedio", "icono":"res://assets/sprites/ui/Logros/pez_gordo.png"},
+    {"nombre":"Gato PWM", "descripcion":"Completa una lección 10 días seguidos", "icono":"res://assets/sprites/ui/Logros/gato_pwm.png"},
+    {"nombre":"El minino resiste", "descripcion":"Completa una lección 5 días seguidos", "icono":"res://assets/sprites/ui/Logros/el_minino_resiste.png"},
+    {"nombre":"Leyenda del cable", "descripcion":"Completa una lección difícil", "icono":"res://assets/sprites/ui/Logros/leyenda_cable.png"},
+    {"nombre":"Gato velocista", "descripcion":"Contesta 5 preguntas en menos del 50% del tiempo", "icono":"res://assets/sprites/ui/Logros/gato_velocista.png"}
+]
 
 func _ready():
-    # Pedimos los logros globales
-    var url_logros = "%s/logros.json" % firebase_url
-    http.request(url_logros)
-
-# Este método recibe TODAS las respuestas de HTTPRequest
-func _on_HTTPRequest_request_completed(result, response_code, headers, body):
-    if response_code != 200:
-        push_error("Error al cargar Firebase: %s" % response_code)
-        return
-
-    var data = {}
-    if body.size() > 0:
-        data = JSON.parse_string(body.get_string_from_utf8())
-    
-    if data == null:
-        push_error("Error al parsear JSON")
-        return
-
-    # Guardamos los logros
-    logros = data
-
-    # Mostramos todos los logros como desbloqueados
     mostrar_logros()
 
 func mostrar_logros():
-    # Limpiamos la lista antes de recargar
+    # Limpiar lista
     for child in achievements_list.get_children():
         child.queue_free()
 
-    for id in logros.keys():
-        var data = logros[id]
-        var icon = load(data["icono"]) # carga la textura desde la ruta
-        add_achievement(icon, data["nombre"], data["descripcion"], true) # desbloqueado por defecto
+    # Recorrer los logros de prueba
+    for logro_data in logros_prueba:
+        var icon = load(logro_data["icono"])
+        print("Cargando logro:", logro_data["nombre"], "icon:", icon)
+        add_achievement(icon, logro_data["nombre"], logro_data["descripcion"], true)
 
 func add_achievement(icon: Texture, title: String, description: String, unlocked: bool):
     var logro = LogroScene.instantiate()
