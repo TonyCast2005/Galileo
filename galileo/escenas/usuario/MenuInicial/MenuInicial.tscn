@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cc8ijaeiqvdmn"]
+[gd_scene load_steps=4 format=3 uid="uid://cc8ijaeiqvdmn"]
 
 [ext_resource type="Script" uid="uid://dacga1gqodln0" path="res://escenas/usuario/MenuInicial/menu_inicial.gd" id="1_abg4q"]
+[ext_resource type="PackedScene" uid="uid://cs6y8btdpwblb" path="res://escenas/menu.tscn" id="2_b7vfa"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3w2ru"]
 bg_color = Color(0.331572, 0.315741, 0.643277, 1)
@@ -25,7 +26,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.262745, 0.247059, 0.529412, 1)
+color = Color(0.283202, 0.267178, 0.564503, 1)
+
+[node name="Control" parent="ColorRect" instance=ExtResource("2_b7vfa")]
+layout_mode = 1
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
