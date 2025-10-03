@@ -1,15 +1,15 @@
 [gd_scene load_steps=8 format=3 uid="uid://d3clobydlmyrf"]
 
-[ext_resource type="Texture2D" uid="uid://b2ppqu3em387w" path="res://assets/sprites/ui/iconoMorado (1).png" id="1_lduao"]
-[ext_resource type="Texture2D" uid="uid://4sapvjr4jbjq" path="res://assets/sprites/ui/bloqueado.png" id="1_pp0b6"]
-[ext_resource type="Texture2D" uid="uid://dbn71ib62sal" path="res://assets/sprites/ui/iconoMorado (2).png" id="2_lduao"]
-[ext_resource type="Script" uid="uid://dkk5qcjh2vb3v" path="res://escenas/usuario/Perfil/selector_nivel.gd" id="3_hf74p"]
+[ext_resource type="Texture2D" uid="uid://4sapvjr4jbjq" path="res://assets/sprites/ui/bloqueado.png" id="1_m7rug"]
+[ext_resource type="Texture2D" uid="uid://b2ppqu3em387w" path="res://assets/sprites/ui/iconoMorado (1).png" id="2_08n86"]
+[ext_resource type="Texture2D" uid="uid://dbn71ib62sal" path="res://assets/sprites/ui/iconoMorado (2).png" id="3_ptuvt"]
+[ext_resource type="Script" uid="uid://dkk5qcjh2vb3v" path="res://escenas/usuario/MenuInicial/selector_nivel.gd" id="4_ddbb0"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lduao"]
-texture = ExtResource("1_pp0b6")
+texture = ExtResource("1_m7rug")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hf74p"]
-texture = ExtResource("1_lduao")
+texture = ExtResource("2_08n86")
 
 [sub_resource type="Theme" id="Theme_hf74p"]
 
@@ -26,8 +26,8 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/disabled = SubResource("StyleBoxTexture_lduao")
 theme_override_styles/normal = SubResource("StyleBoxTexture_hf74p")
-icon = ExtResource("2_lduao")
-script = ExtResource("3_hf74p")
+icon = ExtResource("3_ptuvt")
+script = ExtResource("4_ddbb0")
 
 [node name="Label" type="Label" parent="."]
 texture_filter = 2
@@ -56,6 +56,6 @@ offset_top = 486.24
 offset_right = 888.125
 offset_bottom = 629.24
 theme = SubResource("Theme_hf74p")
-texture = ExtResource("1_pp0b6")
+texture = ExtResource("1_m7rug")
 expand_mode = 3
 stretch_mode = 3
