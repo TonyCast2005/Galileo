@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://83k78df6tclj"]
+[gd_scene load_steps=0 format=3 uid="uid://83k78df6tclj"]
 
 [node name="Bloques" type="Control"]
 layout_mode = 3
