@@ -22,16 +22,18 @@ var animales = [
     "leon.png",
     "jirafa.png",
     "elefante.png",
-     "cocodrilo.png"
+     "cocodrilo.png",
+    "hipopotamo.png"
+    
 ]
 var fotos_tomadas = {}  # Guarda qué animales ya fueron fotografiados
 var current_slot_index = 0
 
 
 var animales_objetivo = [
-    "elefante.png",
-    "cebra.png",
-    "jirafa.png",
+    "cocodrilo.png",
+    "hipopotamo.png",
+    
    
    
 ]
@@ -173,9 +175,19 @@ func _empezar_juego():
 func iniciar_tutorial():
     var tutorial = preload("res://escenas/Gato_Instrucciones/Gato_Instrucciones.tscn").instantiate()
     add_child(tutorial)
-    tutorial.position = Vector2(200, 400)
 
-    # Aquí defines los diálogos del tutorial según el nivel
+    # 💡 Si el tutorial es un Control, lo centramos usando anclas
+    if tutorial is Control:
+        tutorial.anchor_left = 0.5
+        tutorial.anchor_top = 0.5
+        tutorial.anchor_right = 0.5
+        tutorial.anchor_bottom = 0.5
+        tutorial.offset_left = -tutorial.size.x / 2
+        tutorial.offset_top = -tutorial.size.y / 2
+        tutorial.offset_right = tutorial.size.x / 2
+        tutorial.offset_bottom = tutorial.size.y / 2
+
+    # Diálogos
     tutorial.dialogos = [
         "Hola, soy Galileo!",
         "Vamos a tomar fotos a los animales!",
@@ -184,5 +196,6 @@ func iniciar_tutorial():
 
     tutorial.connect("tutorial_terminado", Callable(self, "_empezar_juego"))
     tutorial.iniciar_tutorial()
+
     
     
