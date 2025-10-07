@@ -1,4 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://hwylvvxjtye"]
+[gd_scene load_steps=6 format=3 uid="uid://hwylvvxjtye"]
+
+[ext_resource type="Script" uid="uid://bhawdx44gqfmi" path="res://escenas/TestUbicacion/test_1.gd" id="1_1atws"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l3aix"]
 bg_color = Color(0.811689, 0.519974, 0.818159, 1)
@@ -30,13 +32,20 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_1atws")
+
+[node name="ControlGato" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 719.0
+offset_bottom = 1283.0
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
+anchor_left = -0.001
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -1.0
+offset_left = -0.28
 offset_top = 3.0
 offset_right = -1.0
 offset_bottom = 3.0
@@ -44,7 +53,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.137255, 0.156863, 0.215686, 1)
 
-[node name="Button" type="Button" parent="ColorRect"]
+[node name="Novato" type="Button" parent="ColorRect"]
 layout_mode = 0
 offset_left = 210.0
 offset_top = 237.0
@@ -54,7 +63,7 @@ theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_l3aix")
 text = "Novato"
 
-[node name="Button2" type="Button" parent="ColorRect"]
+[node name="Competente" type="Button" parent="ColorRect"]
 layout_mode = 0
 offset_left = 210.0
 offset_top = 493.0
@@ -65,7 +74,7 @@ theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_ugb4n")
 text = "competente"
 
-[node name="Button3" type="Button" parent="ColorRect"]
+[node name="Experimentado" type="Button" parent="ColorRect"]
 layout_mode = 0
 offset_left = 211.0
 offset_top = 750.0
@@ -103,3 +112,7 @@ theme_override_colors/font_color = Color(0.625763, 0.26037, 1, 1)
 theme_override_font_sizes/font_size = 20
 text = "Realiza un test!"
 flat = true
+
+[connection signal="pressed" from="ColorRect/Novato" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="ColorRect/Competente" to="." method="_on_competente_pressed"]
+[connection signal="pressed" from="ColorRect/Experimentado" to="." method="_on_experimentado_pressed"]
