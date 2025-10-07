@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cb6gfk7h6g5kv"
-path="res://.godot/imported/elefante .png-8986aa6e743bae20550765a63c951702.ctex"
+uid="uid://ne6w2gln315d"
+path="res://.godot/imported/Cebra_photocard.png-a80f99d9dcc5b1307c722e156117cc7d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui/Sabana/elefante .png"
-dest_files=["res://.godot/imported/elefante .png-8986aa6e743bae20550765a63c951702.ctex"]
+source_file="res://assets/sprites/ui/Sabana/Photocards/Cebra_photocard.png"
+dest_files=["res://.godot/imported/Cebra_photocard.png-a80f99d9dcc5b1307c722e156117cc7d.ctex"]
 
 [params]
 

@@ -1,0 +1,83 @@
+[gd_scene load_steps=6 format=3 uid="uid://cplouqwh87qmw"]
+
+[ext_resource type="Script" uid="uid://uhvo4sb3x61b" path="res://escenas/Escenarios/Sabana/Sabana.gd" id="1_0cvmp"]
+[ext_resource type="Texture2D" uid="uid://d1fojbpbmnjqi" path="res://assets/sprites/ui/Sabana/cebra.png" id="2_w7ero"]
+[ext_resource type="Texture2D" uid="uid://gt8visp2fje6" path="res://assets/sprites/ui/Sabana/deEspalda.png" id="3_w7ero"]
+[ext_resource type="Texture2D" uid="uid://6ox6sqyt7rx4" path="res://assets/sprites/ui/Sabana/Flash.png" id="4_clbih"]
+[ext_resource type="AudioStream" uid="uid://bkue858ltnh3w" path="res://assets/sprites/ui/Sabana/Sonidos/paper_snap.wav" id="5_u4bar"]
+
+[node name="Sabana" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0cvmp")
+
+[node name="Control_Instruccion" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Animal" type="TextureRect" parent="."]
+offset_left = 393.0
+offset_top = 433.0
+offset_right = 797.0
+offset_bottom = 780.0
+texture = ExtResource("2_w7ero")
+
+[node name="Gato" type="TextureRect" parent="."]
+offset_left = -76.0
+offset_top = 824.0
+offset_right = 425.0
+offset_bottom = 1211.0
+texture = ExtResource("3_w7ero")
+expand_mode = 1
+
+[node name="LabelResultado" type="Label" parent="."]
+offset_left = 167.0
+offset_top = 276.0
+offset_right = 546.0
+offset_bottom = 358.0
+
+[node name="FlashCamara" type="TextureRect" parent="."]
+offset_left = 272.0
+offset_top = 830.0
+offset_right = 425.0
+offset_bottom = 969.0
+texture = ExtResource("4_clbih")
+expand_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_left = 26.0
+offset_top = 5.0
+offset_right = 696.0
+offset_bottom = 170.0
+theme_override_constants/separation = 4
+
+[node name="Foto1" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+expand_mode = 2
+
+[node name="Foto2" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+expand_mode = 2
+
+[node name="Foto3" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+expand_mode = 2
+
+[node name="Foto4" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+expand_mode = 2
+
+[node name="Paper_Snap" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_u4bar")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
