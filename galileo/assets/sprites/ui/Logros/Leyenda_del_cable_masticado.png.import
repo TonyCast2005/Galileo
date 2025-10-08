@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://wn5fa64hp7vf"
-path="res://.godot/imported/el minino resiste.png-a17cc3604a9d438a5b2db55a312e80d8.ctex"
+uid="uid://lhfvm0yyt0gf"
+path="res://.godot/imported/Leyenda_del_cable_masticado.png-34b84b2a9b7198c460aa7975497eb256.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui/Logros/el minino resiste.png"
-dest_files=["res://.godot/imported/el minino resiste.png-a17cc3604a9d438a5b2db55a312e80d8.ctex"]
+source_file="res://assets/sprites/ui/Logros/Leyenda_del_cable_masticado.png"
+dest_files=["res://.godot/imported/Leyenda_del_cable_masticado.png-34b84b2a9b7198c460aa7975497eb256.ctex"]
 
 [params]
 

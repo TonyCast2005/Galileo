@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b7asksqya2k03"
-path="res://.godot/imported/Pez gordo .png-5c1f7f98404bc88f6c4d126545589ffe.ctex"
+path="res://.godot/imported/Pez_gordo .png-c58230c4d946ccdb22840ae3d410dfb1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui/Logros/Pez gordo .png"
-dest_files=["res://.godot/imported/Pez gordo .png-5c1f7f98404bc88f6c4d126545589ffe.ctex"]
+source_file="res://assets/sprites/ui/Logros/Pez_gordo .png"
+dest_files=["res://.godot/imported/Pez_gordo .png-c58230c4d946ccdb22840ae3d410dfb1.ctex"]
 
 [params]
 

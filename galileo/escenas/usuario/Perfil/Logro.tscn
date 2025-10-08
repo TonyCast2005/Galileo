@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c0e521un5kajk"]
 
-[ext_resource type="Texture2D" uid="uid://b7asksqya2k03" path="res://assets/sprites/ui/Logros/Pez gordo .png" id="1_2ft2g"]
+[ext_resource type="Texture2D" uid="uid://b7asksqya2k03" path="res://assets/sprites/ui/Logros/Pez_gordo .png" id="1_2ft2g"]
 [ext_resource type="Script" uid="uid://du4qo4fb3xa58" path="res://escenas/usuario/Perfil/logro.gd" id="1_6n8fs"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6n8fs"]
@@ -16,20 +16,34 @@ corner_radius_bottom_left = 40
 corner_detail = 20
 
 [node name="Panel" type="Panel"]
-offset_left = 63.0
-offset_top = 28.0
-offset_right = 671.0
-offset_bottom = 148.0
+custom_minimum_size = Vector2(608, 120)
+anchors_preset = -1
+anchor_left = 0.087
+anchor_top = 0.022
+anchor_right = 0.932
+anchor_bottom = 0.116
+offset_left = 0.359997
+offset_top = -0.160002
+offset_right = -0.0400391
+offset_bottom = -0.480011
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_6n8fs")
 script = ExtResource("1_6n8fs")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 show_behind_parent = true
+clip_contents = true
 custom_minimum_size = Vector2(600, 30)
+layout_direction = 2
 layout_mode = 2
-offset_right = 600.0
+offset_left = 2.0
+offset_right = 620.0
 offset_bottom = 120.0
 size_flags_stretch_ratio = 0.0
+theme_override_constants/separation = 20
 
 [node name="FotoLogro" type="TextureRect" parent="HBoxContainer"]
 custom_minimum_size = Vector2(70, 70)
@@ -39,21 +53,26 @@ expand_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 13
 
 [node name="Nombre" type="Label" parent="HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(10, 20)
 layout_mode = 2
 text = "Pez Gordo"
+vertical_alignment = 2
 
 [node name="textoLectura" type="Label" parent="HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(10, 70)
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 15
-text = "Descripción del logro"
-vertical_alignment = 1
-autowrap_mode = 2
+text = "Texto logro"
+vertical_alignment = 2
+autowrap_mode = 3
 
 [node name="OverlayBloqueado" type="TextureRect" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.008
+anchor_bottom = 1.0
+offset_right = 0.136047
+offset_bottom = 6.00002

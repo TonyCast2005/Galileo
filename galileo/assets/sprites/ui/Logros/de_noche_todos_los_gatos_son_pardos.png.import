@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4k5tlfurah2a"
-path="res://.godot/imported/primeraPresa.png-2bec69553bdf7f160fcf42574c61601f.ctex"
+uid="uid://bci8i7o71i8pb"
+path="res://.godot/imported/de_noche_todos_los_gatos_son_pardos.png-e058b73ab377158cbba7ee6ae69c8a92.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui/Logros/primeraPresa.png"
-dest_files=["res://.godot/imported/primeraPresa.png-2bec69553bdf7f160fcf42574c61601f.ctex"]
+source_file="res://assets/sprites/ui/Logros/de_noche_todos_los_gatos_son_pardos.png"
+dest_files=["res://.godot/imported/de_noche_todos_los_gatos_son_pardos.png-e058b73ab377158cbba7ee6ae69c8a92.ctex"]
 
 [params]
 

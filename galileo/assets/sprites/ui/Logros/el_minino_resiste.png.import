@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4k5tlfurah2a"
-path="res://.godot/imported/primeraPresa.png-2bec69553bdf7f160fcf42574c61601f.ctex"
+uid="uid://wn5fa64hp7vf"
+path="res://.godot/imported/el_minino_resiste.png-f3d8c1150127d5304a3dff713e595a4f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui/Logros/primeraPresa.png"
-dest_files=["res://.godot/imported/primeraPresa.png-2bec69553bdf7f160fcf42574c61601f.ctex"]
+source_file="res://assets/sprites/ui/Logros/el_minino_resiste.png"
+dest_files=["res://.godot/imported/el_minino_resiste.png-f3d8c1150127d5304a3dff713e595a4f.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://lhfvm0yyt0gf"
-path="res://.godot/imported/Leyenda del cable masticado .png-0cfa52b88025081b8f0976f3adc791f1.ctex"
+uid="uid://cwyh60c04pxmg"
+path="res://.godot/imported/gatoVelocista.png-61efe8df1eb21e939f7ef13a7a720be5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui/Logros/Leyenda del cable masticado .png"
-dest_files=["res://.godot/imported/Leyenda del cable masticado .png-0cfa52b88025081b8f0976f3adc791f1.ctex"]
+source_file="res://assets/sprites/ui/Logros/gatoVelocista.png"
+dest_files=["res://.godot/imported/gatoVelocista.png-61efe8df1eb21e939f7ef13a7a720be5.ctex"]
 
 [params]
 

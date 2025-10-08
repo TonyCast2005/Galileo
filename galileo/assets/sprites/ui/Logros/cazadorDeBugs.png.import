@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4k5tlfurah2a"
-path="res://.godot/imported/primeraPresa.png-2bec69553bdf7f160fcf42574c61601f.ctex"
+uid="uid://3rlowkfgse4j"
+path="res://.godot/imported/cazadorDeBugs.png-7ddb661ff84e4157b154f28b66192667.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui/Logros/primeraPresa.png"
-dest_files=["res://.godot/imported/primeraPresa.png-2bec69553bdf7f160fcf42574c61601f.ctex"]
+source_file="res://assets/sprites/ui/Logros/cazadorDeBugs.png"
+dest_files=["res://.godot/imported/cazadorDeBugs.png-7ddb661ff84e4157b154f28b66192667.ctex"]
 
 [params]
 

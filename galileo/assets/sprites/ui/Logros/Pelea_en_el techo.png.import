@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://eugxvpo1m4ic"
-path="res://.godot/imported/Pelea en el techo .png-eaf24eed3bb0876448fdfd08dbfbbfdc.ctex"
+path="res://.godot/imported/Pelea_en_el techo.png-18faf3264a3cab4f4e50d5eb2ea8a049.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui/Logros/Pelea en el techo .png"
-dest_files=["res://.godot/imported/Pelea en el techo .png-eaf24eed3bb0876448fdfd08dbfbbfdc.ctex"]
+source_file="res://assets/sprites/ui/Logros/Pelea_en_el techo.png"
+dest_files=["res://.godot/imported/Pelea_en_el techo.png-18faf3264a3cab4f4e50d5eb2ea8a049.ctex"]
 
 [params]
 
