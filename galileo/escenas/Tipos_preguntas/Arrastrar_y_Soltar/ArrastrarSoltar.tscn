@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://dyq24olsg6i6p"]
+
+[ext_resource type="PackedScene" uid="uid://58a32yh47ao7" path="res://escenas/Tipos_preguntas/Arrastrar_y_Soltar/bloque.tscn" id="1_6mnkq"]
+[ext_resource type="Script" uid="uid://bmt4wekmaxqgc" path="res://escenas/Tipos_preguntas/Arrastrar_y_Soltar/zona_trabajo.gd" id="1_rcjtp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1pj5n"]
+bg_color = Color(0.388235, 0.341176, 0.560784, 1)
+
+[node name="ArrastrarSoltar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.227451, 0.152941, 0.329412, 1)
+
+[node name="zonaTrabajo" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 61.0
+offset_top = 365.0
+offset_right = 665.0
+offset_bottom = 1217.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_1pj5n")
+script = ExtResource("1_rcjtp")
+
+[node name="contenedorOpc" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 171.0
+offset_right = 666.0
+offset_bottom = 331.0
+
+[node name="Panel" parent="contenedorOpc" instance=ExtResource("1_6mnkq")]
+layout_mode = 2
