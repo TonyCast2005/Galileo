@@ -1,0 +1,102 @@
+[gd_scene load_steps=8 format=3 uid="uid://cplouqwh87qmw"]
+
+[ext_resource type="Script" uid="uid://uhvo4sb3x61b" path="res://escenas/Escenarios/Sabana/Sabana.gd" id="1_0cvmp"]
+[ext_resource type="Texture2D" uid="uid://djxon8xy6rey4" path="res://assets/sprites/ui/Sabana/Fondo.png" id="2_2eadx"]
+[ext_resource type="Texture2D" uid="uid://gt8visp2fje6" path="res://assets/sprites/ui/Sabana/deEspalda.png" id="3_w7ero"]
+[ext_resource type="Texture2D" uid="uid://coh8j4e8tbaia" path="res://assets/sprites/ui/Sabana/Extra/exclamation.png" id="5_2eadx"]
+[ext_resource type="AudioStream" uid="uid://bkue858ltnh3w" path="res://assets/sprites/ui/Sabana/Sonidos/paper_snap.wav" id="5_u4bar"]
+[ext_resource type="AudioStream" uid="uid://dp0add8yfud80" path="res://assets/sprites/ui/Sabana/Sonidos/Realize.wav" id="7_r4f3h"]
+[ext_resource type="Texture2D" uid="uid://cxwyj8w35b7im" path="res://assets/sprites/ui/Sabana/Extra/flash.png" id="8_ewkwu"]
+
+[node name="Sabana" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0cvmp")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_2eadx")
+
+[node name="Control_Instruccion" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 0
+
+[node name="Animal" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 402.0
+offset_top = 433.0
+offset_right = 731.0
+offset_bottom = 806.0
+expand_mode = 1
+
+[node name="Gato" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -76.0
+offset_top = 824.0
+offset_right = 425.0
+offset_bottom = 1211.0
+texture = ExtResource("3_w7ero")
+expand_mode = 1
+
+[node name="LabelResultado" type="Label" parent="."]
+layout_mode = 0
+offset_left = 167.0
+offset_top = 276.0
+offset_right = 546.0
+offset_bottom = 358.0
+
+[node name="Exclamation" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 143.0
+offset_top = 679.0
+offset_right = 296.0
+offset_bottom = 818.0
+texture = ExtResource("5_2eadx")
+expand_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 5.0
+offset_right = 696.0
+offset_bottom = 170.0
+theme_override_constants/separation = 4
+
+[node name="Foto1" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+expand_mode = 2
+
+[node name="Foto2" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+expand_mode = 2
+
+[node name="Foto3" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+expand_mode = 2
+
+[node name="Foto4" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+expand_mode = 2
+
+[node name="Paper_Snap" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_u4bar")
+
+[node name="Exclamation_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_r4f3h")
+
+[node name="Flash" type="TextureRect" parent="."]
+offset_left = -60.0
+offset_top = 826.0
+offset_right = 429.0
+offset_bottom = 1179.0
+texture = ExtResource("8_ewkwu")
+expand_mode = 1

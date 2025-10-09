@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://ccnghi4ki5rrn"]
+
+[ext_resource type="Script" uid="uid://1fccqp0behd0" path="res://escenas/Gato_Instrucciones/gato_instrucciones.gd" id="1_k004o"]
+[ext_resource type="Texture2D" uid="uid://cjum5jl505mim" path="res://assets/sprites/ui/Galileo/Galileo Base.png" id="2_n6uge"]
+[ext_resource type="Texture2D" uid="uid://feyahj0mae46" path="res://assets/sprites/globoTexto .png" id="3_1wnc8"]
+[ext_resource type="AudioStream" uid="uid://cb13yqgh6nbd6" path="res://escenas/Gato_Instrucciones/Galileo_Hablando.ogg" id="4_n6uge"]
+
+[node name="GatoInstrucciones" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_k004o")
+
+[node name="Gato" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 116.0
+offset_top = 552.0
+offset_right = 435.0
+offset_bottom = 878.0
+texture = ExtResource("2_n6uge")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 255.0
+offset_right = 674.0
+offset_bottom = 680.0
+texture = ExtResource("3_1wnc8")
+
+[node name="LabelTexto" type="RichTextLabel" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 95.0
+offset_top = 105.0
+offset_right = 391.0
+offset_bottom = 268.0
+theme_override_colors/table_border = Color(0, 0, 0, 1)
+theme_override_colors/table_even_row_bg = Color(0, 0, 0, 1)
+theme_override_colors/table_odd_row_bg = Color(0, 0, 0, 1)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "Hola esta es una prueba de texto"
+autowrap_mode = 2
+
+[node name="SonidoHabla" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_n6uge")
