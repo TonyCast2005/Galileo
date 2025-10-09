@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://dyq24olsg6i6p"]
+[gd_scene load_steps=5 format=3 uid="uid://dyq24olsg6i6p"]
 
 [ext_resource type="PackedScene" uid="uid://58a32yh47ao7" path="res://escenas/Tipos_preguntas/Arrastrar_y_Soltar/bloque.tscn" id="1_6mnkq"]
 [ext_resource type="Script" uid="uid://bmt4wekmaxqgc" path="res://escenas/Tipos_preguntas/Arrastrar_y_Soltar/zona_trabajo.gd" id="1_rcjtp"]
+[ext_resource type="PackedScene" uid="uid://3q5foyvs857i" path="res://escenas/Tipos_preguntas/Arrastrar_y_Soltar/recipiente.tscn" id="2_mgacq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1pj5n"]
-bg_color = Color(0.388235, 0.341176, 0.560784, 1)
+bg_color = Color(0.268047, 0.183392, 0.384134, 1)
 
 [node name="ArrastrarSoltar" type="Control"]
 layout_mode = 3
@@ -31,6 +32,15 @@ offset_right = 665.0
 offset_bottom = 1217.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_1pj5n")
 script = ExtResource("1_rcjtp")
+
+[node name="Recipiente" parent="zonaTrabajo" instance=ExtResource("2_mgacq")]
+position = Vector2(295, 77)
+
+[node name="Recipiente2" parent="zonaTrabajo" instance=ExtResource("2_mgacq")]
+position = Vector2(290, 200)
+
+[node name="Recipiente3" parent="zonaTrabajo" instance=ExtResource("2_mgacq")]
+position = Vector2(292, 322)
 
 [node name="contenedorOpc" type="VBoxContainer" parent="."]
 layout_mode = 0
