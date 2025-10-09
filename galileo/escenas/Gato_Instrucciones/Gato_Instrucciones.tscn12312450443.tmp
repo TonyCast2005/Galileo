@@ -12,31 +12,33 @@ script = ExtResource("1_k004o")
 
 [node name="Gato" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 88.0
+offset_left = 116.0
 offset_top = 552.0
 offset_right = 435.0
-offset_bottom = 900.0
+offset_bottom = 878.0
 texture = ExtResource("2_n6uge")
-
-[node name="SonidoHabla" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_n6uge")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 0
-offset_left = 151.0
-offset_top = 180.0
-offset_right = 718.0
+offset_left = 192.0
+offset_top = 255.0
+offset_right = 674.0
 offset_bottom = 680.0
 texture = ExtResource("3_1wnc8")
 
-[node name="LabelTexto" type="Label" parent="NinePatchRect"]
+[node name="LabelTexto" type="RichTextLabel" parent="NinePatchRect"]
 layout_mode = 0
-offset_left = 92.0
-offset_top = 143.0
-offset_right = 470.0
-offset_bottom = 306.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+offset_left = 95.0
+offset_top = 105.0
+offset_right = 391.0
+offset_bottom = 268.0
+theme_override_colors/table_border = Color(0, 0, 0, 1)
+theme_override_colors/table_even_row_bg = Color(0, 0, 0, 1)
+theme_override_colors/table_odd_row_bg = Color(0, 0, 0, 1)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 32
 text = "Hola esta es una prueba de texto"
 autowrap_mode = 2
+
+[node name="SonidoHabla" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_n6uge")

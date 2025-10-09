@@ -3,7 +3,8 @@ extends Control
 @onready var sprite_animal = $Animal
 @onready var label_resultado = $LabelResultado
 @onready var gato = $Gato
-@onready var flash_camara = $FlashCamara  # ← Tu imagen del destello
+@onready var Exclamacion_img = $Exclamation  # ← Tu imagen del destello
+@onready var camara_flash = $Flash  # ← Tu imagen del destello
 
 @onready var panel_bloques = preload("res://escenas/Escenarios/Sabana/Bloque_Animal.tscn").instantiate()
 @onready var photo_slots = [
@@ -12,7 +13,7 @@ extends Control
     $HBoxContainer/Foto3,
     $HBoxContainer/Foto4
 ]
-var tutorial_activo = false
+var tutorial_activo = true
 
 var current_photo_index = 0
 
@@ -31,22 +32,54 @@ var current_slot_index = 0
 
 
 var animales_objetivo = [
-    "cocodrilo.png",
-    "hipopotamo.png",
-    
-   
-   
+    "hipopotamo.png"
 ]
 
 var animal_actual = ""
 
 func _ready():
-    flash_camara.visible = false 
+    Exclamacion_img.visible = false 
+    iniciar_dialogo_sabana()
     mostrar_animal_aleatorio()
-    iniciar_tutorial()
+   
     for card in photo_slots:
      card.visible = true
+    
 
+func iniciar_dialogo_sabana():
+    var gato_dialogo = preload("res://escenas/Gato_Instrucciones/Gato_Instrucciones.tscn").instantiate()
+    add_child(gato_dialogo)
+    
+    gato_dialogo.global_position = Vector2(0, 40)
+    
+    # Textura que se ve mientras habla
+    gato_dialogo.textura_habla_personal = preload("res://assets/sprites/ui/Sabana/Extra/Sabana_Felix.png")
+    # Textura de reposo cuando no habla
+    gato_dialogo.textura_idle_personal = preload("res://assets/sprites/ui/Sabana/Extra/Feliz_OjosAbIertos.png")
+    
+    # Ajustar escala del Sprite según la textura
+    var tamaño_deseado = Vector2(256,256)  # el tamaño que quieres en tu escena
+    var tamaño_textura = gato_dialogo.textura_habla_personal.get_size()
+    gato_dialogo.gato.scale = tamaño_deseado / tamaño_textura
+    
+    # Diálogos que quieres que diga en este escenario
+    gato_dialogo.dialogos = [
+    "¡Hola, explorador! 🐾 Hoy vinimos a la sabana africana.",
+    "¡Mira toda esta hierba alta y el sol brillante! ☀️",
+    "Aquí viven animales increíbles como los leones, cocodrilos y hipopótamos. 🦁🐊🦛",
+    "Tu misión será tomarles fotos sin que se escapen. 📸",
+    "Asegúrate de enfocar bien antes de disparar la cámara.",
+    "Recuerda: algunos animales se esconden entre los arbustos... ¡observa con atención! 👀",
+    "Cuando consigas todas las fotos, te daré una sorpresa especial. 🎁",
+    "¡y cuidado con los animales peligrosos! 🌾🐱"
+]
+
+    # ✅ Esperar hasta que termine el diálogo
+    await gato_dialogo.dialogo_terminado
+
+    # ✅ Ahora sí: empezar a mostrar animales
+    tutorial_activo = false
+    mostrar_animal_aleatorio()
 
 func mostrar_animal_aleatorio():
     if tutorial_activo:
@@ -61,8 +94,14 @@ func mostrar_animal_aleatorio():
     if animal_actual in animales_objetivo:
         label_resultado.text = "📸 ¡El gato tomó foto a la " + animal_actual.get_basename() + "!"
         animar_gato()
-        mostrar_flash()
+        Exclamacion()
+        $Exclamation_sound.play() 
+        await get_tree().create_timer(1.0).timeout
+        Camaraflash()
+       
         revelar_foto_animal(animal_actual.get_basename())
+        await get_tree().create_timer(0.5).timeout  # espera antes de revelar
+        
     else:
         label_resultado.text = "El gato no tomó foto. (" + animal_actual.get_basename() + ")"
 
@@ -107,10 +146,15 @@ func animar_gato():
     t.tween_property(gato, "position:y", pos_ini.y - 30, 0.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
     t.tween_property(gato, "position:y", pos_ini.y, 0.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
 
-func mostrar_flash():
-    flash_camara.visible = true
-    await get_tree().create_timer(1.0).timeout  # 1 segundo
-    flash_camara.visible = false
+func Exclamacion():
+    Exclamacion_img.visible = true
+    await get_tree().create_timer(.7).timeout  # 1 segundo
+    Exclamacion_img.visible = false
+    
+func Camaraflash():
+    camara_flash.visible = true
+    await get_tree().create_timer(.2).timeout  # 1 segundo
+    camara_flash.visible = false
 
 func revelar_foto_animal(animal_filename: String):
     var nombre = animal_filename.get_basename()  # "cebra.png" → "cebra"
@@ -119,6 +163,9 @@ func revelar_foto_animal(animal_filename: String):
     if current_slot_index >= photo_slots.size():
         print("🖼️ No hay más espacios disponibles para fotos.")
         return
+
+    # ⏳ Esperar 1 segundo antes de mostrar la foto
+    await get_tree().create_timer(.4).timeout
 
     # Cargar la textura correspondiente al animal fotografiado
     var ruta = "res://assets/sprites/ui/Sabana/Photocards/%s_photocard.png" % nombre
@@ -139,18 +186,13 @@ func revelar_foto_animal(animal_filename: String):
     slot.rotation_degrees = 0                     # Empieza recto
 
     var t = create_tween()
-
-    # Movimiento hacia abajo
     $Paper_Snap.play()  # Sonido de pop al colocar la foto
     
     t.tween_property(slot, "position", pos_final, 0.35)\
         .set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-    # Aumenta opacidad
     t.parallel().tween_property(slot, "modulate:a", 1.0, 0.3)
-    # Reduce suavemente la escala
     t.parallel().tween_property(slot, "scale", Vector2(1, 1), 0.35)\
         .set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-    # Inclinación al pegar
     t.tween_callback(func():
         var rot_tween = create_tween()
         rot_tween.tween_property(slot, "rotation_degrees", -4, 0.05)\
@@ -171,31 +213,3 @@ func revelar_foto_animal(animal_filename: String):
 func _empezar_juego():
     tutorial_activo = false
     mostrar_animal_aleatorio()
-
-func iniciar_tutorial():
-    var tutorial = preload("res://escenas/Gato_Instrucciones/Gato_Instrucciones.tscn").instantiate()
-    add_child(tutorial)
-
-    # 💡 Si el tutorial es un Control, lo centramos usando anclas
-    if tutorial is Control:
-        tutorial.anchor_left = 0.5
-        tutorial.anchor_top = 0.5
-        tutorial.anchor_right = 0.5
-        tutorial.anchor_bottom = 0.5
-        tutorial.offset_left = -tutorial.size.x / 2
-        tutorial.offset_top = -tutorial.size.y / 2
-        tutorial.offset_right = tutorial.size.x / 2
-        tutorial.offset_bottom = tutorial.size.y / 2
-
-    # Diálogos
-    tutorial.dialogos = [
-        "Hola, soy Galileo!",
-        "Vamos a tomar fotos a los animales!",
-        "Sigue mis instrucciones y empieza el juego!"
-    ]
-
-    tutorial.connect("tutorial_terminado", Callable(self, "_empezar_juego"))
-    tutorial.iniciar_tutorial()
-
-    
-    

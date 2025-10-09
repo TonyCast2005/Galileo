@@ -12,10 +12,10 @@ script = ExtResource("1_k004o")
 
 [node name="Gato" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 88.0
+offset_left = 116.0
 offset_top = 552.0
 offset_right = 435.0
-offset_bottom = 900.0
+offset_bottom = 878.0
 texture = ExtResource("2_n6uge")
 
 [node name="SonidoHabla" type="AudioStreamPlayer" parent="."]
@@ -24,17 +24,17 @@ stream = ExtResource("4_n6uge")
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 0
 offset_left = 151.0
-offset_top = 180.0
+offset_top = 255.0
 offset_right = 718.0
 offset_bottom = 680.0
 texture = ExtResource("3_1wnc8")
 
 [node name="LabelTexto" type="Label" parent="NinePatchRect"]
 layout_mode = 0
-offset_left = 92.0
-offset_top = 143.0
-offset_right = 470.0
-offset_bottom = 306.0
+offset_left = 89.0
+offset_top = 124.0
+offset_right = 467.0
+offset_bottom = 287.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
