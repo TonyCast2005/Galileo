@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://citn3lmf1m1fb"]
+[gd_scene load_steps=12 format=3 uid="uid://citn3lmf1m1fb"]
 
+[ext_resource type="Script" uid="uid://b2cri1tbcbsd8" path="res://escenas/Escenarios/Ciudad/ciudad.gd" id="1_6harn"]
 [ext_resource type="Texture2D" uid="uid://ck63r74jiifcp" path="res://assets/sprites/ui/Ciudad/Fondo.png" id="1_fh8d6"]
 [ext_resource type="Texture2D" uid="uid://bi4dy6qpstrcd" path="res://assets/sprites/ui/Ciudad/semaforoApagado.png" id="2_cmmho"]
 [ext_resource type="Texture2D" uid="uid://bqmvhxj66f436" path="res://assets/sprites/ui/Ciudad/gato caminandoN (1).png" id="3_xk620"]
@@ -34,6 +35,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_6harn")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -84,7 +86,7 @@ offset_bottom = 774.0
 theme_override_styles/disabled = SubResource("StyleBoxTexture_1eb04")
 theme_override_styles/normal = SubResource("StyleBoxTexture_axt5c")
 
-[node name="GatoCaminandoN(1)" type="Sprite2D" parent="."]
+[node name="gatoCaminando" type="Sprite2D" parent="."]
 position = Vector2(502, 693)
 scale = Vector2(0.238281, 0.257813)
 texture = ExtResource("3_xk620")
