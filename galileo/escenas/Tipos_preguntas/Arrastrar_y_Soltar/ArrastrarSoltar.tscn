@@ -1,22 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://dyq24olsg6i6p"]
+[gd_scene load_steps=4 format=3 uid="uid://dyq24olsg6i6p"]
 
 [ext_resource type="PackedScene" uid="uid://58a32yh47ao7" path="res://escenas/Tipos_preguntas/Arrastrar_y_Soltar/bloque.tscn" id="1_6mnkq"]
 [ext_resource type="Script" uid="uid://bmt4wekmaxqgc" path="res://escenas/Tipos_preguntas/Arrastrar_y_Soltar/zona_trabajo.gd" id="1_rcjtp"]
 [ext_resource type="PackedScene" uid="uid://3q5foyvs857i" path="res://escenas/Tipos_preguntas/Arrastrar_y_Soltar/recipiente.tscn" id="2_mgacq"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1pj5n"]
-bg_color = Color(0.268047, 0.183392, 0.384134, 1)
-
-[node name="ArrastrarSoltar" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="ArrastrarSoltar" type="Node2D"]
 
 [node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -24,13 +14,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.227451, 0.152941, 0.329412, 1)
 
-[node name="zonaTrabajo" type="Panel" parent="."]
-layout_mode = 0
-offset_left = 61.0
-offset_top = 365.0
-offset_right = 665.0
-offset_bottom = 1217.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_1pj5n")
+[node name="zonaTrabajo" type="Node2D" parent="."]
 script = ExtResource("1_rcjtp")
 
 [node name="Recipiente" parent="zonaTrabajo" instance=ExtResource("2_mgacq")]
@@ -42,12 +26,6 @@ position = Vector2(290, 200)
 [node name="Recipiente3" parent="zonaTrabajo" instance=ExtResource("2_mgacq")]
 position = Vector2(292, 322)
 
-[node name="contenedorOpc" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 43.0
-offset_top = 171.0
-offset_right = 666.0
-offset_bottom = 331.0
+[node name="contenedorOpc" type="Node2D" parent="."]
 
-[node name="Panel" parent="contenedorOpc" instance=ExtResource("1_6mnkq")]
-layout_mode = 2
+[node name="Bloque" parent="contenedorOpc" instance=ExtResource("1_6mnkq")]

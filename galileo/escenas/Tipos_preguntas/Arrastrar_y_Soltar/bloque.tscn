@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://58a32yh47ao7"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qbxhm"]
+[ext_resource type="Script" uid="uid://3wa0xcwmvlmi" path="res://escenas/Tipos_preguntas/Arrastrar_y_Soltar/bloque.gd" id="1_qbxhm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a7f2l"]
 bg_color = Color(0.356912, 0.251651, 0.502396, 1)
@@ -14,7 +14,7 @@ script/source = "extends Label
 
 var is_dragging := false
 var mouse_offset := Vector2.ZERO
-
+	
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed and get_global_rect().has_point(event.position):
@@ -47,8 +47,8 @@ func _snap_to_drop_zone():
 	var result = space_state.intersect_point(query)
 	
 	for hit in result:
-		if hit.collider.is_in_group(\"drop_zone\"):
-			print(\"✅ ¡Bloque soltado en un recipiente!\")
+		if hit.collider.is_in_group(\"dropable\"):
+			print(\"Bloque soltado en un recipiente\")
 			
 			# Suaviza el encaje con un tween (opcional)
 			var tween := get_tree().create_tween()
@@ -56,17 +56,14 @@ func _snap_to_drop_zone():
 			
 			return
 
-	print(\"❌ Bloque soltado fuera de recipientes\")
+	print(\"Bloque soltado fuera de recipientes\")
 "
 
-[node name="Panel" type="Panel"]
-offset_right = 296.0
-offset_bottom = 100.0
-theme_override_styles/panel = SubResource("StyleBoxEmpty_qbxhm")
+[node name="Bloque" type="Node2D"]
+script = ExtResource("1_qbxhm")
 
-[node name="bloque" type="Label" parent="."]
+[node name="Label" type="Label" parent="."]
 custom_minimum_size = Vector2(60, 10)
-layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.019
 anchor_top = 0.027

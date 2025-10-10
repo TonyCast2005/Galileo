@@ -11,13 +11,13 @@ particles_anim_loop = false
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1gck5"]
 size = Vector2(250, 35)
 
-[node name="Recipiente" type="Area2D"]
+[node name="Recipiente" type="Area2D" groups=["dropable"]]
 texture_filter = 2
 material = SubResource("CanvasItemMaterial_1gck5")
 position = Vector2(0, 181)
 script = ExtResource("1_1gck5")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["dropable"]]
 shape = SubResource("RectangleShape2D_1gck5")
 disabled = true
 
@@ -30,3 +30,6 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(168, 46)
 color = Color(0.334851, 0.236818, 0.475699, 1)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -1,4 +1,4 @@
-extends Panel
+extends Node2D
 
 func can_drop_data(at_position, data):
 	return data.has("tipo") and data["tipo"] == "bloque"
