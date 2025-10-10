@@ -94,6 +94,7 @@ stream = ExtResource("5_u4bar")
 stream = ExtResource("7_r4f3h")
 
 [node name="Flash" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = -60.0
 offset_top = 826.0
 offset_right = 429.0

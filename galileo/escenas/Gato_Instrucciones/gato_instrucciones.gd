@@ -19,9 +19,10 @@ var textura_idle = preload("res://assets/sprites/ui/Galileo/Galileo Base.png")
 
 # Diálogos de prueba (pueden ser sobrescritos desde fuera)
 var dialogos: Array = [
-    "¡Hola! Skibidis 🐱.",
-    "Skibidi skibidi se rasca la cabeza.",
-    "¡Vamos a divertirnos un montón!"
+    "¡Hola! Buenos dias 🐱.",
+    
+    
+    
 ]
 
 var indice = 0
