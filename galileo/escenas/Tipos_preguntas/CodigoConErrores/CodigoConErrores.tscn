@@ -87,10 +87,10 @@ text = "Validar"
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 1011.0
-offset_top = 154.0
-offset_right = 1688.0
-offset_bottom = 1048.0
+offset_left = 23.0
+offset_top = 131.0
+offset_right = 700.0
+offset_bottom = 1025.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Panel"]
 layout_mode = 1

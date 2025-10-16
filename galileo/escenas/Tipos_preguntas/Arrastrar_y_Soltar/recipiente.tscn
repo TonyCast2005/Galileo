@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://3q5foyvs857i"]
+
+[ext_resource type="Script" uid="uid://5l8j1p0qkxeo" path="res://escenas/Tipos_preguntas/Arrastrar_y_Soltar/recipiente.gd" id="1_1gck5"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1gck5"]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1gck5"]
+size = Vector2(250, 26)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1gck5"]
+bg_color = Color(0.788235, 0.756863, 0.92549, 1)
+
+[sub_resource type="Theme" id="Theme_717nn"]
+default_base_scale = 0.26
+Panel/styles/panel = SubResource("StyleBoxFlat_1gck5")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a28y0"]
+bg_color = Color(0.788235, 0.756863, 0.92549, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[node name="Recipiente" type="Area2D" groups=["dropable"]]
+texture_filter = 2
+material = SubResource("CanvasItemMaterial_1gck5")
+position = Vector2(355, 337)
+script = ExtResource("1_1gck5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["dropable"]]
+shape = SubResource("RectangleShape2D_1gck5")
+
+[node name="ColorRect" type="Panel" parent="." groups=["dropable"]]
+custom_minimum_size = Vector2(500.04, 70)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(250, 35)
+theme = SubResource("Theme_717nn")
+theme_override_styles/panel = SubResource("StyleBoxFlat_a28y0")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
