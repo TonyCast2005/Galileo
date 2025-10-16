@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dakur4qpeuka6"]
+[gd_scene load_steps=4 format=3 uid="uid://dakur4qpeuka6"]
 
 [ext_resource type="Texture2D" uid="uid://dg3hdkwyh3ras" path="res://assets/sprites/primerapresa.png" id="1_4eias"]
+[ext_resource type="Script" uid="uid://ok7pjck72ghu" path="res://escenas/usuario/registro/recuperar_contrasena.gd" id="1_xxx5m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xxx5m"]
 bg_color = Color(0.567074, 0.15132, 0.818576, 1)
@@ -16,6 +17,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_xxx5m")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -44,7 +46,7 @@ offset_bottom = 550.0
 theme_override_font_sizes/font_size = 30
 text = "Recuperar contraseña"
 
-[node name="Button" type="Button" parent="."]
+[node name="recuperar" type="Button" parent="."]
 layout_mode = 0
 offset_left = 182.0
 offset_top = 678.0
@@ -58,3 +60,5 @@ text = "recuperar"
 [node name="Primerapresa" type="Sprite2D" parent="."]
 position = Vector2(366, 446)
 texture = ExtResource("1_4eias")
+
+[connection signal="pressed" from="recuperar" to="." method="_on_recuperar_pressed"]

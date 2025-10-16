@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://g7ts28wga55v"]
+[gd_scene load_steps=4 format=3 uid="uid://g7ts28wga55v"]
 
 [ext_resource type="FontFile" uid="uid://cu62bdhamv7ue" path="res://assets/fonts/PressStart2P-Regular.ttf" id="1_bywbm"]
+[ext_resource type="Script" uid="uid://cvr42pkvf3678" path="res://escenas/usuario/registro/iniciar_sesion.gd" id="1_dkltd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wwn0v"]
 bg_color = Color(0.67076, 0.0998491, 0.916668, 1)
@@ -23,6 +24,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource("1_dkltd")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -61,7 +63,7 @@ offset_bottom = 609.0
 theme_override_font_sizes/font_size = 30
 placeholder_text = "Contraseña"
 
-[node name="GetPass" type="Button" parent="."]
+[node name="registrarse" type="Button" parent="."]
 layout_mode = 0
 offset_left = 204.0
 offset_top = 904.0
@@ -107,3 +109,6 @@ theme_override_font_sizes/font_size = 24
 button_mask = 0
 text = "Recuperar contraseña"
 flat = true
+
+[connection signal="pressed" from="registrarse" to="." method="_on_registrarse_pressed"]
+[connection signal="pressed" from="aceptar" to="." method="_on_aceptar_pressed"]

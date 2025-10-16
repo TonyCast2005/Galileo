@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://l2urkj5bud3a"]
+[gd_scene load_steps=4 format=3 uid="uid://l2urkj5bud3a"]
 
 [ext_resource type="FontFile" uid="uid://cu62bdhamv7ue" path="res://assets/fonts/PressStart2P-Regular.ttf" id="1_svshf"]
+[ext_resource type="Script" uid="uid://c2x3das0mve8c" path="res://escenas/usuario/registro/registrarse.gd" id="1_x7nj8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wwn0v"]
 bg_color = Color(0.67076, 0.0998491, 0.916668, 1)
@@ -23,6 +24,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource("1_x7nj8")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -100,7 +102,7 @@ theme_override_fonts/font = ExtResource("1_svshf")
 theme_override_font_sizes/font_size = 25
 text = "Ya tienes cuenta?"
 
-[node name="Button" type="Button" parent="."]
+[node name="IniciarSesion" type="Button" parent="."]
 layout_mode = 0
 offset_left = 214.0
 offset_top = 930.0
@@ -112,3 +114,15 @@ theme_override_font_sizes/font_size = 24
 button_mask = 0
 text = "Inicia sesión"
 flat = true
+
+[node name="Mensaje" type="Label" parent="."]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 1007.0
+offset_right = 661.0
+offset_bottom = 1161.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="aceptar" to="." method="_on_aceptar_pressed"]
+[connection signal="pressed" from="IniciarSesion" to="." method="_on_iniciar_sesion_pressed"]
