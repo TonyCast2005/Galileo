@@ -1,0 +1,166 @@
+[gd_scene load_steps=16 format=3 uid="uid://coqxncvnob81"]
+
+[ext_resource type="Script" uid="uid://dpebrs77c5ude" path="res://escenas/Escenarios/Espacio/Espacio.gd" id="1_6pqiu"]
+[ext_resource type="Texture2D" uid="uid://b1he0djyilmn5" path="res://assets/sprites/misc/espacioFondo.png" id="2_rjqk0"]
+[ext_resource type="Texture2D" uid="uid://3lquepi4mr3s" path="res://assets/sprites/ui/Espacio/naveRoja.png" id="3_rjqk0"]
+[ext_resource type="Texture2D" uid="uid://74gmy0qwrspa" path="res://assets/sprites/ui/Espacio/naveverde.png" id="4_kw2l3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kw2l3"]
+atlas = ExtResource("3_rjqk0")
+region = Rect2(0, 0, 64, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jms05"]
+atlas = ExtResource("3_rjqk0")
+region = Rect2(64, 0, 64, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_htq1g"]
+atlas = ExtResource("3_rjqk0")
+region = Rect2(128, 0, 64, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sudvv"]
+atlas = ExtResource("3_rjqk0")
+region = Rect2(0, 120, 64, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xuvk5"]
+atlas = ExtResource("3_rjqk0")
+region = Rect2(64, 120, 64, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmlh5"]
+atlas = ExtResource("4_kw2l3")
+region = Rect2(0, 0, 64, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wur50"]
+atlas = ExtResource("4_kw2l3")
+region = Rect2(64, 0, 64, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2f7iw"]
+atlas = ExtResource("4_kw2l3")
+region = Rect2(128, 0, 64, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_64ml3"]
+atlas = ExtResource("4_kw2l3")
+region = Rect2(0, 120, 64, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pcgp6"]
+atlas = ExtResource("4_kw2l3")
+region = Rect2(64, 120, 64, 120)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bmlh5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kw2l3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jms05")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_htq1g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sudvv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xuvk5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sudvv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xuvk5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sudvv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xuvk5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xuvk5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xuvk5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xuvk5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sudvv")
+}],
+"loop": true,
+"name": &"Nave Roja",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bmlh5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wur50")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2f7iw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_64ml3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pcgp6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_64ml3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pcgp6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_64ml3")
+}],
+"loop": true,
+"name": &"Nave_Verde",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[node name="Espacio" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6pqiu")
+
+[node name="Fondo" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_rjqk0")
+
+[node name="Nave2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 377.0
+offset_top = 725.0
+offset_right = 618.0
+offset_bottom = 913.0
+
+[node name="Nave_Roja" type="AnimatedSprite2D" parent="."]
+position = Vector2(169.974, 485)
+scale = Vector2(3.31332, 2.38375)
+sprite_frames = SubResource("SpriteFrames_bmlh5")
+animation = &"Nave Roja"
+frame_progress = 0.346118
+
+[node name="Nave_Verde" type="AnimatedSprite2D" parent="."]
+position = Vector2(513, 743)
+scale = Vector2(4.46875, 3.51856)
+sprite_frames = SubResource("SpriteFrames_bmlh5")
+animation = &"Nave_Verde"
+frame_progress = 0.202564
