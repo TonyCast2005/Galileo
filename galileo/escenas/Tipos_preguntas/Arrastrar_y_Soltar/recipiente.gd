@@ -1,6 +1,6 @@
 extends Area2D
 
-@onready var color_rect = $ColorRect  # o Label/Sprite2D si usas otro nodo visual
+@onready var color_rect = $ColorRect
 
 func _ready():
 		add_to_group("dropable")

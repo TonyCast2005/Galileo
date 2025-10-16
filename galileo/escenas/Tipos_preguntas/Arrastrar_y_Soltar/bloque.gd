@@ -11,8 +11,8 @@ func _ready():
 	await get_tree().process_frame
 	start_position = global_position
 	contenedor_origen = get_parent() 
-	print("📍 Posición inicial registrada:", start_position)
-	print("🧩 Contenedor original:", contenedor_origen.name)
+	print("Posición inicial registrada:", start_position)
+	print("Contenedor original:", contenedor_origen.name)
 
 # ---------------------------------------------------------------
 #  DETECCIÓN DE DRAG
@@ -43,7 +43,7 @@ func _snap_to_drop_zone():
 	var results = space_state.intersect_point(query)
 
 	if results.is_empty():
-		print("❌ No se soltó sobre ningún recipiente")
+		print("No se soltó sobre ningún recipiente")
 		_regresar_a_inicio()
 		return
 
@@ -52,7 +52,7 @@ func _snap_to_drop_zone():
 		if recipiente and recipiente.is_in_group("dropable"):
 
 			if recipiente.has_meta("ocupado") and recipiente.get_meta("ocupado") == true:
-				print("⚠️ El recipiente", recipiente.name, "ya tiene un bloque. Se devuelve.")
+				print("El recipiente", recipiente.name, "ya tiene un bloque. Se devuelve.")
 				_regresar_a_inicio()
 				return
 
@@ -67,7 +67,7 @@ func _snap_to_drop_zone():
 			if color_rect:
 				var rect_global = color_rect.get_global_rect()
 				target_pos = rect_global.position + rect_global.size / 2 - label.size / 2
-				target_pos.y -= 9 # ajusta este valor (3–6 px) según el tamaño del bloque
+				target_pos.y -= 9
 
 			else:
 				target_pos = recipiente.global_position
@@ -78,12 +78,8 @@ func _snap_to_drop_zone():
 			tween.tween_property(self, "global_position", target_pos, 0.25).set_ease(Tween.EASE_OUT)
 			return
 
-	# Si llega aquí, no hay ningún recipiente válido
 	_regresar_a_inicio()
 
-# ---------------------------------------------------------------
-#  REGRESAR AL INICIO
-# ---------------------------------------------------------------
 func _regresar_a_inicio():
 	if recipiente_actual and is_instance_valid(recipiente_actual):
 		recipiente_actual.set_meta("ocupado", false)
@@ -97,10 +93,9 @@ func _regresar_a_inicio():
 		get_parent().remove_child(self)
 
 		contenedor_opc.add_child(self)
-
-		# 🔹 IMPORTANTE: reinicia su posición local dentro del GridContainer
-		await get_tree().process_frame  # espera un frame para que el layout se actualice
-		global_position = start_position  # regresa a la posición original registrada
+		
+		await get_tree().process_frame 
+		global_position = start_position 
 		scale = Vector2.ONE
 		rotation = 0
 		print("Bloque devuelto correctamente")
