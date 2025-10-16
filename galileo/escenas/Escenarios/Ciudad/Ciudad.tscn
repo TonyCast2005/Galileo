@@ -1,6 +1,32 @@
-[gd_scene load_steps=2 format=3 uid="uid://ccyevon2v4erf"]
+[gd_scene load_steps=12 format=3 uid="uid://citn3lmf1m1fb"]
 
-[ext_resource type="Texture2D" uid="uid://5gsai6nsfbog" path="res://assets/sprites/ui/Ciudad/Fondo.png" id="1_cmmho"]
+[ext_resource type="Script" uid="uid://b2cri1tbcbsd8" path="res://escenas/Escenarios/Ciudad/ciudad.gd" id="1_6harn"]
+[ext_resource type="Texture2D" uid="uid://ck63r74jiifcp" path="res://assets/sprites/ui/Ciudad/Fondo.png" id="1_fh8d6"]
+[ext_resource type="Texture2D" uid="uid://bi4dy6qpstrcd" path="res://assets/sprites/ui/Ciudad/semaforoApagado.png" id="2_cmmho"]
+[ext_resource type="Texture2D" uid="uid://bqmvhxj66f436" path="res://assets/sprites/ui/Ciudad/gato caminandoN (1).png" id="3_xk620"]
+[ext_resource type="Texture2D" uid="uid://drus0txrld88c" path="res://assets/sprites/ui/Ciudad/carroMorado.png" id="4_6harn"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cmmho"]
+texture = ExtResource("2_cmmho")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_axt5c"]
+texture = ExtResource("2_cmmho")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xk620"]
+texture = ExtResource("2_cmmho")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6harn"]
+texture = ExtResource("2_cmmho")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1eb04"]
+texture = ExtResource("2_cmmho")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cmmho"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
 
 [node name="Ciudad" type="Control"]
 layout_mode = 3
@@ -9,17 +35,81 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_6harn")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -13.0
+offset_top = 10.0
+offset_right = -13.0
+offset_bottom = 10.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_cmmho")
+texture = ExtResource("1_fh8d6")
 
-[node name="Button" type="Button" parent="."]
+[node name="semaforoIzqArr" type="Button" parent="TextureRect"]
 layout_mode = 0
-offset_right = 133.0
-offset_bottom = 105.0
+offset_left = 221.0
+offset_top = 500.0
+offset_right = 296.0
+offset_bottom = 574.0
+theme_override_styles/disabled = SubResource("StyleBoxTexture_cmmho")
+theme_override_styles/normal = SubResource("StyleBoxTexture_axt5c")
+
+[node name="semaforoDerArr" type="Button" parent="TextureRect"]
+layout_mode = 0
+offset_left = 424.0
+offset_top = 502.0
+offset_right = 499.0
+offset_bottom = 576.0
+theme_override_styles/disabled = SubResource("StyleBoxTexture_xk620")
+theme_override_styles/normal = SubResource("StyleBoxTexture_axt5c")
+
+[node name="semaforoIzqAbj" type="Button" parent="TextureRect"]
+layout_mode = 0
+offset_left = 228.0
+offset_top = 699.0
+offset_right = 303.0
+offset_bottom = 773.0
+theme_override_styles/disabled = SubResource("StyleBoxTexture_6harn")
+theme_override_styles/normal = SubResource("StyleBoxTexture_axt5c")
+
+[node name="semaforoDerAbj" type="Button" parent="TextureRect"]
+layout_mode = 0
+offset_left = 425.0
+offset_top = 700.0
+offset_right = 500.0
+offset_bottom = 774.0
+theme_override_styles/disabled = SubResource("StyleBoxTexture_1eb04")
+theme_override_styles/normal = SubResource("StyleBoxTexture_axt5c")
+
+[node name="gatoCaminando" type="Sprite2D" parent="."]
+position = Vector2(502, 693)
+scale = Vector2(0.238281, 0.257813)
+texture = ExtResource("3_xk620")
+
+[node name="IrAbloques" type="Button" parent="."]
+layout_mode = 0
+offset_left = 624.0
+offset_top = 1132.0
+offset_right = 754.0
+offset_bottom = 1268.0
+theme_override_colors/font_disabled_color = Color(0.686275, 0.486275, 0.956863, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.686275, 0.486275, 0.956863, 1)
+theme_override_colors/font_hover_color = Color(0.686275, 0.486275, 0.956863, 1)
+theme_override_colors/font_color = Color(0.687395, 0.484335, 0.957113, 1)
+theme_override_colors/font_focus_color = Color(0.686275, 0.486275, 0.956863, 1)
+theme_override_colors/font_pressed_color = Color(0.686275, 0.486275, 0.956863, 1)
+theme_override_font_sizes/font_size = 90
+theme_override_styles/normal = SubResource("StyleBoxFlat_cmmho")
+text = "<"
+clip_text = true
+
+[node name="CarroMorado" type="Sprite2D" parent="."]
+position = Vector2(358, 1218)
+texture = ExtResource("4_6harn")
+vframes = 3
+frame = 1

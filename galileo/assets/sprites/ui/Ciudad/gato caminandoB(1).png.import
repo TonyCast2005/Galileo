@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqmvhxj66f436"
-path="res://.godot/imported/gato caminandoN (1).png-e156918216c5737760e11f6bcdab4201.ctex"
+uid="uid://n8o6tf8quigd"
+path="res://.godot/imported/gato caminandoB(1).png-013b887f251ce82eb124527c73795f4c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui/Ciudad/gato caminandoN (1).png"
-dest_files=["res://.godot/imported/gato caminandoN (1).png-e156918216c5737760e11f6bcdab4201.ctex"]
+source_file="res://assets/sprites/ui/Ciudad/gato caminandoB(1).png"
+dest_files=["res://.godot/imported/gato caminandoB(1).png-013b887f251ce82eb124527c73795f4c.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqmvhxj66f436"
-path="res://.godot/imported/gato caminandoN (1).png-e156918216c5737760e11f6bcdab4201.ctex"
+uid="uid://bi4dy6qpstrcd"
+path="res://.godot/imported/semaforoApagado.png-6d50b91ee1591bb67d7b13fc8b541c67.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui/Ciudad/gato caminandoN (1).png"
-dest_files=["res://.godot/imported/gato caminandoN (1).png-e156918216c5737760e11f6bcdab4201.ctex"]
+source_file="res://assets/sprites/ui/Ciudad/semaforoApagado.png"
+dest_files=["res://.godot/imported/semaforoApagado.png-6d50b91ee1591bb67d7b13fc8b541c67.ctex"]
 
 [params]
 
