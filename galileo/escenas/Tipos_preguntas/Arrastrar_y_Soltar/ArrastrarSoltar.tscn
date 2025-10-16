@@ -1,31 +1,135 @@
-[gd_scene load_steps=4 format=3 uid="uid://dyq24olsg6i6p"]
+[gd_scene load_steps=8 format=3 uid="uid://dyq24olsg6i6p"]
 
 [ext_resource type="PackedScene" uid="uid://58a32yh47ao7" path="res://escenas/Tipos_preguntas/Arrastrar_y_Soltar/bloque.tscn" id="1_6mnkq"]
 [ext_resource type="Script" uid="uid://bmt4wekmaxqgc" path="res://escenas/Tipos_preguntas/Arrastrar_y_Soltar/zona_trabajo.gd" id="1_rcjtp"]
 [ext_resource type="PackedScene" uid="uid://3q5foyvs857i" path="res://escenas/Tipos_preguntas/Arrastrar_y_Soltar/recipiente.tscn" id="2_mgacq"]
+[ext_resource type="Texture2D" uid="uid://bgnffnt45rlhx" path="res://assets/sprites/ui/lupa.png" id="4_mgacq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kxkk6"]
+bg_color = Color(0.498931, 0.372092, 0.680037, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7kqiy"]
+texture = ExtResource("4_mgacq")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l3lj0"]
+texture = ExtResource("4_mgacq")
 
 [node name="ArrastrarSoltar" type="Node2D"]
 
 [node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(600, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -5.0
+offset_right = 720.0
+offset_bottom = 1279.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.227451, 0.152941, 0.329412, 1)
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 21.0
+offset_top = 435.0
+offset_right = 699.0
+offset_bottom = 1215.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_kxkk6")
 
 [node name="zonaTrabajo" type="Node2D" parent="."]
 script = ExtResource("1_rcjtp")
 
 [node name="Recipiente" parent="zonaTrabajo" instance=ExtResource("2_mgacq")]
-position = Vector2(295, 77)
+position = Vector2(357, 494)
 
 [node name="Recipiente2" parent="zonaTrabajo" instance=ExtResource("2_mgacq")]
-position = Vector2(290, 200)
+position = Vector2(361, 587)
 
 [node name="Recipiente3" parent="zonaTrabajo" instance=ExtResource("2_mgacq")]
-position = Vector2(292, 322)
+position = Vector2(363, 681)
 
-[node name="contenedorOpc" type="Node2D" parent="."]
+[node name="Recipiente4" parent="zonaTrabajo" instance=ExtResource("2_mgacq")]
+position = Vector2(366, 774)
 
-[node name="Bloque" parent="contenedorOpc" instance=ExtResource("1_6mnkq")]
+[node name="Recipiente5" parent="zonaTrabajo" instance=ExtResource("2_mgacq")]
+position = Vector2(368, 870)
+
+[node name="Recipiente6" parent="zonaTrabajo" instance=ExtResource("2_mgacq")]
+position = Vector2(369, 965)
+
+[node name="Recipiente7" parent="zonaTrabajo" instance=ExtResource("2_mgacq")]
+position = Vector2(369, 1060)
+
+[node name="Recipiente8" parent="zonaTrabajo" instance=ExtResource("2_mgacq")]
+position = Vector2(369, 1156)
+
+[node name="Panel" type="Panel" parent="zonaTrabajo"]
+offset_left = 16.0
+offset_top = 167.0
+offset_right = 704.0
+offset_bottom = 393.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_kxkk6")
+
+[node name="contenedorOpc" type="GridContainer" parent="zonaTrabajo" groups=["contenedor_opc"]]
+offset_left = 13.0
+offset_top = 171.0
+offset_right = 701.0
+offset_bottom = 395.0
+
+[node name="Bloque" parent="zonaTrabajo/contenedorOpc" instance=ExtResource("1_6mnkq")]
+position = Vector2(20, -1)
+
+[node name="Bloque2" parent="zonaTrabajo/contenedorOpc" instance=ExtResource("1_6mnkq")]
+position = Vector2(243, -1)
+
+[node name="Bloque3" parent="zonaTrabajo/contenedorOpc" instance=ExtResource("1_6mnkq")]
+position = Vector2(467, -1)
+
+[node name="Bloque4" parent="zonaTrabajo/contenedorOpc" instance=ExtResource("1_6mnkq")]
+position = Vector2(24, 73)
+
+[node name="Bloque5" parent="zonaTrabajo/contenedorOpc" instance=ExtResource("1_6mnkq")]
+position = Vector2(249, 72)
+
+[node name="Bloque6" parent="zonaTrabajo/contenedorOpc" instance=ExtResource("1_6mnkq")]
+position = Vector2(472, 72)
+
+[node name="Bloque7" parent="zonaTrabajo/contenedorOpc" instance=ExtResource("1_6mnkq")]
+position = Vector2(26, 138)
+
+[node name="Bloque8" parent="zonaTrabajo/contenedorOpc" instance=ExtResource("1_6mnkq")]
+position = Vector2(253, 139)
+
+[node name="pista" type="Button" parent="."]
+offset_left = 599.0
+offset_top = 1166.0
+offset_right = 687.0
+offset_bottom = 1268.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 28
+theme_override_styles/focus = SubResource("StyleBoxTexture_7kqiy")
+theme_override_styles/normal = SubResource("StyleBoxTexture_l3lj0")
+
+[node name="nombreLeccion" type="Label" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = 712.0
+offset_bottom = 79.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 19
+text = "Arrastrar y soltar"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Instrucciones" type="Label" parent="."]
+offset_left = 6.0
+offset_top = 77.0
+offset_right = 718.0
+offset_bottom = 140.0

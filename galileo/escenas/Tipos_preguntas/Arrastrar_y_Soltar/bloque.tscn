@@ -59,7 +59,7 @@ func _snap_to_drop_zone():
 	print(\"Bloque soltado fuera de recipientes\")
 "
 
-[node name="Bloque" type="Node2D"]
+[node name="Bloque" type="Node2D" groups=["draggable_block"]]
 script = ExtResource("1_qbxhm")
 
 [node name="Label" type="Label" parent="."]
