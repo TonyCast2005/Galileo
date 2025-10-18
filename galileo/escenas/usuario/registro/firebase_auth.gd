@@ -74,3 +74,5 @@ func _send_request(url: String, data: Dictionary) -> Dictionary:
 		return {"error": "No se pudo interpretar la respuesta del servidor"}
 	
 	return result
+	
+	

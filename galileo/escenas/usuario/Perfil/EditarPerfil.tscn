@@ -50,11 +50,15 @@ texture = ExtResource("1_xvlxl")
 expand_mode = 2
 
 [node name="perfil" type="Button" parent="."]
-layout_mode = 0
-offset_left = 573.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.796
+anchor_right = 0.947
+anchor_bottom = 0.112
+offset_left = -0.120056
 offset_top = 39.0
-offset_right = 682.0
-offset_bottom = 143.0
+offset_right = 0.159973
+offset_bottom = -0.360001
 theme_override_styles/normal = SubResource("StyleBoxTexture_b45wd")
 
 [node name="NombreUsuario" type="Label" parent="."]
