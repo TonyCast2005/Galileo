@@ -12,6 +12,8 @@ func _ready():
 	auth = load("res://escenas/usuario/registro/firebase_auth.gd").new()
 	add_child(auth)
 
+
+	
 func _on_aceptar_pressed():
 	if contrasena.text != confirmar.text:
 		mensaje.text = "Las contraseñas no coinciden"
@@ -24,6 +26,8 @@ func _on_aceptar_pressed():
 		mensaje.text = "Cuenta creada correctamente"
 		get_tree().change_scene_to_file("res://escenas/usuario/Perfil/perfil.tscn")
 
-
-func _on_iniciar_sesion_pressed():
-	get_tree().change_scene_to_file("res://escenas/usuario/registro/iniciarSesion.tscn")
+func _on_iniciarsesion_pressed():
+	print("✅ Botón presionado correctamente")
+	var path = "res://escenas/usuario/registro/iniciarSesion.tscn"
+	var error = get_tree().change_scene_to_file(path)
+	print("Resultado:", error)

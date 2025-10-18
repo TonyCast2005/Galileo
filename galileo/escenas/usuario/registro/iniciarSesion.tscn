@@ -110,5 +110,14 @@ button_mask = 0
 text = "Recuperar contraseña"
 flat = true
 
+[node name="Mensaje" type="Label" parent="."]
+offset_left = 56.0
+offset_top = 1007.0
+offset_right = 661.0
+offset_bottom = 1161.0
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
 [connection signal="pressed" from="registrarse" to="." method="_on_registrarse_pressed"]
 [connection signal="pressed" from="aceptar" to="." method="_on_aceptar_pressed"]

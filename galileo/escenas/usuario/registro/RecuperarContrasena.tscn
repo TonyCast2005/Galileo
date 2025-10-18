@@ -61,4 +61,13 @@ text = "recuperar"
 position = Vector2(366, 446)
 texture = ExtResource("1_4eias")
 
+[node name="Mensaje" type="Label" parent="."]
+offset_left = 56.0
+offset_top = 878.0
+offset_right = 661.0
+offset_bottom = 1032.0
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
 [connection signal="pressed" from="recuperar" to="." method="_on_recuperar_pressed"]
