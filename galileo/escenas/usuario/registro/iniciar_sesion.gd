@@ -12,20 +12,27 @@ func _ready():
 func _on_aceptar_pressed():
 	if usuario.text.is_empty() or contrasena.text.is_empty():
 		mensaje.text = "Favor de llenar los campos"
-		print("Favor de llenar los campos")
 		return
 
 	var res = await auth.login_user(usuario.text, contrasena.text)
+
 	if "error" in res:
 		mensaje.text = "Credenciales incorrectas"
+		print(res["error"])
 	else:
 		mensaje.text = "Inicio de sesión exitoso"
+		print("Login exitoso:", usuario.text)
+
+		Globals.user = {
+			"idToken": res.get("idToken", ""),
+			"uid": res.get("localId", ""),
+			"email": usuario.text
+		}
+
 		get_tree().change_scene_to_file("res://escenas/usuario/Perfil/perfil.tscn")
-		var id_token = res["idToken"]
-			
+
 func _on_registrarse_pressed():
 	get_tree().change_scene_to_file("res://escenas/usuario/registro/registrarse.tscn")
-
 
 func _on_reccontrasenna_pressed():
 	get_tree().change_scene_to_file("res://escenas/usuario/registro/RecuperarContrasena.tscn")
