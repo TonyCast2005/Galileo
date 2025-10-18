@@ -60,7 +60,7 @@ offset_top = 430.0
 offset_right = 629.0
 offset_bottom = 497.0
 theme_override_font_sizes/font_size = 30
-placeholder_text = "Usuario"
+placeholder_text = "Correo "
 
 [node name="contraseña" type="TextEdit" parent="."]
 layout_mode = 0
@@ -142,6 +142,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_dkltd")
 text = "Recuperar contraseña"
 
 [connection signal="pressed" from="aceptar" to="." method="_on_aceptar_pressed"]
-[connection signal="pressed" from="registrarse" to="." method="_on_registrarse_pressed"]
 [connection signal="pressed" from="registrarse" to="." method="_on_aceptar_pressed"]
+[connection signal="pressed" from="registrarse" to="." method="_on_registrarse_pressed"]
 [connection signal="pressed" from="reccontrasenna" to="." method="_on_reccontrasenna_pressed"]
