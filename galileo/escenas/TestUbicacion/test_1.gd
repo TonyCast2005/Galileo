@@ -7,13 +7,14 @@ extends Control
 
 var instancia_actual
 
-func _on_button_pressed():
-	var escena = preload("res://escenas/TestUbicacion/explicacion.tscn").instantiate()
-	raiz.add_child(escena)
-	instancia_actual = escena
-
+func _on_novato_pressed():
+	pass # Replace with function body.
+	
 func _on_competente_pressed():
 	pass
 
 func _on_experimentado_pressed():
 	pass
+	
+func _on_test_pressed():
+	get_tree().change_scene_to_file("res://escenas/TestUbicacion/preambulo.tscn")

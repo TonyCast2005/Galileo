@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://hwylvvxjtye"]
+[gd_scene load_steps=8 format=3 uid="uid://hwylvvxjtye"]
 
 [ext_resource type="Script" uid="uid://bhawdx44gqfmi" path="res://escenas/TestUbicacion/test_1.gd" id="1_1atws"]
+[ext_resource type="FontFile" uid="uid://cu62bdhamv7ue" path="res://assets/fonts/PressStart2P-Regular.ttf" id="2_0tj0f"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l3aix"]
 bg_color = Color(0.811689, 0.519974, 0.818159, 1)
@@ -20,6 +21,14 @@ corner_radius_bottom_left = 40
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2elpk"]
 bg_color = Color(0.628987, 0.516527, 0.926408, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_87wwf"]
+bg_color = Color(0.133333, 0.156863, 0.211765, 1)
+border_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 40
 corner_radius_top_right = 40
 corner_radius_bottom_right = 40
@@ -102,17 +111,24 @@ offset_bottom = 1058.0
 theme_override_font_sizes/font_size = 22
 text = "¿No tienes idea?"
 
-[node name="Button" type="Button" parent="."]
-layout_mode = 0
-offset_left = 205.0
-offset_top = 1042.0
-offset_right = 531.0
-offset_bottom = 1105.0
-theme_override_colors/font_color = Color(0.625763, 0.26037, 1, 1)
-theme_override_font_sizes/font_size = 20
+[node name="Test" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.086
+anchor_top = 0.82
+anchor_right = 0.924
+anchor_bottom = 0.883
+offset_left = 0.079998
+offset_top = 0.399902
+offset_right = 0.343994
+offset_bottom = -0.474976
+theme_override_colors/font_color = Color(0.681906, 0.410838, 0.909475, 1)
+theme_override_fonts/font = ExtResource("2_0tj0f")
+theme_override_font_sizes/font_size = 21
+theme_override_styles/normal = SubResource("StyleBoxFlat_87wwf")
 text = "Realiza un test!"
-flat = true
 
-[connection signal="pressed" from="ColorRect/Novato" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="ColorRect/Novato" to="." method="_on_novato_pressed"]
 [connection signal="pressed" from="ColorRect/Competente" to="." method="_on_competente_pressed"]
 [connection signal="pressed" from="ColorRect/Experimentado" to="." method="_on_experimentado_pressed"]
+[connection signal="pressed" from="Test" to="." method="_on_test_pressed"]
