@@ -2,6 +2,7 @@ extends Control
 
 @onready var achievements_list = $ScrollContainer/logrosVbox
 @onready var http = $HTTPRequest
+@onready var username = $NombreUsuario
 
 var LogroScene = preload("res://escenas/usuario/Perfil/Logro.tscn")
 var firebase_url = "https://galileo-af640-default-rtdb.firebaseio.com/" 
@@ -9,6 +10,10 @@ var firebase_url = "https://galileo-af640-default-rtdb.firebaseio.com/"
 var logros = {}
 
 func _ready():
+    if Globals.user != null:
+        username.text = Globals.user.get("nombre", "Usuario sin nombre")
+    else:
+        username.text = "Usuario sin nombre"
     var url_logros = "%s/logros.json" % firebase_url
     http.request(url_logros)
     
