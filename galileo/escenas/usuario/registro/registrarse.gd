@@ -39,7 +39,7 @@ func _on_aceptar_pressed():
     }
 
     # Cambiar a la escena de perfil
-    get_tree().change_scene_to_file("res://escenas/usuario/Perfil/perfil.tscn")
+    get_tree().change_scene_to_file("res/escenas/TestUbicacion/test1.tscn")
 
 
 func _on_iniciarsesion_pressed():
