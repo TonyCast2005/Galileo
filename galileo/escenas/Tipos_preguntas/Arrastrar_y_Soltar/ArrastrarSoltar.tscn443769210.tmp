@@ -1,6 +1,5 @@
-[gd_scene load_steps=9 format=3 uid="uid://dyq24olsg6i6p"]
+[gd_scene load_steps=8 format=3 uid="uid://dyq24olsg6i6p"]
 
-[ext_resource type="Script" uid="uid://buv4m50tsn4re" path="res://escenas/Tipos_preguntas/Arrastrar_y_Soltar/arrastrar_soltar.gd" id="1_7kqiy"]
 [ext_resource type="PackedScene" uid="uid://ce1i46eqi8dlt" path="res://escenas/Tipos_preguntas/Arrastrar_y_Soltar/Prueba_Nueva/RestZone.tscn" id="1_mgacq"]
 [ext_resource type="Script" uid="uid://bmt4wekmaxqgc" path="res://escenas/Tipos_preguntas/Arrastrar_y_Soltar/zona_trabajo.gd" id="1_rcjtp"]
 [ext_resource type="PackedScene" uid="uid://b1g855tc0yp2q" path="res://escenas/Tipos_preguntas/Arrastrar_y_Soltar/Prueba_Nueva/Prueba_Drag&Drop.tscn" id="2_kxkk6"]
@@ -20,7 +19,6 @@ texture = ExtResource("4_mgacq")
 texture = ExtResource("4_mgacq")
 
 [node name="ArrastrarSoltar" type="Node2D"]
-script = ExtResource("1_7kqiy")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(600, 0)
@@ -42,20 +40,14 @@ offset_right = 699.0
 offset_bottom = 1193.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_kxkk6")
 
-[node name="Drop_Zone" parent="Panel" instance=ExtResource("1_mgacq")]
-position = Vector2(85, 119)
+[node name="Drop_Zone4" parent="Panel" instance=ExtResource("1_mgacq")]
+position = Vector2(75, 129)
 
-[node name="Drop_Zone2" parent="Panel" instance=ExtResource("1_mgacq")]
-position = Vector2(91, 295)
+[node name="Drop_Zone" parent="Panel" instance=ExtResource("1_mgacq")]
+position = Vector2(91, 349)
 
 [node name="Drop_Zone3" parent="Panel" instance=ExtResource("1_mgacq")]
-position = Vector2(91, 464)
-
-[node name="Drop_Zone4" parent="Panel" instance=ExtResource("1_mgacq")]
-position = Vector2(411, 119)
-
-[node name="Drop_Zone5" parent="Panel" instance=ExtResource("1_mgacq")]
-position = Vector2(88, 599)
+position = Vector2(94, 562)
 
 [node name="zonaTrabajo" type="Node2D" parent="."]
 script = ExtResource("1_rcjtp")

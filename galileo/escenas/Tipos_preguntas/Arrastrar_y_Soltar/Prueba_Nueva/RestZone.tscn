@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ce1i46eqi8dlt"]
+
+[ext_resource type="Script" uid="uid://casf7l4fclq15" path="res://escenas/Tipos_preguntas/Arrastrar_y_Soltar/Prueba_Nueva/rest_zone.gd" id="1_78a4b"]
+
+[node name="Drop_Zone" type="Marker2D"]
+script = ExtResource("1_78a4b")

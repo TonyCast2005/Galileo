@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://35y6b5kjtler"]
+
+[ext_resource type="PackedScene" uid="uid://ce1i46eqi8dlt" path="res://escenas/Tipos_preguntas/Arrastrar_y_Soltar/Prueba_Nueva/RestZone.tscn" id="1_yfgur"]
+[ext_resource type="PackedScene" uid="uid://b1g855tc0yp2q" path="res://escenas/Tipos_preguntas/Arrastrar_y_Soltar/Prueba_Nueva/Prueba_Drag&Drop.tscn" id="2_q4rsn"]
+
+[node name="ZonaTest" type="Node2D"]
+
+[node name="Drop_Zone" parent="." instance=ExtResource("1_yfgur")]
+position = Vector2(202, 424)
+
+[node name="Drop_Zone2" parent="." instance=ExtResource("1_yfgur")]
+position = Vector2(477, 145)
+
+[node name="PruebaDrag&drop" parent="." instance=ExtResource("2_q4rsn")]
+position = Vector2(174, 172)

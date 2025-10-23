@@ -8,12 +8,12 @@ extends Control
 var instancia_actual
 
 func _on_button_pressed():
-	var escena = preload("res://escenas/TestUbicacion/explicacion.tscn").instantiate()
-	raiz.add_child(escena)
-	instancia_actual = escena
+    var escena = preload("res://escenas/TestUbicacion/explicacion.tscn").instantiate()
+    raiz.add_child(escena)
+    instancia_actual = escena
 
 func _on_competente_pressed():
-	pass
+    pass
 
 func _on_experimentado_pressed():
-	pass
+    pass
