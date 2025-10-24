@@ -9,9 +9,14 @@ var firebase_url = "https://galileo-af640-default-rtdb.firebaseio.com/"
 var logros = {}
 
 func _ready():
+	# Mostrar datos del usuario
+	$NombreUsuario.text = Global.user_data.get("nombre", "Sin nombre")
+	$NiveelUsuario.text = Global.user_data.get("nivel", "Sin nivel")
+
+	# Cargar logros
 	var url_logros = "%s/logros.json" % firebase_url
 	http.request(url_logros)
-	
+
 func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 	if response_code != 200:
 		push_error("Error al cargar Firebase: %s" % response_code)
@@ -26,11 +31,9 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 		return
 
 	logros = data
-
 	mostrar_logros()
 
 func mostrar_logros():
-
 	for child in achievements_list.get_children():
 		child.queue_free()
 
@@ -43,7 +46,6 @@ func add_achievement(icon: Texture, title: String, description: String, unlocked
 	var logro = LogroScene.instantiate()
 	achievements_list.add_child(logro)
 	logro.call_deferred("set_data", icon, title, description, unlocked)
-
 
 func _on_editar_perfil_pressed():
 	get_tree().change_scene_to_file("res://escenas/usuario/Perfil/EditarPerfil.tscn")

@@ -23,26 +23,24 @@ func _on_aceptar_pressed():
 		return
 
 	var res = await auth.register_user(correo.text, contrasena.text)
-	
-	if not "error" in res:
-	var uid = res["localId"]
-
-	var user_data = {
-		"email": email,
-		"nombre": nombre_usuario.text,  # si tienes un campo de nombre
-		"nivel": "principiante",
-		"logros": {}
-	}
-
-	await auth.save_user_data(uid, user_data)
-	print("✅ Usuario guardado en Firebase:", user_data)
-
 
 	if "error" in res:
 		mensaje.text = res.error.message
+		
 	else:
-		mensaje.text = "Cuenta creada correctamente"
-		get_tree().change_scene_to_file("res://escenas/TestUbicacion/test1.tscn")
+		var uid = res["localId"]
+		var user_data = {
+			"email": correo.text,
+			"nombre": contrasena.text,
+			"nivel": "principiante", #revisar resultado del test, no sé cómo hacerlo XD
+			"logros": {}
+		}
+		await auth.save_user_data(uid, user_data)
+
+		Global.user_uid = uid
+		Global.user_data = user_data
+
+		get_tree().change_scene_to_file("res://escenas/usuario/Perfil/perfil.tscn")
 
 func _on_iniciarsesion_pressed():
-	get_tree().change_scene_to_file("res://escenas/usuario/registro/iniciarSesion.tscn")
+	get_tree().change_scene_to_file("res://escenas/TestUbicacion/test1.tscn")
