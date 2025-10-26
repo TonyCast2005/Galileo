@@ -24,22 +24,32 @@ func _on_aceptar_pressed():
         mensaje.text = "❌ Las contraseñas no coinciden"
         return
 
-    # Llamar a la función de registro con nombre, correo y contraseña
-    var res = await auth.register_user(correo.text, contrasena.text, usuario.text)
+    # 🔹 Limpiar los textos antes de enviar a Firebase
+    var email = correo.text.strip_edges().to_lower()
+    var password = contrasena.text.strip_edges()
+    var nombre = usuario.text.strip_edges()
+
+    # 🔹 Llamar a la función de registro con los valores limpios
+    var res = await auth.register_user(email, password, nombre)
+    
+    # 🔹 Mostrar el resultado en consola para depurar (puedes quitarlo luego)
+    print("Resultado del registro:", res)
     
     if res.has("error"):
         mensaje.text = "❌ Error al registrar: %s" % res["error"]
+        print("Respuesta completa Firebase:", JSON.stringify(res, "\t"))
+
         return
 
     # Guardar datos del usuario en Globals
     Globals.user = {
         "uid": res.get("localId", ""),
         "email": res.get("email", ""),
-        "nombre": usuario.text
+        "nombre": nombre
     }
 
     # Cambiar a la escena de perfil
-    get_tree().change_scene_to_file("res/escenas/TestUbicacion/test1.tscn")
+    get_tree().change_scene_to_file("res://escenas/TestUbicacion/test1.tscn")
 
 
 func _on_iniciarsesion_pressed():

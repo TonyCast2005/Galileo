@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://hwylvvxjtye"]
+[gd_scene load_steps=7 format=3 uid="uid://hwylvvxjtye"]
 
 [ext_resource type="Script" uid="uid://bhawdx44gqfmi" path="res://escenas/TestUbicacion/test_1.gd" id="1_1atws"]
+[ext_resource type="PackedScene" uid="uid://vxvcfoqcigu" path="res://escenas/TestUbicacion/explicacion.tscn" id="2_0tj0f"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l3aix"]
 bg_color = Color(0.811689, 0.519974, 0.818159, 1)
@@ -35,9 +36,28 @@ grow_vertical = 2
 script = ExtResource("1_1atws")
 
 [node name="ControlGato" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 719.0
-offset_bottom = 1283.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -233.0
+offset_top = -214.0
+offset_right = 245.0
+offset_bottom = 174.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Node2D" parent="ControlGato" instance=ExtResource("2_0tj0f")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -116,3 +136,4 @@ flat = true
 [connection signal="pressed" from="ColorRect/Novato" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="ColorRect/Competente" to="." method="_on_competente_pressed"]
 [connection signal="pressed" from="ColorRect/Experimentado" to="." method="_on_experimentado_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
