@@ -4,18 +4,11 @@ extends Control
 @onready var contrasena = $"ColorRect/ColorRect2/contraseña"
 @onready var mensaje = $ColorRect/Mensaje
 @onready var Gato = $ColorRect/Gato
-
 var auth
-var crypto
 
 func _ready():
 	auth = load("res://escenas/usuario/registro/firebase_auth.gd").new()
 	add_child(auth)
-
-	#Cargar cifrador AES
-	crypto = load("res://crypto_manager.gd").new()
-	add_child(crypto)
-
 	animar_gato()
 
 func animar_gato():
@@ -32,28 +25,26 @@ func _on_aceptar_pressed():
 		return
 
 	mensaje.text = "🔄 Iniciando sesión..."
-	
-	#Cifrar contraseña antes de enviar
-	var encrypted_pass = crypto.encrypt_password(contrasena.text)
-
-	var res = await auth.login_user(usuario.text, encrypted_pass)
+	var res = await auth.login_user(usuario.text, contrasena.text)
 	print("📩 Respuesta Firebase:", res)
 
 	if res.has("error"):
 		var msg = res["error"].get("message", "Error desconocido")
-		if msg == "INVALID_LOGIN_CREDENTIALS":
-			mensaje.text = "❌ Credenciales incorrectas"
-		elif msg == "EMAIL_NOT_FOUND":
-			mensaje.text = "❌ Correo no registrado"
-		elif msg == "INVALID_PASSWORD":
-			mensaje.text = "❌ Contraseña incorrecta"
-		else:
-			mensaje.text = "❌ Error: %s" % msg
+
+		match msg:
+			"INVALID_LOGIN_CREDENTIALS", "INVALID_PASSWORD":
+				mensaje.text = "❌ Credenciales incorrectas"
+			"EMAIL_NOT_FOUND":
+				mensaje.text = "❌ Correo no registrado"
+			_:
+				mensaje.text = "❌ Error: %s" % msg
 		return
 
+	# ✅ Inicio de sesión exitoso
 	mensaje.text = "✅ Inicio de sesión exitoso"
 	print("Login exitoso:", usuario.text)
 
+	# Obtener información adicional del usuario
 	var uid = res.get("localId", "")
 	var nombre = "Usuario sin nombre"
 	if uid != "":
@@ -61,6 +52,7 @@ func _on_aceptar_pressed():
 		if extra_data != null:
 			nombre = extra_data.get("nombre", "Usuario sin nombre")
 
+	# Guardar datos globales
 	Globals.user = {
 		"idToken": res.get("idToken", ""),
 		"uid": uid,
@@ -68,4 +60,22 @@ func _on_aceptar_pressed():
 		"nombre": nombre
 	}
 
+	# 🧩 Guardar sesión localmente (encriptada)
+	var session = load("res://scripts/session_manager.gd").new()
+	session.save_session(
+		res.get("idToken", ""),
+		res.get("refreshToken", ""),
+		usuario.text,
+		res.get("localId", "")
+	)
+
+	# Cambiar a perfil
 	get_tree().change_scene_to_file("res://escenas/usuario/Perfil/perfil.tscn")
+
+
+func _on_registrarse_pressed():
+	get_tree().change_scene_to_file("res://escenas/usuario/registro/registrarse.tscn")
+
+
+func _on_reccontrasenna_pressed():
+	get_tree().change_scene_to_file("res://escenas/usuario/registro/RecuperarContrasena.tscn")

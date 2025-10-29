@@ -13,16 +13,16 @@ func _ready():
 	auth = load("res://escenas/usuario/registro/firebase_auth.gd").new()
 	add_child(auth)
 	#Cargar cifrador AES
-	crypto = load("res://crypto_manager.gd").new()
+	crypto = load("res://escenas/usuario/registro/crypto_manager.gd").new()
 	add_child(crypto)
 
 func _on_aceptar_pressed():
 	if usuario.text.is_empty() or correo.text.is_empty() or contrasena.text.is_empty():
-		mensaje.text = "⚠️ Favor de llenar los campos"
+		mensaje.text = "Favor de llenar los campos"
 		return
 		
 	if contrasena.text != confirmar.text:
-		mensaje.text = "❌ Las contraseñas no coinciden"
+		mensaje.text = "Las contraseñas no coinciden"
 		return
 	
 	var email = correo.text.strip_edges().to_lower()
@@ -36,7 +36,7 @@ func _on_aceptar_pressed():
 	print("Resultado del registro:", res)
 	
 	if res.has("error"):
-		mensaje.text = "❌ Error al registrar: %s" % res["error"]
+		mensaje.text = "Error al registrar: %s" % res["error"]
 		return
 
 	Globals.user = {
@@ -46,3 +46,6 @@ func _on_aceptar_pressed():
 	}
 
 	get_tree().change_scene_to_file("res://escenas/TestUbicacion/test1.tscn")
+
+func _on_iniciarsesion_pressed():
+	get_tree().change_scene_to_file("res://escenas/usuario/registro/iniciarSesion.tscn")

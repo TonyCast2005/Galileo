@@ -1,55 +1,52 @@
+# res://scripts/crypto_manager.gd
 extends Node
 
-var key: PackedByteArray
+var key: PackedByteArray = PackedByteArray()
 
-func _ready():
-	var file = FileAccess.open("res://keys/aes.key", FileAccess.READ)
-	if file:
-		key = file.get_buffer(file.get_length())
-		print("Llave AES cargada:", key.size(), "bytes")
+func _ready() -> void:
+	var path = "res://keys/aes.key"
+	if FileAccess.file_exists(path):
+		var f = FileAccess.open(path, FileAccess.READ)
+		key = f.get_buffer(f.get_length())
+		f.close()
+		print("crypto_manager: llave cargada", key.size(), "bytes")
 	else:
-		push_error("No se pudo cargar la llave AES")
+		push_error("crypto_manager: no se encontró aes.key en %s" % path)
 
-# Genera un IV aleatorio para cada cifrado
 func generate_iv() -> PackedByteArray:
 	var iv = PackedByteArray()
-	for i in range(16): # 128 bits
+	for i in range(16):
 		iv.append(randi() % 256)
 	return iv
 
-# 🔐 Encriptar contraseña (AES CBC + Base64)
-func encrypt_password(password: String) -> String:
+func encrypt_data(data: String) -> String:
+	if key.is_empty():
+		push_error("crypto_manager: llave AES no cargada")
+		return ""
 	var aes = AESContext.new()
 	var iv = generate_iv()
 	aes.start(AESContext.MODE_CBC_ENCRYPT, key, iv)
-
-	var data = password.to_utf8_buffer()
-	while data.size() % 16 != 0:
-		data.append(0)
-
-	var encrypted = aes.update(data)
+	var buf = data.to_utf8_buffer()
+	while buf.size() % 16 != 0:
+		buf.append(0)
+	var enc = aes.update(buf)
 	aes.finish()
+	return Marshalls.raw_to_base64(iv + enc)
 
-	# Combinar IV + datos cifrados (para poder descifrar después)
-	var full_data = iv + encrypted
-	return Marshalls.raw_to_base64(full_data)
-
-# 🔓 Desencriptar contraseña
-func decrypt_password(encrypted_b64: String) -> String:
-	var full_data = Marshalls.base64_to_raw(encrypted_b64)
-
-	# Separar IV (primeros 16 bytes) y datos
-	var iv = full_data.slice(0, 16)
-	var data = full_data.slice(16, full_data.size())
-
+func decrypt_data(encrypted_b64: String) -> String:
+	if key.is_empty():
+		push_error("crypto_manager: llave AES no cargada")
+		return ""
+	var full = Marshalls.base64_to_raw(encrypted_b64)
+	if full.size() < 16:
+		push_error("crypto_manager: datos cifrados inválidos")
+		return ""
+	var iv = full.slice(0, 16)
+	var data = full.slice(16, full.size())
 	var aes = AESContext.new()
 	aes.start(AESContext.MODE_CBC_DECRYPT, key, iv)
-
-	var decrypted = aes.update(data)
+	var dec = aes.update(data)
 	aes.finish()
-
-	# Quitar padding
-	while decrypted.size() > 0 and decrypted[-1] == 0:
-		decrypted.resize(decrypted.size() - 1)
-
-	return decrypted.get_string_from_utf8()
+	while dec.size() > 0 and dec[-1] == 0:
+		dec.resize(dec.size() - 1)
+	return dec.get_string_from_utf8()
