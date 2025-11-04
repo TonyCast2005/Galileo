@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://d3clobydlmyrf"]
+
+[ext_resource type="Texture2D" uid="uid://4sapvjr4jbjq" path="res://assets/sprites/ui/bloqueado.png" id="1_m7rug"]
+[ext_resource type="Texture2D" uid="uid://b2ppqu3em387w" path="res://assets/sprites/ui/iconoMorado (1).png" id="2_08n86"]
+[ext_resource type="Texture2D" uid="uid://dbn71ib62sal" path="res://assets/sprites/ui/iconoMorado (2).png" id="3_ptuvt"]
+[ext_resource type="Script" uid="uid://dkk5qcjh2vb3v" path="res://escenas/usuario/MenuInicial/selector_nivel.gd" id="4_ddbb0"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lduao"]
+texture = ExtResource("1_m7rug")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hf74p"]
+texture = ExtResource("2_08n86")
+
+[sub_resource type="Theme" id="Theme_hf74p"]
+
+[node name="Button" type="Button"]
+custom_minimum_size = Vector2(20, 20)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(40, 25)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/disabled = SubResource("StyleBoxTexture_lduao")
+theme_override_styles/normal = SubResource("StyleBoxTexture_hf74p")
+icon = ExtResource("3_ptuvt")
+script = ExtResource("4_ddbb0")
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 2
+texture_repeat = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+justification_flags = 171
+
+[node name="bloqueado" type="TextureRect" parent="."]
+clip_contents = true
+custom_minimum_size = Vector2(40, 40)
+layout_direction = 1
+layout_mode = 0
+offset_left = 729.125
+offset_top = 486.24
+offset_right = 888.125
+offset_bottom = 629.24
+theme = SubResource("Theme_hf74p")
+texture = ExtResource("1_m7rug")
+expand_mode = 3
+stretch_mode = 3
