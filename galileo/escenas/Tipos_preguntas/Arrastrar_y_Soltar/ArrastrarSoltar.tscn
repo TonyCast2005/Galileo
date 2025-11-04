@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://dyq24olsg6i6p"]
+[gd_scene load_steps=10 format=3 uid="uid://dyq24olsg6i6p"]
 
 [ext_resource type="Script" uid="uid://buv4m50tsn4re" path="res://escenas/Tipos_preguntas/Arrastrar_y_Soltar/arrastrar_soltar.gd" id="1_7kqiy"]
 [ext_resource type="PackedScene" uid="uid://ce1i46eqi8dlt" path="res://escenas/Tipos_preguntas/Arrastrar_y_Soltar/Prueba_Nueva/RestZone.tscn" id="1_mgacq"]
 [ext_resource type="Script" uid="uid://bmt4wekmaxqgc" path="res://escenas/Tipos_preguntas/Arrastrar_y_Soltar/zona_trabajo.gd" id="1_rcjtp"]
 [ext_resource type="PackedScene" uid="uid://b1g855tc0yp2q" path="res://escenas/Tipos_preguntas/Arrastrar_y_Soltar/Bloques_Tipos/Prueba_Drag&Drop.tscn" id="2_kxkk6"]
+[ext_resource type="Script" uid="uid://bn3gqs5hb5slw" path="res://escenas/Tipos_preguntas/Arrastrar_y_Soltar/verificador.gd" id="3_l3lj0"]
 [ext_resource type="Texture2D" uid="uid://bgnffnt45rlhx" path="res://assets/sprites/ui/lupa.png" id="4_mgacq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kxkk6"]
@@ -42,11 +43,28 @@ offset_right = 699.0
 offset_bottom = 1193.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_kxkk6")
 
-[node name="Drop_Zone" parent="Panel" instance=ExtResource("1_mgacq")]
+[node name="Drop_Zone" parent="Panel" groups=["zone_respuesta"] instance=ExtResource("1_mgacq")]
 position = Vector2(138, 433)
+palabra_correcta = "Loop"
 
-[node name="Drop_Zone4" parent="Panel" instance=ExtResource("1_mgacq")]
+[node name="Drop_Zone4" parent="Panel" groups=["zone_respuesta"] instance=ExtResource("1_mgacq")]
 position = Vector2(225, 194)
+palabra_correcta = "Setup"
+
+[node name="verificador" type="Node2D" parent="Panel"]
+position = Vector2(647, 50)
+script = ExtResource("3_l3lj0")
+
+[node name="verificar" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 743.0
+offset_right = 148.0
+offset_bottom = 845.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 28
+theme_override_styles/focus = SubResource("StyleBoxTexture_7kqiy")
+theme_override_styles/normal = SubResource("StyleBoxTexture_l3lj0")
 
 [node name="zonaTrabajo" type="Node2D" parent="."]
 script = ExtResource("1_rcjtp")
@@ -83,16 +101,6 @@ text = "Void"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="pista" type="Button" parent="."]
-offset_left = 599.0
-offset_top = 1185.0
-offset_right = 687.0
-offset_bottom = 1287.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 28
-theme_override_styles/focus = SubResource("StyleBoxTexture_7kqiy")
-theme_override_styles/normal = SubResource("StyleBoxTexture_l3lj0")
-
 [node name="nombreLeccion" type="Label" parent="."]
 anchors_preset = 10
 anchor_right = 1.0
@@ -112,3 +120,5 @@ offset_left = 6.0
 offset_top = 77.0
 offset_right = 718.0
 offset_bottom = 140.0
+
+[connection signal="pressed" from="Panel/verificar" to="Panel/verificador" method="_on_verificar_pressed"]

@@ -1,7 +1,5 @@
 extends Node2D
 
-
-
 @export var palabra: String = ""  # <- esta se puede cambiar por cada bloque en el editor
 var selected = false
 var rest_point: Vector2
@@ -11,7 +9,15 @@ var mouse_offset: Vector2 = Vector2.ZERO
 
 func _ready():
     rest_nodes = get_tree().get_nodes_in_group("zone")
-    $label.text = palabra  # ✅ muestra la palabra del bloque
+    
+    # ✅ Asegura que el texto se actualiza sin importar el nombre exacto del nodo
+    if has_node("Label"):
+        $Label.text = palabra
+    elif has_node("label"):
+        $label.text = palabra
+    else:
+        print("⚠️ No se encontró nodo Label o label en este bloque.")
+    
     await get_tree().process_frame
     _find_initial_zone()
 
