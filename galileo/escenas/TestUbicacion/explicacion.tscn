@@ -20,6 +20,7 @@ scale = Vector2(1.17188, 1.26953)
 texture = ExtResource("1_t0xvl")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 0
 offset_left = 151.0
 offset_top = 261.0
 offset_right = 599.0
@@ -39,6 +40,7 @@ text = "Hola esta es una prueba de texto"
 autowrap_mode = 2
 
 [node name="seguirViendo" type="Button" parent="."]
+layout_mode = 0
 offset_left = 367.0
 offset_top = 923.0
 offset_right = 645.0
@@ -48,6 +50,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_cq3ow")
 text = "Seguir viendo"
 
 [node name="meIdentifico" type="Button" parent="."]
+layout_mode = 0
 offset_left = 77.0
 offset_top = 923.0
 offset_right = 335.0
