@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://tb6s65g7ub4q"]
+[gd_scene load_steps=8 format=3 uid="uid://tb6s65g7ub4q"]
 
+[ext_resource type="Script" uid="uid://yup3w5b6ydlv" path="res://escenas/usuario/Perfil/editar_perfil.gd" id="1_wkyxs"]
 [ext_resource type="Texture2D" uid="uid://dpu72kxvllbfy" path="res://assets/sprites/ui/Logros/caja de cartón .png" id="1_xvlxl"]
 [ext_resource type="Texture2D" uid="uid://blg67gg5afvfk" path="res://assets/sprites/ui/Menu/persona B.png" id="2_wkyxs"]
 [ext_resource type="Texture2D" uid="uid://1ly7vb0unt2y" path="res://assets/sprites/ui/lápiz.png" id="3_qu4ue"]
@@ -28,6 +29,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_wkyxs")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -47,12 +49,16 @@ offset_bottom = 412.0
 texture = ExtResource("1_xvlxl")
 expand_mode = 2
 
-[node name="EditarPerfil" type="Button" parent="."]
-layout_mode = 0
-offset_left = 573.0
+[node name="perfil" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.796
+anchor_right = 0.947
+anchor_bottom = 0.112
+offset_left = -0.120056
 offset_top = 39.0
-offset_right = 682.0
-offset_bottom = 143.0
+offset_right = 0.159973
+offset_bottom = -0.360001
 theme_override_styles/normal = SubResource("StyleBoxTexture_b45wd")
 
 [node name="NombreUsuario" type="Label" parent="."]
@@ -142,3 +148,5 @@ offset_bottom = 1048.0
 theme_override_font_sizes/font_size = 23
 theme_override_styles/normal = SubResource("StyleBoxFlat_gyqkp")
 text = "Borrar cuenta"
+
+[connection signal="pressed" from="perfil" to="." method="_on_perfil_pressed"]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://l2urkj5bud3a"]
+[gd_scene load_steps=5 format=3 uid="uid://l2urkj5bud3a"]
 
 [ext_resource type="FontFile" uid="uid://cu62bdhamv7ue" path="res://assets/fonts/PressStart2P-Regular.ttf" id="1_svshf"]
+[ext_resource type="Script" uid="uid://c2x3das0mve8c" path="res://escenas/usuario/registro/registrarse.gd" id="1_x7nj8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wwn0v"]
 bg_color = Color(0.67076, 0.0998491, 0.916668, 1)
@@ -14,15 +15,25 @@ corner_radius_top_right = 40
 corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x7nj8"]
+bg_color = Color(0.133333, 0.156863, 0.211765, 1)
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
 [node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource("1_x7nj8")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -80,11 +91,16 @@ theme_override_font_sizes/font_size = 30
 placeholder_text = "Correo electrónico"
 
 [node name="aceptar" type="Button" parent="."]
-layout_mode = 0
-offset_left = 139.0
-offset_top = 761.0
-offset_right = 600.0
-offset_bottom = 838.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.193
+anchor_top = 0.593
+anchor_right = 0.833
+anchor_bottom = 0.653
+offset_left = 0.0399933
+offset_top = 0.180908
+offset_right = 0.239929
+offset_bottom = 0.200928
 theme_override_fonts/font = ExtResource("1_svshf")
 theme_override_font_sizes/font_size = 37
 theme_override_styles/normal = SubResource("StyleBoxFlat_wwn0v")
@@ -100,15 +116,33 @@ theme_override_fonts/font = ExtResource("1_svshf")
 theme_override_font_sizes/font_size = 25
 text = "Ya tienes cuenta?"
 
-[node name="Button" type="Button" parent="."]
+[node name="Mensaje" type="Label" parent="."]
 layout_mode = 0
-offset_left = 214.0
-offset_top = 930.0
-offset_right = 520.0
-offset_bottom = 1007.0
-theme_override_colors/font_color = Color(0.775923, 0.25444, 0.915241, 1)
+offset_left = 56.0
+offset_top = 1007.0
+offset_right = 661.0
+offset_bottom = 1161.0
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="iniciarsesion" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.179
+anchor_top = 0.728
+anchor_right = 0.826
+anchor_bottom = 0.773
+offset_left = 5.12
+offset_top = -15.8401
+offset_right = 0.279907
+offset_bottom = 3.55994
+theme_override_colors/font_color = Color(0.681906, 0.410838, 0.909475, 1)
 theme_override_fonts/font = ExtResource("1_svshf")
-theme_override_font_sizes/font_size = 24
-button_mask = 0
-text = "Inicia sesión"
-flat = true
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_x7nj8")
+text = "Iniciar Sesión"
+
+[connection signal="pressed" from="aceptar" to="." method="_on_aceptar_pressed"]
+[connection signal="pressed" from="iniciarsesion" to="." method="_on_registrarse_pressed"]
+[connection signal="pressed" from="iniciarsesion" to="." method="_on_iniciarsesion_pressed"]

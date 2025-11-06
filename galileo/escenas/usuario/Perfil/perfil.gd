@@ -1,45 +1,54 @@
 extends Control
 
 @onready var achievements_list = $ScrollContainer/logrosVbox
+@onready var http = $HTTPRequest
+@onready var username = $NombreUsuario
 
 var LogroScene = preload("res://escenas/usuario/Perfil/Logro.tscn")
-# Array de logros de prueba
-var logros_prueba = [
-    {"nombre":"Primer paso", "descripcion":"Completaste el tutorial con éxito", "icono":"res://assets/sprites/ui/Logros/catbox.png"},
-    {"nombre":"Aprendiz veloz", "descripcion":"Completar un nivel en la mitad de tiempo promedio", "icono":"res://assets/sprites/ui/Logros/aprendizVeloz.png"},
-    {"nombre":"Aprendiz visual", "descripcion":"Completa 10 ejercicios basados en ABE", "icono":"res://assets/sprites/ui/Logros/aprendizVisual.png"},
-    {"nombre":"Caja de cartón", "descripcion":"Completa todas las lecciones de un nivel", "icono":"res://assets/sprites/ui/Logros/caja_de_cartón.png"},
-    {"nombre":"Cazador de Bugs", "descripcion":"Corrige 10 errores de código", "icono":"res://assets/sprites/ui/Logros/cazadorDeBugs.png"},
-    {"nombre":"Pez gordo", "descripcion":"Aprueba un examen de nivel Intermedio", "icono":"res://assets/sprites/ui/Logros/Pez_gordo.png"},
-    {"nombre":"Gato PWM", "descripcion":"Completa una lección 10 días seguidos", "icono":"res://assets/sprites/ui/Logros/PWM.png"},
-    {"nombre":"El minino resiste", "descripcion":"Completa una lección 5 días seguidos", "icono":"res://assets/sprites/ui/Logros/el_minino_resiste.png"},
-    {"nombre":"Leyenda del cable", "descripcion":"Completa una lección difícil", "icono":"res://assets/sprites/ui/Logros/Leyenda_del_cable_masticado.png"},
-    {"nombre":"Gato velocista", "descripcion":"Contesta 5 preguntas en menos del 50% del tiempo", "icono":"res://assets/sprites/ui/Logros/gatoVelocista.png"},
-    {"nombre":"Explorador inalcanzable", "descripcion":"Resolver 15 ejercicios de descubrimiento guiado", "icono":"res://assets/sprites/ui/Logros/ExploradorInalcanzable.png"},
-    {"nombre":"Primera presa", "descripcion":"Completa tu primera lección", "icono":"res://assets/sprites/ui/Logros/primeraPresa.png"},
-    {"nombre":"Experto en arduino", "descripcion":"Completa el último nivel de experimentado", "icono":"res://assets/sprites/ui/Logros/expertoEnArduino.png"},
-    {"nombre":"Teórico nato", "descripcion":"Acertar 20 preguntas con la metodología aprendizaje significativo", "icono":"res://assets/sprites/ui/Logros/teoricoNato.png"},
-    {"nombre":"Cazador de bugs", "descripcion":"Corregir 10 errores de código", "icono":"res://assets/sprites/ui/Logros/cazadorDeBugs.png"},
-    {"nombre":"Pelea en el techo", "descripcion":"Responder 10 preguntas seguidas correctamente", "icono":"res://assets/sprites/ui/Logros/Pelea_en_el techo.png"}
-]
+var firebase_url = "https://galileo-af640-default-rtdb.firebaseio.com/" 
 
+var logros = {}
 
 func _ready():
+    if Globals.user != null:
+        username.text = Globals.user.get("nombre", "Usuario sin nombre")
+    else:
+        username.text = "Usuario sin nombre"
+    var url_logros = "%s/logros.json" % firebase_url
+    http.request(url_logros)
+    
+func _on_HTTPRequest_request_completed(result, response_code, headers, body):
+    if response_code != 200:
+        push_error("Error al cargar Firebase: %s" % response_code)
+        return
+
+    var data = {}
+    if body.size() > 0:
+        data = JSON.parse_string(body.get_string_from_utf8())
+    
+    if data == null:
+        push_error("Error al parsear JSON")
+        return
+
+    logros = data
+
     mostrar_logros()
 
 func mostrar_logros():
-    # Limpiar lista
-    for child in achievements_list.get_children():
-        child.queue_free()	
 
-    # Recorrer los logros de prueba
-    for logro_data in logros_prueba:
-        var icon = load(logro_data["icono"])
-        print("Cargando logro:", logro_data["nombre"], "icon:", icon)
-        add_achievement(icon, logro_data["nombre"], logro_data["descripcion"], true)
+    for child in achievements_list.get_children():
+        child.queue_free()
+
+    for id in logros.keys():
+        var data = logros[id]
+        var icon = load(data["icono"]) 
+        add_achievement(icon, data["nombre"], data["descripcion"], true) 
 
 func add_achievement(icon: Texture, title: String, description: String, unlocked: bool):
     var logro = LogroScene.instantiate()
     achievements_list.add_child(logro)
+    logro.call_deferred("set_data", icon, title, description, unlocked)
 
-    
+
+func _on_editar_perfil_pressed():
+    get_tree().change_scene_to_file("res://escenas/usuario/Perfil/EditarPerfil.tscn")

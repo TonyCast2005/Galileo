@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://vxvcfoqcigu"]
+[gd_scene load_steps=5 format=3 uid="uid://vxvcfoqcigu"]
 
+[ext_resource type="Script" uid="uid://cratwrt2m24t8" path="res://escenas/TestUbicacion/explicacion.gd" id="1_rh88c"]
 [ext_resource type="Texture2D" uid="uid://cjum5jl505mim" path="res://assets/sprites/ui/Galileo/Galileo Base.png" id="1_t0xvl"]
 [ext_resource type="Texture2D" uid="uid://feyahj0mae46" path="res://assets/sprites/globoTexto .png" id="2_rh88c"]
 
@@ -13,6 +14,7 @@ corner_radius_bottom_left = 40
 [node name="Node2D" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+script = ExtResource("1_rh88c")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(222, 762)
@@ -58,3 +60,6 @@ offset_bottom = 994.0
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_cq3ow")
 text = "Me identifico"
+
+[connection signal="pressed" from="seguirViendo" to="." method="_on_seguir_viendo_pressed"]
+[connection signal="pressed" from="meIdentifico" to="." method="_on_me_identifico_pressed"]

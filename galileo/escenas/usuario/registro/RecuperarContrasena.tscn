@@ -1,9 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://dakur4qpeuka6"]
+[gd_scene load_steps=7 format=3 uid="uid://dakur4qpeuka6"]
 
 [ext_resource type="Texture2D" uid="uid://dg3hdkwyh3ras" path="res://assets/sprites/primerapresa.png" id="1_4eias"]
+[ext_resource type="Script" uid="uid://ok7pjck72ghu" path="res://escenas/usuario/registro/recuperar_contrasena.gd" id="1_xxx5m"]
+[ext_resource type="FontFile" uid="uid://cu62bdhamv7ue" path="res://assets/fonts/PressStart2P-Regular.ttf" id="3_3py6r"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xxx5m"]
 bg_color = Color(0.567074, 0.15132, 0.818576, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3py6r"]
+bg_color = Color(0.133333, 0.156863, 0.211765, 1)
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h6u55"]
+bg_color = Color(0.133333, 0.156863, 0.211765, 1)
+border_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 40
 corner_radius_top_right = 40
 corner_radius_bottom_right = 40
@@ -16,6 +34,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_xxx5m")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -26,35 +45,87 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.133333, 0.156863, 0.211765, 1)
 
-[node name="TextEdit" type="TextEdit" parent="ColorRect"]
+[node name="correo" type="TextEdit" parent="ColorRect"]
 layout_mode = 0
 offset_left = 75.0
-offset_top = 590.0
+offset_top = 552.0
 offset_right = 638.0
-offset_bottom = 648.0
+offset_bottom = 610.0
 theme_override_font_sizes/font_size = 22
 placeholder_text = "Correo electrónico"
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
 offset_left = 62.0
-offset_top = 520.0
+offset_top = 482.0
 offset_right = 662.0
-offset_bottom = 550.0
+offset_bottom = 512.0
 theme_override_font_sizes/font_size = 30
 text = "Recuperar contraseña"
 
-[node name="Button" type="Button" parent="."]
-layout_mode = 0
-offset_left = 182.0
-offset_top = 678.0
-offset_right = 534.0
-offset_bottom = 734.0
+[node name="recuperar" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.253
+anchor_top = 0.53
+anchor_right = 0.742
+anchor_bottom = 0.573
+offset_left = -0.160019
+offset_top = -38.4
+offset_right = -0.240051
+offset_bottom = -37.44
 theme_override_constants/outline_size = 6
 theme_override_font_sizes/font_size = 23
 theme_override_styles/normal = SubResource("StyleBoxFlat_xxx5m")
 text = "recuperar"
 
 [node name="Primerapresa" type="Sprite2D" parent="."]
-position = Vector2(366, 446)
+position = Vector2(366, 408)
 texture = ExtResource("1_4eias")
+
+[node name="Mensaje" type="Label" parent="."]
+offset_left = 56.0
+offset_top = 906.0
+offset_right = 661.0
+offset_bottom = 1060.0
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="iniciarsesion" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.179
+anchor_top = 0.647
+anchor_right = 0.826
+anchor_bottom = 0.707
+offset_left = 5.12
+offset_top = -8.16003
+offset_right = 0.279907
+offset_bottom = -7.96002
+theme_override_colors/font_color = Color(0.681906, 0.410838, 0.909475, 1)
+theme_override_fonts/font = ExtResource("3_3py6r")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_3py6r")
+text = "Iniciar Sesión"
+
+[node name="registrarse" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.179
+anchor_top = 0.58
+anchor_right = 0.826
+anchor_bottom = 0.641
+offset_left = 5.12
+offset_top = -9.40002
+offset_right = 0.279907
+offset_bottom = -10.48
+theme_override_colors/font_color = Color(0.681906, 0.410838, 0.909475, 1)
+theme_override_fonts/font = ExtResource("3_3py6r")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_h6u55")
+text = "Registrarse"
+
+[connection signal="pressed" from="recuperar" to="." method="_on_recuperar_pressed"]
+[connection signal="pressed" from="iniciarsesion" to="." method="_on_iniciarsesion_pressed"]
+[connection signal="pressed" from="registrarse" to="." method="_on_registrarse_pressed"]
