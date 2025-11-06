@@ -4,10 +4,11 @@ extends Control
 @onready var boton1 = $Opcion1
 @onready var boton2 = $Opcion2
 @onready var boton3 = $Opcion3
-
+@onready var titulo = $NombreLeccion
 signal respondida(texto: String, color: Color, correcta: bool)
 
 # Método público para recibir los datos de la pregunta
+
 func set_pregunta(pregunta: Dictionary) -> void:
 	label_pregunta.text = pregunta.get("pregunta", "Pregunta no encontrada")
 

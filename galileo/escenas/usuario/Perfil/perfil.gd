@@ -2,7 +2,6 @@ extends Control
 
 @onready var achievements_list = $ScrollContainer/logrosVbox
 @onready var http = $HTTPRequest
-@onready var username = $NombreUsuario
 
 var LogroScene = preload("res://escenas/usuario/Perfil/Logro.tscn")
 var firebase_url = "https://galileo-af640-default-rtdb.firebaseio.com/" 
@@ -10,45 +9,43 @@ var firebase_url = "https://galileo-af640-default-rtdb.firebaseio.com/"
 var logros = {}
 
 func _ready():
-    if Globals.user != null:
-        username.text = Globals.user.get("nombre", "Usuario sin nombre")
-    else:
-        username.text = "Usuario sin nombre"
-    var url_logros = "%s/logros.json" % firebase_url
-    http.request(url_logros)
-    
+	# Mostrar datos del usuario
+	$NombreUsuario.text = Global.user_data.get("nombre", "Sin nombre")
+	$NiveelUsuario.text = Global.user_data.get("nivel", "Sin nivel")
+
+	# Cargar logros
+	var url_logros = "%s/logros.json" % firebase_url
+	http.request(url_logros)
+
 func _on_HTTPRequest_request_completed(result, response_code, headers, body):
-    if response_code != 200:
-        push_error("Error al cargar Firebase: %s" % response_code)
-        return
+	if response_code != 200:
+		push_error("Error al cargar Firebase: %s" % response_code)
+		return
 
-    var data = {}
-    if body.size() > 0:
-        data = JSON.parse_string(body.get_string_from_utf8())
-    
-    if data == null:
-        push_error("Error al parsear JSON")
-        return
+	var data = {}
+	if body.size() > 0:
+		data = JSON.parse_string(body.get_string_from_utf8())
+	
+	if data == null:
+		push_error("Error al parsear JSON")
+		return
 
-    logros = data
-
-    mostrar_logros()
+	logros = data
+	mostrar_logros()
 
 func mostrar_logros():
+	for child in achievements_list.get_children():
+		child.queue_free()
 
-    for child in achievements_list.get_children():
-        child.queue_free()
-
-    for id in logros.keys():
-        var data = logros[id]
-        var icon = load(data["icono"]) 
-        add_achievement(icon, data["nombre"], data["descripcion"], true) 
+	for id in logros.keys():
+		var data = logros[id]
+		var icon = load(data["icono"]) 
+		add_achievement(icon, data["nombre"], data["descripcion"], true) 
 
 func add_achievement(icon: Texture, title: String, description: String, unlocked: bool):
-    var logro = LogroScene.instantiate()
-    achievements_list.add_child(logro)
-    logro.call_deferred("set_data", icon, title, description, unlocked)
-
+	var logro = LogroScene.instantiate()
+	achievements_list.add_child(logro)
+	logro.call_deferred("set_data", icon, title, description, unlocked)
 
 func _on_editar_perfil_pressed():
-    get_tree().change_scene_to_file("res://escenas/usuario/Perfil/EditarPerfil.tscn")
+	get_tree().change_scene_to_file("res://escenas/usuario/Perfil/EditarPerfil.tscn")

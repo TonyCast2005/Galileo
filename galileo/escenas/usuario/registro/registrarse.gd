@@ -1,56 +1,46 @@
 extends Control
 
-@onready var usuario = $usuario            # LineEdit del nombre
-@onready var correo = $correo              # LineEdit del correo
-@onready var contrasena = $"contraseña"   # LineEdit de la contraseña
-@onready var confirmar = $"confirmarContraseña"  # LineEdit de confirmación
+@onready var usuario = $usuario
+@onready var correo = $correo
+@onready var contrasena = $"contraseña"
+@onready var confirmar = $"confirmarContraseña"
 @onready var mensaje = $Mensaje
 
 var auth
 
 func _ready():
-    auth = load("res://escenas/usuario/registro/firebase_auth.gd").new()
-    add_child(auth)
-
+	auth = load("res://escenas/usuario/registro/firebase_auth.gd").new()
+	add_child(auth)
 
 func _on_aceptar_pressed():
-    # Validar campos vacíos
-    if usuario.text.is_empty() or correo.text.is_empty() or contrasena.text.is_empty():
-        mensaje.text = "⚠️ Favor de llenar los campos"
-        return
-        
-    # Validar que las contraseñas coincidan
-    if contrasena.text != confirmar.text:
-        mensaje.text = "❌ Las contraseñas no coinciden"
-        return
+	if usuario.text.is_empty() or contrasena.text.is_empty():
+		mensaje.text = "Favor de llenar los campos"
+		print("Favor de llenar los campos")
+		return
+		
+	if contrasena.text != confirmar.text:
+		mensaje.text = "Las contraseñas no coinciden"
+		return
 
-    # 🔹 Limpiar los textos antes de enviar a Firebase
-    var email = correo.text.strip_edges().to_lower()
-    var password = contrasena.text.strip_edges()
-    var nombre = usuario.text.strip_edges()
+	var res = await auth.register_user(correo.text, contrasena.text)
 
-    # 🔹 Llamar a la función de registro con los valores limpios
-    var res = await auth.register_user(email, password, nombre)
-    
-    # 🔹 Mostrar el resultado en consola para depurar (puedes quitarlo luego)
-    print("Resultado del registro:", res)
-    
-    if res.has("error"):
-        mensaje.text = "❌ Error al registrar: %s" % res["error"]
-        print("Respuesta completa Firebase:", JSON.stringify(res, "\t"))
+	if "error" in res:
+		mensaje.text = res.error.message
+		
+	else:
+		var uid = res["localId"]
+		var user_data = {
+			"email": correo.text,
+			"nombre": contrasena.text,
+			"nivel": "principiante", #revisar resultado del test, no sé cómo hacerlo XD
+			"logros": {}
+		}
+		await auth.save_user_data(uid, user_data)
 
-        return
+		Global.user_uid = uid
+		Global.user_data = user_data
 
-    # Guardar datos del usuario en Globals
-    Globals.user = {
-        "uid": res.get("localId", ""),
-        "email": res.get("email", ""),
-        "nombre": nombre
-    }
-
-    # Cambiar a la escena de perfil
-    get_tree().change_scene_to_file("res://escenas/TestUbicacion/test1.tscn")
-
+		get_tree().change_scene_to_file("res://escenas/usuario/Perfil/perfil.tscn")
 
 func _on_iniciarsesion_pressed():
-    get_tree().change_scene_to_file("res://escenas/usuario/registro/iniciarSesion.tscn")
+	get_tree().change_scene_to_file("res://escenas/TestUbicacion/test1.tscn")

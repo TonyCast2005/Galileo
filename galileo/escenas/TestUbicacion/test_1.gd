@@ -1,49 +1,51 @@
 extends Control
 
-@onready var raiz = $ControlGato  # Nodo donde se instanciará el gato
-
+@onready var novato = $ColorRect/btn_novato
+@onready var raiz = $ControlGato
+@onready var competente = $ColorRect/btn_competente
+@onready var experimentado = $ColorRect/btn_experimentado
+@onready var ventana = $VentanaDefinicion
+@onready var texto_definicion = $VentanaDefinicion/TextoDefinicion
+@onready var btn_aceptar = $VentanaDefinicion/BtnAceptar
+@onready var btn_seguir = $VentanaDefinicion/BtnSeguir
+var auth
 var instancia_actual
-var nivel_usuario: String = ""  # Guardamos el nivel elegido
 
-# Botones de identificación
+func _ready():
+	auth = load("res://escenas/usuario/registro/firebase_auth.gd").new()
+	add_child(auth)
+	ventana.visible = false
+
+	btn_aceptar.pressed.connect(_on_aceptar_pressed)
+	btn_seguir.pressed.connect(_on_seguir_pressed)
+
 func _on_novato_pressed():
-    nivel_usuario = "Novato"
-    mostrar_gato([
-        "¡Hola, principiante! 🐾",
-        "Este examen es para conocerte mejor.",
-        "Responde con sinceridad y yo te guiaré 😺."
-    ])
-
+	print("novato")
+	_mostrar_definicion("Conceptos muy generales o acabas de comenzar con tu aprendizaje.", "novato")
+	
 func _on_competente_pressed():
-    nivel_usuario = "Competente"
-    mostrar_gato([
-        "¡Wow! 😺 Veo que ya tienes experiencia.",
-        "Este examen pondrá a prueba tus conocimientos intermedios.",
-        "¡Demuestra lo que sabes!"
-    ])
+	print("comp")
+	_mostrar_definicion("Conocimiento básico de C y Arduino, entendimiento de variables, condicionales, ciclos y funciones.", "competente")
 
 func _on_experimentado_pressed():
-    nivel_usuario = "Experimentado"
-    mostrar_gato([
-        "¡Increíble! Eres todo un experto. 🧠",
-        "Este examen será un reto digno de ti.",
-        "Prepárate para demostrar tu maestría."
-    ])
+	print("exp")
+	_mostrar_definicion("Dominio del lenguaje C y su lógica de programación, manejo de interrupciones, comunicación serial, librerías, sensores y actuadores.", "experimentado")
+	
+func _on_test_pressed():
+	print("test")
+	get_tree().change_scene_to_file("res://escenas/TestUbicacion/preambulo.tscn")
 
-# Botón para hacer examen si el usuario no sabe
-func _on_no_se_pressed():
-    get_tree().change_scene_to_file("res://escenas/TestUbicacion/Examen.tscn")
+func _mostrar_definicion(texto: String, nivel: String):
+	texto_definicion.text = texto
+	ventana.set_meta("nivel", nivel) 
+	ventana.visible = true
 
+func _on_aceptar_pressed():
+	var nivel = ventana.get_meta("nivel")
+	ventana.visible = false
+	print("aceptar")
+	get_tree().change_scene_to_file("res://escenas/usuario/Perfil/perfil.tscn")
+	
 
-# Función para instanciar el gato con sus diálogos
-func mostrar_gato(dialogos: Array):
-    # Borrar instancia anterior
-    if instancia_actual:
-        instancia_actual.queue_free()
-
-    var escena = preload("res://escenas/TestUbicacion/explicacion.tscn").instantiate()
-    raiz.add_child(escena)
-    instancia_actual = escena
-
-    # Pasar los diálogos
-    escena.set_instrucciones(dialogos)
+func _on_seguir_pressed():
+	ventana.visible = false

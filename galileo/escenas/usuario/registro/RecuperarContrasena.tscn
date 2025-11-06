@@ -84,6 +84,7 @@ position = Vector2(366, 408)
 texture = ExtResource("1_4eias")
 
 [node name="Mensaje" type="Label" parent="."]
+layout_mode = 0
 offset_left = 56.0
 offset_top = 906.0
 offset_right = 661.0
