@@ -7,21 +7,18 @@ extends Control
 @onready var titulo = $NombreLeccion
 signal respondida(texto: String, color: Color, correcta: bool)
 
-# Método público para recibir los datos de la pregunta
-
 func set_pregunta(pregunta: Dictionary) -> void:
 	label_pregunta.text = pregunta.get("pregunta", "Pregunta no encontrada")
 
 	var opciones = pregunta.get("opciones", [])
 	if opciones.size() < 3:
-		print("⚠️ Pregunta inválida, faltan opciones:", opciones)
+		print("Pregunta inválida, faltan opciones:", opciones)
 		return
 
 	boton1.text = opciones[0]
 	boton2.text = opciones[1]
 	boton3.text = opciones[2]
 
-	# Limpiar conexiones anteriores
 	for s in boton1.pressed.get_connections():
 		boton1.pressed.disconnect(s["callable"])
 	for s in boton2.pressed.get_connections():
@@ -39,6 +36,6 @@ func set_pregunta(pregunta: Dictionary) -> void:
 # ===========================
 func responder(respuesta: String, correcta: String):
 	if respuesta == correcta:
-		emit_signal("respondida", "✅ ¡Muy bien! Has acertado.", Color(0,1,0), true)
+		emit_signal("respondida", "¡Muy bien! Has acertado.", Color(0,1,0), true)
 	else:
-		emit_signal("respondida", "❌ Incorrecto... inténtalo otra vez.", Color(1,0,0), false)
+		emit_signal("respondida", "Incorrecto... inténtalo otra vez.", Color(1,0,0), false)
