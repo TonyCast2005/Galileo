@@ -1,0 +1,120 @@
+[gd_scene load_steps=7 format=3 uid="uid://cc022o50d31ko"]
+
+[ext_resource type="Script" uid="uid://c6vuy751ejkaw" path="res://escenas/Tipos_preguntas/SemiAbiertas/semi_abiertas.gd" id="1_t1jeb"]
+[ext_resource type="Texture2D" uid="uid://bgnffnt45rlhx" path="res://assets/sprites/ui/lupa.png" id="1_xfnho"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7arhx"]
+bg_color = Color(0.184314, 0.12549, 0.278431, 0.686275)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t1jeb"]
+texture = ExtResource("1_xfnho")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s0hp4"]
+texture = ExtResource("1_xfnho")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0241m"]
+texture = ExtResource("1_xfnho")
+
+[node name="SemiAbiertas" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t1jeb")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.227451, 0.152941, 0.329412, 1)
+
+[node name="TextoPregunta1" type="Label" parent="."]
+offset_left = 73.0
+offset_top = 239.0
+offset_right = 645.0
+offset_bottom = 425.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Hola esta es una prueba de texto"
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 2
+
+[node name="TextoPregunta2" type="Label" parent="."]
+offset_left = 73.0
+offset_top = 607.0
+offset_right = 645.0
+offset_bottom = 793.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Hola esta es una prueba de texto"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="respuesta" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.207
+anchor_top = 0.33
+anchor_right = 0.801
+anchor_bottom = 0.391
+offset_left = -0.0400085
+offset_top = 56.6
+offset_right = 0.279968
+offset_bottom = 55.52
+
+[node name="validar" type="Button" parent="."]
+offset_left = 216.0
+offset_top = 826.0
+offset_right = 533.0
+offset_bottom = 887.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_7arhx")
+text = "Validar"
+
+[node name="Pista" type="Button" parent="."]
+offset_left = 77.0
+offset_top = 807.0
+offset_right = 173.0
+offset_bottom = 903.0
+theme_override_styles/focus = SubResource("StyleBoxTexture_t1jeb")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_s0hp4")
+theme_override_styles/normal = SubResource("StyleBoxTexture_0241m")
+
+[node name="NombreLección" type="Label" parent="."]
+offset_left = 7.0
+offset_top = 10.0
+offset_right = 579.0
+offset_bottom = 68.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Nombre de la lección"
+autowrap_mode = 2
+
+[node name="Mensaje" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.738
+anchor_right = 0.906
+anchor_bottom = 0.886
+offset_left = 1.0
+offset_top = 0.359985
+offset_right = 0.679993
+offset_bottom = -0.0800781
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
