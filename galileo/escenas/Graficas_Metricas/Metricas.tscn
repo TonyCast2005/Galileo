@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cwoe858esyhfw"]
+[gd_scene load_steps=2 format=3 uid="uid://cwoe858esyhfw"]
 
 [ext_resource type="Script" uid="uid://d1br54n36e2bb" path="res://escenas/Graficas_Metricas/metricas.gd" id="1_7b17y"]
-[ext_resource type="PackedScene" uid="uid://ccnghi4ki5rrn" path="res://escenas/Gato_Instrucciones/Gato_Instrucciones.tscn" id="2_0wp7x"]
 
 [node name="Metricas" type="Control"]
 custom_minimum_size = Vector2(300, 200)
@@ -45,10 +44,12 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Img2" type="TextureRect" parent="Graficador"]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Img3" type="TextureRect" parent="Graficador"]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
@@ -62,5 +63,3 @@ theme_override_font_sizes/font_size = 36
 text = "TUS ESTADISTICAS"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="GatoInstrucciones" parent="." instance=ExtResource("2_0wp7x")]
