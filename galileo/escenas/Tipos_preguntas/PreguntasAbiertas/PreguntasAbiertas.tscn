@@ -1,6 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://daypjsaufgcyw"]
+[gd_scene load_steps=8 format=3 uid="uid://daypjsaufgcyw"]
 
 [ext_resource type="Texture2D" uid="uid://bgnffnt45rlhx" path="res://assets/sprites/ui/lupa.png" id="1_3pmav"]
+[ext_resource type="Script" uid="uid://ra1wpehwu11f" path="res://escenas/Tipos_preguntas/PreguntasAbiertas/preguntas_abiertas.gd" id="1_88pd7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3pmav"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_88pd7"]
 bg_color = Color(0.184314, 0.12549, 0.278431, 0.686275)
@@ -25,6 +28,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_88pd7")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -35,7 +39,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.227451, 0.152941, 0.329412, 1)
 
-[node name="TextoPregunta" type="Label" parent="ColorRect"]
+[node name="TextoPregunta" type="Label" parent="."]
 layout_mode = 0
 offset_left = 66.0
 offset_top = 192.0
@@ -49,7 +53,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="Respuesta" type="Label" parent="ColorRect"]
+[node name="Respuesta" type="LineEdit" parent="."]
 layout_mode = 0
 offset_left = 65.0
 offset_top = 338.0
@@ -57,10 +61,11 @@ offset_right = 657.0
 offset_bottom = 908.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3pmav")
 text = "Espacio respuesta"
-horizontal_alignment = 1
+alignment = 1
 
-[node name="validar" type="Button" parent="ColorRect"]
+[node name="validar" type="Button" parent="."]
 layout_mode = 0
 offset_left = 210.0
 offset_top = 947.0
@@ -71,7 +76,7 @@ theme_override_font_sizes/font_size = 28
 theme_override_styles/normal = SubResource("StyleBoxFlat_88pd7")
 text = "Validar"
 
-[node name="NombreLección" type="Label" parent="ColorRect"]
+[node name="NombreLección" type="Label" parent="."]
 layout_mode = 0
 offset_left = 7.0
 offset_top = 10.0
@@ -83,7 +88,7 @@ theme_override_font_sizes/font_size = 20
 text = "Nombre de la lección"
 autowrap_mode = 2
 
-[node name="Pista" type="Button" parent="ColorRect"]
+[node name="Pista" type="Button" parent="."]
 layout_mode = 0
 offset_left = 47.0
 offset_top = 928.0
