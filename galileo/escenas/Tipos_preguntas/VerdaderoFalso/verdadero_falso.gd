@@ -67,10 +67,12 @@ func mostrar_pregunta(indice):
 func responder(respuesta: String, correcta: String):
 	if respuesta == correcta:
 		mensaje.text = "¡Correcto!"
-		mensaje.modulate = Color(0, 1, 0)
+		await get_tree().create_timer(2.0).timeout
+		mensaje.text = ""
 	else:
 		mensaje.text = "Incorrecto"
-		mensaje.modulate = Color(1, 0, 0)
+		await get_tree().create_timer(2.0).timeout
+		mensaje.text = ""
 
 	await get_tree().create_timer(1.5).timeout
 	indice_actual += 1

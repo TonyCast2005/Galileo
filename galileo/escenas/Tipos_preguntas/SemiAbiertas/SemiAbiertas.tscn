@@ -38,6 +38,7 @@ grow_vertical = 2
 color = Color(0.227451, 0.152941, 0.329412, 1)
 
 [node name="TextoPregunta1" type="Label" parent="."]
+layout_mode = 0
 offset_left = 73.0
 offset_top = 239.0
 offset_right = 645.0
@@ -51,6 +52,7 @@ vertical_alignment = 2
 autowrap_mode = 2
 
 [node name="TextoPregunta2" type="Label" parent="."]
+layout_mode = 0
 offset_left = 73.0
 offset_top = 607.0
 offset_right = 645.0
@@ -75,6 +77,7 @@ offset_right = 0.279968
 offset_bottom = 55.52
 
 [node name="validar" type="Button" parent="."]
+layout_mode = 0
 offset_left = 216.0
 offset_top = 826.0
 offset_right = 533.0
@@ -85,6 +88,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_7arhx")
 text = "Validar"
 
 [node name="Pista" type="Button" parent="."]
+layout_mode = 0
 offset_left = 77.0
 offset_top = 807.0
 offset_right = 173.0
@@ -94,6 +98,7 @@ theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_s0hp
 theme_override_styles/normal = SubResource("StyleBoxTexture_0241m")
 
 [node name="NombreLección" type="Label" parent="."]
+layout_mode = 0
 offset_left = 7.0
 offset_top = 10.0
 offset_right = 579.0
