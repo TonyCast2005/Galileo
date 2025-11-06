@@ -65,13 +65,7 @@ func iniciar_dialogo_sabana():
     # Diálogos que quieres que diga en este escenario
     gato_dialogo.dialogos = [
     "¡Hola, explorador! 🐾 Hoy vinimos a la sabana africana.",
-    "¡Mira toda esta hierba alta y el sol brillante! ☀️",
-    "Aquí viven animales increíbles como los leones, cocodrilos y hipopótamos. 🦁🐊🦛",
-    "Tu misión será tomarles fotos sin que se escapen. 📸",
-    "Asegúrate de enfocar bien antes de disparar la cámara.",
-    "Recuerda: algunos animales se esconden entre los arbustos... ¡observa con atención! 👀",
-    "Cuando consigas todas las fotos, te daré una sorpresa especial. 🎁",
-    "¡y cuidado con los animales peligrosos! 🌾🐱"
+   
 ]
 
     # ✅ Esperar hasta que termine el diálogo

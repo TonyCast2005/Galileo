@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cplouqwh87qmw"]
+[gd_scene load_steps=12 format=3 uid="uid://cplouqwh87qmw"]
 
 [ext_resource type="Script" uid="uid://uhvo4sb3x61b" path="res://escenas/Escenarios/Sabana/Sabana.gd" id="1_0cvmp"]
 [ext_resource type="Texture2D" uid="uid://djxon8xy6rey4" path="res://assets/sprites/ui/Sabana/Fondo.png" id="2_2eadx"]
@@ -10,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://cxwyj8w35b7im" path="res://assets/sprites/ui/Sabana/Extra/flash.png" id="8_ewkwu"]
 [ext_resource type="Script" uid="uid://boaxo1htodah0" path="res://escenas/Escenarios/Sabana/panel_container.gd" id="8_qopqg"]
 [ext_resource type="Texture2D" uid="uid://bc31gl3gfcs00" path="res://assets/sprites/ui/Sabana/Extra/trianguloarr.png" id="8_vc7jl"]
-[ext_resource type="PackedScene" uid="uid://b1g855tc0yp2q" path="res://escenas/Tipos_preguntas/Arrastrar_y_Soltar/Bloques_Tipos/Prueba_Drag&Drop.tscn" id="10_6hrde"]
 [ext_resource type="Script" uid="uid://c4ex451qek8aj" path="res://escenas/Escenarios/Sabana/button_panel.gd" id="11_qopqg"]
 
 [node name="Sabana" type="Control"]
@@ -21,16 +20,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0cvmp")
-
-[node name="Node2D" type="Node2D" parent="."]
-position = Vector2(484, 1192)
-
-[node name="PruebaDrag&drop" parent="Node2D" instance=ExtResource("10_6hrde")]
-position = Vector2(1, -677)
-palabra = "Cebra"
-
-[node name="Drop_Zone" parent="Node2D" instance=ExtResource("8_0v67s")]
-position = Vector2(60, -311)
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -128,6 +117,10 @@ offset_bottom = 1280.0
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("8_qopqg")
+margen_superior = null
+
+[node name="Drop_Zone" parent="PanelContainer" instance=ExtResource("8_0v67s")]
+position = Vector2(346, 126)
 
 [node name="Button" type="Button" parent="." node_paths=PackedStringArray("panel")]
 layout_mode = 0
