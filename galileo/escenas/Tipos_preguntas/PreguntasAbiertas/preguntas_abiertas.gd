@@ -21,7 +21,7 @@ func _ready():
 	if preguntas.size() > 0:
 		mostrar_pregunta()
 	else:
-		mensaje.text = "❌ No se pudieron cargar las preguntas."
+		mensaje.text = "No se pudieron cargar las preguntas."
 
 	validar.pressed.connect(_on_validar_pressed)
 
@@ -51,7 +51,7 @@ func cargar_preguntas() -> void:
 			var item = data[k]
 			preguntas[item["pregunta"]] = item
 	else:
-		push_error("❌ Error al parsear preguntas desde Firebase")
+		push_error("Error al parsear preguntas desde Firebase")
 	http.queue_free()
 
 # -----------------------------------------------------
@@ -60,7 +60,7 @@ func cargar_preguntas() -> void:
 func mostrar_pregunta():
 	var claves = preguntas.keys()
 	if indice_pregunta >= claves.size():
-		mensaje.text = "🎉 Has respondido todas las preguntas."
+		mensaje.text = "se acabó"
 		label_pregunta.text = ""
 		validar.disabled = true
 		return
@@ -157,19 +157,19 @@ func evaluar_respuesta(pregunta: String, respuesta_usuario: String) -> Dictionar
 	if contiene and distancia_promedio < 3:
 		return {
 			"resultado": "correcta",
-			"mensaje": "✅ ¡Excelente! Tu respuesta es correcta.",
+			"mensaje": "Correcto.",
 			"distancia_promedio": distancia_promedio
 		}
 	elif contiene and distancia_promedio <= 5:
 		return {
 			"resultado": "parcialmente correcta",
-			"mensaje": "⚠️ Tu respuesta está cerca, revisa algunos detalles.",
+			"mensaje": "Tu respuesta está cerca, revisa algunos detalles.",
 			"distancia_promedio": distancia_promedio
 		}
 	else:
 		return {
 			"resultado": "incorrecta",
-			"mensaje": "❌ Revisa el concepto. La respuesta correcta es:\n" + data["respuesta_modelo"],
+			"mensaje": "Incorrecto. La respuesta correcta es:\n" + data["respuesta_modelo"],
 			"distancia_promedio": distancia_promedio
 		}
 
