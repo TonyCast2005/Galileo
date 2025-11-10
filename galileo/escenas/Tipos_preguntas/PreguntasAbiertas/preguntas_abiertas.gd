@@ -12,9 +12,6 @@ var preguntas = {}
 var pregunta_actual = ""
 var indice_pregunta = 0
 
-# -----------------------------------------------------
-# INICIO
-# -----------------------------------------------------
 func _ready():
 	titulo.text = "Preguntas abiertas - Lección 1"
 	await cargar_preguntas()
@@ -26,7 +23,7 @@ func _ready():
 	validar.pressed.connect(_on_validar_pressed)
 
 # -----------------------------------------------------
-# CARGAR PREGUNTAS DESDE FIREBASE
+# Cargar preguntas xb
 # -----------------------------------------------------
 func cargar_preguntas() -> void:
 	var http := HTTPRequest.new()
@@ -40,7 +37,6 @@ func cargar_preguntas() -> void:
 	var body = response[3]
 	var data = JSON.parse_string(body.get_string_from_utf8())
 
-	# En Firebase puede venir como array o diccionario
 	if typeof(data) == TYPE_ARRAY:
 		for item in data:
 			if item == null:
@@ -71,7 +67,7 @@ func mostrar_pregunta():
 	mensaje.text = ""
 
 # -----------------------------------------------------
-# NORMALIZAR TEXTO
+# Normalizar
 # -----------------------------------------------------
 func normalizar_texto(texto: String) -> String:
 	var articulos = [" el ", " la ", " los ", " las ", " un ", " una ", " unos ", " unas "]
@@ -81,7 +77,7 @@ func normalizar_texto(texto: String) -> String:
 	return texto.strip_edges()
 
 # -----------------------------------------------------
-# COMPROBAR PALABRAS CLAVE
+# Comprobar palabras clave
 # -----------------------------------------------------
 func contiene_palabras_clave(respuesta: String, palabras_clave: Array, sinonimos: Dictionary) -> bool:
 	for palabra in palabras_clave:
@@ -119,7 +115,7 @@ func levenshtein(a: String, b: String) -> int:
 	return matrix[m][n]
 
 # -----------------------------------------------------
-# EVALUAR RESPUESTA (más flexible)
+# Evaluar respuesta
 # -----------------------------------------------------
 func evaluar_respuesta(pregunta: String, respuesta_usuario: String) -> Dictionary:
 	if not preguntas.has(pregunta):
@@ -132,10 +128,8 @@ func evaluar_respuesta(pregunta: String, respuesta_usuario: String) -> Dictionar
 
 	var respuesta_normalizada = normalizar_texto(respuesta_usuario)
 
-	# 1️⃣ Verificar palabras clave o sinónimos
 	var contiene = contiene_palabras_clave(respuesta_normalizada, palabras_clave, sinonimos)
 
-	# 2️⃣ Calcular similitud promedio palabra por palabra
 	var distancia_total = 0
 	var palabras_usuario = respuesta_normalizada.split(" ", false)
 	var palabras_modelo = respuesta_modelo.split(" ", false)
@@ -147,13 +141,12 @@ func evaluar_respuesta(pregunta: String, respuesta_usuario: String) -> Dictionar
 			var d = levenshtein(palabra_u, palabra_m)
 			if d < mejor:
 				mejor = d
-		if mejor < 5: # Si son parecidas
+		if mejor < 5: 
 			distancia_total += mejor
 			conteo += 1
 
 	var distancia_promedio = 0 if conteo == 0 else float(distancia_total) / conteo
-
-	# 3️⃣ Clasificar resultado
+	
 	if contiene and distancia_promedio < 3:
 		return {
 			"resultado": "correcta",
@@ -174,7 +167,7 @@ func evaluar_respuesta(pregunta: String, respuesta_usuario: String) -> Dictionar
 		}
 
 # -----------------------------------------------------
-# VALIDAR RESPUESTA Y AVANZAR
+# Validar respuesta
 # -----------------------------------------------------
 func _on_validar_pressed() -> void:
 	if pregunta_actual == "":
