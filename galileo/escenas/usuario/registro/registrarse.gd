@@ -26,8 +26,9 @@ func _on_aceptar_pressed():
 
 	if "error" in res:
 		mensaje.text = res.error.message
-		
+	
 	else:
+		get_tree().change_scene_to_file("res://escenas/TestUbicacion/test1.tscn")
 		var uid = res["localId"]
 		var user_data = {
 			"email": correo.text,
@@ -39,8 +40,7 @@ func _on_aceptar_pressed():
 
 		Global.user_uid = uid
 		Global.user_data = user_data
-
 		get_tree().change_scene_to_file("res://escenas/usuario/Perfil/perfil.tscn")
 
 func _on_iniciarsesion_pressed():
-	get_tree().change_scene_to_file("res://escenas/TestUbicacion/test1.tscn")
+	get_tree().change_scene_to_file("res://escenas/usuario/registro/iniciarSesion.tscn")

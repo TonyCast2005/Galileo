@@ -19,6 +19,7 @@ config/icon="res://assets/icon.svg"
 
 Global="*res://global.gd"
 global="*res://global.gd"
+Auth="*res://auth.gd"
 
 [display]
 
