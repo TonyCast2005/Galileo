@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cplouqwh87qmw"]
+[gd_scene load_steps=15 format=3 uid="uid://cplouqwh87qmw"]
 
 [ext_resource type="Script" uid="uid://uhvo4sb3x61b" path="res://escenas/Escenarios/Sabana/Sabana.gd" id="1_0cvmp"]
 [ext_resource type="Texture2D" uid="uid://djxon8xy6rey4" path="res://assets/sprites/ui/Sabana/Fondo.png" id="2_2eadx"]
@@ -8,10 +8,20 @@
 [ext_resource type="AudioStream" uid="uid://dp0add8yfud80" path="res://assets/sprites/ui/Sabana/Sonidos/Realize.wav" id="7_r4f3h"]
 [ext_resource type="PackedScene" uid="uid://ce1i46eqi8dlt" path="res://escenas/Tipos_preguntas/Arrastrar_y_Soltar/Prueba_Nueva/RestZone.tscn" id="8_0v67s"]
 [ext_resource type="Texture2D" uid="uid://cxwyj8w35b7im" path="res://assets/sprites/ui/Sabana/Extra/flash.png" id="8_ewkwu"]
-[ext_resource type="Script" uid="uid://boaxo1htodah0" path="res://escenas/Escenarios/Sabana/panel_container.gd" id="8_qopqg"]
 [ext_resource type="Texture2D" uid="uid://bc31gl3gfcs00" path="res://assets/sprites/ui/Sabana/Extra/trianguloarr.png" id="8_vc7jl"]
 [ext_resource type="PackedScene" uid="uid://b1g855tc0yp2q" path="res://escenas/Tipos_preguntas/Arrastrar_y_Soltar/Bloques_Tipos/Prueba_Drag&Drop.tscn" id="10_6hrde"]
-[ext_resource type="Script" uid="uid://c4ex451qek8aj" path="res://escenas/Escenarios/Sabana/button_panel.gd" id="11_qopqg"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n7svk"]
+texture = ExtResource("8_vc7jl")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gdmcw"]
+texture = ExtResource("8_vc7jl")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6hrde"]
+texture = ExtResource("8_vc7jl")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qopqg"]
+texture = ExtResource("8_vc7jl")
 
 [node name="Sabana" type="Control"]
 layout_mode = 3
@@ -110,33 +120,29 @@ stream = ExtResource("7_r4f3h")
 
 [node name="Flash" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = -63.0
-offset_top = 833.0
-offset_right = 423.0
-offset_bottom = 1157.0
+offset_left = -72.0
+offset_top = 839.0
+offset_right = 414.0
+offset_bottom = 1163.0
 texture = ExtResource("8_ewkwu")
 expand_mode = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 69.0
-offset_bottom = 1280.0
-grow_horizontal = 2
-grow_vertical = 0
-script = ExtResource("8_qopqg")
+[node name="UI" type="CanvasLayer" parent="."]
 
-[node name="Button" type="Button" parent="." node_paths=PackedStringArray("panel")]
-layout_mode = 0
-offset_left = 268.0
-offset_top = 1142.0
-offset_right = 556.0
-offset_bottom = 1447.0
-scale = Vector2(0.5, 0.5)
-icon = ExtResource("8_vc7jl")
-flat = true
-script = ExtResource("11_qopqg")
-panel = NodePath("../PanelContainer")
+[node name="Control" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="boton_bloques" type="Button" parent="UI"]
+offset_left = 512.0
+offset_top = 1099.0
+offset_right = 670.0
+offset_bottom = 1253.0
+theme_override_styles/focus = SubResource("StyleBoxTexture_n7svk")
+theme_override_styles/hover = SubResource("StyleBoxTexture_gdmcw")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_6hrde")
+theme_override_styles/normal = SubResource("StyleBoxTexture_qopqg")
+
+[connection signal="pressed" from="UI/boton_bloques" to="." method="_on_boton_bloques_pressed"]

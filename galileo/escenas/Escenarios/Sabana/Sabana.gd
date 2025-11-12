@@ -1,12 +1,16 @@
 extends Control
 @onready var principal = $Control_Instruccion
+@onready var boton_bloques = $UI/Button
 @onready var sprite_animal = $Animal
 @onready var label_resultado = $LabelResultado
 @onready var gato = $Gato
 @onready var Exclamacion_img = $Exclamation  # ← Tu imagen del destello
 @onready var camara_flash = $Flash  # ← Tu imagen del destello
+var estado_bloques: Array = []
 
-@onready var panel_bloques = preload("res://escenas/Escenarios/Sabana/Bloque_Animal.tscn").instantiate()
+@onready var panel_bloques_scene = preload("res://escenas/Escenarios/Sabana/Bloques_Sabana.tscn")
+var panel_bloques_instance: Node = null
+
 @onready var photo_slots = [
     $HBoxContainer/Foto1,
     $HBoxContainer/Foto2,
@@ -207,3 +211,78 @@ func revelar_foto_animal(animal_filename: String):
 func _empezar_juego():
     tutorial_activo = false
     mostrar_animal_aleatorio()
+    
+    
+func guardar_estado_bloques():
+    if not is_instance_valid(panel_bloques_instance):
+        return
+
+    estado_bloques.clear()
+    for bloque in panel_bloques_instance.get_tree().get_nodes_in_group("bloques"):
+        estado_bloques.append({
+            "tipo": bloque.palabra,
+            "pos": bloque.global_position
+        })
+    print("💾 Estado guardado:", estado_bloques)
+
+
+
+func restaurar_estado_bloques():
+    if estado_bloques.is_empty():
+        return
+
+    await get_tree().process_frame
+
+    # 🔹 Marcar que los bloques están restaurando para no reubicarse
+    for bloque in panel_bloques_instance.get_tree().get_nodes_in_group("bloques"):
+        bloque.restaurando = true
+
+    # 🔹 Restaurar posiciones guardadas
+    for data in estado_bloques:
+        for bloque in panel_bloques_instance.get_tree().get_nodes_in_group("bloques"):
+            if bloque.palabra == data["tipo"]:
+                bloque.global_position = data["pos"]
+
+    print("🔁 Estado restaurado.")
+
+    
+func _on_boton_bloques_pressed() -> void:
+       toggle_panel_bloques()
+    
+
+    
+func toggle_panel_bloques():
+    if panel_bloques_instance == null:
+        # --- Abrir panel ---
+        panel_bloques_instance = panel_bloques_scene.instantiate()
+
+        # 🔹 Antes de agregar al árbol, marcamos todos los bloques como "restaurando"
+        for bloque in panel_bloques_instance.get_tree().get_nodes_in_group("bloques"):
+            bloque.restaurando = true
+
+        # 🔹 Ahora sí, agregamos la escena al árbol
+        get_tree().root.add_child(panel_bloques_instance)
+
+        # Esperamos un frame para asegurarnos de que esté inicializada
+        await get_tree().process_frame
+
+        # 🔹 Restaurar posiciones guardadas (si hay)
+        restaurar_estado_bloques()
+
+        # Pequeño fade-in visual
+        panel_bloques_instance.modulate.a = 0.0
+        var tween = create_tween()
+        tween.tween_property(panel_bloques_instance, "modulate:a", 1.0, 0.3)
+
+    else:
+        # --- Cerrar panel ---
+        if is_instance_valid(panel_bloques_instance):
+            # 🔹 Guardar estado actual antes de cerrarlo
+            guardar_estado_bloques()
+
+            var tween = create_tween()
+            tween.tween_property(panel_bloques_instance, "modulate:a", 0.0, 0.2)
+            tween.tween_callback(func():
+                if is_instance_valid(panel_bloques_instance):
+                    panel_bloques_instance.queue_free()
+                panel_bloques_instance = null)

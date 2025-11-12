@@ -1,16 +1,16 @@
 extends Node2D
 
-@export var palabra: String = ""  # <- esta se puede cambiar por cada bloque en el editor
+@export var palabra: String = ""
 var selected = false
 var rest_point: Vector2
-var rest_zone = null   # referencia a la zona actual (Marker2D)
+var rest_zone = null
 var rest_nodes: Array = []
 var mouse_offset: Vector2 = Vector2.ZERO
+var restaurando := false   # 👈 bandera nueva
 
 func _ready():
     rest_nodes = get_tree().get_nodes_in_group("zone")
     
-    # ✅ Asegura que el texto se actualiza sin importar el nombre exacto del nodo
     if has_node("Label"):
         $Label.text = palabra
     elif has_node("label"):
@@ -18,8 +18,14 @@ func _ready():
     else:
         print("⚠️ No se encontró nodo Label o label en este bloque.")
     
+    # 🚫 Si estamos restaurando, no buscar zona inicial
+    if restaurando:
+        return
+
     await get_tree().process_frame
     _find_initial_zone()
+
+
 
 # 🔹 Busca la zona más cercana libre después de que todo esté cargado
 func _find_initial_zone():
