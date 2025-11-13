@@ -1,0 +1,299 @@
+[gd_scene load_steps=34 format=3 uid="uid://btayb2xot6ejs"]
+
+[ext_resource type="Texture2D" uid="uid://c44h1n1s8qlju" path="res://assets/sprites/trophies/aprendizVeloz.png" id="1_3cd0q"]
+[ext_resource type="Texture2D" uid="uid://baykhnqxwooqw" path="res://assets/sprites/ui/ventana.png" id="1_fmlv3"]
+[ext_resource type="Script" uid="uid://dsb7wiuwe6k1" path="res://escenas/usuario/Perfil/imagenes.gd" id="1_pnxe4"]
+[ext_resource type="Texture2D" uid="uid://bwac723earig0" path="res://assets/sprites/trophies/aprendizVisual .png" id="2_f6580"]
+[ext_resource type="Texture2D" uid="uid://qkh7smhxqj5v" path="res://assets/sprites/trophies/cajadecartón .png" id="3_gpnlc"]
+[ext_resource type="Texture2D" uid="uid://cyecj8j7fwkfm" path="res://assets/sprites/trophies/catbox.png" id="4_bka7f"]
+[ext_resource type="Texture2D" uid="uid://c1tehhjlkbm7n" path="res://assets/sprites/trophies/cazadorDeBugs.png" id="5_oxque"]
+[ext_resource type="Texture2D" uid="uid://d16umrig7dyur" path="res://assets/sprites/trophies/noche.png" id="6_wxil7"]
+[ext_resource type="Texture2D" uid="uid://dhm4ftne7p5ub" path="res://assets/sprites/trophies/expertoEnArduino.png" id="7_md2oi"]
+[ext_resource type="Texture2D" uid="uid://c1ibns12f2flb" path="res://assets/sprites/trophies/ExploradorInalcanzable .png" id="8_wxil7"]
+[ext_resource type="Texture2D" uid="uid://b4tpw3txh7tja" path="res://assets/sprites/trophies/PeleaTecho.png" id="9_fqr6p"]
+[ext_resource type="Texture2D" uid="uid://d0g063os2i3de" path="res://assets/sprites/trophies/gatoVelocista.png" id="10_fmlv3"]
+[ext_resource type="Texture2D" uid="uid://l8p4u3sb3jkn" path="res://assets/sprites/trophies/PezGordo .png" id="11_pnxe4"]
+[ext_resource type="Texture2D" uid="uid://b13vytyimmly0" path="res://assets/sprites/trophies/PWM.png" id="12_moyc0"]
+[ext_resource type="Texture2D" uid="uid://vopmhnrqb6se" path="res://assets/sprites/trophies/teoricoNato.png" id="13_8h2y5"]
+[ext_resource type="Texture2D" uid="uid://ddkqu23uk5aro" path="res://assets/sprites/trophies/primeraPresa.png" id="14_k0psb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7hwec"]
+bg_color = Color(0.619619, 0.111347, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gpnlc"]
+texture = ExtResource("1_3cd0q")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bka7f"]
+texture = ExtResource("1_3cd0q")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_68tjx"]
+texture = ExtResource("2_f6580")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oxque"]
+texture = ExtResource("2_f6580")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wxil7"]
+texture = ExtResource("3_gpnlc")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_md2oi"]
+texture = ExtResource("4_bka7f")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jpqhi"]
+texture = ExtResource("5_oxque")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5ppxr"]
+texture = ExtResource("6_wxil7")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dvy2h"]
+texture = ExtResource("7_md2oi")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t135v"]
+texture = ExtResource("8_wxil7")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sod6v"]
+texture = ExtResource("9_fqr6p")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gx4g7"]
+texture = ExtResource("10_fmlv3")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d1kxf"]
+texture = ExtResource("11_pnxe4")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_arrob"]
+texture = ExtResource("12_moyc0")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u5n6e"]
+texture = ExtResource("13_8h2y5")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i7aav"]
+texture = ExtResource("14_k0psb")
+
+[node name="Imagenes" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pnxe4")
+
+[node name="Ventana" type="Sprite2D" parent="."]
+position = Vector2(360, 601)
+scale = Vector2(0.684631, 0.950704)
+texture = ExtResource("1_fmlv3")
+
+[node name="salir" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.876
+anchor_top = 0.289
+anchor_right = 0.942
+anchor_bottom = 0.322
+offset_left = -0.348022
+offset_top = 0.0799866
+offset_right = -0.06604
+offset_bottom = -0.160034
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 26
+theme_override_styles/normal = SubResource("StyleBoxFlat_7hwec")
+text = "X"
+
+[node name="aprendizVeloz" type="Button" parent="."]
+layout_mode = 2
+anchor_left = 0.059
+anchor_top = 0.269
+anchor_right = 0.253
+anchor_bottom = 0.377
+offset_left = 0.342999
+offset_top = -0.320038
+offset_right = 0.0809784
+offset_bottom = 0.440002
+theme_override_styles/normal_mirrored = SubResource("StyleBoxTexture_gpnlc")
+theme_override_styles/normal = SubResource("StyleBoxTexture_bka7f")
+
+[node name="visual" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.267
+anchor_top = 0.269
+anchor_right = 0.455
+anchor_bottom = 0.373
+offset_left = -0.0410156
+offset_top = -0.320038
+offset_right = 0.0350037
+offset_bottom = 0.559967
+theme_override_styles/normal_mirrored = SubResource("StyleBoxTexture_68tjx")
+theme_override_styles/normal = SubResource("StyleBoxTexture_oxque")
+
+[node name="caja" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.47
+anchor_top = 0.269
+anchor_right = 0.658
+anchor_bottom = 0.373
+offset_left = 0.189972
+offset_top = -0.320038
+offset_right = 0.265961
+offset_bottom = 0.559967
+theme_override_styles/normal = SubResource("StyleBoxTexture_wxil7")
+
+[node name="gatocaja" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.679
+anchor_top = 0.269
+anchor_right = 0.867
+anchor_bottom = 0.374
+offset_left = 0.0829773
+offset_top = 0.679962
+offset_right = 0.158997
+offset_bottom = 0.279968
+theme_override_styles/normal = SubResource("StyleBoxTexture_md2oi")
+
+[node name="bugs" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.267
+anchor_top = 0.372
+anchor_right = 0.455
+anchor_bottom = 0.477
+offset_left = -0.0410156
+offset_top = -0.160004
+offset_right = 0.0350037
+offset_bottom = -0.560059
+theme_override_styles/normal = SubResource("StyleBoxTexture_jpqhi")
+
+[node name="noche" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.059
+anchor_top = 0.373
+anchor_right = 0.253
+anchor_bottom = 0.481
+offset_left = 0.342999
+offset_top = -1.44003
+offset_right = 0.0809784
+offset_bottom = -0.680054
+theme_override_styles/normal = SubResource("StyleBoxTexture_5ppxr")
+
+[node name="experto" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.47
+anchor_top = 0.368
+anchor_right = 0.668
+anchor_bottom = 0.481
+offset_left = -0.810028
+offset_top = 6.95996
+offset_right = -1.96402
+offset_bottom = -3.68005
+theme_override_styles/normal = SubResource("StyleBoxTexture_dvy2h")
+
+[node name="explorador" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.679
+anchor_top = 0.366
+anchor_right = 0.867
+anchor_bottom = 0.471
+offset_left = 0.0829773
+offset_top = 3.51996
+offset_right = 5.159
+offset_bottom = 8.12
+theme_override_styles/normal = SubResource("StyleBoxTexture_t135v")
+
+[node name="peleaTecho" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.267
+anchor_top = 0.472
+anchor_right = 0.455
+anchor_bottom = 0.577
+offset_left = -0.0410156
+offset_top = -0.160034
+offset_right = 0.0350037
+offset_bottom = -0.560059
+theme_override_styles/normal = SubResource("StyleBoxTexture_sod6v")
+
+[node name="velocista" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.059
+anchor_top = 0.472
+anchor_right = 0.253
+anchor_bottom = 0.58
+offset_left = 0.342999
+offset_top = -0.160034
+offset_right = 0.0809784
+offset_bottom = 0.599976
+theme_override_styles/normal = SubResource("StyleBoxTexture_gx4g7")
+
+[node name="pezGordo" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.47
+anchor_top = 0.473
+anchor_right = 0.665
+anchor_bottom = 0.578
+offset_left = -0.810028
+offset_top = 0.559998
+offset_right = 0.204987
+offset_bottom = 0.159973
+theme_override_styles/normal = SubResource("StyleBoxTexture_d1kxf")
+
+[node name="pwm" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.679
+anchor_top = 0.469
+anchor_right = 0.874
+anchor_bottom = 0.577
+offset_left = 0.0829773
+offset_top = -0.320007
+offset_right = 0.0979614
+offset_bottom = 0.439941
+theme_override_styles/normal = SubResource("StyleBoxTexture_arrob")
+
+[node name="libros" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.267
+anchor_top = 0.567
+anchor_right = 0.455
+anchor_bottom = 0.672
+offset_left = -0.0410156
+offset_top = 0.23999
+offset_right = 0.0350037
+offset_bottom = -0.160034
+theme_override_styles/normal = SubResource("StyleBoxTexture_u5n6e")
+
+[node name="primeraPresa" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.059
+anchor_top = 0.567
+anchor_right = 0.253
+anchor_bottom = 0.676
+offset_left = 0.342999
+offset_top = 0.23999
+offset_right = 0.0809784
+offset_bottom = -0.28009
+theme_override_styles/normal = SubResource("StyleBoxTexture_i7aav")
+
+[connection signal="pressed" from="salir" to="." method="_on_salir_pressed"]
+[connection signal="pressed" from="aprendizVeloz" to="." method="_on_aprendiz_veloz_pressed"]
+[connection signal="pressed" from="visual" to="." method="_on_visual_pressed"]
+[connection signal="pressed" from="caja" to="." method="_on_caja_pressed"]
+[connection signal="pressed" from="gatocaja" to="." method="_on_gatocaja_pressed"]
+[connection signal="pressed" from="bugs" to="." method="_on_bugs_pressed"]
+[connection signal="pressed" from="noche" to="." method="_on_noche_pressed"]
+[connection signal="pressed" from="experto" to="." method="_on_experto_pressed"]
+[connection signal="pressed" from="explorador" to="." method="_on_explorador_pressed"]
+[connection signal="pressed" from="peleaTecho" to="." method="_on_pelea_techo_pressed"]
+[connection signal="pressed" from="velocista" to="." method="_on_velocista_pressed"]
+[connection signal="pressed" from="pezGordo" to="." method="_on_pez_gordo_pressed"]
+[connection signal="pressed" from="pwm" to="." method="_on_pwm_pressed"]
+[connection signal="pressed" from="libros" to="." method="_on_libros_pressed"]
+[connection signal="pressed" from="primeraPresa" to="." method="_on_primera_presa_pressed"]

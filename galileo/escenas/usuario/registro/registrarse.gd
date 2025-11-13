@@ -13,33 +13,34 @@ func _ready():
 	add_child(auth)
 
 func _on_aceptar_pressed():
-	if usuario.text.is_empty() or correo.text.is_empty() or contrasena.text.is_empty():
+	if usuario.text.is_empty() or contrasena.text.is_empty():
 		mensaje.text = "Favor de llenar los campos"
+		print("Favor de llenar los campos")
 		return
 		
 	if contrasena.text != confirmar.text:
 		mensaje.text = "Las contraseñas no coinciden"
 		return
 
-	# ✅ Aquí solo se pasan los dos parámetros correctos
-	var res = await auth.register_user(correo.text, contrasena.text, usuario.text)
+	var res = await auth.register_user(correo.text, contrasena.text)
 
 	if "error" in res:
 		mensaje.text = res.error.message
+	
 	else:
+		get_tree().change_scene_to_file("res://escenas/TestUbicacion/test1.tscn")
 		var uid = res["localId"]
 		var user_data = {
 			"email": correo.text,
-			"nombre": usuario.text, 
-			"nivel": "principiante",
+			"nombre": contrasena.text,
+			"nivel": "principiante", #revisar resultado del test, no sé cómo hacerlo XD
 			"logros": {}
 		}
 		await auth.save_user_data(uid, user_data)
 
 		Global.user_uid = uid
 		Global.user_data = user_data
-
 		get_tree().change_scene_to_file("res://escenas/usuario/Perfil/perfil.tscn")
 
 func _on_iniciarsesion_pressed():
-	get_tree().change_scene_to_file("res://escenas/TestUbicacion/test1.tscn")
+	get_tree().change_scene_to_file("res://escenas/usuario/registro/iniciarSesion.tscn")
