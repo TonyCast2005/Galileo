@@ -144,3 +144,6 @@ func _on_borrar_cuenta():
 	await Auth.delete_user(Global.user_uid)
 	await Auth.delete_user_data(Global.user_uid)
 	_on_cerrar_sesion()
+
+func _on_perfil_pressed():
+	get_tree().change_scene_to_file("res://escenas/usuario/Perfil/perfil.tscn")
