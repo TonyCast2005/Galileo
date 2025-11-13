@@ -1,8 +1,9 @@
 extends Control
 
-@onready var usuario = $usuario
-@onready var contrasena = $"contraseña"
-@onready var mensaje = $Mensaje
+@onready var usuario = $ColorRect/ColorRect2/usuario
+@onready var contrasena = $ColorRect/ColorRect2/reccontrasenna
+@onready var mensaje = $ColorRect/Mensaje
+
 var auth
 
 func _ready():
@@ -15,22 +16,24 @@ func _on_aceptar_pressed():
 		return
 
 	mensaje.text = "Iniciando sesión..."
+	
 	var res = await auth.login_user(usuario.text, contrasena.text)
 	print("Respuesta Firebase:", res)
 
 	if res.has("error"):
 		var msg = res["error"].get("message", "Error desconocido")
 
-		if msg == "INVALID_LOGIN_CREDENTIALS":
-			mensaje.text = "Credenciales incorrectas"
-		elif msg == "EMAIL_NOT_FOUND":
-			mensaje.text = "Correo no registrado"
-		elif msg == "INVALID_PASSWORD":
-			mensaje.text = "Contraseña incorrecta"
-		elif msg == "INVALID_EMAIL":
-			mensaje.text = "Correo incorrecto"
-		else:
-			mensaje.text = "Error: %s" % msg
+		match msg:
+			"INVALID_LOGIN_CREDENTIALS":
+				mensaje.text = "Credenciales incorrectas"
+			"EMAIL_NOT_FOUND":
+				mensaje.text = "Correo no registrado"
+			"INVALID_PASSWORD":
+				mensaje.text = "Contraseña incorrecta"
+			"INVALID_EMAIL":
+				mensaje.text = "Correo incorrecto"
+			_:
+				mensaje.text = "Error: %s" % msg
 
 		return
 
@@ -40,7 +43,9 @@ func _on_aceptar_pressed():
 	var uid = res.get("localId", "")
 	Global.user_uid = uid
 
+	# ✅ Cargar los datos del usuario desde la base de datos
 	var user_data = await auth.get_user_data(uid)
+
 	if user_data.has("error"):
 		mensaje.text = "No se pudieron cargar los datos del perfil"
 		Global.user_data = {"email": usuario.text}
@@ -51,8 +56,10 @@ func _on_aceptar_pressed():
 
 	get_tree().change_scene_to_file("res://escenas/usuario/Perfil/perfil.tscn")
 
+
 func _on_registrarse_pressed():
 	get_tree().change_scene_to_file("res://escenas/usuario/registro/registrarse.tscn")
+
 
 func _on_reccontrasenna_pressed():
 	get_tree().change_scene_to_file("res://escenas/usuario/registro/RecuperarContrasena.tscn")

@@ -73,7 +73,6 @@ func _on_guardar():
 	var nuevo_nombre = nombre_input.text.strip_edges() if nombre_input.visible else nombre_label.text
 	var nueva_contrasena = contrasena_input.text.strip_edges() if contrasena_input.visible else null
 
-
 	var updated_data = Global.user_data.duplicate()
 	updated_data["nombre"] = nuevo_nombre
 

@@ -2,21 +2,36 @@ extends Node
 
 const API_KEY = "AIzaSyBfDUbVummAFJFmuZN906DC09-hhhQcRB0"
 const BASE_URL = "https://identitytoolkit.googleapis.com/v1/accounts"
+const DB_URL = "https://galileo-af640-default-rtdb.firebaseio.com"
 
 # ------------------------------
-# Registro
+# 🔹 Registrar usuario
 # ------------------------------
-func register_user(email: String, password: String) -> Dictionary:
+func register_user(email: String, password: String, nombre: String) -> Dictionary:
 	var url = "%s:signUp?key=%s" % [BASE_URL, API_KEY]
 	var data = {
 		"email": email,
 		"password": password,
 		"returnSecureToken": true
 	}
-	return await _send_request(url, data)
+	
+	var res = await _send_request(url, data)
+	if res.has("error"):
+		return res
+
+	var uid = res.get("localId", "")
+	if uid != "":
+		# Guardar datos adicionales en la DB
+		var user_data = {
+			"email": email,
+			"nombre": nombre
+		}
+		await save_user_data(uid, user_data)
+	
+	return res
 
 # ------------------------------
-# Login
+# 🔹 Iniciar sesión
 # ------------------------------
 func login_user(email: String, password: String) -> Dictionary:
 	var url = "%s:signInWithPassword?key=%s" % [BASE_URL, API_KEY]
@@ -25,24 +40,26 @@ func login_user(email: String, password: String) -> Dictionary:
 		"password": password,
 		"returnSecureToken": true
 	}
-	return await _send_request(url, data)
+	
+	var res = await _send_request(url, data)
+	if res.has("error"):
+		return res
+
+	var uid = res.get("localId", "")
+	if uid != "":
+		var user_data = await get_user_data(uid)
+		if typeof(user_data) == TYPE_DICTIONARY and user_data.has("nombre"):
+			res["nombre"] = user_data["nombre"]
+		else:
+			res["nombre"] = "Usuario sin nombre"
+
+	return res
 
 # ------------------------------
-# Recuperar cuenta
-# ------------------------------
-func recover_account(email: String) -> Dictionary:
-	var url = "%s:sendOobCode?key=%s" % [BASE_URL, API_KEY]
-	var data = {
-		"requestType": "PASSWORD_RESET",
-		"email": email
-	}
-	return await _send_request(url, data)
-
-# ------------------------------
-# Guardar datos de usuario en la DB
+# 🔹 Guardar datos de usuario
 # ------------------------------
 func save_user_data(uid: String, data: Dictionary) -> Dictionary:
-	var db_url = "https://galileo-af640-default-rtdb.firebaseio.com/usuarios/%s.json" % uid
+	var db_url = "%s/usuarios/%s.json" % [DB_URL, uid]
 	var http := HTTPRequest.new()
 	add_child(http)
 
@@ -61,10 +78,10 @@ func save_user_data(uid: String, data: Dictionary) -> Dictionary:
 	return result
 
 # ------------------------------
-# Obtener datos de usuario
+# 🔹 Obtener datos de usuario
 # ------------------------------
 func get_user_data(uid: String) -> Dictionary:
-	var db_url = "https://galileo-af640-default-rtdb.firebaseio.com/usuarios/%s.json" % uid
+	var db_url = "%s/usuarios/%s.json" % [DB_URL, uid]
 	var http := HTTPRequest.new()
 	add_child(http)
 
@@ -80,7 +97,34 @@ func get_user_data(uid: String) -> Dictionary:
 	return result
 
 # ------------------------------
-# Enviar solicitud HTTP
+# 🔹 Cambiar contraseña
+# ------------------------------
+func change_password(id_token: String, new_password: String) -> Dictionary:
+	var url = "%s:update?key=%s" % [BASE_URL, API_KEY]
+	var data = {
+		"idToken": id_token,
+		"password": new_password,
+		"returnSecureToken": true
+	}
+	return await _send_request(url, data)
+
+# ------------------------------
+# 🔹 Eliminar usuario
+# ------------------------------
+func delete_user(id_token: String) -> Dictionary:
+	var url = "%s:delete?key=%s" % [BASE_URL, API_KEY]
+	var data = {"idToken": id_token}
+	return await _send_request(url, data)
+
+func delete_user_data(uid: String) -> void:
+	var db_url = "%s/usuarios/%s.json" % [DB_URL, uid]
+	var http := HTTPRequest.new()
+	add_child(http)
+	await http.request(db_url, [], HTTPClient.METHOD_DELETE)
+	http.queue_free()
+
+# ------------------------------
+# 🔹 Enviar solicitud HTTP
 # ------------------------------
 func _send_request(url: String, data: Dictionary) -> Dictionary:
 	var http := HTTPRequest.new()
