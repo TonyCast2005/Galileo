@@ -24,31 +24,55 @@ func _on_aceptar_pressed():
         mensaje.text = "❌ Las contraseñas no coinciden"
         return
 
-    # 🔹 Limpiar los textos antes de enviar a Firebase
+    # 🔹 Limpiar datos
     var email = correo.text.strip_edges().to_lower()
     var password = contrasena.text.strip_edges()
     var nombre = usuario.text.strip_edges()
 
-    # 🔹 Llamar a la función de registro con los valores limpios
+    # 🔹 Registrar usuario en Firebase Authentication
     var res = await auth.register_user(email, password, nombre)
-    
-    # 🔹 Mostrar el resultado en consola para depurar (puedes quitarlo luego)
     print("Resultado del registro:", res)
     
     if res.has("error"):
         mensaje.text = "❌ Error al registrar: %s" % res["error"]
         print("Respuesta completa Firebase:", JSON.stringify(res, "\t"))
-
         return
 
-    # Guardar datos del usuario en Globals
+    # 🔥 **UID único del usuario**
+    var uid = res.get("localId", "")
+
+    # -------------------------------------------------------------------------
+    # ✅ **CREAR PERFIL DEL USUARIO EN REALTIME DATABASE**
+    # -------------------------------------------------------------------------
+    var data_inicial = {
+        "nombre": nombre,
+        "email": email,
+        "foto": "default",         # foto de perfil inicial
+        "nivel": "novato",         # nivel inicial por defecto
+        "logros": {},              # carpeta para guardar logros
+        "metrics": {},             # carpeta para métricas
+        "progreso": {
+            "nivel_actual": "novato",
+            "leccion_actual": 0
+        },
+        "racha": {
+            "dias": 0,
+            "ultima_fecha": ""
+        }
+    }
+
+    var respuesta_db = await auth.update_user_data(uid, data_inicial)
+    print("➡️ Datos creados en Firebase DB:", respuesta_db)
+    # -------------------------------------------------------------------------
+
+    # Guardar datos básicos en Globals
     Globals.user = {
-        "uid": res.get("localId", ""),
-        "email": res.get("email", ""),
+        "uid": uid,
+        "email": email,
         "nombre": nombre
     }
 
-    # Cambiar a la escena de perfil
+    # Cambiar a la escena del Test
     get_tree().change_scene_to_file("res://escenas/TestUbicacion/test1.tscn")
 
 

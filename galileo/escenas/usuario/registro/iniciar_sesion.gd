@@ -51,21 +51,41 @@ func _on_aceptar_pressed():
     mensaje.text = "✅ Inicio de sesión exitoso"
     print("Login exitoso:", usuario.text)
 
-    # 📝 Obtener nombre desde Realtime Database
+    # ---------------------------------------------------------
+    # 🔥 1. Obtener UID
+    # ---------------------------------------------------------
     var uid = res.get("localId", "")
-    var nombre = "Usuario sin nombre"
-    if uid != "":
-        var extra_data = await auth._get_user_data(uid)
-        if extra_data != null:
-            nombre = extra_data.get("nombre", "Usuario sin nombre")
 
+    # ---------------------------------------------------------
+    # 🔥 2. Obtener todos los datos del usuario desde Firebase DB
+    # ---------------------------------------------------------
+    var db_data = await auth._get_user_data(uid)
+
+    if db_data == null:
+        mensaje.text = "⚠️ No se pudieron cargar los datos del usuario"
+        return
+
+    # ---------------------------------------------------------
+    # 🔥 3. Guardar todos los datos del usuario en Globals
+    # ---------------------------------------------------------
     Globals.user = {
         "idToken": res.get("idToken", ""),
         "uid": uid,
         "email": usuario.text,
-        "nombre": nombre
+        "nombre": db_data.get("nombre", "Usuario"),
+        "foto": db_data.get("foto", "default"),
+        "nivel": db_data.get("nivel", "novato"),
+        "logros": db_data.get("logros", {}),
+        "metrics": db_data.get("metrics", {}),
+        "progreso": db_data.get("progreso", {}),
+        "racha": db_data.get("racha", {})
     }
 
+    print("📦 Datos cargados en Globals.user: ", Globals.user)
+
+    # ---------------------------------------------------------
+    # 🔥 4. Ir al perfil
+    # ---------------------------------------------------------
     get_tree().change_scene_to_file("res://escenas/usuario/Perfil/perfil.tscn")
 
 

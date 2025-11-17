@@ -88,6 +88,39 @@ func _get_user_data(uid: String) -> Variant:
     return result
 
 
+func _patch_request(url: String, data: Dictionary) -> Dictionary:
+    var http := HTTPRequest.new()
+    add_child(http)
+
+    var headers = ["Content-Type: application/json"]
+    var json = JSON.stringify(data)
+
+    var err = http.request(url, headers, HTTPClient.METHOD_PATCH, json)
+    if err != OK:
+        return {"error": {"message": "Error al enviar PATCH: %s" % err}}
+
+    var response = await http.request_completed
+    var status = response[0]
+    var code = response[1]
+    var body = response[3]
+
+    http.queue_free()
+
+    if status != HTTPRequest.RESULT_SUCCESS:
+        return {"error": {"message": "Error en PATCH, código HTTP %s" % code}}
+
+    var result = JSON.parse_string(body.get_string_from_utf8())
+    return result
+
+
+
+func update_user_data(uid: String, data: Dictionary) -> Dictionary:
+    var url = "%s/usuarios/%s.json" % [DB_URL, uid]
+    return await _patch_request(url, data)
+
+
+
+
 # 🔹 Enviar POST a Firebase
 func _send_request(url: String, data: Dictionary) -> Dictionary:
     var http := HTTPRequest.new()
@@ -117,3 +150,5 @@ func _send_request(url: String, data: Dictionary) -> Dictionary:
         return {"error": {"message": "No se pudo interpretar la respuesta del servidor"}}
 
     return result
+    
+    
