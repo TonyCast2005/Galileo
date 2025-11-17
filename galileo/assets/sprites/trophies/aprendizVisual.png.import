@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://l8p4u3sb3jkn"
-path="res://.godot/imported/PezGordo .png-6e74d724f799f64255c2d3c5ba4ccb02.ctex"
+uid="uid://bwac723earig0"
+path="res://.godot/imported/aprendizVisual.png-415b2606cc627dbcd2382951a8c2c182.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/trophies/PezGordo .png"
-dest_files=["res://.godot/imported/PezGordo .png-6e74d724f799f64255c2d3c5ba4ccb02.ctex"]
+source_file="res://assets/sprites/trophies/aprendizVisual.png"
+dest_files=["res://.godot/imported/aprendizVisual.png-415b2606cc627dbcd2382951a8c2c182.ctex"]
 
 [params]
 

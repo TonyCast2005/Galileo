@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1ibns12f2flb"
-path="res://.godot/imported/ExploradorInalcanzable .png-107877dd7989a4aeeb1b2863c4abd5cb.ctex"
+uid="uid://l8p4u3sb3jkn"
+path="res://.godot/imported/PezGordo.png-0f18366c08e30d8b1b19b2ddb3a57b92.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/trophies/ExploradorInalcanzable .png"
-dest_files=["res://.godot/imported/ExploradorInalcanzable .png-107877dd7989a4aeeb1b2863c4abd5cb.ctex"]
+source_file="res://assets/sprites/trophies/PezGordo.png"
+dest_files=["res://.godot/imported/PezGordo.png-0f18366c08e30d8b1b19b2ddb3a57b92.ctex"]
 
 [params]
 

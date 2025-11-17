@@ -1,3 +1,5 @@
 extends Node
-var resultado_examen = {}
-var user = null
+
+signal foto_actualizada(foto_nueva)
+
+var user = {}

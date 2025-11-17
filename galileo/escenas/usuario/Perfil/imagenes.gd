@@ -1,8 +1,10 @@
 extends Control
 
+signal foto_seleccionada(nombre_foto)
+
 func seleccionar_foto(foto_filename: String) -> void:
     # 1) Validar Globals
-    if not Globals.has("user") or not Globals.user.has("uid"):
+    if Globals.user == null or Globals.user.get("uid", "") == "":
         push_error("No hay usuario disponible para actualizar foto")
         return
 
@@ -14,7 +16,6 @@ func seleccionar_foto(foto_filename: String) -> void:
     add_child(auth)
 
     var uid = Globals.user["uid"]
-
     var res = await auth.update_user_data(uid, {"foto": foto_filename})
 
     if res.has("error"):
@@ -22,8 +23,11 @@ func seleccionar_foto(foto_filename: String) -> void:
     else:
         print("Foto actualizada correctamente:", foto_filename)
 
-    # 4) Volver a EditarPerfil
-    get_tree().change_scene_to_file("res://escenas/usuario/Perfil/EditarPerfil.tscn")
+    # 4) Emitir señal para que EditarPerfil actualice sin recargar
+    Globals.emit_signal("foto_actualizada", foto_filename)
+
+    # 5) Cerrar selector
+    queue_free()
 
 
 # --------------------------
@@ -31,13 +35,13 @@ func seleccionar_foto(foto_filename: String) -> void:
 # --------------------------
 
 func _on_salir_pressed():
-    get_tree().change_scene_to_file("res://escenas/usuario/Perfil/EditarPerfil.tscn")
+    queue_free()  # cerrar selector sin recargar perfil
 
 func _on_aprendiz_veloz_pressed():
     seleccionar_foto("aprendizVeloz.png")
 
 func _on_visual_pressed():
-    seleccionar_foto("amprendizVisual.png")
+    seleccionar_foto("aprendizVisual.png")
 
 func _on_caja_pressed():
     seleccionar_foto("cajadecartón.png")

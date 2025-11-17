@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://qkh7smhxqj5v"
-path="res://.godot/imported/cajadecartón .png-27cf3be8c23dae2c477f29b2befa2e8b.ctex"
+path="res://.godot/imported/cajadecartón.png-d547b80f7c92598646461ba1dde7419d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/trophies/cajadecartón .png"
-dest_files=["res://.godot/imported/cajadecartón .png-27cf3be8c23dae2c477f29b2befa2e8b.ctex"]
+source_file="res://assets/sprites/trophies/cajadecartón.png"
+dest_files=["res://.godot/imported/cajadecartón.png-d547b80f7c92598646461ba1dde7419d.ctex"]
 
 [params]
 

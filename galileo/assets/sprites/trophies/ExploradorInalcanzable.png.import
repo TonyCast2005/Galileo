@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bwac723earig0"
-path="res://.godot/imported/aprendizVisual .png-5f1ddc43f777bd75675defd6a35d1235.ctex"
+uid="uid://c1ibns12f2flb"
+path="res://.godot/imported/ExploradorInalcanzable.png-91eb72549149d60058fe0980b5065dc3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/trophies/aprendizVisual .png"
-dest_files=["res://.godot/imported/aprendizVisual .png-5f1ddc43f777bd75675defd6a35d1235.ctex"]
+source_file="res://assets/sprites/trophies/ExploradorInalcanzable.png"
+dest_files=["res://.godot/imported/ExploradorInalcanzable.png-91eb72549149d60058fe0980b5065dc3.ctex"]
 
 [params]
 
