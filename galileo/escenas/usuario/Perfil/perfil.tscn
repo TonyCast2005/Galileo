@@ -53,12 +53,12 @@ offset_left = 127.0
 offset_top = 411.0
 offset_right = 589.0
 offset_bottom = 505.0
-theme_override_font_sizes/font_size = 26
+theme_override_font_sizes/font_size = 29
 text = "Nombre de usuario"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="NiveelUsuario" type="Label" parent="."]
+[node name="NivelUsuario" type="Label" parent="."]
 layout_mode = 0
 offset_left = 132.0
 offset_top = 512.0

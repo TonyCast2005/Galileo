@@ -1,73 +1,80 @@
 extends Control
 
-@onready var usuario = $usuario
-@onready var correo = $correo
-@onready var contrasena = $"contraseña"
-@onready var confirmar = $"confirmarContraseña"
+@onready var usuario = $usuario            # LineEdit del nombre
+@onready var correo = $correo              # LineEdit del correo
+@onready var contrasena = $"contraseña"   # LineEdit de la contraseña
+@onready var confirmar = $"confirmarContraseña"  # LineEdit de confirmación
 @onready var mensaje = $Mensaje
 
 var auth
 
 func _ready():
-	auth = load("res://escenas/usuario/registro/firebase_auth.gd").new()
-	add_child(auth)
+    auth = load("res://escenas/usuario/registro/firebase_auth.gd").new()
+    add_child(auth)
+
 
 func _on_aceptar_pressed():
-	# Validar campos vacíos
-	if usuario.text.is_empty() or correo.text.is_empty() or contrasena.text.is_empty() or confirmar.text.is_empty():
-		mensaje.text = "⚠️ Favor de llenar todos los campos"
-		print("Campos vacíos detectados")
-		return
-		
-	# Validar contraseñas iguales
-	if contrasena.text != confirmar.text:
-		mensaje.text = "❌ Las contraseñas no coinciden"
-		return
+    # Validar campos vacíos
+    if usuario.text.is_empty() or correo.text.is_empty() or contrasena.text.is_empty():
+        mensaje.text = "⚠️ Favor de llenar los campos"
+        return
+        
+    # Validar que las contraseñas coincidan
+    if contrasena.text != confirmar.text:
+        mensaje.text = "❌ Las contraseñas no coinciden"
+        return
 
-	# Limpiar valores antes de enviar
-	var email = correo.text.strip_edges().to_lower()
-	var password = contrasena.text.strip_edges()
-	var nombre = usuario.text.strip_edges()
+    # 🔹 Limpiar datos
+    var email = correo.text.strip_edges().to_lower()
+    var password = contrasena.text.strip_edges()
+    var nombre = usuario.text.strip_edges()
 
-	# Registrar usuario (debe tener 3 argumentos)
-	var res = await auth.register_user(email, password, nombre)
+    # 🔹 Registrar usuario en Firebase Authentication
+    var res = await auth.register_user(email, password, nombre)
+    print("Resultado del registro:", res)
+    
+    if res.has("error"):
+        mensaje.text = "❌ Error al registrar: %s" % res["error"]
+        print("Respuesta completa Firebase:", JSON.stringify(res, "\t"))
+        return
 
-	# Revisar si hubo error
-	if res.has("error"):
-		mensaje.text = "❌ Error al registrar: %s" % res["error"]
-		print("Error al registrar:", res)
-		return
-	
-	# Obtener UID del usuario
-	var uid = res.get("localId", "")
-	if uid == "":
-		mensaje.text = "⚠️ No se pudo obtener el ID del usuario."
-		return
+    # 🔥 **UID único del usuario**
+    var uid = res.get("localId", "")
 
-	# Guardar datos adicionales en Firebase Realtime Database
-	var user_data = {
-		"email": email,
-		"nombre": nombre,
-		"nivel": "principiante",  # puedes cambiarlo tras el test
-		"logros": {}
-	}
+    # -------------------------------------------------------------------------
+    # ✅ **CREAR PERFIL DEL USUARIO EN REALTIME DATABASE**
+    # -------------------------------------------------------------------------
+    var data_inicial = {
+        "nombre": nombre,
+        "email": email,
+        "foto": "default",         # foto de perfil inicial
+        "nivel": "novato",         # nivel inicial por defecto
+        "logros": {},              # carpeta para guardar logros
+        "metrics": {},             # carpeta para métricas
+        "progreso": {
+            "nivel_actual": "novato",
+            "leccion_actual": 0
+        },
+        "racha": {
+            "dias": 0,
+            "ultima_fecha": ""
+        }
+    }
 
-	var save_res = await auth.save_user_data(uid, user_data)
-	if save_res.has("error"):
-		mensaje.text = "⚠️ Usuario creado, pero error al guardar datos."
-		print("Error al guardar en DB:", save_res)
-	else:
-		mensaje.text = "✅ Registro exitoso"
-		print("Usuario registrado y guardado correctamente")
+    var respuesta_db = await auth.update_user_data(uid, data_inicial)
+    print("➡️ Datos creados en Firebase DB:", respuesta_db)
+    # -------------------------------------------------------------------------
 
-	# Guardar en Global (si usas un singleton)
-	if Engine.has_singleton("Global"):
-		Global.user_uid = uid
-		Global.user_data = user_data
+    # Guardar datos básicos en Globals
+    Globals.user = {
+        "uid": uid,
+        "email": email,
+        "nombre": nombre
+    }
 
-	# Cambiar de escena (solo una vez)
-	get_tree().change_scene_to_file("res://escenas/usuario/Perfil/perfil.tscn")
+    # Cambiar a la escena del Test
+    get_tree().change_scene_to_file("res://escenas/TestUbicacion/test1.tscn")
 
 
 func _on_iniciarsesion_pressed():
-	get_tree().change_scene_to_file("res://escenas/usuario/registro/iniciarSesion.tscn")
+    get_tree().change_scene_to_file("res://escenas/usuario/registro/iniciarSesion.tscn")
