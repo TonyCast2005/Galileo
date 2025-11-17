@@ -12,9 +12,15 @@ var preguntas = {}
 var pregunta_actual = ""
 var indice_pregunta = 0
 
+
+# -----------------------------------------------------
+# READY
+# -----------------------------------------------------
 func _ready():
 	titulo.text = "Preguntas abiertas - Lección 1"
+
 	await cargar_preguntas()
+
 	if preguntas.size() > 0:
 		mostrar_pregunta()
 	else:
@@ -22,12 +28,14 @@ func _ready():
 
 	validar.pressed.connect(_on_validar_pressed)
 
+
 # -----------------------------------------------------
-# Cargar preguntas xb
+# Cargar preguntas desde Firebase
 # -----------------------------------------------------
 func cargar_preguntas() -> void:
 	var http := HTTPRequest.new()
 	add_child(http)
+
 	var err = http.request(DB_URL)
 	if err != OK:
 		push_error("Error al conectar con Firebase")
@@ -39,24 +47,28 @@ func cargar_preguntas() -> void:
 
 	if typeof(data) == TYPE_ARRAY:
 		for item in data:
-			if item == null:
-				continue
-			preguntas[item["pregunta"]] = item
+			if item != null:
+				preguntas[item["pregunta"]] = item
+
 	elif typeof(data) == TYPE_DICTIONARY:
 		for k in data.keys():
 			var item = data[k]
 			preguntas[item["pregunta"]] = item
+
 	else:
 		push_error("Error al parsear preguntas desde Firebase")
+
 	http.queue_free()
 
+
 # -----------------------------------------------------
-# MOSTRAR UNA PREGUNTA EN PANTALLA
+# Mostrar pregunta actual
 # -----------------------------------------------------
 func mostrar_pregunta():
 	var claves = preguntas.keys()
+
 	if indice_pregunta >= claves.size():
-		mensaje.text = "se acabó"
+		mensaje.text = "¡Has terminado todas las preguntas!"
 		label_pregunta.text = ""
 		validar.disabled = true
 		return
@@ -66,44 +78,51 @@ func mostrar_pregunta():
 	respuesta.text = ""
 	mensaje.text = ""
 
+
 # -----------------------------------------------------
-# Normalizar
+# Normalizar texto
 # -----------------------------------------------------
 func normalizar_texto(texto: String) -> String:
-	var articulos = [" el ", " la ", " los ", " las ", " un ", " una ", " unos ", " unas "]
 	texto = texto.strip_edges().to_lower()
+
+	var acentos = {
+		"á":"a","é":"e","í":"i","ó":"o","ú":"u",
+		"ä":"a","ë":"e","ï":"i","ö":"o","ü":"u",
+		"ñ":"n"
+	}
+	for a in acentos.keys():
+		texto = texto.replace(a, acentos[a])
+
+	var signos = [",", ".", ";", ":", "?", "!", "¿", "¡", "(", ")", "[", "]"]
+	for s in signos:
+		texto = texto.replace(s, "")
+
+	var articulos = [" el ", " la ", " los ", " las ", " un ", " una ", " unos ", " unas "]
 	for a in articulos:
 		texto = texto.replace(a, " ")
+
+	while "  " in texto:
+		texto = texto.replace("  ", " ")
+
 	return texto.strip_edges()
 
-# -----------------------------------------------------
-# Comprobar palabras clave
-# -----------------------------------------------------
-func contiene_palabras_clave(respuesta: String, palabras_clave: Array, sinonimos: Dictionary) -> bool:
-	for palabra in palabras_clave:
-		if palabra in respuesta:
-			return true
-		if sinonimos.has(palabra):
-			for s in sinonimos[palabra]:
-				if s in respuesta:
-					return true
-	return false
 
 # -----------------------------------------------------
-# DISTANCIA DE LEVENSHTEIN
+# Distancia de Levenshtein
 # -----------------------------------------------------
 func levenshtein(a: String, b: String) -> int:
 	var m = a.length()
 	var n = b.length()
+
 	var matrix = []
 	for i in range(m + 1):
 		matrix.append([])
 		for j in range(n + 1):
 			matrix[i].append(0)
-	for i in range(m + 1):
-		matrix[i][0] = i
-	for j in range(n + 1):
-		matrix[0][j] = j
+
+	for i in range(m + 1): matrix[i][0] = i
+	for j in range(n + 1): matrix[0][j] = j
+
 	for i in range(1, m + 1):
 		for j in range(1, n + 1):
 			var costo = 0 if a[i - 1] == b[j - 1] else 1
@@ -112,64 +131,88 @@ func levenshtein(a: String, b: String) -> int:
 				matrix[i][j - 1] + 1,
 				matrix[i - 1][j - 1] + costo
 			)
+
 	return matrix[m][n]
 
+
 # -----------------------------------------------------
-# Evaluar respuesta
+# Similitud ortográfica
+# -----------------------------------------------------
+func similitud_ortografica(a: String, b: String) -> float:
+	if a.length() == 0 or b.length() == 0:
+		return 0.0
+
+	var dist = levenshtein(a, b)
+	var max_len = max(a.length(), b.length())
+	return 1.0 - float(dist) / float(max_len)
+
+
+# -----------------------------------------------------
+# Porcentaje de palabras clave encontradas
+# -----------------------------------------------------
+func porcentaje_palabras_clave(respuesta: String, palabras_clave: Array, sinonimos: Dictionary) -> float:
+	if palabras_clave.size() == 0:
+		return 0.0
+
+	var total = palabras_clave.size()
+	var encontradas = 0
+
+	for palabra in palabras_clave:
+		if palabra in respuesta:
+			encontradas += 1
+		elif sinonimos.has(palabra):
+			for s in sinonimos[palabra]:
+				if s in respuesta:
+					encontradas += 1
+					break
+
+	return float(encontradas) / float(total)
+
+
+# -----------------------------------------------------
+# Evaluar respuesta del usuario
 # -----------------------------------------------------
 func evaluar_respuesta(pregunta: String, respuesta_usuario: String) -> Dictionary:
 	if not preguntas.has(pregunta):
 		return {"error": "Pregunta no encontrada"}
 
 	var data = preguntas[pregunta]
-	var respuesta_modelo = normalizar_texto(data["respuesta_modelo"])
+
+	var modelo = normalizar_texto(data["respuesta_modelo"])
 	var palabras_clave = data["palabras_clave"]
-	var sinonimos = data["sinonimos"] if data.has("sinonimos") and typeof(data["sinonimos"]) == TYPE_DICTIONARY else {}
+	var sinonimos = data["sinonimos"] if data.has("sinonimos") else {}
+	var resp = normalizar_texto(respuesta_usuario)
 
-	var respuesta_normalizada = normalizar_texto(respuesta_usuario)
+	var pct_clave = porcentaje_palabras_clave(resp, palabras_clave, sinonimos)
+	var similitud = similitud_ortografica(resp, modelo)
 
-	var contiene = contiene_palabras_clave(respuesta_normalizada, palabras_clave, sinonimos)
+	var resultado := ""
+	var mensaje := ""
 
-	var distancia_total = 0
-	var palabras_usuario = respuesta_normalizada.split(" ", false)
-	var palabras_modelo = respuesta_modelo.split(" ", false)
-	var conteo = 0
+	if pct_clave >= 0.80 and similitud >= 0.60:
+		resultado = "correcta"
+		mensaje = "✔ Muy bien, tu respuesta es correcta."
 
-	for palabra_u in palabras_usuario:
-		var mejor = 9999
-		for palabra_m in palabras_modelo:
-			var d = levenshtein(palabra_u, palabra_m)
-			if d < mejor:
-				mejor = d
-		if mejor < 5: 
-			distancia_total += mejor
-			conteo += 1
+	elif pct_clave >= 0.50 and similitud >= 0.40:
+		resultado = "parcial"
+		mensaje = "◐ Casi correcta. Puedes mejorar algunos detalles."
 
-	var distancia_promedio = 0 if conteo == 0 else float(distancia_total) / conteo
-	
-	if contiene and distancia_promedio < 3:
-		return {
-			"resultado": "correcta",
-			"mensaje": "Correcto.",
-			"distancia_promedio": distancia_promedio
-		}
-	elif contiene and distancia_promedio <= 5:
-		return {
-			"resultado": "parcialmente correcta",
-			"mensaje": "Tu respuesta está cerca, revisa algunos detalles.",
-			"distancia_promedio": distancia_promedio
-		}
 	else:
-		return {
-			"resultado": "incorrecta",
-			"mensaje": "Incorrecto. La respuesta correcta es:\n" + data["respuesta_modelo"],
-			"distancia_promedio": distancia_promedio
-		}
+		resultado = "incorrecta"
+		mensaje = "✖ Incorrecto.\nLa respuesta correcta es:\n" + data["respuesta_modelo"]
+
+	return {
+		"resultado": resultado,
+		"mensaje": mensaje,
+		"palabras_clave_pct": pct_clave,
+		"similitud": similitud
+	}
+
 
 # -----------------------------------------------------
-# Validar respuesta
+# Validar respuesta al presionar botón
 # -----------------------------------------------------
-func _on_validar_pressed() -> void:
+func _on_validar_pressed():
 	if pregunta_actual == "":
 		mensaje.text = "❌ No hay pregunta actual."
 		return

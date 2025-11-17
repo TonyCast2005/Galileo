@@ -16,9 +16,6 @@ func _ready():
 	add_child(auth)
 	ventana.visible = false
 
-	btn_aceptar.pressed.connect(_on_aceptar_pressed)
-	btn_seguir.pressed.connect(_on_seguir_pressed)
-
 func _on_novato_pressed():
 	print("novato")
 	_mostrar_definicion("Conceptos muy generales o acabas de comenzar con tu aprendizaje.", "novato")
@@ -40,12 +37,22 @@ func _mostrar_definicion(texto: String, nivel: String):
 	ventana.set_meta("nivel", nivel) 
 	ventana.visible = true
 
-func _on_aceptar_pressed():
+func _on_btn_aceptar_pressed():
 	var nivel = ventana.get_meta("nivel")
-	ventana.visible = false
-	print("aceptar")
-	get_tree().change_scene_to_file("res://escenas/usuario/Perfil/perfil.tscn")
-	
 
-func _on_seguir_pressed():
+	if Global.user == null:
+		push_error("No hay usuario logueado")
+		return
+
+	var uid = Global.user["uid"]
+	
+	var nuevo_nivel = { "nivel": nivel }
+	await auth.save_user_data(uid, nuevo_nivel)
+	Global.user["nivel"] = nivel
+	print("Nivel guardado:", nivel)
 	ventana.visible = false
+	get_tree().change_scene_to_file("res://escenas/usuario/Perfil/perfil.tscn")
+
+
+func _on_btn_seguir_pressed():
+		ventana.visible = false

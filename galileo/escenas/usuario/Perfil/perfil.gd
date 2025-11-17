@@ -1,5 +1,6 @@
 extends Control
-
+@onready var label_nivel = $NiveelUsuario
+@onready var label_usuario = $NombreUsuario
 @onready var achievements_list = $ScrollContainer/logrosVbox
 @onready var http = $HTTPRequest
 
@@ -12,6 +13,9 @@ func _ready():
 	# Mostrar datos del usuario
 	$NombreUsuario.text = Global.user_data.get("nombre", "Sin nombre")
 	$NiveelUsuario.text = Global.user_data.get("nivel", "Sin nivel")
+	if Global.user:
+		label_usuario.text = Global.user["email"]
+		label_nivel.text = "Nivel: " + Global.user.get("nivel", "No asignado")
 
 	# Cargar logros
 	var url_logros = "%s/logros.json" % firebase_url

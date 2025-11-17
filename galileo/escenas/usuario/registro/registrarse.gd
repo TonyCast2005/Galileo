@@ -28,11 +28,12 @@ func _on_aceptar_pressed():
 		mensaje.text = res.error.message
 		
 	else:
+		
 		var uid = res["localId"]
 		var user_data = {
 			"email": correo.text,
 			"nombre": contrasena.text,
-			"nivel": "principiante", #revisar resultado del test, no sé cómo hacerlo XD
+			"nivel": "temporal", #revisar resultado del test, no sé cómo hacerlo XD
 			"logros": {}
 		}
 		await auth.save_user_data(uid, user_data)
@@ -40,7 +41,7 @@ func _on_aceptar_pressed():
 		Global.user_uid = uid
 		Global.user_data = user_data
 
-		get_tree().change_scene_to_file("res://escenas/usuario/Perfil/perfil.tscn")
+		get_tree().change_scene_to_file("res://escenas/TestUbicacion/test1.tscn")
 
 func _on_iniciarsesion_pressed():
-	get_tree().change_scene_to_file("res://escenas/TestUbicacion/test1.tscn")
+	get_tree().change_scene_to_file("res://escenas/usuario/registro/iniciarSesion.tscn")

@@ -45,10 +45,12 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Img2" type="TextureRect" parent="Graficador"]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Img3" type="TextureRect" parent="Graficador"]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
