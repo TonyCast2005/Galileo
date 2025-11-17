@@ -1,7 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://cwoe858esyhfw"]
+[gd_scene load_steps=4 format=3 uid="uid://cwoe858esyhfw"]
 
 [ext_resource type="Script" uid="uid://d1br54n36e2bb" path="res://escenas/Graficas_Metricas/metricas.gd" id="1_7b17y"]
-[ext_resource type="PackedScene" uid="uid://ccnghi4ki5rrn" path="res://escenas/Gato_Instrucciones/Gato_Instrucciones.tscn" id="2_0wp7x"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7b17y"]
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="Theme" id="Theme_7b17y"]
 
 [node name="Metricas" type="Control"]
 custom_minimum_size = Vector2(300, 200)
@@ -21,37 +28,6 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.133333, 0.156863, 0.211765, 1)
 
-[node name="Graficador" type="Control" parent="."]
-layout_mode = 1
-anchor_left = 0.328
-anchor_top = 0.502
-anchor_right = 0.386
-anchor_bottom = 0.506
-offset_left = -92.16
-offset_top = 214.44
-offset_right = -49.92
-offset_bottom = 231.32
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("1_7b17y")
-
-[node name="Img1" type="TextureRect" parent="Graficador"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Img2" type="TextureRect" parent="Graficador"]
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Img3" type="TextureRect" parent="Graficador"]
-offset_right = 40.0
-offset_bottom = 40.0
-
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
 offset_left = -3.0
@@ -63,4 +39,55 @@ text = "TUS ESTADISTICAS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="GatoInstrucciones" parent="." instance=ExtResource("2_0wp7x")]
+[node name="Radar" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7b17y")
+
+[node name="Panel_Info" type="Panel" parent="Radar"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -383.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7b17y")
+
+[node name="ColorRect" type="ColorRect" parent="Radar/Panel_Info"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_right = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_7b17y")
+color = Color(0.107489, 0.12787, 0.175437, 1)
+
+[node name="Label_Title" type="Label" parent="Radar/Panel_Info"]
+layout_mode = 0
+offset_left = 248.0
+offset_top = 22.0
+offset_right = 429.0
+offset_bottom = 70.0
+theme_override_font_sizes/font_size = 22
+text = "TITULO"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label_Info" type="Label" parent="Radar/Panel_Info"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 72.0
+offset_right = 664.0
+offset_bottom = 113.0
+theme_override_font_sizes/font_size = 19
+autowrap_mode = 2

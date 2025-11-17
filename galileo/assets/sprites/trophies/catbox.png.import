@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qkh7smhxqj5v"
-path="res://.godot/imported/cajadecartón .png-27cf3be8c23dae2c477f29b2befa2e8b.ctex"
+uid="uid://cyecj8j7fwkfm"
+path="res://.godot/imported/catbox.png-d50b92ac908ccf4568bd4b456b4867bd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/trophies/cajadecartón .png"
-dest_files=["res://.godot/imported/cajadecartón .png-27cf3be8c23dae2c477f29b2befa2e8b.ctex"]
+source_file="res://assets/sprites/trophies/catbox.png"
+dest_files=["res://.godot/imported/catbox.png-d50b92ac908ccf4568bd4b456b4867bd.ctex"]
 
 [params]
 

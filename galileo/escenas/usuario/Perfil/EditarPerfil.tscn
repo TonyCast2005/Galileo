@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://tb6s65g7ub4q"]
+[gd_scene load_steps=7 format=3 uid="uid://tb6s65g7ub4q"]
 
-[ext_resource type="Script" uid="uid://bh0y51o4idc3k" path="res://escenas/usuario/Perfil/editar_perfil.gd" id="1_wkyxs"]
-[ext_resource type="Texture2D" uid="uid://dpu72kxvllbfy" path="res://assets/sprites/ui/Logros/caja de cartón .png" id="1_xvlxl"]
+[ext_resource type="Script" uid="uid://yup3w5b6ydlv" path="res://escenas/usuario/Perfil/editar_perfil.gd" id="1_wkyxs"]
 [ext_resource type="Texture2D" uid="uid://blg67gg5afvfk" path="res://assets/sprites/ui/Menu/persona B.png" id="2_wkyxs"]
 [ext_resource type="Texture2D" uid="uid://1ly7vb0unt2y" path="res://assets/sprites/ui/lápiz.png" id="3_qu4ue"]
 
@@ -46,15 +45,18 @@ offset_left = 182.0
 offset_top = 67.0
 offset_right = 527.0
 offset_bottom = 412.0
-texture = ExtResource("1_xvlxl")
 expand_mode = 2
 
-[node name="EditarPerfil" type="Button" parent="."]
-layout_mode = 0
-offset_left = 573.0
+[node name="perfil" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.796
+anchor_right = 0.947
+anchor_bottom = 0.112
+offset_left = -0.120056
 offset_top = 39.0
-offset_right = 682.0
-offset_bottom = 143.0
+offset_right = 0.159973
+offset_bottom = -0.360001
 theme_override_styles/normal = SubResource("StyleBoxTexture_b45wd")
 
 [node name="NombreUsuario" type="Label" parent="."]
@@ -68,6 +70,30 @@ text = "Nombre de usuario"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="NombreInput" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.125
+anchor_top = 0.417
+anchor_right = 0.875
+anchor_bottom = 0.484
+offset_top = 3.23999
+offset_right = -6.10352e-05
+offset_bottom = 2.47998
+
+[node name="ed_nombre" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.11
+anchor_top = 0.437
+anchor_right = 0.189
+anchor_bottom = 0.477
+offset_left = 1.8
+offset_top = -2.35999
+offset_right = 1.92
+offset_bottom = -2.56006
+theme_override_styles/normal = SubResource("StyleBoxTexture_fksbu")
+
 [node name="contraseña" type="Label" parent="."]
 layout_mode = 0
 offset_left = 145.0
@@ -78,6 +104,31 @@ theme_override_font_sizes/font_size = 26
 text = "contraseña"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ContrasenaInput" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.174
+anchor_top = 0.5
+anchor_right = 0.829
+anchor_bottom = 0.569
+offset_left = -0.280006
+offset_top = -1.0
+offset_right = 0.119934
+offset_bottom = -17.32
+
+[node name="ed_contraseña" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.287
+anchor_top = 0.529
+anchor_right = 0.287
+anchor_bottom = 0.529
+offset_left = -28.64
+offset_top = -26.1201
+offset_right = 28.36
+offset_bottom = 24.8799
+theme_override_styles/normal = SubResource("StyleBoxTexture_fksbu")
 
 [node name="fotoPerfil" type="Label" parent="."]
 layout_mode = 0
@@ -96,22 +147,6 @@ offset_left = 122.0
 offset_top = 468.0
 offset_right = 179.0
 offset_bottom = 519.0
-theme_override_styles/normal = SubResource("StyleBoxTexture_fksbu")
-
-[node name="ed_nombre" type="Button" parent="."]
-layout_mode = 0
-offset_left = 79.0
-offset_top = 560.0
-offset_right = 136.0
-offset_bottom = 611.0
-theme_override_styles/normal = SubResource("StyleBoxTexture_fksbu")
-
-[node name="ed_contraseña" type="Button" parent="."]
-layout_mode = 0
-offset_left = 178.0
-offset_top = 651.0
-offset_right = 235.0
-offset_bottom = 702.0
 theme_override_styles/normal = SubResource("StyleBoxTexture_fksbu")
 
 [node name="guardar" type="Button" parent="."]
@@ -144,3 +179,12 @@ offset_bottom = 1048.0
 theme_override_font_sizes/font_size = 23
 theme_override_styles/normal = SubResource("StyleBoxFlat_gyqkp")
 text = "Borrar cuenta"
+
+[node name="MostrarBtn" type="Button" parent="."]
+layout_mode = 0
+offset_left = 142.0
+offset_top = 538.0
+offset_right = 150.0
+offset_bottom = 546.0
+
+[connection signal="pressed" from="perfil" to="." method="_on_perfil_pressed"]

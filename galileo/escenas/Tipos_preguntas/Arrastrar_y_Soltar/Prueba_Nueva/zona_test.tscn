@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://35y6b5kjtler"]
 
 [ext_resource type="PackedScene" uid="uid://ce1i46eqi8dlt" path="res://escenas/Tipos_preguntas/Arrastrar_y_Soltar/Prueba_Nueva/RestZone.tscn" id="1_yfgur"]
-[ext_resource type="PackedScene" uid="uid://b1g855tc0yp2q" path="res://escenas/Tipos_preguntas/Arrastrar_y_Soltar/Prueba_Nueva/Prueba_Drag&Drop.tscn" id="2_q4rsn"]
+[ext_resource type="PackedScene" uid="uid://b1g855tc0yp2q" path="res://escenas/Tipos_preguntas/Arrastrar_y_Soltar/Bloques_Tipos/Prueba_Drag&Drop.tscn" id="2_q4rsn"]
 
 [node name="ZonaTest" type="Node2D"]
 

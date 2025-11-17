@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://gyp61wi1gkmj"]
+
+[ext_resource type="Script" uid="uid://dlklpe14hm4ry" path="res://escenas/TestUbicacion/preambulo.gd" id="1_wrl8n"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qfgja"]
+bg_color = Color(0.516337, 0.317074, 0.693101, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[node name="Preambulo" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wrl8n")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.133333, 0.156863, 0.211765, 1)
+
+[node name="Botoncontinuar" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.621
+anchor_top = 0.508
+anchor_right = 0.872
+anchor_bottom = 0.559
+offset_left = -0.120026
+offset_top = -0.23999
+offset_right = 0.159973
+offset_bottom = -0.52002
+theme_override_styles/normal = SubResource("StyleBoxFlat_qfgja")
+text = "Continuar"
+
+[connection signal="pressed" from="Botoncontinuar" to="." method="_on_botoncontinuar_pressed"]

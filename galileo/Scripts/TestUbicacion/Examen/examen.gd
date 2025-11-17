@@ -7,7 +7,7 @@ extends Control
 @onready var boton_retro = $PanelRetroalimentacion/BotonSiguiente
 @onready var contenedor_preguntas = $ContenedorPreguntas
 @onready var progreso = $Progreso
-@onready var http = $HTTPRequest   # 👈 asegúrate de tener un nodo HTTPRequest en tu escena Examen
+@onready var http = $HTTPRequest  
 
 var puntaje = 0
 var correctas = 0
@@ -92,11 +92,9 @@ func cargar_pregunta(indice: int):
 
 	if instancia_actual.has_method("set_pregunta"):
 		instancia_actual.set_pregunta(pregunta)
-
   
 	if instancia_actual.has_signal("respondida") and not instancia_actual.is_connected("respondida", _on_pregunta_respondida):
 		instancia_actual.respondida.connect(_on_pregunta_respondida)
-
 
 # ================================
 # MANEJAR RESPUESTA

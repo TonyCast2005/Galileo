@@ -1,9 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://bevye0qg4wu30"]
+[gd_scene load_steps=7 format=3 uid="uid://bevye0qg4wu30"]
 
 [ext_resource type="PackedScene" uid="uid://cs6y8btdpwblb" path="res://escenas/menu.tscn" id="1_pw2c4"]
-[ext_resource type="Script" path="res://escenas/usuario/Perfil/perfil.gd" id="1_y0tx0"]
+[ext_resource type="Script" uid="uid://bdc81e4xu188m" path="res://escenas/usuario/Perfil/perfil.gd" id="1_y0tx0"]
 [ext_resource type="Texture2D" uid="uid://dpu72kxvllbfy" path="res://assets/sprites/ui/Logros/caja de cartón .png" id="2_q3e6x"]
 [ext_resource type="Texture2D" uid="uid://wtavayokovw6" path="res://assets/sprites/ui/Menu/engrane.png" id="3_y0tx0"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q3e6x"]
+texture = ExtResource("3_y0tx0")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_76iub"]
 texture = ExtResource("3_y0tx0")
@@ -35,12 +38,13 @@ offset_bottom = 412.0
 texture = ExtResource("2_q3e6x")
 expand_mode = 2
 
-[node name="EditarPerfil" type="Button" parent="."]
+[node name="Editarperfil" type="Button" parent="."]
 layout_mode = 0
 offset_left = 575.0
 offset_top = 9.0
 offset_right = 722.0
 offset_bottom = 160.0
+theme_override_styles/focus = SubResource("StyleBoxTexture_q3e6x")
 theme_override_styles/normal = SubResource("StyleBoxTexture_76iub")
 
 [node name="NombreUsuario" type="Label" parent="."]
@@ -49,12 +53,12 @@ offset_left = 127.0
 offset_top = 411.0
 offset_right = 589.0
 offset_bottom = 505.0
-theme_override_font_sizes/font_size = 26
+theme_override_font_sizes/font_size = 29
 text = "Nombre de usuario"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="NiveelUsuario" type="Label" parent="."]
+[node name="NivelUsuario" type="Label" parent="."]
 layout_mode = 0
 offset_left = 132.0
 offset_top = 512.0
@@ -63,9 +67,6 @@ offset_bottom = 566.0
 theme_override_font_sizes/font_size = 26
 text = "Nivel del usuario"
 horizontal_alignment = 1
-
-[node name="Control" parent="." instance=ExtResource("1_pw2c4")]
-layout_mode = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 0
@@ -78,3 +79,9 @@ offset_bottom = 1102.0
 layout_mode = 2
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="Control" parent="." instance=ExtResource("1_pw2c4")]
+layout_mode = 1
+
+[connection signal="pressed" from="Editarperfil" to="." method="_on_editarperfil_pressed"]
+[connection signal="pressed" from="Editarperfil" to="." method="_on_editar_perfil_pressed"]
