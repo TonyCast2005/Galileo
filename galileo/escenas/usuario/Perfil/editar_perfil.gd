@@ -127,3 +127,8 @@ func _on_ed_contraseña_pressed() -> void:
     var selector = contenedor_contra.instantiate()
     add_child(selector)
     selector.connect("foto_seleccionada", Callable(self, "_on_foto_elegida"))
+
+
+func _on_cerrar_sesion_pressed() -> void:
+    Globals.user.clear()
+    get_tree().change_scene_to_file("res://escenas/usuario/registro/iniciarSesion.tscn")

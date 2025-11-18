@@ -190,3 +190,4 @@ offset_bottom = 546.0
 [connection signal="pressed" from="perfil" to="." method="_on_perfil_pressed"]
 [connection signal="pressed" from="ed_nombre" to="." method="_on_ed_nombre_pressed"]
 [connection signal="pressed" from="ed_contraseña" to="." method="_on_ed_contraseña_pressed"]
+[connection signal="pressed" from="cerrarSesion" to="." method="_on_cerrar_sesion_pressed"]
