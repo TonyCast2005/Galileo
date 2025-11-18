@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://c44h1n1s8qlju" path="res://assets/sprites/trophies/aprendizVeloz.png" id="1_3cd0q"]
 [ext_resource type="Texture2D" uid="uid://baykhnqxwooqw" path="res://assets/sprites/ui/ventana.png" id="1_fmlv3"]
-[ext_resource type="Script" uid="uid://dsb7wiuwe6k1" path="res://escenas/usuario/Perfil/imagenes.gd" id="1_pnxe4"]
+[ext_resource type="Script" uid="uid://dsb7wiuwe6k1" path="res://escenas/usuario/Perfil/contenedores_editar/imagenes.gd" id="1_pnxe4"]
 [ext_resource type="Texture2D" uid="uid://bwac723earig0" path="res://assets/sprites/trophies/aprendizVisual.png" id="2_f6580"]
 [ext_resource type="Texture2D" uid="uid://qkh7smhxqj5v" path="res://assets/sprites/trophies/cajadecartón.png" id="3_gpnlc"]
 [ext_resource type="Texture2D" uid="uid://cyecj8j7fwkfm" path="res://assets/sprites/trophies/catbox.png" id="4_bka7f"]

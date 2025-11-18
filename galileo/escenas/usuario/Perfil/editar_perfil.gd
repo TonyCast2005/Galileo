@@ -8,7 +8,10 @@ var password
 signal foto_cambiada(nueva_foto)
 
 # Escena de selección de fotos
-@onready var contenedor_fotos = preload("res://escenas/usuario/Perfil/imagenes.tscn")
+@onready var contenedor_fotos = preload("res://escenas/usuario/Perfil/contenedores_editar/imagenes.tscn")
+@onready var contenedor_nombre = preload("res://escenas/usuario/Perfil/contenedores_editar/contenedor_nombre.tscn")
+@onready var contenedor_contra = preload("res://escenas/usuario/Perfil/contenedores_editar/contenedor_contra.tscn")
+
 
 func _ready():
     # Conectar botón para abrir selector de fotos
@@ -112,3 +115,15 @@ func cargar_datos_usuario():
 func _on_foto_actualizada(foto_nueva: String):
     print("Nueva foto recibida:", foto_nueva)
     cargar_datos_usuario()   # recarga la foto desde Globals.user
+
+
+func _on_ed_nombre_pressed() -> void:
+    var selector = contenedor_nombre.instantiate()
+    add_child(selector)
+    selector.connect("foto_seleccionada", Callable(self, "_on_foto_elegida"))
+
+
+func _on_ed_contraseña_pressed() -> void:
+    var selector = contenedor_contra.instantiate()
+    add_child(selector)
+    selector.connect("foto_seleccionada", Callable(self, "_on_foto_elegida"))

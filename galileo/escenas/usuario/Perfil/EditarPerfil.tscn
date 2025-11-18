@@ -70,7 +70,7 @@ text = "Nombre de usuario"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="NombreInput" type="LineEdit" parent="."]
+[node name="NombreInput" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.125
@@ -105,7 +105,7 @@ text = "contraseña"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ContrasenaInput" type="LineEdit" parent="."]
+[node name="ContrasenaInput" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.174
@@ -188,3 +188,5 @@ offset_right = 150.0
 offset_bottom = 546.0
 
 [connection signal="pressed" from="perfil" to="." method="_on_perfil_pressed"]
+[connection signal="pressed" from="ed_nombre" to="." method="_on_ed_nombre_pressed"]
+[connection signal="pressed" from="ed_contraseña" to="." method="_on_ed_contraseña_pressed"]

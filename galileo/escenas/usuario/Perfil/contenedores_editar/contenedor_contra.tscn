@@ -1,0 +1,88 @@
+[gd_scene load_steps=5 format=3 uid="uid://dppkmdr6j3kef"]
+
+[ext_resource type="Texture2D" uid="uid://baykhnqxwooqw" path="res://assets/sprites/ui/ventana.png" id="1_hhw6s"]
+[ext_resource type="Script" uid="uid://bdmhysrl3rprx" path="res://escenas/usuario/Perfil/contenedores_editar/contenedor_contra.gd" id="1_q0je6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q0je6"]
+bg_color = Color(0.619608, 0.109804, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4x8ja"]
+bg_color = Color(0.265163, 0.699921, 0.403296, 1)
+
+[node name="ContenedorContra" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_q0je6")
+
+[node name="Ventana" type="Sprite2D" parent="."]
+position = Vector2(360, 594)
+scale = Vector2(0.684631, 0.926056)
+texture = ExtResource("1_hhw6s")
+
+[node name="Texto1" type="Label" parent="Ventana"]
+offset_left = -375.385
+offset_top = -242.966
+offset_right = 326.615
+offset_bottom = -172.966
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 39
+text = "CAMBIAR CONTRASEÑA"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Actual" type="LineEdit" parent="Ventana"]
+offset_left = -377.0
+offset_top = -180.0
+offset_right = 339.0
+offset_bottom = -70.0
+theme_override_font_sizes/font_size = 24
+placeholder_text = "CONTRASEÑA ACTUAL"
+alignment = 1
+
+[node name="Nuevo" type="LineEdit" parent="Ventana"]
+offset_left = -371.003
+offset_top = -57.232
+offset_right = 340.997
+offset_bottom = 59.768
+theme_override_font_sizes/font_size = 23
+placeholder_text = "NUEVA CONTRASEÑA"
+alignment = 1
+
+[node name="Confirmar" type="LineEdit" parent="Ventana"]
+offset_left = -369.542
+offset_top = 75.5893
+offset_right = 342.458
+offset_bottom = 192.589
+theme_override_font_sizes/font_size = 23
+placeholder_text = "CONFIRMAR CONTRASEÑA"
+alignment = 1
+
+[node name="Salir" type="Button" parent="Ventana"]
+offset_left = 362.0
+offset_top = -248.0
+offset_right = 445.0
+offset_bottom = -192.0
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_q0je6")
+text = "X"
+
+[node name="Guardar" type="Button" parent="Ventana"]
+offset_left = -128.536
+offset_top = 205.171
+offset_right = 106.464
+offset_bottom = 258.171
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_4x8ja")
+text = "GUARDAR"
+
+[node name="Mensaje" type="Label" parent="Ventana"]
+offset_left = -334.487
+offset_top = 296.958
+offset_right = 278.513
+offset_bottom = 342.958
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Ventana/Salir" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Ventana/Guardar" to="." method="_on_guardar_pressed"]
