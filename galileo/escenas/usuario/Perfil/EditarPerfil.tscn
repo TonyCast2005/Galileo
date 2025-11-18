@@ -152,9 +152,9 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_fksbu")
 [node name="guardar" type="Button" parent="."]
 layout_mode = 0
 offset_left = 251.0
-offset_top = 785.0
+offset_top = 898.0
 offset_right = 467.0
-offset_bottom = 842.0
+offset_bottom = 955.0
 theme_override_font_sizes/font_size = 23
 theme_override_styles/normal = SubResource("StyleBoxFlat_gyqkp")
 text = "Guardar
@@ -163,22 +163,12 @@ text = "Guardar
 [node name="cerrarSesion" type="Button" parent="."]
 layout_mode = 0
 offset_left = 187.0
-offset_top = 890.0
+offset_top = 786.0
 offset_right = 535.0
-offset_bottom = 947.0
+offset_bottom = 843.0
 theme_override_font_sizes/font_size = 23
 theme_override_styles/normal = SubResource("StyleBoxFlat_gyqkp")
 text = "Cerrar sesión"
-
-[node name="borrarCuenta" type="Button" parent="."]
-layout_mode = 0
-offset_left = 185.0
-offset_top = 991.0
-offset_right = 544.0
-offset_bottom = 1048.0
-theme_override_font_sizes/font_size = 23
-theme_override_styles/normal = SubResource("StyleBoxFlat_gyqkp")
-text = "Borrar cuenta"
 
 [node name="MostrarBtn" type="Button" parent="."]
 layout_mode = 0
