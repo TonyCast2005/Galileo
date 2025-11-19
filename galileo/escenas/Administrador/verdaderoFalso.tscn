@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://jvtv0llnfi0x"]
+[gd_scene load_steps=4 format=3 uid="uid://gui2niwmnl56"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lcb4l"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8n05j"]
 bg_color = Color(0.147575, 0.0936971, 0.221111, 1)
 border_width_left = 5
 border_width_top = 5
@@ -11,7 +11,7 @@ corner_radius_top_right = 40
 corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4oyf3"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1mnc6"]
 bg_color = Color(0.147575, 0.0936971, 0.221111, 1)
 border_width_left = 5
 border_width_top = 5
@@ -22,7 +22,7 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tykc7"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bwhm2"]
 bg_color = Color(0.147575, 0.0936971, 0.221111, 1)
 border_width_left = 5
 border_width_top = 5
@@ -33,7 +33,7 @@ corner_radius_top_right = 40
 corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
 
-[node name="OpcionMultiple" type="Control"]
+[node name="VerdaderoFalso" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -50,20 +50,20 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.227451, 0.152941, 0.329412, 1)
 
-[node name="preguntas" type="Label" parent="."]
+[node name="titulo" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.103
-anchor_top = 0.151
+anchor_top = 0.119
 anchor_right = 0.903
-anchor_bottom = 0.218
+anchor_bottom = 0.186
 offset_left = -0.160004
-offset_top = 16.72
-offset_right = -0.160034
-offset_bottom = 16.96
+offset_top = -0.320007
+offset_right = -0.160095
+offset_bottom = -0.0800323
 theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_lcb4l")
-text = "Opción multiple"
+theme_override_styles/normal = SubResource("StyleBoxFlat_8n05j")
+text = "Verdadero o falso"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -82,67 +82,20 @@ text = "Nombre administrador"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="pregunta" type="TextEdit" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.118
-anchor_top = 0.252
-anchor_right = 0.981
-anchor_bottom = 0.406
-offset_left = -36.96
-offset_top = 4.44
-offset_right = -37.3201
-offset_bottom = -11.6801
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_4oyf3")
-placeholder_text = "Espacio para escribir pregunta"
-
-[node name="Respuesta 1" type="TextEdit" parent="."]
+[node name="construirCodigo" type="TextEdit" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.176
-anchor_top = 0.414
-anchor_right = 0.833
-anchor_bottom = 0.481
+anchor_top = 0.22
+anchor_right = 0.858
+anchor_bottom = 0.392
 offset_left = -10.72
-offset_top = 0.0799561
-offset_right = 0.239868
-offset_bottom = 0.319885
+offset_top = -0.600006
+offset_right = 0.23999
+offset_bottom = 2.23999
 theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_4oyf3")
-placeholder_text = "Respuesta 1"
-autowrap_mode = 2
-
-[node name="Respuesta 2" type="TextEdit" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.161
-anchor_top = 0.5
-anchor_right = 0.833
-anchor_bottom = 0.566
-offset_left = 0.0799789
-offset_top = -2.0
-offset_right = 0.239868
-offset_bottom = -0.480042
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_4oyf3")
-placeholder_text = "Respuesta 2"
-autowrap_mode = 2
-
-[node name="Respuesta 3" type="TextEdit" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.161
-anchor_top = 0.585
-anchor_right = 0.833
-anchor_bottom = 0.652
-offset_left = 0.0799789
-offset_top = 0.199951
-offset_right = 0.239868
-offset_bottom = 0.440002
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_4oyf3")
-placeholder_text = "Respuesta 3"
+theme_override_styles/normal = SubResource("StyleBoxFlat_1mnc6")
+placeholder_text = "pregunta"
 autowrap_mode = 2
 
 [node name="guardar" type="Label" parent="."]
@@ -157,7 +110,7 @@ offset_top = -0.0400391
 offset_right = 0.159988
 offset_bottom = -0.52002
 theme_override_font_sizes/font_size = 12
-theme_override_styles/normal = SubResource("StyleBoxFlat_tykc7")
+theme_override_styles/normal = SubResource("StyleBoxFlat_bwhm2")
 text = "guardar"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -174,7 +127,7 @@ offset_top = -0.600037
 offset_right = 0.359985
 offset_bottom = -0.240112
 theme_override_font_sizes/font_size = 12
-theme_override_styles/normal = SubResource("StyleBoxFlat_tykc7")
+theme_override_styles/normal = SubResource("StyleBoxFlat_bwhm2")
 text = "borrador"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -191,7 +144,7 @@ offset_top = -0.600037
 offset_right = 0.199982
 offset_bottom = 0.319946
 theme_override_font_sizes/font_size = 12
-theme_override_styles/normal = SubResource("StyleBoxFlat_tykc7")
+theme_override_styles/normal = SubResource("StyleBoxFlat_bwhm2")
 text = "eliminar"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -208,7 +161,49 @@ offset_top = -0.600037
 offset_right = 0.359985
 offset_bottom = 0.319946
 theme_override_font_sizes/font_size = 12
-theme_override_styles/normal = SubResource("StyleBoxFlat_tykc7")
+theme_override_styles/normal = SubResource("StyleBoxFlat_bwhm2")
 text = "previsualizar"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="txtverdadero" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.415
+anchor_top = 0.457
+anchor_right = 0.806
+anchor_bottom = 0.5
+offset_left = -107.8
+offset_top = -1.96002
+offset_right = -108.32
+offset_bottom = 4.0
+theme_override_font_sizes/font_size = 20
+text = "Verdadero"
+
+[node name="txtfalso" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.415
+anchor_top = 0.539
+anchor_right = 0.806
+anchor_bottom = 0.587
+offset_left = -105.8
+offset_top = 12.08
+offset_right = -106.32
+offset_bottom = 11.64
+theme_override_font_sizes/font_size = 20
+text = "Falso"
+
+[node name="verdadero" type="CheckBox" parent="."]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 547.0
+offset_right = 211.0
+offset_bottom = 637.0
+
+[node name="falso" type="CheckBox" parent="."]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 663.0
+offset_right = 211.0
+offset_bottom = 753.0
