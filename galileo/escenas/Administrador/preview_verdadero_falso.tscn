@@ -35,6 +35,7 @@ grow_vertical = 2
 color = Color(0.227451, 0.152941, 0.329412, 1)
 
 [node name="Enunciado" type="Label" parent="."]
+layout_mode = 0
 offset_left = 66.0
 offset_top = 426.0
 offset_right = 638.0
@@ -48,6 +49,7 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="Verdadero" type="Button" parent="."]
+layout_mode = 0
 offset_left = 80.0
 offset_top = 628.0
 offset_right = 332.0
@@ -58,6 +60,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_14fcw")
 text = "Verdadero"
 
 [node name="Falso" type="Button" parent="."]
+layout_mode = 0
 offset_left = 394.0
 offset_top = 631.0
 offset_right = 645.0
