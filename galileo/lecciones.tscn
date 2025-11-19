@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bi58oke3gkhkn"]
 
-[ext_resource type="PackedScene" uid="uid://cs6y8btdpwblb" path="res://menu.tscn" id="1_6ii2s"]
+[ext_resource type="PackedScene" uid="uid://cs6y8btdpwblb" path="res://escenas/menu.tscn" id="1_6ii2s"]
 
 [node name="ColorRect" type="ColorRect"]
 anchors_preset = 15
