@@ -1,0 +1,191 @@
+[gd_scene load_steps=3 format=3 uid="uid://bq6y5wpst3jbm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dordt"]
+bg_color = Color(0.147575, 0.0936971, 0.221111, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xf64r"]
+bg_color = Color(0.147575, 0.0936971, 0.221111, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="AgregarLección" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.227451, 0.152941, 0.329412, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.079
+anchor_right = 1.0
+anchor_bottom = 0.13
+offset_left = 4.0
+offset_top = -0.120003
+offset_right = -3.0
+offset_bottom = -0.400009
+theme_override_font_sizes/font_size = 20
+text = "Nombre administrador"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="preguntas" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.103
+anchor_top = 0.238
+anchor_right = 0.897
+anchor_bottom = 0.305
+offset_left = -0.160004
+offset_top = 0.359985
+offset_right = 4.15997
+offset_bottom = 0.599976
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_dordt")
+text = "Agregar lección"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="nivel" type="TextEdit" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.176
+anchor_top = 0.337
+anchor_right = 0.849
+anchor_bottom = 0.404
+offset_left = 0.279991
+offset_top = -0.360016
+offset_right = -0.280029
+offset_bottom = -0.119995
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_xf64r")
+placeholder_text = "Nivel"
+autowrap_mode = 2
+caret_blink_interval = 0.8
+
+[node name="tema" type="TextEdit" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.176
+anchor_top = 0.424
+anchor_right = 0.849
+anchor_bottom = 0.491
+offset_left = 0.279991
+offset_top = 0.279968
+offset_right = -0.280029
+offset_bottom = 0.519958
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_xf64r")
+placeholder_text = "Nivel"
+autowrap_mode = 2
+caret_blink_interval = 0.8
+
+[node name="nombre" type="TextEdit" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.176
+anchor_top = 0.513
+anchor_right = 0.849
+anchor_bottom = 0.58
+offset_left = 0.279991
+offset_top = 0.359985
+offset_right = -0.280029
+offset_bottom = 0.599976
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_xf64r")
+placeholder_text = "Nivel"
+autowrap_mode = 2
+caret_blink_interval = 0.8
+
+[node name="guardar" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.046
+anchor_top = 0.726
+anchor_right = 0.24
+anchor_bottom = 0.759
+offset_left = 6.88
+offset_top = -2.28003
+offset_right = 2.2
+offset_bottom = 7.47992
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_dordt")
+text = "guardar"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="borrador" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.258
+anchor_top = 0.726
+anchor_right = 0.458
+anchor_bottom = 0.764
+offset_left = 0.23999
+offset_top = -0.280029
+offset_right = 0.23999
+offset_bottom = 0.0799561
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_dordt")
+text = "borrador"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="eliminar" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.469
+anchor_top = 0.726
+anchor_right = 0.661
+anchor_bottom = 0.762
+offset_left = 0.319977
+offset_top = -0.280029
+offset_right = 0.0799866
+offset_bottom = 0.639954
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_dordt")
+text = "eliminar"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="previsualizar" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.672
+anchor_top = 0.726
+anchor_right = 0.933
+anchor_bottom = 0.762
+offset_left = 0.159973
+offset_top = -0.280029
+offset_right = 0.23999
+offset_bottom = 0.639954
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_dordt")
+text = "previsualizar"
+horizontal_alignment = 1
+vertical_alignment = 1
