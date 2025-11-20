@@ -1,70 +1,55 @@
 extends Control
 
 @onready var enunciado = $Enunciado
-@onready var op_v = $MarginContainer/VBoxContainer/opcion_verdadero
-@onready var op_f = $MarginContainer/VBoxContainer/opcion_falso
-@onready var btn_verificar = $MarginContainer/VBoxContainer/btn_verificar
-@onready var retro = $MarginContainer/VBoxContainer/retro
+@onready var op_v = $Verdadero
+@onready var op_f = $Falso
+@onready var retro = $Mensaje  # Cambia si tu label de retroalimentación se llama distinto
 
 var data = {}
 
 func _ready():
-	# Cargar los datos enviados desde el administrador
-	if Globals.has("temp_preview_data"):
-		data = Globals.temp_preview_data
-	else:
-		data = {}
+	data = Globals.temp_preview_data
 
-	# Llenar el texto
+	if data.is_empty():
+		enunciado.text = "Sin enunciado"
+		return
+
+	# Establecer texto
 	enunciado.text = data.get("enunciado", "Sin enunciado")
 
-	op_v.button_pressed = false
-	op_f.button_pressed = false
+	# Reset botones
+	op_v.disabled = false
+	op_f.disabled = false
+	op_v.text = "Verdadero"
+	op_f.text = "Falso"
 
-	# Asegurar que la retroalimentación se oculte
+	# Conectar opciones
+	op_v.pressed.connect(func(): _verificar("Verdadero"))
+	op_f.pressed.connect(func(): _verificar("Falso"))
+
+	# Ocultar retro de inicio
 	retro.visible = false
 
-	# Conectar el botón
-	btn_verificar.pressed.connect(_on_verificar)
-
-func _on_verificar():
-	# Evita que ambos estén seleccionados
-	if op_v.button_pressed and op_f.button_pressed:
-		retro.text = "Selecciona solo una opción."
-		retro.visible = true
-		return
-
-	var respuesta_usuario = ""
-	if op_v.button_pressed:
-		respuesta_usuario = "verdadero"
-	elif op_f.button_pressed:
-		respuesta_usuario = "falso"
-	else:
-		retro.text = "Selecciona una respuesta."
-		retro.visible = true
-		return
-
+func _verificar(respuesta_usuario: String):
 	var correcta = data.get("respuesta_correcta", "")
-	var retro_v = data.get("retro_verdadero", "Retroalimentación no disponible.")
-	var retro_f = data.get("retro_falso", "Retroalimentación no disponible.")
 
-	# Mostrar retroalimentación
+	var retro_v = data.get("retro_verdadero", "Sin retroalimentación.")
+	var retro_f = data.get("retro_falso", "Sin retroalimentación.")
+
 	if respuesta_usuario == correcta:
-		if respuesta_usuario == "verdadero":
+		if respuesta_usuario == "Verdadero":
 			retro.text = retro_v
 		else:
 			retro.text = retro_f
-
-		retro.modulate = Color(0.1, 0.7, 0.1) # verde
+			
 	else:
-		if respuesta_usuario == "verdadero":
+		if respuesta_usuario == "Verdadero":
 			retro.text = retro_v
 		else:
 			retro.text = retro_f
-
-		retro.modulate = Color(0.8, 0.2, 0.2) # rojo
 
 	retro.visible = true
 
+
 func _on_volver_pressed():
-	get_tree().change_scene_to_file("res://escenas/Administrador/AgregarPregunta.tscn")
+	get_tree().change_scene_to_file("res://escenas/Administrador/verdaderoFalso.tscn")

@@ -81,12 +81,28 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_rwx3j")
 text = "Falso"
 
 [node name="volver" type="Button" parent="."]
+layout_mode = 0
 offset_left = 45.0
-offset_top = 913.0
+offset_top = 863.0
 offset_right = 181.0
-offset_bottom = 1001.0
+offset_bottom = 951.0
 theme_override_styles/focus = SubResource("StyleBoxTexture_rwx3j")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_qj4c7")
 theme_override_styles/normal = SubResource("StyleBoxTexture_l3y8t")
+
+[node name="Mensaje" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.079
+anchor_top = 0.755
+anchor_right = 0.924
+anchor_bottom = 0.848
+offset_left = 0.119999
+offset_top = 0.599915
+offset_right = -0.280029
+offset_bottom = 0.559937
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 
 [connection signal="pressed" from="volver" to="." method="_on_volver_pressed"]
