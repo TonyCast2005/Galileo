@@ -53,7 +53,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="Respuesta" type="LineEdit" parent="."]
+[node name="Respuesta" type="TextEdit" parent="."]
 layout_mode = 0
 offset_left = 65.0
 offset_top = 338.0
@@ -62,8 +62,8 @@ offset_bottom = 908.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxEmpty_3pmav")
-text = "Espacio respuesta"
-alignment = 1
+placeholder_text = "Espacio respuesta"
+wrap_mode = 1
 
 [node name="validar" type="Button" parent="."]
 layout_mode = 0
@@ -97,3 +97,16 @@ offset_bottom = 1024.0
 theme_override_styles/focus = SubResource("StyleBoxTexture_4torv")
 theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_rftcf")
 theme_override_styles/normal = SubResource("StyleBoxTexture_0ivxx")
+
+[node name="Mensaje" type="Label" parent="."]
+layout_mode = 0
+offset_left = 95.0
+offset_top = 1060.0
+offset_right = 638.0
+offset_bottom = 1217.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
