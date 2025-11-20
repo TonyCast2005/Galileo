@@ -213,3 +213,5 @@ text = "Aceptar"
 [connection signal="pressed" from="ColorRect/Competente" to="." method="_on_competente_pressed"]
 [connection signal="pressed" from="ColorRect/Experimentado" to="." method="_on_experimentado_pressed"]
 [connection signal="pressed" from="Test" to="." method="_on_test_pressed"]
+[connection signal="pressed" from="VentanaDefinicion/BtnSeguir" to="." method="_on_btn_seguir_pressed"]
+[connection signal="pressed" from="VentanaDefinicion/BtnAceptar" to="." method="_on_btn_aceptar_pressed"]

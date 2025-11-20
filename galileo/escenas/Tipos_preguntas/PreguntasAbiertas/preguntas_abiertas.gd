@@ -12,6 +12,7 @@ var preguntas = {}
 var pregunta_actual = ""
 var indice_pregunta = 0
 
+
 # -----------------------------------------------------
 # READY
 # -----------------------------------------------------
@@ -77,13 +78,13 @@ func mostrar_pregunta():
 	respuesta.text = ""
 	mensaje.text = ""
 
+
 # -----------------------------------------------------
 # Normalizar texto
 # -----------------------------------------------------
 func normalizar_texto(texto: String) -> String:
 	texto = texto.strip_edges().to_lower()
 
-	# Quitar acentos
 	var acentos = {
 		"á":"a","é":"e","í":"i","ó":"o","ú":"u",
 		"ä":"a","ë":"e","ï":"i","ö":"o","ü":"u",
@@ -92,21 +93,19 @@ func normalizar_texto(texto: String) -> String:
 	for a in acentos.keys():
 		texto = texto.replace(a, acentos[a])
 
-	# Quitar signos
 	var signos = [",", ".", ";", ":", "?", "!", "¿", "¡", "(", ")", "[", "]"]
 	for s in signos:
 		texto = texto.replace(s, "")
 
-	# Quitar artículos
 	var articulos = [" el ", " la ", " los ", " las ", " un ", " una ", " unos ", " unas "]
 	for a in articulos:
 		texto = texto.replace(a, " ")
 
-	# Colapsar dobles espacios
 	while "  " in texto:
 		texto = texto.replace("  ", " ")
 
 	return texto.strip_edges()
+
 
 # -----------------------------------------------------
 # Distancia de Levenshtein
@@ -135,6 +134,7 @@ func levenshtein(a: String, b: String) -> int:
 
 	return matrix[m][n]
 
+
 # -----------------------------------------------------
 # Similitud ortográfica
 # -----------------------------------------------------
@@ -145,6 +145,7 @@ func similitud_ortografica(a: String, b: String) -> float:
 	var dist = levenshtein(a, b)
 	var max_len = max(a.length(), b.length())
 	return 1.0 - float(dist) / float(max_len)
+
 
 # -----------------------------------------------------
 # Porcentaje de palabras clave encontradas
@@ -167,6 +168,7 @@ func porcentaje_palabras_clave(respuesta: String, palabras_clave: Array, sinonim
 
 	return float(encontradas) / float(total)
 
+
 # -----------------------------------------------------
 # Evaluar respuesta del usuario
 # -----------------------------------------------------
@@ -177,69 +179,31 @@ func evaluar_respuesta(pregunta: String, respuesta_usuario: String) -> Dictionar
 	var data = preguntas[pregunta]
 
 	var modelo = normalizar_texto(data["respuesta_modelo"])
-	var palabras_clave = []
-	if data.has("palabras_clave") and typeof(data["palabras_clave"]) == TYPE_ARRAY:
-		palabras_clave = data["palabras_clave"]
-
-	var sinonimos = {}
-	if data.has("sinonimos") and typeof(data["sinonimos"]) == TYPE_DICTIONARY:
-		sinonimos = data["sinonimos"]
-
+	var palabras_clave = data["palabras_clave"]
+	var sinonimos = data["sinonimos"] if data.has("sinonimos") else {}
 	var resp = normalizar_texto(respuesta_usuario)
 
-	# 1. porcentaje palabras clave
 	var pct_clave = porcentaje_palabras_clave(resp, palabras_clave, sinonimos)
-
-	# 2. similitud ortográfica (0..1)
 	var similitud = similitud_ortografica(resp, modelo)
 
-	# DEBUG: imprime valores para ver por qué falla
-	print("-- DEBUG EVALUAR --")
-	print("Respuesta normalizada: '", resp, "'")
-	print("Modelo normalizado: '", modelo, "'")
-	print("pct_clave:", pct_clave, "similitud:", similitud)
+	var resultado := ""
+	var mensaje := ""
 
-	# Reglas flexibles:
-	# 1) Si la similitud es muy alta --> correcta (usuario escribió casi lo mismo)
-	if similitud >= 0.80:
-		return {
-			"resultado": "correcta",
-			"mensaje": "¡excelente!",
-			"palabras_clave_pct": pct_clave,
-			"similitud": similitud
-		}
-
-	# 2) Si cumple la mayoría de palabras clave y similitud razonable --> correcta
 	if pct_clave >= 0.80 and similitud >= 0.60:
-		return {
-			"resultado": "correcta",
-			"mensaje": "Muy bien!",
-			"palabras_clave_pct": pct_clave,
-			"similitud": similitud
-		}
+		resultado = "correcta"
+		mensaje = "✔ Muy bien, tu respuesta es correcta."
 
-	# 3) Si tiene al menos 1 palabra clave y similitud media --> parcialmente correcta
-	if pct_clave >= 0.33 and similitud >= 0.60:
-		return {
-			"resultado": "parcial",
-			"mensaje": "más o menos, vas bien",
-			"palabras_clave_pct": pct_clave,
-			"similitud": similitud
-		}
+	elif pct_clave >= 0.50 and similitud >= 0.40:
+		resultado = "parcial"
+		mensaje = "◐ Casi correcta. Puedes mejorar algunos detalles."
 
-	# 4) Si cumple la mitad de claves y similitud mínima --> parcialmente
-	if pct_clave >= 0.50 and similitud >= 0.40:
-		return {
-			"resultado": "parcial",
-			"mensaje": "Tu respuesta está cerca, revisa algunos detalles.",
-			"palabras_clave_pct": pct_clave,
-			"similitud": similitud
-		} 	
+	else:
+		resultado = "incorrecta"
+		mensaje = "✖ Incorrecto.\nLa respuesta correcta es:\n" + data["respuesta_modelo"]
 
-	# 5) En cualquier otro caso --> incorrecta
 	return {
-		"resultado": "incorrecta",
-		"mensaje": "✖ Incorrecto.\nLa respuesta correcta es:\n" + data["respuesta_modelo"],
+		"resultado": resultado,
+		"mensaje": mensaje,
 		"palabras_clave_pct": pct_clave,
 		"similitud": similitud
 	}
@@ -250,7 +214,7 @@ func evaluar_respuesta(pregunta: String, respuesta_usuario: String) -> Dictionar
 # -----------------------------------------------------
 func _on_validar_pressed():
 	if pregunta_actual == "":
-		mensaje.text = "No hay pregunta actual."
+		mensaje.text = "❌ No hay pregunta actual."
 		return
 
 	var resultado = evaluar_respuesta(pregunta_actual, respuesta.text)

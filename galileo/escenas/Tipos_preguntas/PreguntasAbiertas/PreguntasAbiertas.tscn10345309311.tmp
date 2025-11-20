@@ -3,12 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://bgnffnt45rlhx" path="res://assets/sprites/ui/lupa.png" id="1_3pmav"]
 [ext_resource type="Script" uid="uid://cjxdblhn4g47c" path="res://escenas/Tipos_preguntas/PreguntasAbiertas/preguntas_abiertas.gd" id="1_88pd7"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4torv"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3pmav"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_88pd7"]
-
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4torv"]
 texture = ExtResource("1_3pmav")
 
@@ -17,6 +11,12 @@ texture = ExtResource("1_3pmav")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0ivxx"]
 texture = ExtResource("1_3pmav")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3pmav"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_88pd7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4torv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_88pd7"]
 bg_color = Color(0.184314, 0.12549, 0.278431, 0.686275)
@@ -42,26 +42,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.227451, 0.152941, 0.329412, 1)
-
-[node name="Respuesta" type="TextEdit" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.09
-anchor_top = 0.333
-anchor_right = 0.912
-anchor_bottom = 0.709
-offset_left = 0.199997
-offset_top = -0.23999
-offset_right = 0.359985
-offset_bottom = 0.479919
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxEmpty_4torv")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_3pmav")
-theme_override_styles/read_only = SubResource("StyleBoxEmpty_88pd7")
-placeholder_text = "Respuesta"
-wrap_mode = 1
-scroll_smooth = true
 
 [node name="Pista" type="Button" parent="."]
 layout_mode = 1
@@ -109,6 +89,25 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
+[node name="Respuesta" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.09
+anchor_top = 0.333
+anchor_right = 0.912
+anchor_bottom = 0.709
+offset_left = 0.199997
+offset_top = -0.23999
+offset_right = 0.359985
+offset_bottom = 0.479919
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3pmav")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_88pd7")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_4torv")
+placeholder_text = "Respuesta"
+alignment = 1
+
 [node name="validar" type="Button" parent="."]
 layout_mode = 0
 offset_left = 210.0
@@ -131,5 +130,3 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "Nombre de la lección"
 autowrap_mode = 2
-
-[connection signal="pressed" from="validar" to="." method="_on_validar_pressed"]
