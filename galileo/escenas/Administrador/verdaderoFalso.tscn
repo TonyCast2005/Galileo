@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://gui2niwmnl56"]
+[gd_scene load_steps=9 format=3 uid="uid://gui2niwmnl56"]
 
 [ext_resource type="Script" uid="uid://d2gqyovbwijec" path="res://escenas/Administrador/verdadero_falso.gd" id="1_1mnc6"]
+[ext_resource type="Texture2D" uid="uid://cwqextjtlqg7j" path="res://assets/sprites/ui/volver.png" id="2_bwhm2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8n05j"]
 bg_color = Color(0.147575, 0.0936971, 0.221111, 1)
@@ -34,6 +35,15 @@ corner_radius_top_left = 40
 corner_radius_top_right = 40
 corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3apfr"]
+texture = ExtResource("2_bwhm2")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qlrn1"]
+texture = ExtResource("2_bwhm2")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_27ehk"]
+texture = ExtResource("2_bwhm2")
 
 [node name="VerdaderoFalso" type="Control"]
 layout_mode = 3
@@ -210,3 +220,14 @@ offset_left = 130.0
 offset_top = 663.0
 offset_right = 211.0
 offset_bottom = 753.0
+
+[node name="volver" type="Button" parent="."]
+offset_left = 59.0
+offset_top = 860.0
+offset_right = 195.0
+offset_bottom = 948.0
+theme_override_styles/focus = SubResource("StyleBoxTexture_3apfr")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_qlrn1")
+theme_override_styles/normal = SubResource("StyleBoxTexture_27ehk")
+
+[connection signal="pressed" from="volver" to="." method="_on_volver_pressed"]

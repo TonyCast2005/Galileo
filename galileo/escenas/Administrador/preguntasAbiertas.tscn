@@ -1,4 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://upejlujfyp4q"]
+[gd_scene load_steps=9 format=3 uid="uid://upejlujfyp4q"]
+
+[ext_resource type="Script" uid="uid://bjku2j1sunaha" path="res://escenas/Administrador/preguntas_abiertas.gd" id="1_14n16"]
+[ext_resource type="Texture2D" uid="uid://cwqextjtlqg7j" path="res://assets/sprites/ui/volver.png" id="1_ud4bb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vjlb"]
 bg_color = Color(0.147575, 0.0936971, 0.221111, 1)
@@ -33,6 +36,15 @@ corner_radius_top_right = 40
 corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_14n16"]
+texture = ExtResource("1_ud4bb")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k7usp"]
+texture = ExtResource("1_ud4bb")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nrf4l"]
+texture = ExtResource("1_ud4bb")
+
 [node name="PreguntasAbiertas" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -40,6 +52,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_14n16")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -96,6 +109,7 @@ offset_bottom = -0.320038
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_ud4bb")
 placeholder_text = "Pregunta"
+wrap_mode = 1
 autowrap_mode = 2
 
 [node name="respuesta" type="TextEdit" parent="."]
@@ -112,6 +126,7 @@ offset_bottom = 0.119995
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_ud4bb")
 placeholder_text = "Respuesta"
+wrap_mode = 1
 autowrap_mode = 2
 
 [node name="sinonimo" type="TextEdit" parent="."]
@@ -128,6 +143,7 @@ offset_bottom = -6.10352e-05
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_ud4bb")
 placeholder_text = "Sinonimos de la respuesta"
+wrap_mode = 1
 autowrap_mode = 2
 
 [node name="guardar" type="Label" parent="."]
@@ -197,3 +213,14 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_14n16")
 text = "previsualizar"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="volver" type="Button" parent="."]
+offset_left = 59.0
+offset_top = 903.0
+offset_right = 195.0
+offset_bottom = 991.0
+theme_override_styles/focus = SubResource("StyleBoxTexture_14n16")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_k7usp")
+theme_override_styles/normal = SubResource("StyleBoxTexture_nrf4l")
+
+[connection signal="pressed" from="volver" to="." method="_on_volver_pressed"]

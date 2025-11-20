@@ -1,4 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bhrn0jet4kfd"]
+[gd_scene load_steps=10 format=3 uid="uid://bhrn0jet4kfd"]
+
+[ext_resource type="Script" uid="uid://c214clo272fpn" path="res://escenas/Administrador/arrastrar_soltar.gd" id="1_dusqf"]
+[ext_resource type="Texture2D" uid="uid://cwqextjtlqg7j" path="res://assets/sprites/ui/volver.png" id="2_jmcnp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_efkv0"]
 bg_color = Color(0.147575, 0.0936971, 0.221111, 1)
@@ -44,6 +47,15 @@ corner_radius_top_right = 40
 corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cf470"]
+texture = ExtResource("2_jmcnp")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u86mw"]
+texture = ExtResource("2_jmcnp")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k2ktv"]
+texture = ExtResource("2_jmcnp")
+
 [node name="ArrastrarSoltar" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -51,6 +63,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_dusqf")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -257,3 +270,14 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_cf470")
 text = "previsualizar"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="volver" type="Button" parent="."]
+offset_left = 49.0
+offset_top = 1095.0
+offset_right = 185.0
+offset_bottom = 1183.0
+theme_override_styles/focus = SubResource("StyleBoxTexture_cf470")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_u86mw")
+theme_override_styles/normal = SubResource("StyleBoxTexture_k2ktv")
+
+[connection signal="pressed" from="volver" to="." method="_on_volver_pressed"]

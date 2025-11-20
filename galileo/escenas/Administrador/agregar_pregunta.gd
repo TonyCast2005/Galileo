@@ -26,3 +26,6 @@ func _on_codigo_con_errores_pressed():
 
 func _on_construir_codigos_pressed():
 	get_tree().change_scene_to_file("res://escenas/Administrador/construirCodigo.tscn")
+
+func _on_volver_pressed():
+	get_tree().change_scene_to_file("res://escenas/Administrador/inicial.tscn")

@@ -65,3 +65,6 @@ func _on_verificar():
 		retro.modulate = Color(0.8, 0.2, 0.2) # rojo
 
 	retro.visible = true
+
+func _on_volver_pressed():
+	get_tree().change_scene_to_file("res://escenas/Administrador/AgregarPregunta.tscn")

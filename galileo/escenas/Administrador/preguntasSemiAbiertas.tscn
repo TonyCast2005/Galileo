@@ -1,4 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://v4qwkmu3gkyl"]
+[gd_scene load_steps=9 format=3 uid="uid://v4qwkmu3gkyl"]
+
+[ext_resource type="Texture2D" uid="uid://cwqextjtlqg7j" path="res://assets/sprites/ui/volver.png" id="1_lu4lc"]
+[ext_resource type="Script" uid="uid://cqexa74wfgjqm" path="res://escenas/Administrador/preguntas_semi_abiertas.gd" id="1_t4jiv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xtu1b"]
 bg_color = Color(0.147575, 0.0936971, 0.221111, 1)
@@ -33,6 +36,15 @@ corner_radius_top_right = 40
 corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t4jiv"]
+texture = ExtResource("1_lu4lc")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3l822"]
+texture = ExtResource("1_lu4lc")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eo8hi"]
+texture = ExtResource("1_lu4lc")
+
 [node name="PreguntasSemiAbiertass" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -40,6 +52,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_t4jiv")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -58,9 +71,9 @@ anchor_top = 0.151
 anchor_right = 0.903
 anchor_bottom = 0.218
 offset_left = -0.160004
-offset_top = 16.72
+offset_top = 109.72
 offset_right = -0.160034
-offset_bottom = 16.96
+offset_bottom = 109.96
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_xtu1b")
 text = "Preguntas semi abiertas"
@@ -74,9 +87,9 @@ anchor_top = 0.079
 anchor_right = 1.0
 anchor_bottom = 0.13
 offset_left = 4.0
-offset_top = -32.12
+offset_top = 64.88
 offset_right = -3.0
-offset_bottom = -32.4
+offset_bottom = 64.6
 theme_override_font_sizes/font_size = 20
 text = "Nombre administrador"
 horizontal_alignment = 1
@@ -90,12 +103,13 @@ anchor_top = 0.252
 anchor_right = 0.889
 anchor_bottom = 0.428
 offset_left = 0.199997
-offset_top = 12.44
+offset_top = 105.44
 offset_right = -0.0800171
-offset_bottom = 0.159973
+offset_bottom = 93.16
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_lu4lc")
 placeholder_text = "Pregunta"
+wrap_mode = 1
 autowrap_mode = 2
 
 [node name="respuesta" type="TextEdit" parent="."]
@@ -106,9 +120,9 @@ anchor_top = 0.458
 anchor_right = 0.868
 anchor_bottom = 0.525
 offset_left = -17.72
-offset_top = -0.240051
+offset_top = 92.7599
 offset_right = 0.039978
-offset_bottom = -6.10352e-05
+offset_bottom = 92.9999
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_lu4lc")
 placeholder_text = "Respuesta"
@@ -181,3 +195,14 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_t4jiv")
 text = "previsualizar"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="volver" type="Button" parent="."]
+offset_left = 59.0
+offset_top = 810.0
+offset_right = 195.0
+offset_bottom = 898.0
+theme_override_styles/focus = SubResource("StyleBoxTexture_t4jiv")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_3l822")
+theme_override_styles/normal = SubResource("StyleBoxTexture_eo8hi")
+
+[connection signal="pressed" from="volver" to="." method="_on_volver_pressed"]

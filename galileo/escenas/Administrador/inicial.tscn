@@ -1,4 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://d8mx0onmxk4s"]
+[gd_scene load_steps=5 format=3 uid="uid://d8mx0onmxk4s"]
+
+[ext_resource type="Script" uid="uid://bfutogcebcw16" path="res://escenas/Administrador/inicial.gd" id="1_gvp2n"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7658b"]
 bg_color = Color(0.147575, 0.0936971, 0.221111, 1)
@@ -40,6 +42,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_gvp2n")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -108,3 +111,7 @@ offset_bottom = 187.48
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_xxwe7")
 text = "Agregar logros"
+
+[connection signal="pressed" from="leccion" to="." method="_on_leccion_pressed"]
+[connection signal="pressed" from="preguntas" to="." method="_on_preguntas_pressed"]
+[connection signal="pressed" from="logros" to="." method="_on_logros_pressed"]

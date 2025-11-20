@@ -69,3 +69,6 @@ func _clear_fields():
 func _on_previsualizar_pressed():
 	Globals.temp_preview_data = get_form_data("preview")
 	get_tree().change_scene_to_file("res://escenas/preview/preview_verdadero_falso.tscn")
+	
+func _on_volver_pressed():
+	get_tree().change_scene_to_file("res://escenas/Administrador/AgregarPregunta.tscn")

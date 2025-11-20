@@ -1,4 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bgj5trgxqtwai"]
+[gd_scene load_steps=9 format=3 uid="uid://bgj5trgxqtwai"]
+
+[ext_resource type="Script" uid="uid://c4bppidxh1for" path="res://escenas/Administrador/construir_codigo.gd" id="1_aopru"]
+[ext_resource type="Texture2D" uid="uid://cwqextjtlqg7j" path="res://assets/sprites/ui/volver.png" id="2_lctgl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oclru"]
 bg_color = Color(0.147575, 0.0936971, 0.221111, 1)
@@ -33,6 +36,15 @@ corner_radius_top_right = 40
 corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_weutw"]
+texture = ExtResource("2_lctgl")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3qqb7"]
+texture = ExtResource("2_lctgl")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_olr3o"]
+texture = ExtResource("2_lctgl")
+
 [node name="ConstruirCodigo" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -40,6 +52,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_aopru")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -246,3 +259,14 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_lctgl")
 text = "previsualizar"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="volver" type="Button" parent="."]
+offset_left = 45.0
+offset_top = 1107.0
+offset_right = 181.0
+offset_bottom = 1195.0
+theme_override_styles/focus = SubResource("StyleBoxTexture_weutw")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_3qqb7")
+theme_override_styles/normal = SubResource("StyleBoxTexture_olr3o")
+
+[connection signal="pressed" from="volver" to="." method="_on_volver_pressed"]

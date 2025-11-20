@@ -1,4 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cvepiqyk74li2"]
+[gd_scene load_steps=8 format=3 uid="uid://cvepiqyk74li2"]
+
+[ext_resource type="Script" uid="uid://daxilfo2or3uh" path="res://escenas/Administrador/practica_escritura.gd" id="1_jxbsq"]
+[ext_resource type="Texture2D" uid="uid://cwqextjtlqg7j" path="res://assets/sprites/ui/volver.png" id="2_bdkn7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1kl8g"]
 bg_color = Color(0.147575, 0.0936971, 0.221111, 1)
@@ -22,6 +25,15 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oxi5e"]
+texture = ExtResource("2_bdkn7")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5ykqm"]
+texture = ExtResource("2_bdkn7")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j03rn"]
+texture = ExtResource("2_bdkn7")
+
 [node name="PracticaEscritura" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -29,6 +41,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_jxbsq")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -118,3 +131,14 @@ theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_jxbsq")
 placeholder_text = "Respuesta"
 autowrap_mode = 2
+
+[node name="volver" type="Button" parent="."]
+offset_left = 60.0
+offset_top = 938.0
+offset_right = 196.0
+offset_bottom = 1026.0
+theme_override_styles/focus = SubResource("StyleBoxTexture_oxi5e")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_5ykqm")
+theme_override_styles/normal = SubResource("StyleBoxTexture_j03rn")
+
+[connection signal="pressed" from="volver" to="." method="_on_volver_pressed"]
