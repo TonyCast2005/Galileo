@@ -109,6 +109,7 @@ offset_bottom = -11.6801
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_4oyf3")
 placeholder_text = "Espacio para escribir pregunta"
+wrap_mode = 1
 
 [node name="Respuesta 1" type="TextEdit" parent="."]
 layout_mode = 1
@@ -124,6 +125,7 @@ offset_bottom = 0.319885
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_4oyf3")
 placeholder_text = "Respuesta 1"
+wrap_mode = 1
 autowrap_mode = 2
 
 [node name="Respuesta 2" type="TextEdit" parent="."]
@@ -140,6 +142,7 @@ offset_bottom = -0.480042
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_4oyf3")
 placeholder_text = "Respuesta 2"
+wrap_mode = 1
 autowrap_mode = 2
 
 [node name="Respuesta 3" type="TextEdit" parent="."]
@@ -156,9 +159,27 @@ offset_bottom = 0.440002
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_4oyf3")
 placeholder_text = "Respuesta 3"
+wrap_mode = 1
 autowrap_mode = 2
 
-[node name="guardar" type="Label" parent="."]
+[node name="Correcta" type="TextEdit" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.161
+anchor_top = 0.585
+anchor_right = 0.833
+anchor_bottom = 0.652
+offset_left = 143.08
+offset_top = 122.2
+offset_right = -165.76
+offset_bottom = 122.44
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_4oyf3")
+placeholder_text = "opc correcta"
+wrap_mode = 1
+autowrap_mode = 2
+
+[node name="guardar" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.06
@@ -172,10 +193,8 @@ offset_bottom = -0.52002
 theme_override_font_sizes/font_size = 12
 theme_override_styles/normal = SubResource("StyleBoxFlat_tykc7")
 text = "guardar"
-horizontal_alignment = 1
-vertical_alignment = 1
 
-[node name="borrador" type="Label" parent="."]
+[node name="borrador" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.262
@@ -189,10 +208,8 @@ offset_bottom = -0.240112
 theme_override_font_sizes/font_size = 12
 theme_override_styles/normal = SubResource("StyleBoxFlat_tykc7")
 text = "borrador"
-horizontal_alignment = 1
-vertical_alignment = 1
 
-[node name="eliminar" type="Label" parent="."]
+[node name="eliminar" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.474
@@ -206,10 +223,8 @@ offset_bottom = 0.319946
 theme_override_font_sizes/font_size = 12
 theme_override_styles/normal = SubResource("StyleBoxFlat_tykc7")
 text = "eliminar"
-horizontal_alignment = 1
-vertical_alignment = 1
 
-[node name="previsualizar" type="Label" parent="."]
+[node name="previsualizar" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.672
@@ -223,10 +238,9 @@ offset_bottom = 0.319946
 theme_override_font_sizes/font_size = 12
 theme_override_styles/normal = SubResource("StyleBoxFlat_tykc7")
 text = "previsualizar"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="volver" type="Button" parent="."]
+layout_mode = 0
 offset_left = 49.0
 offset_top = 888.0
 offset_right = 185.0
@@ -235,4 +249,15 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_1mgto")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_ih8du")
 theme_override_styles/normal = SubResource("StyleBoxTexture_l0v8d")
 
+[node name="Mensaje" type="Label" parent="."]
+offset_left = 140.0
+offset_top = 1093.0
+offset_right = 560.0
+offset_bottom = 1205.0
+autowrap_mode = 2
+
+[connection signal="pressed" from="guardar" to="." method="_on_guardar_pressed"]
+[connection signal="pressed" from="borrador" to="." method="_on_borrador_pressed"]
+[connection signal="pressed" from="eliminar" to="." method="_on_eliminar_pressed"]
+[connection signal="pressed" from="previsualizar" to="." method="_on_previsualizar_pressed"]
 [connection signal="pressed" from="volver" to="." method="_on_volver_pressed"]

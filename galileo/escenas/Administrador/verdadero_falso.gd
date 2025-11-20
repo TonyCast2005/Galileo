@@ -36,11 +36,6 @@ func get_form_data(estado:String) -> Dictionary:
 
 func _on_borrador_pressed():
 	Globals.temp_preview_data = get_form_data("borrador")
-	pregunta.text = ""
-	txt_verdadero.text = ""
-	txt_falso.text = ""
-	chk_verdadero.button_pressed = false
-	chk_falso.button_pressed = false
 
 
 func _on_eliminar_pressed():
