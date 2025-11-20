@@ -14,21 +14,17 @@ signal foto_cambiada(nueva_foto)
 @onready var contenedor_contra = preload("res://escenas/usuario/Perfil/contenedores_editar/contenedor_contra.tscn")
 
 func _ready():
-    # Conectar botón para abrir selector de fotos
     foto_btn.pressed.connect(_on_editar_foto)
     Globals.connect("foto_actualizada", Callable(self, "_on_foto_actualizada"))
-   
-    # Actualizar imagen inicial
     _update_foto()
     cargar_datos_usuario()
 
-# -------------------------------------------------------------
-# ACTUALIZAR FOTO EN LA INTERFAZ
-# -------------------------------------------------------------
+# -----------------------
+# ACTUALIZAR FOTO
+# -----------------------
 func _update_foto():
     var foto_nombre = Globals.user.get("foto", "")
     var ruta = "res://imagenes_perfil/%s" % foto_nombre
-
     if FileAccess.file_exists(ruta):
         var img = Image.new()
         img.load(ruta)
@@ -36,90 +32,85 @@ func _update_foto():
         tex.create_from_image(img)
         foto.texture = tex
 
-# -------------------------------------------------------------
-# ABRIR SELECCIONADOR DE FOTO
-# -------------------------------------------------------------
+# -----------------------
+# SELECCIONAR FOTO
+# -----------------------
 func _on_editar_foto():
     var selector = contenedor_fotos.instantiate()
     add_child(selector)
     selector.connect("foto_seleccionada", Callable(self, "_on_foto_elegida"))
 
-# -------------------------------------------------------------
-# FOTO ELEGIDA
-# -------------------------------------------------------------
-func _on_foto_elegida(nombre_foto: String):
+func _on_foto_elegida(nombre_foto: String) -> void:
     var ruta = "res://imagenes_perfil/%s" % nombre_foto
     if not FileAccess.file_exists(ruta):
         push_warning("La imagen seleccionada no existe: %s" % ruta)
         return
 
-    # Actualizar interfaz
     var img = Image.new()
     img.load(ruta)
     var tex = ImageTexture.new()
     tex.create_from_image(img)
     foto.texture = tex
 
-    # Guardar en Globals
     Globals.user["foto"] = nombre_foto
     Globals.emit_signal("foto_cambiada", nombre_foto)
 
-    # Guardar en Firebase
+    # Guardar en Firebase (no bloqueante)
     var auth = load("res://escenas/usuario/registro/firebase_auth.gd").new()
     add_child(auth)
     var uid = Globals.user.get("uid", "")
     if uid != "":
-        var res = await auth.update_user_data(uid, {"foto": nombre_foto})
-        if res.has("error"):
-            push_error("Error al guardar la foto en Firebase: %s" % res["error"])
-        else:
-            print("Foto actualizada correctamente:", nombre_foto)
+        auth.update_user_data(uid, {"foto": nombre_foto}).then(func(res):
+            if res.has("error"):
+                push_error("Error al guardar la foto en Firebase: %s" % res["error"])
+            else:
+                print("Foto actualizada correctamente:", nombre_foto)
+        )
 
-    # Notificación
-    mostrar_notificacion("✅ Foto de perfil actualizada")
+    # Mostrar notificación correctamente
+    await mostrar_notificacion("✅ Foto de perfil actualizada")
 
-    # Cerrar selector
     if has_node("perfil_fotos"):
         get_node("perfil_fotos").queue_free()
 
-# -------------------------------------------------------------
+# -----------------------
 # EDITAR NOMBRE
-# -------------------------------------------------------------
+# -----------------------
 func _on_ed_nombre_pressed() -> void:
     var selector = contenedor_nombre.instantiate()
     add_child(selector)
     selector.connect("nombre_guardado", Callable(self, "_on_nombre_guardado"))
 
-func _on_nombre_guardado(nuevo_nombre: String):
+func _on_nombre_guardado(nuevo_nombre: String) -> void:
     Globals.user["nombre"] = nuevo_nombre
     var auth = load("res://escenas/usuario/registro/firebase_auth.gd").new()
     add_child(auth)
     var uid = Globals.user.get("uid", "")
     if uid != "":
-        await auth.update_user_data(uid, {"nombre": nuevo_nombre})
+        auth.update_user_data(uid, {"nombre": nuevo_nombre})
     mostrar_notificacion("✅ Nombre actualizado")
     cargar_datos_usuario()
 
-# -------------------------------------------------------------
+# -----------------------
 # EDITAR CONTRASEÑA
-# -------------------------------------------------------------
+# -----------------------
 func _on_ed_contraseña_pressed() -> void:
     var selector = contenedor_contra.instantiate()
     add_child(selector)
     selector.connect("contraseña_guardada", Callable(self, "_on_contraseña_guardada"))
 
-func _on_contraseña_guardada(nueva_contra: String):
+func _on_contraseña_guardada(nueva_contra: String) -> void:
     password = nueva_contra
     var auth = load("res://escenas/usuario/registro/firebase_auth.gd").new()
     add_child(auth)
     var uid = Globals.user.get("uid", "")
     if uid != "":
-        await auth.update_user_data(uid, {"password": nueva_contra})
+        auth.update_user_data(uid, {"password": nueva_contra})
     mostrar_notificacion("✅ Contraseña actualizada")
 
-# -------------------------------------------------------------
-# CARGAR DATOS DEL USUARIO
-# -------------------------------------------------------------
+# -----------------------
+# CARGAR DATOS USUARIO
+# -----------------------
 func cargar_datos_usuario():
     var user = Globals.user
     nombre = user.get("nombre", "Usuario sin nombre")
@@ -133,22 +124,25 @@ func cargar_datos_usuario():
 func _on_foto_actualizada(foto_nueva: String):
     cargar_datos_usuario()
 
-# -------------------------------------------------------------
+# -----------------------
 # CERRAR SESIÓN
-# -------------------------------------------------------------
+# -----------------------
 func _on_cerrar_sesion_pressed() -> void:
     Globals.user.clear()
     get_tree().change_scene_to_file("res://escenas/usuario/registro/iniciarSesion.tscn")
 
-# -------------------------------------------------------------
-# FUNCION NOTIFICACION TEMPORAL
-# -------------------------------------------------------------
+# -----------------------
+# NOTIFICACIÓN TEMPORAL
+# -----------------------
 func mostrar_notificacion(texto: String, duracion: float = 2.0) -> void:
     label_notificacion.text = texto
     label_notificacion.visible = true
     await get_tree().create_timer(duracion).timeout
     label_notificacion.visible = false
 
+
+# -----------------------
+# IR A PERFIL
+# -----------------------
 func _on_perfil_pressed() -> void:
-    # Cambia a la escena de perfil
     get_tree().change_scene_to_file("res://escenas/usuario/Perfil/perfil.tscn")
