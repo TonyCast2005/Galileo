@@ -83,5 +83,5 @@ layout_mode = 2
 [node name="Control" parent="." instance=ExtResource("1_pw2c4")]
 layout_mode = 1
 
-[connection signal="pressed" from="Editarperfil" to="." method="_on_editarperfil_pressed"]
 [connection signal="pressed" from="Editarperfil" to="." method="_on_editar_perfil_pressed"]
+[connection signal="pressed" from="Editarperfil" to="." method="_on_editarperfil_pressed"]
