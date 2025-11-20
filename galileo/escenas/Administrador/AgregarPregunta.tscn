@@ -234,6 +234,7 @@ text = "Construir código"
 autowrap_mode = 2
 
 [node name="volver" type="Button" parent="."]
+layout_mode = 0
 offset_left = 42.0
 offset_top = 1180.0
 offset_right = 147.0
