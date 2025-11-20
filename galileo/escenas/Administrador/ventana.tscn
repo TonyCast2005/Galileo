@@ -1,0 +1,70 @@
+[gd_scene load_steps=4 format=3 uid="uid://ce3r4nqtlw0ea"]
+
+[ext_resource type="Texture2D" uid="uid://baykhnqxwooqw" path="res://assets/sprites/ui/ventana.png" id="1_h4ndi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ijvn7"]
+bg_color = Color(0.435294, 0.74902, 0.243137, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vgwfw"]
+bg_color = Color(0.745098, 0.152941, 0.380392, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[node name="Ventana" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Ventana" type="Sprite2D" parent="."]
+position = Vector2(353, 630)
+scale = Vector2(0.555888, 0.52993)
+texture = ExtResource("1_h4ndi")
+
+[node name="TextoVentana" type="Label" parent="Ventana"]
+offset_left = -437.0
+offset_top = -223.0
+offset_right = 446.0
+offset_bottom = 38.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 35
+text = "¿Realmente desea borrar su avance?"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="si" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.192
+anchor_top = 0.524
+anchor_right = 0.393
+anchor_bottom = 0.577
+offset_left = -0.240005
+offset_top = 0.279907
+offset_right = 0.0400085
+offset_bottom = -0.560059
+theme_override_styles/normal = SubResource("StyleBoxFlat_ijvn7")
+text = "si"
+
+[node name="no" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.576
+anchor_top = 0.525
+anchor_right = 0.778
+anchor_bottom = 0.577
+offset_left = 0.279968
+offset_top = -6.10352e-05
+offset_right = -0.160034
+offset_bottom = 0.439941
+theme_override_styles/normal = SubResource("StyleBoxFlat_vgwfw")
+text = "no"

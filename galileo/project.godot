@@ -18,6 +18,7 @@ config/icon="res://assets/icon.svg"
 [autoload]
 
 Globals="*res://globals.gd"
+Firebase="*res://escenas/Administrador/FirebaseDB.gd"
 
 [display]
 

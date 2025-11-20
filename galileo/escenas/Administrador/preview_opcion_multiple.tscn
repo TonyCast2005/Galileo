@@ -1,0 +1,115 @@
+[gd_scene load_steps=8 format=3 uid="uid://d2jyejf1cjfoj"]
+
+[ext_resource type="Script" uid="uid://du8pngckmxtf8" path="res://escenas/Administrador/preview_opcion_multiple.gd" id="1_18kuk"]
+[ext_resource type="Texture2D" uid="uid://cwqextjtlqg7j" path="res://assets/sprites/ui/volver.png" id="2_5llva"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y5ri1"]
+bg_color = Color(0.145247, 0.104291, 0.19048, 0.607843)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d7mc6"]
+bg_color = Color(0.141176, 0.0980392, 0.196078, 0.552941)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dffwl"]
+texture = ExtResource("2_5llva")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_twvu5"]
+texture = ExtResource("2_5llva")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qywaj"]
+texture = ExtResource("2_5llva")
+
+[node name="PreviewOpcionMultiple" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_18kuk")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.227451, 0.152941, 0.329412, 1)
+
+[node name="TextoPregunta" type="Label" parent="."]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 137.0
+offset_right = 648.0
+offset_bottom = 316.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Hola esta es una prueba de texto"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Opcion1" type="Button" parent="."]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 346.0
+offset_right = 660.0
+offset_bottom = 508.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_y5ri1")
+text = "Opcion 1"
+autowrap_mode = 2
+
+[node name="Opcion2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 533.0
+offset_right = 660.0
+offset_bottom = 695.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_d7mc6")
+text = "Opcion 2"
+autowrap_mode = 2
+
+[node name="Opcion3" type="Button" parent="."]
+layout_mode = 0
+offset_left = 59.0
+offset_top = 718.0
+offset_right = 663.0
+offset_bottom = 880.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_d7mc6")
+text = "Opcion 3"
+autowrap_mode = 2
+
+[node name="volver" type="Button" parent="."]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 901.0
+offset_right = 175.0
+offset_bottom = 989.0
+theme_override_styles/focus = SubResource("StyleBoxTexture_dffwl")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_twvu5")
+theme_override_styles/normal = SubResource("StyleBoxTexture_qywaj")
+
+[node name="Mensaje" type="Label" parent="."]
+layout_mode = 0
+offset_left = 213.0
+offset_top = 935.0
+offset_right = 485.0
+offset_bottom = 1086.0
+horizontal_alignment = 1
+
+[connection signal="pressed" from="volver" to="." method="_on_volver_pressed"]

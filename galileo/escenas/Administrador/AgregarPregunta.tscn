@@ -1,0 +1,254 @@
+[gd_scene load_steps=9 format=3 uid="uid://hdmbumbu04o1"]
+
+[ext_resource type="Script" uid="uid://qu2vxjbeeqee" path="res://escenas/Administrador/agregar_pregunta.gd" id="1_qls1y"]
+[ext_resource type="Texture2D" uid="uid://cwqextjtlqg7j" path="res://assets/sprites/ui/volver.png" id="2_3yv4g"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lq7or"]
+bg_color = Color(0.147575, 0.0936971, 0.221111, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qls1y"]
+bg_color = Color(0.147575, 0.0936971, 0.221111, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="GDScript" id="GDScript_3yv4g"]
+script/source = "extends Button
+"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sm0pw"]
+texture = ExtResource("2_3yv4g")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gou3h"]
+texture = ExtResource("2_3yv4g")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hfha0"]
+texture = ExtResource("2_3yv4g")
+
+[node name="AgregarPregunta" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qls1y")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.227451, 0.152941, 0.329412, 1)
+
+[node name="preguntas" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.103
+anchor_top = 0.151
+anchor_right = 0.903
+anchor_bottom = 0.218
+offset_left = -0.160004
+offset_top = -84.28
+offset_right = -0.160034
+offset_bottom = -84.04
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_lq7or")
+text = "Agregar pregunta"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.079
+anchor_right = 1.0
+anchor_bottom = 0.13
+offset_left = 4.0
+offset_top = -75.12
+offset_right = -3.0
+offset_bottom = -75.4
+theme_override_font_sizes/font_size = 20
+text = "Nombre administrador"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="construirCodigo" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.176
+anchor_top = 0.252
+anchor_right = 0.849
+anchor_bottom = 0.319
+offset_left = 0.279999
+offset_top = -84.56
+offset_right = -0.280029
+offset_bottom = -84.32
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_qls1y")
+text = "Construir código"
+autowrap_mode = 2
+script = SubResource("GDScript_3yv4g")
+
+[node name="opcMultiple" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.176
+anchor_top = 0.334
+anchor_right = 0.849
+anchor_bottom = 0.401
+offset_left = 0.279999
+offset_top = -84.52
+offset_right = -0.280029
+offset_bottom = -84.28
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_qls1y")
+text = "Opción multiple"
+autowrap_mode = 2
+
+[node name="VoF" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.176
+anchor_top = 0.418
+anchor_right = 0.849
+anchor_bottom = 0.485
+offset_left = 0.279999
+offset_top = -84.04
+offset_right = -0.280029
+offset_bottom = -83.8
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_qls1y")
+text = "Verdadero o falso"
+autowrap_mode = 2
+
+[node name="preguntasAbiertas" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.176
+anchor_top = 0.5
+anchor_right = 0.849
+anchor_bottom = 0.569
+offset_left = 0.279999
+offset_top = -82.0
+offset_right = -0.280029
+offset_bottom = -84.32
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_qls1y")
+text = "Preguntas abiertas"
+autowrap_mode = 2
+
+[node name="preguntasSemiAbiertas" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.176
+anchor_top = 0.584
+anchor_right = 0.849
+anchor_bottom = 0.651
+offset_left = 0.279999
+offset_top = -84.5201
+offset_right = -0.280029
+offset_bottom = -84.28
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_qls1y")
+text = "Preguntas semi abiertas"
+autowrap_mode = 2
+
+[node name="practicaEscritura" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.176
+anchor_top = 0.668
+anchor_right = 0.849
+anchor_bottom = 0.735
+offset_left = 0.279999
+offset_top = -84.04
+offset_right = -0.280029
+offset_bottom = -83.8
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_qls1y")
+text = "Practica escritura"
+autowrap_mode = 2
+
+[node name="Arrastrar y soltar" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.176
+anchor_top = 0.72
+anchor_right = 0.849
+anchor_bottom = 0.787
+offset_left = 0.279999
+offset_top = -42.6
+offset_right = -0.280029
+offset_bottom = -42.3601
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_qls1y")
+text = "Arrastrar y soltar"
+autowrap_mode = 2
+
+[node name="codigoConErrores" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.176
+anchor_top = 0.802
+anchor_right = 0.849
+anchor_bottom = 0.87
+offset_left = 0.279999
+offset_top = -42.5601
+offset_right = -0.280029
+offset_bottom = -43.6001
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_qls1y")
+text = "Código con errores"
+autowrap_mode = 2
+
+[node name="construirCodigos" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.176
+anchor_top = 0.887
+anchor_right = 0.849
+anchor_bottom = 0.954
+offset_left = 0.279999
+offset_top = -43.36
+offset_right = -0.280029
+offset_bottom = -43.1201
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_qls1y")
+text = "Construir código"
+autowrap_mode = 2
+
+[node name="volver" type="Button" parent="."]
+offset_left = 42.0
+offset_top = 1180.0
+offset_right = 147.0
+offset_bottom = 1247.0
+theme_override_styles/focus = SubResource("StyleBoxTexture_sm0pw")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_gou3h")
+theme_override_styles/normal = SubResource("StyleBoxTexture_hfha0")
+
+[connection signal="pressed" from="construirCodigo" to="." method="_on_construir_codigo_pressed"]
+[connection signal="pressed" from="opcMultiple" to="." method="_on_opc_multiple_pressed"]
+[connection signal="pressed" from="VoF" to="." method="_on_vo_f_pressed"]
+[connection signal="pressed" from="preguntasAbiertas" to="." method="_on_preguntas_abiertas_pressed"]
+[connection signal="pressed" from="preguntasSemiAbiertas" to="." method="_on_preguntas_semi_abiertas_pressed"]
+[connection signal="pressed" from="practicaEscritura" to="." method="_on_practica_escritura_pressed"]
+[connection signal="pressed" from="Arrastrar y soltar" to="." method="_on_arrastrar_y_soltar_pressed"]
+[connection signal="pressed" from="codigoConErrores" to="." method="_on_codigo_con_errores_pressed"]
+[connection signal="pressed" from="construirCodigos" to="." method="_on_construir_codigos_pressed"]
+[connection signal="pressed" from="volver" to="." method="_on_volver_pressed"]
