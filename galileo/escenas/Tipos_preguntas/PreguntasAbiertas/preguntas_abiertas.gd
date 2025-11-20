@@ -234,7 +234,7 @@ func evaluar_respuesta(pregunta: String, respuesta_usuario: String) -> Dictionar
 			"mensaje": "Tu respuesta está cerca, revisa algunos detalles.",
 			"palabras_clave_pct": pct_clave,
 			"similitud": similitud
-		}
+		} 	
 
 	# 5) En cualquier otro caso --> incorrecta
 	return {
