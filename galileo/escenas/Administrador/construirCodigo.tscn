@@ -261,6 +261,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="volver" type="Button" parent="."]
+layout_mode = 0
 offset_left = 45.0
 offset_top = 1107.0
 offset_right = 181.0
