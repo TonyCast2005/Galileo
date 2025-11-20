@@ -14,4 +14,4 @@ var email = ""
 var nombre = ""
 
 func _ready():
-	firebase = load("res://escenas/usuario/registro/firebase_auth.gd").new()
+    firebase = load("res://escenas/usuario/registro/firebase_auth.gd").new()
