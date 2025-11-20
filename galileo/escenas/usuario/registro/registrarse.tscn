@@ -63,7 +63,7 @@ offset_bottom = 372.0
 theme_override_font_sizes/font_size = 30
 placeholder_text = "Usuario"
 
-[node name="contraseña" type="TextEdit" parent="."]
+[node name="contrasena" type="TextEdit" parent="."]
 layout_mode = 0
 offset_left = 94.0
 offset_top = 417.0
@@ -72,7 +72,7 @@ offset_bottom = 484.0
 theme_override_font_sizes/font_size = 30
 placeholder_text = "Contraseña"
 
-[node name="confirmarContraseña" type="TextEdit" parent="."]
+[node name="confirmarContrasena" type="TextEdit" parent="."]
 layout_mode = 0
 offset_left = 92.0
 offset_top = 525.0
@@ -144,5 +144,5 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_x7nj8")
 text = "Iniciar Sesión"
 
 [connection signal="pressed" from="aceptar" to="." method="_on_aceptar_pressed"]
-[connection signal="pressed" from="iniciarsesion" to="." method="_on_registrarse_pressed"]
 [connection signal="pressed" from="iniciarsesion" to="." method="_on_iniciarsesion_pressed"]
+[connection signal="pressed" from="iniciarsesion" to="." method="_on_registrarse_pressed"]

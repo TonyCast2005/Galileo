@@ -4,7 +4,7 @@ extends Control
 
 
 func _ready():
-    var resultado = Global.get("resultado_examen")
+    var resultado = Globals.get("resultado_examen")
     var puntaje = resultado["puntaje"]
     var nivel = resultado["nivel"]
 

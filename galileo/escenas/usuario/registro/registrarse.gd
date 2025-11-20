@@ -2,8 +2,8 @@ extends Control
 
 @onready var usuario = $usuario            # LineEdit del nombre
 @onready var correo = $correo              # LineEdit del correo
-@onready var contrasena = $"contraseña"   # LineEdit de la contraseña
-@onready var confirmar = $"confirmarContraseña"  # LineEdit de confirmación
+@onready var contrasena = $"contrasena"   # LineEdit de la contraseña
+@onready var confirmar = $"confirmarContrasena"  # LineEdit de confirmación
 @onready var mensaje = $Mensaje
 
 var auth
@@ -78,3 +78,10 @@ func _on_aceptar_pressed():
 
 func _on_iniciarsesion_pressed():
     get_tree().change_scene_to_file("res://escenas/usuario/registro/iniciarSesion.tscn")
+
+
+
+func validar_password():
+    if contrasena.length() < 8:
+        return "❌ La contraseña debe tener mínimo 8 caracteres"
+    return ""   # Correcto
