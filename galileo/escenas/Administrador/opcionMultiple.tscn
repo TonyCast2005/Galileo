@@ -254,6 +254,7 @@ offset_left = 140.0
 offset_top = 1093.0
 offset_right = 560.0
 offset_bottom = 1205.0
+horizontal_alignment = 1
 autowrap_mode = 2
 
 [connection signal="pressed" from="guardar" to="." method="_on_guardar_pressed"]

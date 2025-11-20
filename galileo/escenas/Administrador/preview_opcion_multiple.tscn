@@ -110,5 +110,6 @@ offset_left = 213.0
 offset_top = 935.0
 offset_right = 485.0
 offset_bottom = 1086.0
+horizontal_alignment = 1
 
 [connection signal="pressed" from="volver" to="." method="_on_volver_pressed"]
