@@ -20,6 +20,7 @@ offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_abg4q")
+total_niveles = null
 nivel_desbloqueado_global = 4
 
 [node name="ColorRect" type="ColorRect" parent="."]

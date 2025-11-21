@@ -23,7 +23,11 @@ var exercise_scenes: Dictionary = {
 @export var nivel_desbloqueado_global : int = 1
 
 func _ready():
+    
+    nivel_desbloqueado_global = Globals.nivel_desbloqueado
     _crear_niveles()
+
+
 
 func _crear_niveles():
     if niveles_container == null:
@@ -63,6 +67,8 @@ func _crear_niveles():
 func _on_level_selected(level: int):
     # Busca la ruta de la escena en el diccionario usando el número de nivel
     var scene_path = exercise_scenes.get(level)
+    Globals.set("nivel_actual", level)
+
     
     if scene_path:
         print("Cargando nivel ", level, ": ", scene_path)
