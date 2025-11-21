@@ -29,7 +29,10 @@ func _on_aceptar_pressed():
 	if usuario.text.is_empty() or contrasena.text.is_empty():
 		mensaje.text = "⚠️ Favor de llenar los campos"
 		return
-
+		
+	if usuario.text == "admin@gmail.com":
+		get_tree().change_scene_to_file("res://escenas/Administrador/inicial.tscn")
+	
 	mensaje.text = "🔄 Iniciando sesión..."
 	var res = await auth.login_user(usuario.text, contrasena.text)
 	print("📩 Respuesta Firebase:", res)
