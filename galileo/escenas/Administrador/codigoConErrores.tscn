@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://baydjcvwrax23"]
+
+[ext_resource type="Script" uid="uid://d0uchxc02562f" path="res://escenas/Administrador/codigo_con_errores.gd" id="1_o4ijp"]
+[ext_resource type="Texture2D" uid="uid://cwqextjtlqg7j" path="res://assets/sprites/ui/volver.png" id="2_tv8b3"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q4hv3"]
+texture = ExtResource("2_tv8b3")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q4niq"]
+texture = ExtResource("2_tv8b3")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a7f0l"]
+texture = ExtResource("2_tv8b3")
+
+[node name="CodigoConErrores" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o4ijp")
+
+[node name="volver" type="Button" parent="."]
+offset_left = 32.0
+offset_top = 923.0
+offset_right = 168.0
+offset_bottom = 1011.0
+theme_override_styles/focus = SubResource("StyleBoxTexture_q4hv3")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_q4niq")
+theme_override_styles/normal = SubResource("StyleBoxTexture_a7f0l")
+
+[connection signal="pressed" from="volver" to="." method="_on_volver_pressed"]

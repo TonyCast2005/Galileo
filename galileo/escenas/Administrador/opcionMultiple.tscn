@@ -1,0 +1,264 @@
+[gd_scene load_steps=9 format=3 uid="uid://jvtv0llnfi0x"]
+
+[ext_resource type="Script" uid="uid://vtscy8667go2" path="res://escenas/Administrador/opcion_multiple.gd" id="1_4oyf3"]
+[ext_resource type="Texture2D" uid="uid://cwqextjtlqg7j" path="res://assets/sprites/ui/volver.png" id="2_tykc7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lcb4l"]
+bg_color = Color(0.147575, 0.0936971, 0.221111, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4oyf3"]
+bg_color = Color(0.147575, 0.0936971, 0.221111, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tykc7"]
+bg_color = Color(0.147575, 0.0936971, 0.221111, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1mgto"]
+texture = ExtResource("2_tykc7")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ih8du"]
+texture = ExtResource("2_tykc7")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l0v8d"]
+texture = ExtResource("2_tykc7")
+
+[node name="OpcionMultiple" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4oyf3")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.227451, 0.152941, 0.329412, 1)
+
+[node name="preguntas" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.103
+anchor_top = 0.151
+anchor_right = 0.903
+anchor_bottom = 0.218
+offset_left = -0.160004
+offset_top = 16.72
+offset_right = -0.160034
+offset_bottom = 16.96
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_lcb4l")
+text = "Opción multiple"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.079
+anchor_right = 1.0
+anchor_bottom = 0.13
+offset_left = 4.0
+offset_top = -32.12
+offset_right = -3.0
+offset_bottom = -32.4
+theme_override_font_sizes/font_size = 20
+text = "Nombre administrador"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="pregunta" type="TextEdit" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.118
+anchor_top = 0.252
+anchor_right = 0.981
+anchor_bottom = 0.406
+offset_left = -36.96
+offset_top = 4.44
+offset_right = -37.3201
+offset_bottom = -11.6801
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_4oyf3")
+placeholder_text = "Espacio para escribir pregunta"
+wrap_mode = 1
+
+[node name="Respuesta 1" type="TextEdit" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.176
+anchor_top = 0.414
+anchor_right = 0.833
+anchor_bottom = 0.481
+offset_left = -10.72
+offset_top = 0.0799561
+offset_right = 0.239868
+offset_bottom = 0.319885
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_4oyf3")
+placeholder_text = "Respuesta 1"
+wrap_mode = 1
+autowrap_mode = 2
+
+[node name="Respuesta 2" type="TextEdit" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.161
+anchor_top = 0.5
+anchor_right = 0.833
+anchor_bottom = 0.566
+offset_left = 0.0799789
+offset_top = -2.0
+offset_right = 0.239868
+offset_bottom = -0.480042
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_4oyf3")
+placeholder_text = "Respuesta 2"
+wrap_mode = 1
+autowrap_mode = 2
+
+[node name="Respuesta 3" type="TextEdit" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.161
+anchor_top = 0.585
+anchor_right = 0.833
+anchor_bottom = 0.652
+offset_left = 0.0799789
+offset_top = 0.199951
+offset_right = 0.239868
+offset_bottom = 0.440002
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_4oyf3")
+placeholder_text = "Respuesta 3"
+wrap_mode = 1
+autowrap_mode = 2
+
+[node name="Correcta" type="TextEdit" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.161
+anchor_top = 0.585
+anchor_right = 0.833
+anchor_bottom = 0.652
+offset_left = 143.08
+offset_top = 122.2
+offset_right = -165.76
+offset_bottom = 122.44
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_4oyf3")
+placeholder_text = "opc correcta"
+wrap_mode = 1
+autowrap_mode = 2
+
+[node name="guardar" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.06
+anchor_top = 0.793
+anchor_right = 0.247
+anchor_bottom = 0.834
+offset_left = -0.200001
+offset_top = -0.0400391
+offset_right = 0.159988
+offset_bottom = -0.52002
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_tykc7")
+text = "guardar"
+
+[node name="borrador" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.262
+anchor_top = 0.795
+anchor_right = 0.462
+anchor_bottom = 0.833
+offset_left = 0.359985
+offset_top = -0.600037
+offset_right = 0.359985
+offset_bottom = -0.240112
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_tykc7")
+text = "borrador"
+
+[node name="eliminar" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.474
+anchor_top = 0.795
+anchor_right = 0.665
+anchor_bottom = 0.831
+offset_left = -0.280029
+offset_top = -0.600037
+offset_right = 0.199982
+offset_bottom = 0.319946
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_tykc7")
+text = "eliminar"
+
+[node name="previsualizar" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.672
+anchor_top = 0.795
+anchor_right = 0.937
+anchor_bottom = 0.831
+offset_left = 3.15997
+offset_top = -0.600037
+offset_right = 0.359985
+offset_bottom = 0.319946
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_tykc7")
+text = "previsualizar"
+
+[node name="volver" type="Button" parent="."]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 888.0
+offset_right = 185.0
+offset_bottom = 976.0
+theme_override_styles/focus = SubResource("StyleBoxTexture_1mgto")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ih8du")
+theme_override_styles/normal = SubResource("StyleBoxTexture_l0v8d")
+
+[node name="Mensaje" type="Label" parent="."]
+offset_left = 140.0
+offset_top = 1093.0
+offset_right = 560.0
+offset_bottom = 1205.0
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[connection signal="pressed" from="guardar" to="." method="_on_guardar_pressed"]
+[connection signal="pressed" from="borrador" to="." method="_on_borrador_pressed"]
+[connection signal="pressed" from="eliminar" to="." method="_on_eliminar_pressed"]
+[connection signal="pressed" from="previsualizar" to="." method="_on_previsualizar_pressed"]
+[connection signal="pressed" from="volver" to="." method="_on_volver_pressed"]

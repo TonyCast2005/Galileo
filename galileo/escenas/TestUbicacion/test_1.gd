@@ -43,26 +43,8 @@ func _mostrar_definicion(texto: String, nivel: String):
 func _on_aceptar_pressed():
     var nivel = ventana.get_meta("nivel")
     ventana.visible = false
-    print("aceptar nivel:", nivel)
-
-    # 🔥 Obtener el uid del usuario actual
-    var uid = Globals.user.get("uid", "")
-
-    # 🔥 Datos a actualizar
-    var data_actualizar = {
-        "nivel": nivel
-    }
-
-    # 🔥 Guardar en Firebase Database
-    var res = await auth.update_user_data(uid, data_actualizar)
-    print("Firebase nivel actualizado:", res)
-
-    # 🔥 Actualizar Globals
-    Globals.user["nivel"] = nivel
-
-    # Cambiar escena
+    print("aceptar")
     get_tree().change_scene_to_file("res://escenas/usuario/Perfil/perfil.tscn")
-
     
 
 func _on_seguir_pressed():

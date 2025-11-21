@@ -1,0 +1,85 @@
+[gd_scene load_steps=7 format=3 uid="uid://cvev1mkiokde0"]
+
+[ext_resource type="Script" uid="uid://dnb3ld2nkcju0" path="res://escenas/Administrador/logros.gd" id="1_vpmal"]
+[ext_resource type="Texture2D" uid="uid://cwqextjtlqg7j" path="res://assets/sprites/ui/volver.png" id="1_xn3r0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bgfgi"]
+bg_color = Color(0.147575, 0.0936971, 0.221111, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vpmal"]
+texture = ExtResource("1_xn3r0")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aywps"]
+texture = ExtResource("1_xn3r0")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7bm5u"]
+texture = ExtResource("1_xn3r0")
+
+[node name="Logros" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vpmal")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.227451, 0.152941, 0.329412, 1)
+
+[node name="logros" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.115
+anchor_top = 0.416
+anchor_right = 0.904
+anchor_bottom = 0.484
+offset_left = -8.8
+offset_top = -353.48
+offset_right = -0.880005
+offset_bottom = -354.52
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_bgfgi")
+text = "Agregar logros"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.079
+anchor_right = 1.0
+anchor_bottom = 0.13
+offset_left = 4.0
+offset_top = -32.12
+offset_right = -3.0
+offset_bottom = -32.4
+theme_override_font_sizes/font_size = 20
+text = "Nombre administrador"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="volver" type="Button" parent="."]
+offset_left = 48.0
+offset_top = 1151.0
+offset_right = 184.0
+offset_bottom = 1239.0
+theme_override_styles/focus = SubResource("StyleBoxTexture_vpmal")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_aywps")
+theme_override_styles/normal = SubResource("StyleBoxTexture_7bm5u")
+
+[connection signal="pressed" from="volver" to="." method="_on_volver_pressed"]

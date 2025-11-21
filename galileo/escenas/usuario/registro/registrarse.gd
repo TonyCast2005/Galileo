@@ -47,6 +47,7 @@ func _on_aceptar_pressed():
     var data_inicial = {
         "nombre": nombre,
         "email": email,
+        "contrasena":contrasena.text,
         "foto": "default",         # foto de perfil inicial
         "nivel": "novato",         # nivel inicial por defecto
         "logros": {},              # carpeta para guardar logros

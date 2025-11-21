@@ -1,9 +1,5 @@
 extends Control
 
-
-
-
-
 var tutorial_activo = true
 
 func _ready():

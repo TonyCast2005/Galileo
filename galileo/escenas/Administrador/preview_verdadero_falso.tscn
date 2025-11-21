@@ -1,0 +1,108 @@
+[gd_scene load_steps=8 format=3 uid="uid://cd6yo5guh8pnh"]
+
+[ext_resource type="Script" uid="uid://ctuv8tap6tqfp" path="res://escenas/Administrador/preview_verdadero_falso.gd" id="1_tph8b"]
+[ext_resource type="Texture2D" uid="uid://cwqextjtlqg7j" path="res://assets/sprites/ui/volver.png" id="2_14fcw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_14fcw"]
+bg_color = Color(0.121993, 0.443719, 0.14763, 0.686275)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rwx3j"]
+bg_color = Color(0.654902, 0.0862745, 0.176471, 0.509804)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rwx3j"]
+texture = ExtResource("2_14fcw")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qj4c7"]
+texture = ExtResource("2_14fcw")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l3y8t"]
+texture = ExtResource("2_14fcw")
+
+[node name="PreviewVerdaderoFalso" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tph8b")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.227451, 0.152941, 0.329412, 1)
+
+[node name="Enunciado" type="Label" parent="."]
+layout_mode = 0
+offset_left = 66.0
+offset_top = 426.0
+offset_right = 638.0
+offset_bottom = 605.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Hola esta es una prueba de texto"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Verdadero" type="Button" parent="."]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 628.0
+offset_right = 332.0
+offset_bottom = 790.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_14fcw")
+text = "Verdadero"
+
+[node name="Falso" type="Button" parent="."]
+layout_mode = 0
+offset_left = 394.0
+offset_top = 631.0
+offset_right = 645.0
+offset_bottom = 793.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 26
+theme_override_styles/normal = SubResource("StyleBoxFlat_rwx3j")
+text = "Falso"
+
+[node name="volver" type="Button" parent="."]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 863.0
+offset_right = 181.0
+offset_bottom = 951.0
+theme_override_styles/focus = SubResource("StyleBoxTexture_rwx3j")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_qj4c7")
+theme_override_styles/normal = SubResource("StyleBoxTexture_l3y8t")
+
+[node name="Mensaje" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.079
+anchor_top = 0.755
+anchor_right = 0.924
+anchor_bottom = 0.848
+offset_left = 0.119999
+offset_top = 0.599915
+offset_right = -0.280029
+offset_bottom = 0.559937
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[connection signal="pressed" from="volver" to="." method="_on_volver_pressed"]

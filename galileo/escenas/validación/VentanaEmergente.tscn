@@ -25,7 +25,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Ventana" type="Sprite2D" parent="."]
-position = Vector2(353, 630)
+position = Vector2(360, 630)
 scale = Vector2(0.555888, 0.52993)
 texture = ExtResource("1_3o75q")
 
@@ -43,18 +43,18 @@ autowrap_mode = 2
 
 [node name="Aceptar" type="Button" parent="."]
 layout_mode = 0
-offset_left = 138.0
+offset_left = 145.0
 offset_top = 671.0
-offset_right = 283.0
+offset_right = 290.0
 offset_bottom = 738.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_s138y")
 text = "Aceptar"
 
 [node name="Cancelar" type="Button" parent="."]
 layout_mode = 0
-offset_left = 415.0
+offset_left = 422.0
 offset_top = 672.0
-offset_right = 560.0
+offset_right = 567.0
 offset_bottom = 739.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_ewuq0")
 text = "Cancelar"
