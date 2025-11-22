@@ -4,7 +4,9 @@ const API_KEY = "AIzaSyBfDUbVummAFJFmuZN906DC09-hhhQcRB0"
 const BASE_URL = "https://identitytoolkit.googleapis.com/v1/accounts"
 const DB_URL = "https://galileo-af640-default-rtdb.firebaseio.com"
 
-# 🔹 Registrar usuario
+# -----------	-----------------------------------------------
+# 🔹 REGISTRAR USUARIO
+# ----------------------------------------------------------
 func register_user(email: String, password: String, nombre: String) -> Dictionary:
 	var url = "%s:signUp?key=%s" % [BASE_URL, API_KEY]
 	var data = {
@@ -15,7 +17,7 @@ func register_user(email: String, password: String, nombre: String) -> Dictionar
 
 	var res = await _send_request(url, data)
 
-	# Manejo de errores Firebase
+	# Manejo de errores
 	if res.has("error"):
 		var message = res["error"].get("message", "")
 		match message:
@@ -29,16 +31,19 @@ func register_user(email: String, password: String, nombre: String) -> Dictionar
 				res["error"] = "Error desconocido: %s" % message
 		return res
 
-	# Guardar datos extra en Realtime Database
+	# Si Firebase devolvió UID, creamos el perfil completo
 	var uid = res.get("localId", "")
+
 	if uid != "":
-		var user_data = {"email": email, "nombre": nombre}
-		await _save_user_data(uid, user_data)
+		var data_inicial = _crear_data_inicial(email, nombre, password)
+		await _save_user_data(uid, data_inicial)
 
 	return res
 
 
-# 🔹 Iniciar sesión
+# ----------------------------------------------------------
+# 🔹 INICIAR SESIÓN
+# ----------------------------------------------------------
 func login_user(email: String, password: String) -> Dictionary:
 	var url = "%s:signInWithPassword?key=%s" % [BASE_URL, API_KEY]
 	var data = {"email": email, "password": password, "returnSecureToken": true}
@@ -48,6 +53,7 @@ func login_user(email: String, password: String) -> Dictionary:
 		return res
 
 	var uid = res.get("localId", "")
+
 	if uid != "":
 		var extra_data = await _get_user_data(uid)
 		if extra_data != null:
@@ -56,20 +62,90 @@ func login_user(email: String, password: String) -> Dictionary:
 	return res
 
 
-# 🔹 Guardar datos del usuario en Realtime Database
-func _save_user_data(uid: String, user_data: Dictionary) -> void:
+# ----------------------------------------------------------
+# 🔹 CREAR DATA INICIAL DE USUARIO (PERFIL COMPLETO)
+# ----------------------------------------------------------
+func _crear_data_inicial(email: String, nombre: String, password: String) -> Dictionary:
+	return {
+		"nombre": nombre,
+		"email": email,
+		"contrasena": password,
+		"foto": "default",
+		"nivel": "novato",
+		"logros": {
+			"primera_presa": null,
+			"caja_carton": null,
+			"pez_gordo": null,
+			"experto_arduino": null,
+			"el_minino_resiste": null,
+			"gato_pwm": null,
+			"leyenda_cable": null,
+			"gato_velocista": null,
+			"pelea_techo": null,
+			"gatos_pardos": null,
+			"aprendiz_veloz": null,
+			"teorico_nato": null,
+			"explorador_incansable": null,
+			"aprendiz_visual": null,
+			"cazador_bugs": null
+		},
+
+		"metrics": {},
+
+		"progreso": {
+			"nivel_actual": "novato",
+			"leccion_actual": 0
+		},
+
+		"racha": {
+			"dias": 0,
+			"ultima_fecha": ""
+		}
+	}
+
+
+# ----------------------------------------------------------
+# 🔹 GUARDAR DATA INICIAL
+# ----------------------------------------------------------
+func _save_user_data(uid: String, user_data: Dictionary) -> Dictionary:
 	var url = "%s/usuarios/%s.json" % [DB_URL, uid]
 	var http := HTTPRequest.new()
 	add_child(http)
-	await http.request(url, ["Content-Type: application/json"], HTTPClient.METHOD_PUT, JSON.stringify(user_data))
+
+	var err = http.request(
+		url,
+		["Content-Type: application/json"],
+		HTTPClient.METHOD_PUT,
+		JSON.stringify(user_data)
+	)
+
+	if err != OK:
+		http.queue_free()
+		return {"error": "No se pudo enviar la solicitud PUT. Código %s" % err}
+
+	var response = await http.request_completed
+	var status = response[0]
+	var code = response[1]
+	var body = response[3]
+
 	http.queue_free()
 
+	if status != HTTPRequest.RESULT_SUCCESS:
+		return {"error": "Error HTTP al guardar: %s" % code}
 
-# 🔹 Obtener datos del usuario
+	var json_result = JSON.parse_string(body.get_string_from_utf8())
+	if json_result == null:
+		return {"error": "Firebase regresó JSON inválido"}
+	return json_result
+
+# ----------------------------------------------------------
+# 🔹 OBTENER DATA DEL USUARIO
+# ----------------------------------------------------------
 func _get_user_data(uid: String) -> Variant:
 	var url = "%s/usuarios/%s.json" % [DB_URL, uid]
 	var http := HTTPRequest.new()
 	add_child(http)
+
 	var err = http.request(url)
 	if err != OK:
 		http.queue_free()
@@ -79,13 +155,21 @@ func _get_user_data(uid: String) -> Variant:
 	var status = response[0]
 	var response_code = response[1]
 	var body = response[3]
+
 	http.queue_free()
 
 	if status != HTTPRequest.RESULT_SUCCESS or response_code != 200:
 		return null
 
-	var result = JSON.parse_string(body.get_string_from_utf8())
-	return result
+	return JSON.parse_string(body.get_string_from_utf8())
+
+
+# ----------------------------------------------------------
+# 🔹 PATCH (actualizar parte del perfil)
+# ----------------------------------------------------------
+func update_user_data(uid: String, data: Dictionary) -> Dictionary:
+	var url = "%s/usuarios/%s.json" % [DB_URL, uid]
+	return await _patch_request(url, data)
 
 
 func _patch_request(url: String, data: Dictionary) -> Dictionary:
@@ -97,7 +181,7 @@ func _patch_request(url: String, data: Dictionary) -> Dictionary:
 
 	var err = http.request(url, headers, HTTPClient.METHOD_PATCH, json)
 	if err != OK:
-		return {"error": {"message": "Error al enviar PATCH: %s" % err}}
+		return {"error": {"message": "Error PATCH: %s" % err}}
 
 	var response = await http.request_completed
 	var status = response[0]
@@ -107,39 +191,34 @@ func _patch_request(url: String, data: Dictionary) -> Dictionary:
 	http.queue_free()
 
 	if status != HTTPRequest.RESULT_SUCCESS:
-		return {"error": {"message": "Error en PATCH, código HTTP %s" % code}}
+		return {"error": {"message": "Error en PATCH, código %s" % code}}
 
-	var result = JSON.parse_string(body.get_string_from_utf8())
-	return result
-
+	return JSON.parse_string(body.get_string_from_utf8())
 
 
-func update_user_data(uid: String, data: Dictionary) -> Dictionary:
-	var url = "%s/usuarios/%s.json" % [DB_URL, uid]
-	return await _patch_request(url, data)
-
-
-
-
-# 🔹 Enviar POST a Firebase
+# ----------------------------------------------------------
+# 🔹 POST GENERAL
+# ----------------------------------------------------------
 func _send_request(url: String, data: Dictionary) -> Dictionary:
 	var http := HTTPRequest.new()
 	add_child(http)
+
 	var json := JSON.stringify(data)
 	var headers := ["Content-Type: application/json"]
 
 	var err = http.request(url, headers, HTTPClient.METHOD_POST, json)
 	if err != OK:
-		return {"error": {"message": "Error al enviar la solicitud: %s" % err}}
+		return {"error": {"message": "Error solicitud POST: %s" % err}}
 
 	var response = await http.request_completed
 	var status = response[0]
 	var response_code = response[1]
 	var body = response[3]
+
 	http.queue_free()
 
 	if status != HTTPRequest.RESULT_SUCCESS:
-		return {"error": {"message": "Solicitud fallida, código HTTP %s" % response_code}}
+		return {"error": {"message": "Solicitud fallida. HTTP %s" % response_code}}
 
 	var response_text = body.get_string_from_utf8()
 	if response_text.is_empty():
@@ -147,8 +226,6 @@ func _send_request(url: String, data: Dictionary) -> Dictionary:
 
 	var result = JSON.parse_string(response_text)
 	if result == null:
-		return {"error": {"message": "No se pudo interpretar la respuesta del servidor"}}
+		return {"error": {"message": "JSON inválido desde Firebase"}}
 
 	return result
-	
-	

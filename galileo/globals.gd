@@ -74,7 +74,6 @@ func _on_datos_usuario_recibidos(res: Dictionary) -> void:
 	emit_signal("foto_actualizada", foto)
 	emit_signal("datos_cargados_correctamente", user_uid)
 
-
 # ============================================================
 #                  ACTUALIZAR FOTO DEL PERFIL
 # ============================================================
@@ -90,7 +89,6 @@ func actualizar_foto(nueva_foto: String) -> void:
 func _on_foto_actualizada(result):
 	emit_signal("foto_actualizada", foto)
 
-
 # ============================================================
 #              GUARDAR PROGRESO / RACHA / LOGROS
 # ============================================================
@@ -100,21 +98,17 @@ func guardar_progreso():
 
 	firebase_auth.update_document(ruta, data)
 
-
 func guardar_racha():
 	var ruta = "usuarios/%s" % user_uid
 	var data = {"racha": racha}
 
 	firebase_auth.update_document(ruta, data)
 
-
 func guardar_logros():
 	var ruta = "usuarios/%s" % user_uid
 	var data = {"logros": logros}
 
 	firebase_auth.update_document(ruta, data)
-
-
 
 # ============================================================
 #     FUNCIÓN PARA DESBLOQUEAR UN LOGRO AUTOMÁTICAMENTE
@@ -166,7 +160,6 @@ func actualizar_racha():
 		racha.ultima_fecha = fecha_hoy
 		guardar_racha()
 
-
 # ------------------------------------------------------------
 #           FECHA HOY EN FORMATO YYYY-MM-DD
 # ------------------------------------------------------------
@@ -174,15 +167,13 @@ func _fecha_actual() -> String:
 	var t = Time.get_date_dict_from_system()
 	return "%s-%02d-%02d" % [t.year, t.month, t.day]
 
-
 # ------------------------------------------------------------
 #     DIFERENCIA DE DÍAS ENTRE DOS FECHAS (dict date)
 # ------------------------------------------------------------
 func _dias_de_diferencia(f1: Dictionary, f2: Dictionary) -> int:
 	var t1 = Time.get_unix_time_from_datetime_dict(f1)
 	var t2 = Time.get_unix_time_from_datetime_dict(f2)
-	return int((t2 - t1) / 86400)   # 86400 = segundos de un día
-
+	return int((t2 - t1) / 86400)   # 86400 = segundos de un día	
 
 # ------------------------------------------------------------
 #   DESBLOQUEAR LOGROS AUTOMÁTICOS DE RACHAS
@@ -196,7 +187,6 @@ func _verificar_logros_racha():
 		desbloquear_logro("racha_30_dias")
 
 func parse_date(fecha_texto: String) -> Dictionary:
-	# Formato esperado: "YYYY-MM-DD"
 	if fecha_texto == "" or not fecha_texto.contains("-"):
 		return {}
 
@@ -211,7 +201,6 @@ func parse_date(fecha_texto: String) -> Dictionary:
 	}
 
 func parse_fecha(fecha_str: String) -> Dictionary:
-	# formato "2025-11-21"
 	var partes = fecha_str.split("-")
 	return {
 		"year": partes[0].to_int(),

@@ -1,9 +1,9 @@
 extends Control
 
-@onready var usuario = $usuario            # LineEdit del nombre
-@onready var correo = $correo              # LineEdit del correo
-@onready var contrasena = $"contrasena"   # LineEdit de la contraseña
-@onready var confirmar = $"confirmarContrasena"  # LineEdit de confirmación
+@onready var usuario = $usuario
+@onready var correo = $correo
+@onready var contrasena = $"contrasena"
+@onready var confirmar = $"confirmarContrasena"
 @onready var mensaje = $Mensaje
 
 var auth
@@ -14,42 +14,54 @@ func _ready():
 
 
 func _on_aceptar_pressed():
-	# Validar campos vacíos
+
+	# ================================
+	# VALIDACIONES
+	# ================================
 	if usuario.text.is_empty() or correo.text.is_empty() or contrasena.text.is_empty():
 		mensaje.text = "⚠️ Favor de llenar los campos"
 		return
-		
-	# Validar que las contraseñas coincidan
+
 	if contrasena.text != confirmar.text:
 		mensaje.text = "❌ Las contraseñas no coinciden"
 		return
 
-	# 🔹 Limpiar datos
-	var email = correo.text.strip_edges().to_lower()
-	var password = contrasena.text.strip_edges()
-	var nombre = usuario.text.strip_edges()
-
-	# 🔹 Registrar usuario en Firebase Authentication
-	var res = await auth.register_user(email, password, nombre)
-	print("Resultado del registro:", res)
-	
-	if res.has("error"):
-		mensaje.text = "❌ Error al registrar: %s" % res["error"]
-		print("Respuesta completa Firebase:", JSON.stringify(res, "\t"))
+	if contrasena.text.length() < 8:
+		mensaje.text = "❌ La contraseña debe tener mínimo 8 caracteres"
 		return
 
-	# 🔥 **UID único del usuario**
-	var uid = res.get("localId", "")
+	# ================================
+	# OBTENER DATOS LIMPIOS
+	# ================================
+	var nombre = usuario.text.strip_edges()
+	var email = correo.text.strip_edges().to_lower()
+	var password = contrasena.text.strip_edges()
 
-	# -------------------------------------------------------------------------
-	# ✅ **CREAR PERFIL DEL USUARIO EN REALTIME DATABASE**
-	# -------------------------------------------------------------------------
+	# ================================
+	# REGISTRAR EN FIREBASE AUTH
+	# ================================
+	var res = await auth.register_user(email, password, nombre)
+	print("Resultado del registro:", res)
+
+	if res.has("error"):
+		mensaje.text = "❌ Error al registrar: %s" % res["error"]
+		return
+
+	var uid = res.get("localId", "")
+	if uid == "":
+		mensaje.text = "❌ Error obteniendo UID"
+		return
+
+	# ================================
+	# PERFIL COMPLETO PARA FIREBASE DB
+	# ================================
 	var data_inicial = {
 		"nombre": nombre,
 		"email": email,
-		"contrasena":contrasena.text,
-		"foto": "default",         # foto de perfil inicial
-		"nivel": "novato",         # nivel inicial por defecto
+		"contrasena": password,
+		"foto": "default",
+		"nivel": "novato",
+
 		"logros": {
 			"primera_presa": null,
 			"caja_carton": null,
@@ -65,37 +77,44 @@ func _on_aceptar_pressed():
 			"teorico_nato": null,
 			"explorador_incansable": null,
 			"aprendiz_visual": null,
-			"cazador_bugs": null,},              # carpeta para guardar logros
-		"metrics": {},             # carpeta para métricas
+			"cazador_bugs": null
+		},
+
+		"metrics": {},
+
 		"progreso": {
 			"nivel_actual": "novato",
 			"leccion_actual": 0
 		},
+
 		"racha": {
 			"dias": 0,
 			"ultima_fecha": ""
 		}
 	}
 
+	# ================================
+	# GUARDAR PERFIL EN REALTIME DB
+	# ================================
 	var respuesta_db = await auth.update_user_data(uid, data_inicial)
 	print("➡️ Datos creados en Firebase DB:", respuesta_db)
-	# -------------------------------------------------------------------------
 
-	# Guardar datos básicos en Globals
+	# ================================
+	# GUARDAR EN GLOBALS
+	# ================================
 	Globals.user = {
 		"uid": uid,
 		"email": email,
-		"nombre": nombre
+		"nombre": nombre,
+		"nivel": "novato",
+		"logros": data_inicial["logros"]
 	}
 
-	# Cambiar a la escena del Test
+	# ================================
+	# CAMBIAR A LA ESCENA DEL TEST
+	# ================================
 	get_tree().change_scene_to_file("res://escenas/TestUbicacion/test1.tscn")
 
 
 func _on_iniciarsesion_pressed():
 	get_tree().change_scene_to_file("res://escenas/usuario/registro/iniciarSesion.tscn")
-
-func validar_password():
-	if contrasena.length() < 8:
-		return "❌ La contraseña debe tener mínimo 8 caracteres"
-	return ""   # Correcto
