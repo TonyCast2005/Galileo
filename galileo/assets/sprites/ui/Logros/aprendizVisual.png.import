@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dmv7hupdkc5fq"
-path="res://.godot/imported/catbox.png-b07fb4f1ea0970d514efbd75d6f802f9.ctex"
+uid="uid://7v4bfa5bit8g"
+path="res://.godot/imported/aprendizVisual.png-3d1c8665317f283458d7f05fe18218a9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui/Logros/catbox.png"
-dest_files=["res://.godot/imported/catbox.png-b07fb4f1ea0970d514efbd75d6f802f9.ctex"]
+source_file="res://assets/sprites/ui/Logros/aprendizVisual.png"
+dest_files=["res://.godot/imported/aprendizVisual.png-3d1c8665317f283458d7f05fe18218a9.ctex"]
 
 [params]
 

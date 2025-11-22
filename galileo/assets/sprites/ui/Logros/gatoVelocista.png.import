@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dg3hdkwyh3ras"
-path="res://.godot/imported/primerapresa.png-a8426c87a27abf935affd00436f69a9c.ctex"
+uid="uid://bcjeeuu8f8k4l"
+path="res://.godot/imported/gatoVelocista.png-61efe8df1eb21e939f7ef13a7a720be5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/primerapresa.png"
-dest_files=["res://.godot/imported/primerapresa.png-a8426c87a27abf935affd00436f69a9c.ctex"]
+source_file="res://assets/sprites/ui/Logros/gatoVelocista.png"
+dest_files=["res://.godot/imported/gatoVelocista.png-61efe8df1eb21e939f7ef13a7a720be5.ctex"]
 
 [params]
 

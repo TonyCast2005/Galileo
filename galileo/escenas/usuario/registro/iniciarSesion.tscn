@@ -175,6 +175,5 @@ offset_bottom = 347.0
 texture = ExtResource("3_ukx27")
 
 [connection signal="pressed" from="ColorRect/ColorRect2/aceptar" to="." method="_on_aceptar_pressed"]
-[connection signal="pressed" from="ColorRect/ColorRect2/registrarse" to="." method="_on_aceptar_pressed"]
 [connection signal="pressed" from="ColorRect/ColorRect2/registrarse" to="." method="_on_registrarse_pressed"]
 [connection signal="pressed" from="ColorRect/ColorRect2/reccontrasenna" to="." method="_on_reccontrasenna_pressed"]

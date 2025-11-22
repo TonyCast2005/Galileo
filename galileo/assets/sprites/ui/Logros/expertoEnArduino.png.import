@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dmv7hupdkc5fq"
-path="res://.godot/imported/catbox.png-b07fb4f1ea0970d514efbd75d6f802f9.ctex"
+uid="uid://bocntkr55l8ci"
+path="res://.godot/imported/expertoEnArduino.png-681633ebe9b262405a4d2d9c01e34ac2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui/Logros/catbox.png"
-dest_files=["res://.godot/imported/catbox.png-b07fb4f1ea0970d514efbd75d6f802f9.ctex"]
+source_file="res://assets/sprites/ui/Logros/expertoEnArduino.png"
+dest_files=["res://.godot/imported/expertoEnArduino.png-681633ebe9b262405a4d2d9c01e34ac2.ctex"]
 
 [params]
 

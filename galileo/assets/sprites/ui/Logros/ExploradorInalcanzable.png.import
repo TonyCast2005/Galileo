@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dmv7hupdkc5fq"
-path="res://.godot/imported/catbox.png-b07fb4f1ea0970d514efbd75d6f802f9.ctex"
+uid="uid://dr11c5pvikgt0"
+path="res://.godot/imported/ExploradorInalcanzable.png-cb037f953c7e3652dafd807679dd1b02.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui/Logros/catbox.png"
-dest_files=["res://.godot/imported/catbox.png-b07fb4f1ea0970d514efbd75d6f802f9.ctex"]
+source_file="res://assets/sprites/ui/Logros/ExploradorInalcanzable.png"
+dest_files=["res://.godot/imported/ExploradorInalcanzable.png-cb037f953c7e3652dafd807679dd1b02.ctex"]
 
 [params]
 

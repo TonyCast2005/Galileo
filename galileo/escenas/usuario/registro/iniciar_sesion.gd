@@ -4,36 +4,34 @@ extends Control
 @onready var contrasena = $"ColorRect/ColorRect2/contraseña"
 @onready var mensaje = $ColorRect/Mensaje
 @onready var Gato = $ColorRect/Gato
+
 var auth
 
 func _ready():
 	auth = load("res://escenas/usuario/registro/firebase_auth.gd").new()
 	add_child(auth)
+	animar_gato()
 
-	animar_gato()  # 🐱 inicia la animación del gato
-
-
-# 🐾 Animación del gato moviéndose suavemente de un lado a otro
 func animar_gato():
 	var tween := create_tween()
 	var pos_inicial = Gato.position
-	var desplazamiento = Vector2(10, 0) # cuánto se mueve a los lados
+	var desplazamiento = Vector2(10, 0)
 
 	tween.tween_property(Gato, "position", pos_inicial + desplazamiento, 1.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(Gato, "position", pos_inicial - desplazamiento, 1.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	tween.set_loops() # hace que el movimiento sea infinito
+	tween.set_loops()
 
-
-# 🔐 Botón aceptar
 func _on_aceptar_pressed():
 	if usuario.text.is_empty() or contrasena.text.is_empty():
 		mensaje.text = "⚠️ Favor de llenar los campos"
 		return
-		
+
 	if usuario.text == "admin@gmail.com":
 		get_tree().change_scene_to_file("res://escenas/Administrador/inicial.tscn")
-	
+		return
+
 	mensaje.text = "🔄 Iniciando sesión..."
+
 	var res = await auth.login_user(usuario.text, contrasena.text)
 	print("📩 Respuesta Firebase:", res)
 
@@ -48,29 +46,21 @@ func _on_aceptar_pressed():
 			mensaje.text = "❌ Contraseña incorrecta"
 		else:
 			mensaje.text = "❌ Error: %s" % msg
-
 		return
 
 	mensaje.text = "✅ Inicio de sesión exitoso"
-	print("Login exitoso:", usuario.text)
 
-	# ---------------------------------------------------------
-	# 🔥 1. Obtener UID
-	# ---------------------------------------------------------
+	# UID
 	var uid = res.get("localId", "")
 
-	# ---------------------------------------------------------
-	# 🔥 2. Obtener todos los datos del usuario desde Firebase DB
-	# ---------------------------------------------------------
+	# Obtener datos completos desde DB
 	var db_data = await auth._get_user_data(uid)
 
 	if db_data == null:
 		mensaje.text = "⚠️ No se pudieron cargar los datos del usuario"
 		return
 
-	# ---------------------------------------------------------
-	# 🔥 3. Guardar todos los datos del usuario en Globals
-	# ---------------------------------------------------------
+	# Guardar todo en Globals.user
 	Globals.user = {
 		"idToken": res.get("idToken", ""),
 		"uid": uid,
@@ -84,18 +74,10 @@ func _on_aceptar_pressed():
 		"racha": db_data.get("racha", {})
 	}
 
-	print("📦 Datos cargados en Globals.user: ", Globals.user)
+	print("📦 Datos cargados en Globals.user:", Globals.user)
 
-	# ---------------------------------------------------------
-	# 🔥 4. Ir al perfil
-	# ---------------------------------------------------------
 	get_tree().change_scene_to_file("res://escenas/usuario/Perfil/perfil.tscn")
-
 
 
 func _on_registrarse_pressed():
 	get_tree().change_scene_to_file("res://escenas/usuario/registro/registrarse.tscn")
-
-
-func _on_reccontrasenna_pressed():
-	get_tree().change_scene_to_file("res://escenas/usuario/registro/RecuperarContrasena.tscn")

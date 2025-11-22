@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dmv7hupdkc5fq"
-path="res://.godot/imported/catbox.png-b07fb4f1ea0970d514efbd75d6f802f9.ctex"
+uid="uid://b7asksqya2k03"
+path="res://.godot/imported/Pez gordo .png-da24cc41926550de5d9850b6e7bf6ea2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui/Logros/catbox.png"
-dest_files=["res://.godot/imported/catbox.png-b07fb4f1ea0970d514efbd75d6f802f9.ctex"]
+source_file="res://assets/sprites/trophies/Pez gordo .png"
+dest_files=["res://.godot/imported/Pez gordo .png-da24cc41926550de5d9850b6e7bf6ea2.ctex"]
 
 [params]
 
