@@ -48,18 +48,21 @@ func _on_logros_recibidos(result, code, headers, body):
 
         var nombre = info.get("nombre", "Logro sin nombre")
         var descripcion = info.get("descripcion", "Sin descripción")
-        var esta_desbloqueado = user_logros.get(clave, false)
+
+        # <<<<< ESTA ES LA PARTE IMPORTANTE
+        var esta_desbloqueado = bool(user_logros.get(clave, false))
 
         # --------------------------------------------
-        # 🔥 ORDEN CORRECTO (soluciona tu error)
+        # Crear instancia y agregarla
         # --------------------------------------------
         var logro_instance = prefab_logro.instantiate()
-
-        # PRIMERO agregar al árbol (así se ejecuta _ready())
         contenedor.add_child(logro_instance)
 
-        # AHORA sí, setear los datos
+        # --------------------------------------------
+        # Pasar los datos una sola vez
+        # --------------------------------------------
         logro_instance.set_data(icono, nombre, descripcion, esta_desbloqueado)
+
 
 # ---------------------------------------------------
 # CARGAR DATOS DEL PERFIL

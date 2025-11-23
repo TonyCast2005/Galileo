@@ -63,22 +63,23 @@ func _on_aceptar_pressed():
         "nivel": "novato",
 
         "logros": {
-            "primera_presa": null,
-            "caja_carton": null,
-            "pez_gordo": null,
-            "experto_arduino": null,
-            "el_minino_resiste": null,
-            "gato_pwm": null,
-            "leyenda_cable": null,
-            "gato_velocista": null,
-            "pelea_techo": null,
-            "gatos_pardos": null,
-            "aprendiz_veloz": null,
-            "teorico_nato": null,
-            "explorador_incansable": null,
-            "aprendiz_visual": null,
-            "cazador_bugs": null
+    "primera_presa": false,
+    "caja_carton": false,
+    "pez_gordo": false,
+    "experto_arduino": false,
+    "minino_resiste": false,
+    "gato_pwm": false,
+    "leyenda_cable": false,
+    "gato_velocista": false,
+    "pelea_techo": false,
+    "gatos_pardos": false,
+    "aprendiz_veloz": false,
+    "teorico_nato": false,
+    "explorador_incansable": false,
+    "aprendiz_visual": false,
+    "cazador_bugs": false
         },
+
 
         "metrics": {},
 

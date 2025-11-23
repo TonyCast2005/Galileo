@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://drv5v3lp26f1f"]
+[gd_scene load_steps=6 format=3 uid="uid://drv5v3lp26f1f"]
 
 [ext_resource type="Texture2D" uid="uid://b7asksqya2k03" path="res://assets/sprites/trophies/Pez gordo .png" id="1_2ft2g"]
 [ext_resource type="Script" uid="uid://du4qo4fb3xa58" path="res://escenas/usuario/Perfil/logro.gd" id="1_6n8fs"]
+[ext_resource type="Texture2D" uid="uid://4sapvjr4jbjq" path="res://assets/sprites/ui/bloqueado.png" id="3_mw6go"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6n8fs"]
 content_margin_left = 0.0
@@ -60,7 +61,7 @@ text = "Descripción del logro"
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="OverlayBloqueado" type="ColorRect" parent="."]
+[node name="OverlayBloqueado" type="TextureRect" parent="."]
 visible = false
 clip_contents = true
 custom_minimum_size = Vector2(608, 0)
@@ -71,4 +72,4 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_6n8fs")
-color = Color(0.133333, 0.156863, 0.211765, 1)
+texture = ExtResource("3_mw6go")
