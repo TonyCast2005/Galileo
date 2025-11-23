@@ -4,109 +4,127 @@ extends Control
 @onready var lbl_codigo = $Codigo
 @onready var cont_campos = $Campos
 @onready var retro = $Retro
-@onready var btn_validar = $btn_validar
 
+var preguntas = []
+var indice_actual = 0
 var respuestas_correctas = []
 var campos = []
-var pregunta_actual = {}
+
+const FIREBASE_URL = "https://galileo-af640-default-rtdb.firebaseio.com/practica_escritura.json"
 
 func _ready():
-	var ejemplo = {
-		"tipo": "llenar_codigo",
-		"enunciado": "Completa el delay:",
-		"plantilla": "delay(___ );",
-		"campos": 1,
-		"respuestas_correctas": ["1000"]
-	}
+	cargar_preguntas()
 
-	cargar_pregunta(ejemplo)
+# ============================================================
+# CARGAR TODAS LAS PREGUNTAS DESDE FIREBASE
+# ============================================================
+func cargar_preguntas():
+	var http = HTTPRequest.new()
+	add_child(http)
 
-# =====================================================================
-# CARGAR PREGUNTA DESDE UN DICCIONARIO
-# =====================================================================
-func cargar_pregunta(data: Dictionary):
-	print("\n===== CARGANDO PREGUNTA =====")
-	print("Data recibida:", data)
+	http.request_completed.connect(_on_request_completed)
+	http.request(FIREBASE_URL)
 
-	# Seguridad por si algún campo no existe
-	if not data.has("enunciado"):
-		push_error("ERROR: La pregunta no tiene 'enunciado'")
-		return
-	if not data.has("plantilla"):
-		push_error("ERROR: La pregunta no tiene 'plantilla'")
-		return
-	if not data.has("respuestas_correctas"):
-		push_error("ERROR: No tiene 'respuestas_correctas'")
-		return
-	if not data.has("campos"):
-		push_error("ERROR: No tiene 'campos'")
+
+func _on_request_completed(result, response_code, headers, body):
+	print("Código Firebase:", response_code)
+
+	if response_code != 200:
+		lbl_enunciado.text = "Error al conectar con Firebase."
 		return
 
-	pregunta_actual = data
+	var data = JSON.parse_string(body.get_string_from_utf8())
 
-	lbl_enunciado.text = data["enunciado"]
-	lbl_codigo.text = data["plantilla"]
-	respuestas_correctas = data["respuestas_correctas"]
+	# Convertir correctamente la base de datos a lista usable
+	if typeof(data) == TYPE_DICTIONARY:
+		for id in data.keys():
+			if data[id] != null and typeof(data[id]) == TYPE_DICTIONARY:
+				preguntas.append(data[id])
 
-	print("Enunciado:", lbl_enunciado.text)
-	print("Código mostrado:", lbl_codigo.text)
-	print("Respuestas correctas:", respuestas_correctas)
-	print("Cantidad de campos:", data["campos"])
+	elif typeof(data) == TYPE_ARRAY:
+		for p in data:
+			if p != null and typeof(p) == TYPE_DICTIONARY:
+				preguntas.append(p)
 
-	# -----------------------------------------------------------------
+	print("Preguntas válidas encontradas:", preguntas.size())
+
+	if preguntas.is_empty():
+		lbl_enunciado.text = "No hay preguntas disponibles."
+		return
+
+	indice_actual = 0
+	mostrar_pregunta(indice_actual)
+
+	
+# ============================================================
+# MOSTRAR PREGUNTA
+# ============================================================
+func mostrar_pregunta(i):
+
+	# No más preguntas
+	if i >= preguntas.size():
+		lbl_enunciado.text = "¡Felicidades! Terminaste."
+		cont_campos.visible = false
+		return
+
+	var pregunta = preguntas[i]
+
+	# Seguridad
+	if pregunta == null or typeof(pregunta) != TYPE_DICTIONARY:
+		print("⚠ Pregunta inválida o nula, saltando...")
+		indice_actual += 1
+		mostrar_pregunta(indice_actual)
+		return
+
+	# Corrección automática por si la BD usa "respuesta_correcta"
+	if pregunta.has("respuesta_correcta"):
+		pregunta["respuestas_correctas"] = pregunta["respuesta_correcta"]
+
+	lbl_enunciado.text = pregunta.get("enunciado", "Sin enunciado")
+	lbl_codigo.text = pregunta.get("plantilla", "")
+
+	respuestas_correctas = pregunta.get("respuestas_correctas", [])
+	var cantidad = pregunta.get("campos", respuestas_correctas.size())
+
 	# LIMPIAR CAMPOS ANTERIORES
-	# -----------------------------------------------------------------
 	for c in cont_campos.get_children():
 		c.queue_free()
 	campos.clear()
 
-	# -----------------------------------------------------------------
-	# CREAR CAMPOS SEGÚN LA PREGUNTA
-	# -----------------------------------------------------------------
-	for i in range(data["campos"]):
-		var input = LineEdit.new()
-		input.placeholder_text = "Respuesta " + str(i + 1)
+	# CREAR LOS CAMPOS NUEVOS
+	for k in range(cantidad):
+		var input := LineEdit.new()
+		input.placeholder_text = "Respuesta " + str(k + 1)
 		cont_campos.add_child(input)
 		campos.append(input)
-
-	print("Campos creados:", campos)
 
 	retro.text = ""
 	retro.modulate = Color.WHITE
 
-	print("✔ Pregunta cargada correctamente.")
 
-
-# =====================================================================
-# VALIDAR RESPUESTAS
-# =====================================================================
+# ============================================================
+# VALIDAR RESPUESTA
+# ============================================================
 func _on_btn_validar_pressed():
-	print("\n===== VALIDANDO =====")
 
-	if campos.size() == 0:
-		retro.text = "No hay campos para validar."
-		retro.modulate = Color.RED
-		print("ERROR: No se cargaron campos.")
+	if campos.is_empty():
 		return
 
-	if respuestas_correctas.size() != campos.size():
-		print("ERROR: Tamaño de respuestas no coincide.")
-		retro.text = "Error interno: respuestas no coinciden."
-		retro.modulate = Color.RED
-		return
-
-	# Verificar uno por uno
 	for i in range(campos.size()):
 		var user = campos[i].text.strip_edges()
 		var correct = respuestas_correctas[i]
 
-		print("Campo", i, ": usuario =", user, " | correcto =", correct)
-
 		if user != correct:
 			retro.text = "Incorrecto"
 			retro.modulate = Color.RED
+			await get_tree().create_timer(1.2).timeout
+			indice_actual += 1
+			mostrar_pregunta(indice_actual)
 			return
 
 	retro.text = "Correcto"
 	retro.modulate = Color.GREEN
-	print("✔ Respuesta correcta")
+
+	await get_tree().create_timer(1.2).timeout
+	indice_actual += 1
+	mostrar_pregunta(indice_actual)
