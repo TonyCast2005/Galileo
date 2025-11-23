@@ -4,6 +4,8 @@ extends Control
 @onready var level_label = $NivelUsuario
 @onready var profile_pic = $FotoPerfil
 @onready var contenedor = $ScrollContainer/logrosVbox
+@onready var iconloading = $loadingicon
+@onready var labelloading = $cargando_label
 @onready var prefab_logro = preload("res://escenas/usuario/Perfil/Logro.tscn")
 
 func _ready():
@@ -13,13 +15,27 @@ func _ready():
 # ---------------------------------------------------
 # CARGAR LOGROS DESDE FIREBASE
 # ---------------------------------------------------
+# ---------------------------------------------------
+# CARGAR LOGROS DESDE FIREBASE
+# ---------------------------------------------------
 func cargar_logros():
+    # 1️⃣ Mostrar icono y label de carga
+    iconloading.visible = true
+    iconloading.play("loading")
+    labelloading.visible = true
+
     var http := HTTPRequest.new()
     add_child(http)
     http.request_completed.connect(_on_logros_recibidos)
     http.request("https://galileo-af640-default-rtdb.firebaseio.com/logros.json")
 
+
 func _on_logros_recibidos(result, code, headers, body):
+    # 2️⃣ Ocultar icono y label en caso de error
+    iconloading.visible = false
+    iconloading.stop()
+    labelloading.visible = false
+
     if code != 200:
         print("❌ Error cargando logros:", code)
         return
@@ -41,26 +57,16 @@ func _on_logros_recibidos(result, code, headers, body):
         # --------------------------
         var icon_path = info.get("icono", "")
         var icono = load(icon_path)
-
         if icono == null:
-            print("⚠ Icono no encontrado:", icon_path)
             icono = load("res://assets/sprites/ui/Logros/default.png")
 
         var nombre = info.get("nombre", "Logro sin nombre")
         var descripcion = info.get("descripcion", "Sin descripción")
-
-        # <<<<< ESTA ES LA PARTE IMPORTANTE
         var esta_desbloqueado = bool(user_logros.get(clave, false))
 
-        # --------------------------------------------
         # Crear instancia y agregarla
-        # --------------------------------------------
         var logro_instance = prefab_logro.instantiate()
         contenedor.add_child(logro_instance)
-
-        # --------------------------------------------
-        # Pasar los datos una sola vez
-        # --------------------------------------------
         logro_instance.set_data(icono, nombre, descripcion, esta_desbloqueado)
 
 

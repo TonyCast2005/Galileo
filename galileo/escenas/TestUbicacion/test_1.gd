@@ -44,7 +44,21 @@ func _on_aceptar_pressed():
     var nivel = ventana.get_meta("nivel")
     ventana.visible = false
     print("aceptar")
+
+    # 1️⃣ Guardarlo localmente
+    Globals.user["nivel"] = nivel
+
+    # 2️⃣ Guardarlo en Firebase
+    var uid = Globals.user.get("uid", "")
+    if uid != "":
+        var auth = load("res://escenas/usuario/registro/firebase_auth.gd").new()
+        add_child(auth)
+        await auth.update_user_data(uid, {"nivel": nivel, "progreso": {"nivel_actual": nivel}})
+
+    # 3️⃣ Ir al perfil
     get_tree().change_scene_to_file("res://escenas/usuario/Perfil/perfil.tscn")
+
+
     
 
 func _on_seguir_pressed():
