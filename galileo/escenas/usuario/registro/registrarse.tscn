@@ -144,5 +144,5 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_x7nj8")
 text = "Iniciar Sesión"
 
 [connection signal="pressed" from="aceptar" to="." method="_on_aceptar_pressed"]
-[connection signal="pressed" from="iniciarsesion" to="." method="_on_registrarse_pressed"]
 [connection signal="pressed" from="iniciarsesion" to="." method="_on_iniciarsesion_pressed"]
+[connection signal="pressed" from="iniciarsesion" to="." method="_on_registrarse_pressed"]

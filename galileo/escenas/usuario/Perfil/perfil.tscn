@@ -45,7 +45,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"loading",
-"speed": 5.0
+"speed": 7.0
 }]
 
 [node name="Control2" type="Control"]
