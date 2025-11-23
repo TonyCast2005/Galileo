@@ -177,6 +177,18 @@ offset_top = 538.0
 offset_right = 150.0
 offset_bottom = 546.0
 
+[node name="LabelNotificacion" type="Label" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 1039.0
+offset_right = 674.0
+offset_bottom = 1099.0
+theme_override_font_sizes/font_size = 20
+text = "
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="pressed" from="perfil" to="." method="_on_perfil_pressed"]
 [connection signal="pressed" from="ed_nombre" to="." method="_on_ed_nombre_pressed"]
 [connection signal="pressed" from="ed_contraseña" to="." method="_on_ed_contraseña_pressed"]

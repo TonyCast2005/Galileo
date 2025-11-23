@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dg3hdkwyh3ras"
-path="res://.godot/imported/primerapresa.png-a8426c87a27abf935affd00436f69a9c.ctex"
+uid="uid://7v4bfa5bit8g"
+path="res://.godot/imported/aprendiz_visual.png-8d26b575b2f7b4b09bed3efbec115141.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/primerapresa.png"
-dest_files=["res://.godot/imported/primerapresa.png-a8426c87a27abf935affd00436f69a9c.ctex"]
+source_file="res://assets/sprites/ui/Logros/aprendiz_visual.png"
+dest_files=["res://.godot/imported/aprendiz_visual.png-8d26b575b2f7b4b09bed3efbec115141.ctex"]
 
 [params]
 

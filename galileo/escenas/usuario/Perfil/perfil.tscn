@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cs6y8btdpwblb" path="res://escenas/menu.tscn" id="1_pw2c4"]
 [ext_resource type="Script" uid="uid://bdc81e4xu188m" path="res://escenas/usuario/Perfil/perfil.gd" id="1_y0tx0"]
-[ext_resource type="Texture2D" uid="uid://dpu72kxvllbfy" path="res://assets/sprites/ui/Logros/caja de cartón .png" id="2_q3e6x"]
+[ext_resource type="Texture2D" uid="uid://dpu72kxvllbfy" path="res://assets/sprites/trophies/caja de cartón .png" id="2_q3e6x"]
 [ext_resource type="Texture2D" uid="uid://wtavayokovw6" path="res://assets/sprites/ui/Menu/engrane.png" id="3_y0tx0"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q3e6x"]
@@ -70,13 +70,17 @@ horizontal_alignment = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 0
-offset_left = 99.0
+offset_left = 50.0
 offset_top = 583.0
-offset_right = 627.0
+offset_right = 671.0
 offset_bottom = 1102.0
 
 [node name="logrosVbox" type="VBoxContainer" parent="ScrollContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(608, 80)
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 

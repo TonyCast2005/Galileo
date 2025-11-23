@@ -1,14 +1,18 @@
 extends Panel
 
-@onready var icon_rect = $HBoxContainer/TextureRect
-@onready var title_label = $HBoxContainer/VBoxContainer/Nombre
-@onready var desc_label = $HBoxContainer/VBoxContainer/textoLectura
-@onready var overlay = $OverlayBloqueado
+@onready var icon_rect: TextureRect = $HBoxContainer/TextureRect
+@onready var title_label: Label = $HBoxContainer/VBoxContainer/Nombre
+@onready var desc_label: Label = $HBoxContainer/VBoxContainer/textoLectura
 
-func set_data(icon: Texture, title: String, description: String, unlocked: bool):
-	icon_rect.texture = icon
-	title_label.text = title
-	desc_label.text = description
+var candado_texture: Texture2D = load("res://assets/sprites/ui/bloqueado.png")
 
-	overlay.visible = not unlocked
-	modulate = Color(1, 1, 1, 1.0 if unlocked else 0.5)
+func set_data(icon: Texture2D, title: String, description: String, unlocked: bool):
+    title_label.text = title
+    desc_label.text = description
+
+    if unlocked:
+        icon_rect.texture = icon
+        modulate = Color(1, 1, 1, 1)  # normal
+    else:
+        icon_rect.texture = candado_texture
+        modulate = Color(1, 1, 1, 0.6)  # tenue opcional

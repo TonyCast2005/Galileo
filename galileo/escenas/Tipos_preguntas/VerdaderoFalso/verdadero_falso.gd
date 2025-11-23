@@ -1,121 +1,77 @@
 extends Control
 
-@onready var campo_pregunta = $pregunta
-@onready var campo_op1 = $Respuesta1
-@onready var campo_op2 = $Respuesta2
-@onready var campo_op3 = $Respuesta3
-@onready var campo_correcta = $respuesta_correcta  # debe ser 1,2 o 3
+@onready var label_pregunta = $TextoPregunta
+@onready var boton_verdadero = $Verdadero
+@onready var boton_falso = $Falso
 @onready var mensaje = $Mensaje
 
-var firebase
-var editando_id = null
+signal respondida(texto: String, color: Color, correcta: bool)
+var preguntas = []
+var indice_actual = 0
+const FIREBASE_URL = "https://galileo-af640-default-rtdb.firebaseio.com/preguntas_VF.json"
 
 func _ready():
-	firebase = load("res://escenas/usuario/registro/firebase_auth.gd").new()
-	add_child(firebase)
+	cargar_preguntas()
 
-	if Globals.temp_preview_data:
-		_fill_preview_data()
+func cargar_preguntas():
+	var http = HTTPRequest.new()
+	add_child(http)
+	http.request_completed.connect(_on_request_completed)
+	http.request(FIREBASE_URL)
 
+func _on_request_completed(result, response_code, headers, body):
+	print("Código de respuesta Firebase:", response_code)
+	print("Respuesta:", body.get_string_from_utf8())
 
-# =========================================================
-# LLENAR DATOS SI VIENE PREVIEW
-# =========================================================
-func _fill_preview_data():
-	var data = Globals.temp_preview_data
-	if data.has("pregunta"):
-		campo_pregunta.text = data["pregunta"]
-	if data.has("opciones"):
-		campo_op1.text = data["opciones"][0]
-		campo_op2.text = data["opciones"][1]
-		campo_op3.text = data["opciones"][2]
-	if data.has("correcta"):
-		campo_correcta.text = str(data["correcta"])
+	if response_code == 200:
+		var data = JSON.parse_string(body.get_string_from_utf8())
 
+		if typeof(data) == TYPE_ARRAY:
+			for pregunta in data:
+				if pregunta != null:
+					preguntas.append(pregunta)
+		elif typeof(data) == TYPE_DICTIONARY:
+			for id in data.keys():
+				preguntas.append(data[id])
 
-# =========================================================
-# OBTENER DATOS DEL FORMULARIO
-# =========================================================
-func get_form_data(estado:String) -> Dictionary:
-	return {
-		"pregunta": campo_pregunta.text,
-		"opciones": [campo_op1.text, campo_op2.text, campo_op3.text],
-		"correcta": int(campo_correcta.text),
-		"estado": estado
-	}
-
-
-# =========================================================
-# GUARDAR
-# =========================================================
-func _on_guardar_pressed():
-
-	var data = get_form_data("publicado")
-
-	var res = await firebase.save_question_OPC(data)
-
-	if res == null or res.has("error"):
-		_show_message("Error al guardar :(", Color.RED)
+		if preguntas.size() > 0:
+			mostrar_pregunta(indice_actual)
+		else:
+			label_pregunta.text = "No se encontraron preguntas."
 	else:
-		_show_message("Pregunta guardada correctamente", Color.GREEN)
-		_clear_fields()
+		label_pregunta.text = "Error al conectar con Firebase."
 
 
-# =========================================================
-# BORRADOR
-# =========================================================
-func _on_borrador_pressed():
-	Globals.temp_preview_data = get_form_data("borrador")
-	_show_message("Borrador guardado", Color(Color.DARK_ORANGE))
-	_clear_fields()
-
-
-# =========================================================
-# ELIMINAR
-# =========================================================
-func _on_eliminar_pressed():
-	if editando_id == null:
-		_show_message("Nada que eliminar", Color.YELLOW)
+func mostrar_pregunta(indice):
+	if indice >= preguntas.size():
+		label_pregunta.text = "Tengo que agregar más preguntas DX"
+		boton_verdadero.disabled = true
+		boton_falso.disabled = true
 		return
 
-	var url = "%s/preguntas_opc/%s.json" % [firebase.DB_URL, editando_id]
+	var pregunta = preguntas[indice]
+	label_pregunta.text = pregunta.get("pregunta", "Pregunta no encontrada")
+	var correcta = pregunta.get("respuesta_correcta", "")
 
-	var http := HTTPRequest.new()
-	add_child(http)
-	await http.request(url, [], HTTPClient.METHOD_DELETE)
-	http.queue_free()
+	for s in boton_verdadero.pressed.get_connections():
+		boton_verdadero.pressed.disconnect(s["callable"])
+	for s in boton_falso.pressed.get_connections():
+		boton_falso.pressed.disconnect(s["callable"])
 
-	editando_id = null
-	_clear_fields()
-	_show_message("Pregunta eliminada", Color.RED)
+	boton_verdadero.text = "Verdadero"
+	boton_falso.text = "Falso"
 
+	boton_verdadero.pressed.connect(func(): responder("Verdadero", correcta))
+	boton_falso.pressed.connect(func(): responder("Falso", correcta))
 
-# =========================================================
-# PREVISUALIZAR
-# =========================================================
-func _on_previsualizar_pressed():
-	Globals.temp_preview_data = get_form_data("preview")
-	get_tree().change_scene_to_file("res://escenas/Administrador/preview_opcion_multiple.tscn")
+func responder(respuesta: String, correcta: String):
+	if respuesta == correcta:
+		mensaje.text = "¡Correcto!"
+		mensaje.modulate = Color(0, 1, 0)
+	else:
+		mensaje.text = "Incorrecto"
+		mensaje.modulate = Color(1, 0, 0)
 
-
-# =========================================================
-# MENSAJE TEMPORAL
-# =========================================================
-func _show_message(texto, color:Color):
-	mensaje.text = texto
-	mensaje.modulate = color
-	mensaje.visible = true
-
-	await get_tree().create_timer(4).timeout
-	mensaje.visible = false
-
-
-# =========================================================
-# LIMPIAR FORMULARIO
-# =========================================================
-func _clear_fields():
-	campo_pregunta.text = ""
-	campo_op1.text = ""
-	campo_op2.text = ""
-	campo_op3.text = ""
-	campo_correcta.text = ""
+	await get_tree().create_timer(1.5).timeout
+	indice_actual += 1
+	mostrar_pregunta(indice_actual)
