@@ -15,14 +15,6 @@ var editando_id: String = ""
 var borrador = {}
 
 func _ready():
-	print("pregunta:", pregunta)
-	print("respuesta:", respuesta)
-	print("palabra1:", palabra1)
-	print("palabra2:", palabra2)
-	print("palabra3:", palabra3)
-	print("sinonimo1:", sinonimo1)
-	print("sinonimo2:", sinonimo2)
-	print("sinonimo3:", sinonimo3)
 
 	firebase = load("res://escenas/usuario/registro/firebase_auth.gd").new()
 	add_child(firebase)
