@@ -61,6 +61,7 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="OverlayBloqueado" type="ColorRect" parent="."]
+visible = false
 clip_contents = true
 custom_minimum_size = Vector2(608, 0)
 layout_mode = 1

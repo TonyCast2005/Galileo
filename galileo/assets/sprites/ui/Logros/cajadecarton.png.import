@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dpna3kyi1413e"
-path="res://.godot/imported/caja de cartón .png-67272d47278b6390d7bc9341679bdd7b.ctex"
+path="res://.godot/imported/cajadecarton.png-a82aa749e4e8fa9cc8cd0f1ef679be84.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui/Logros/caja de cartón .png"
-dest_files=["res://.godot/imported/caja de cartón .png-67272d47278b6390d7bc9341679bdd7b.ctex"]
+source_file="res://assets/sprites/ui/Logros/cajadecarton.png"
+dest_files=["res://.godot/imported/cajadecarton.png-a82aa749e4e8fa9cc8cd0f1ef679be84.ctex"]
 
 [params]
 

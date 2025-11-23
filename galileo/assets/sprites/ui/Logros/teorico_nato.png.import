@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dju68fhg4wvkh"
-path="res://.godot/imported/cazadorDeBugs.png-7ddb661ff84e4157b154f28b66192667.ctex"
+uid="uid://ck7tqkn7ri63u"
+path="res://.godot/imported/teorico_nato.png-ab5f3c2c8c888764e339d1418fbf58d0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui/Logros/cazadorDeBugs.png"
-dest_files=["res://.godot/imported/cazadorDeBugs.png-7ddb661ff84e4157b154f28b66192667.ctex"]
+source_file="res://assets/sprites/ui/Logros/teorico_nato.png"
+dest_files=["res://.godot/imported/teorico_nato.png-ab5f3c2c8c888764e339d1418fbf58d0.ctex"]
 
 [params]
 

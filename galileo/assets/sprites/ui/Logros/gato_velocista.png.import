@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ck7tqkn7ri63u"
-path="res://.godot/imported/teoricoNato.png-f9def8790067884f38d1c8d97ad42dd3.ctex"
+uid="uid://bcjeeuu8f8k4l"
+path="res://.godot/imported/gato_velocista.png-c3b63ea9951de9c410802f576f7232c7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui/Logros/teoricoNato.png"
-dest_files=["res://.godot/imported/teoricoNato.png-f9def8790067884f38d1c8d97ad42dd3.ctex"]
+source_file="res://assets/sprites/ui/Logros/gato_velocista.png"
+dest_files=["res://.godot/imported/gato_velocista.png-c3b63ea9951de9c410802f576f7232c7.ctex"]
 
 [params]
 
