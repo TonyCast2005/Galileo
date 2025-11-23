@@ -11,146 +11,153 @@ extends Control
 @onready var retro = $Mensaje
 
 var firebase
-var editando_id = null
+var editando_id: String = ""
+var borrador = {}
 
 func _ready():
+	print("pregunta:", pregunta)
+	print("respuesta:", respuesta)
+	print("palabra1:", palabra1)
+	print("palabra2:", palabra2)
+	print("palabra3:", palabra3)
+	print("sinonimo1:", sinonimo1)
+	print("sinonimo2:", sinonimo2)
+	print("sinonimo3:", sinonimo3)
+
 	firebase = load("res://escenas/usuario/registro/firebase_auth.gd").new()
 	add_child(firebase)
 
+	# Si venimos del preview o de un borrador:
 	var data = Globals.temp_preview_data
-	if data.has("pregunta"):
-		pregunta.text = data["pregunta"]
-	if data.has("respuesta_modelo"):
-		respuesta.text = data["respuesta_modelo"]
-	if data.has("palabra1"):
-		palabra1.text = data["palabra1"]
-	if data.has("palabra2"):
-		palabra2.text = data["palabra2"]
-	if data.has("palabra3"):
-		palabra3.text = data["palabra3"]
-	if data.has("sinonimo1"):
-		sinonimo1.text = data["sinonimo1"]
-	if data.has("sinonimo2"):
-		sinonimo2.text = data["sinonimo2"]
-	if data.has("sinonimo3"):
-		sinonimo3.text = data["sinonimo3"]
 
-# ----------------------- Obtener datos del formulario -----------------------
-func get_form_data(estado:String) -> Dictionary:
+	if data.has("pregunta"): pregunta.text = data["pregunta"]
+	if data.has("respuesta_modelo"): respuesta.text = data["respuesta_modelo"]
+
+	if data.has("palabra1"): palabra1.text = data["palabra1"]
+	if data.has("palabra2"): palabra2.text = data["palabra2"]
+	if data.has("palabra3"): palabra3.text = data["palabra3"]
+
+	if data.has("sinonimo1"): sinonimo1.text = data["sinonimo1"]
+	if data.has("sinonimo2"): sinonimo2.text = data["sinonimo2"]
+	if data.has("sinonimo3"): sinonimo3.text = data["sinonimo3"]
+
+
+# ----------------------------- Obtener datos -----------------------------
+func get_form_data() -> Dictionary:
 	return {
-		"tipo": "semiabierta",
+		"tipo": "abierta",
 		"pregunta": pregunta.text,
+		"respuesta_modelo": respuesta.text,
+
 		"palabra1": palabra1.text,
 		"palabra2": palabra2.text,
 		"palabra3": palabra3.text,
+
 		"sinonimo1": sinonimo1.text,
 		"sinonimo2": sinonimo2.text,
-		"sinonimo3": sinonimo3.text,
-		"respuesta_modelo": respuesta.text
+		"sinonimo3": sinonimo3.text
 	}
 
-# ----------------------- Borrador temporal -----------------------
-func _on_borrador_pressed():
-	Globals.temp_preview_data = get_form_data("borrador")
 
-# ----------------------- Eliminar pregunta -----------------------
+# ----------------------------- Borrador -----------------------------
+func _on_borrador_pressed():
+	Globals.temp_preview_data = get_form_data()
+	retro.text = "Borrador guardado."
+	retro.modulate = Color(0.4, 0.6, 1)
+	limpiar_mensaje()
+
+
+# ----------------------------- Eliminar -----------------------------
 func _on_eliminar_pressed():
-	if editando_id == null:
+	if editando_id == "":
 		_clear_fields()
 		return
 
 	var url = "%s/preguntas_abiertas/%s.json" % [firebase.DB_URL, editando_id]
+
 	var http := HTTPRequest.new()
 	add_child(http)
+
 	await http.request(url, [], HTTPClient.METHOD_DELETE)
 	http.queue_free()
 
-	editando_id = null
+	editando_id = ""
 	_clear_fields()
-	print("Pregunta eliminada")
-		
-# ----------------------- Limpiar campos -----------------------
+
+	retro.text = "Pregunta eliminada."
+	limpiar_mensaje()
+
+
+# ----------------------------- Limpiar -----------------------------
 func _clear_fields():
 	pregunta.text = ""
+	respuesta.text = ""
 	palabra1.text = ""
 	palabra2.text = ""
 	palabra3.text = ""
 	sinonimo1.text = ""
 	sinonimo2.text = ""
 	sinonimo3.text = ""
-	respuesta.text = ""
 
-# ----------------------- Previsualizar -----------------------
+
+# ----------------------------- Previsualizar -----------------------------
 func _on_previsualizar_pressed():
-	Globals.temp_preview_data = get_form_data("preview")
-	get_tree().change_scene_to_file("res://escenas/Administrador/preview_semiAbiertas.tscn")
+	Globals.temp_preview_data = get_form_data()
+	get_tree().change_scene_to_file("res://escenas/Administrador/preview_abiertas.tscn")
 
-# ----------------------- Volver -----------------------
+
+# ----------------------------- Volver -----------------------------
 func _on_volver_pressed():
 	get_tree().change_scene_to_file("res://escenas/Administrador/AgregarPregunta.tscn")
 
-# ----------------------- Guardar en Firebase -----------------------
+
+# ----------------------------- Guardar en Firebase -----------------------------
 func _on_guardar_pressed():
-	# Validar campos
+
 	if pregunta.text.is_empty() or respuesta.text.is_empty():
-		retro.text = "Por favor completa la pregunta y la respuesta correcta."
-		retro.modulate = Color(1,0,0)
+		retro.text = "Debes llenar la pregunta y respuesta correcta."
+		retro.modulate = Color.RED
 		limpiar_mensaje()
 		return
 
-	# Construir datos
-	var data = {
-		"tipo": "semiabierta",
-		"pregunta": pregunta.text,
-		"palabra1": palabra1.text,
-		"palabra2": palabra2.text,
-		"palabra3": palabra3.text,
-		"sinonimo1": sinonimo1.text,
-		"sinonimo2": sinonimo2.text,
-		"sinonimo3": sinonimo3.text,
-		"respuesta_modelo": respuesta.text
-	}
+	var data = get_form_data()
 
-	# URL Firebase semiabiertas
 	var url = "%s/preguntas_abiertas.json" % firebase.DB_URL
 
 	var http := HTTPRequest.new()
 	add_child(http)
 
 	var headers = ["Content-Type: application/json"]
-	var json = JSON.stringify(data)
+	var json := JSON.stringify(data)
 
-	# POST simple con json como String
+	# GODOT 4: request(url, headers, METHOD, body)
 	var err = http.request(url, headers, HTTPClient.METHOD_POST, json)
 	if err != OK:
-		retro.text = "Error al conectar con el servidor."
-		retro.modulate = Color(1,0,0)
+		retro.text = "Error al enviar datos."
+		retro.modulate = Color.RED
 		limpiar_mensaje()
 		return
 
-	# Esperar respuesta
 	var response = await http.request_completed
-	var body = response[3]  # PackedByteArray
+	var body: PackedByteArray = response[3]
 	var result = JSON.parse_string(body.get_string_from_utf8())
 
 	http.queue_free()
 
-	# Firebase devuelve un "name" si se guardó correctamente
 	if result == null or not result.has("name"):
-		retro.text = "Error al guardar la pregunta."
-		retro.modulate = Color(1,0,0)
+		retro.text = "Error al guardar."
+		retro.modulate = Color.RED
 		limpiar_mensaje()
 		return
 
-	# Guardado exitoso
 	retro.text = "Guardado correctamente."
-	retro.modulate = Color(0,1,0)
+	retro.modulate = Color.GREEN
 	limpiar_mensaje()
 
-	# Vaciar campos
 	_clear_fields()
 
-# ----------------------- Limpiar mensaje -----------------------
+
+# ----------------------------- Limpiar mensaje -----------------------------
 func limpiar_mensaje():
-	await get_tree().create_timer(4).timeout
+	await get_tree().create_timer(3).timeout
 	retro.text = ""

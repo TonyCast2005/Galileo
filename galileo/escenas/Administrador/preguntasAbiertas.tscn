@@ -81,6 +81,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="pregunta" type="TextEdit" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.115
@@ -202,7 +203,7 @@ placeholder_text = "Palabra 3"
 wrap_mode = 1
 autowrap_mode = 2
 
-[node name="similares3" type="TextEdit" parent="."]
+[node name="sinonimos3" type="TextEdit" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.387

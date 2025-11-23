@@ -37,7 +37,6 @@ func register_user(email: String, password: String, nombre: String) -> Dictionar
 
 	return res
 
-
 # 🔹 Iniciar sesión
 func login_user(email: String, password: String) -> Dictionary:
 	var url = "%s:signInWithPassword?key=%s" % [BASE_URL, API_KEY]
@@ -112,14 +111,9 @@ func _patch_request(url: String, data: Dictionary) -> Dictionary:
 	var result = JSON.parse_string(body.get_string_from_utf8())
 	return result
 
-
-
 func update_user_data(uid: String, data: Dictionary) -> Dictionary:
 	var url = "%s/usuarios/%s.json" % [DB_URL, uid]
 	return await _patch_request(url, data)
-
-
-
 
 # 🔹 Enviar POST a Firebase
 func _send_request(url: String, data: Dictionary) -> Dictionary:
