@@ -71,27 +71,12 @@ anchor_top = 0.151
 anchor_right = 0.903
 anchor_bottom = 0.218
 offset_left = -0.160004
-offset_top = 16.72
+offset_top = -44.28
 offset_right = -0.160034
-offset_bottom = 16.96
+offset_bottom = -44.04
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_5vjlb")
 text = "Preguntas Abiertas"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Label" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.079
-anchor_right = 1.0
-anchor_bottom = 0.13
-offset_left = 4.0
-offset_top = -32.12
-offset_right = -3.0
-offset_bottom = -32.4
-theme_override_font_sizes/font_size = 20
-text = "Nombre administrador"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -103,9 +88,9 @@ anchor_top = 0.252
 anchor_right = 0.868
 anchor_bottom = 0.394
 offset_left = 0.199997
-offset_top = 12.44
+offset_top = -48.56
 offset_right = 15.04
-offset_bottom = -0.320038
+offset_bottom = -61.32
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_ud4bb")
 placeholder_text = "Pregunta"
@@ -120,33 +105,122 @@ anchor_top = 0.429
 anchor_right = 0.868
 anchor_bottom = 0.496
 offset_left = -17.72
-offset_top = -0.119995
+offset_top = -61.12
 offset_right = 0.039978
-offset_bottom = 0.119995
+offset_bottom = -60.88
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_ud4bb")
 placeholder_text = "Respuesta"
 wrap_mode = 1
 autowrap_mode = 2
 
-[node name="sinonimo" type="TextEdit" parent="."]
+[node name="palabra1" type="TextEdit" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.146
+anchor_left = 0.042
 anchor_top = 0.527
-anchor_right = 0.868
-anchor_bottom = 0.65
-offset_left = -0.12001
-offset_top = 0.440002
-offset_right = 0.039978
-offset_bottom = -6.10352e-05
+anchor_right = 0.35
+anchor_bottom = 0.586
+offset_left = -0.240017
+offset_top = -61.56
+offset_right = -1.52588e-05
+offset_bottom = -61.08
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_ud4bb")
-placeholder_text = "Sinonimos de la respuesta"
+placeholder_text = "Palabra 1
+"
 wrap_mode = 1
 autowrap_mode = 2
 
-[node name="guardar" type="Label" parent="."]
+[node name="sinonimos1" type="TextEdit" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.387
+anchor_top = 0.527
+anchor_right = 0.961
+anchor_bottom = 0.586
+offset_left = 0.359985
+offset_top = -61.56
+offset_right = 0.0799561
+offset_bottom = -61.08
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_ud4bb")
+placeholder_text = "sinonimos"
+wrap_mode = 1
+autowrap_mode = 2
+
+[node name="palabra2" type="TextEdit" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.042
+anchor_top = 0.601
+anchor_right = 0.35
+anchor_bottom = 0.659
+offset_left = -0.240017
+offset_top = -62.28
+offset_right = -1.52588e-05
+offset_bottom = -60.52
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_ud4bb")
+placeholder_text = "Palabra 2
+"
+wrap_mode = 1
+autowrap_mode = 2
+
+[node name="sinonimos2" type="TextEdit" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.387
+anchor_top = 0.599
+anchor_right = 0.961
+anchor_bottom = 0.659
+offset_left = 0.359985
+offset_top = -60.72
+offset_right = 0.0799561
+offset_bottom = -61.52
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_ud4bb")
+placeholder_text = "sinonimos
+"
+wrap_mode = 1
+autowrap_mode = 2
+
+[node name="palabra3" type="TextEdit" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.042
+anchor_top = 0.673
+anchor_right = 0.35
+anchor_bottom = 0.731
+offset_left = -0.240017
+offset_top = -62.4401
+offset_right = -1.52588e-05
+offset_bottom = -60.68
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_ud4bb")
+placeholder_text = "Palabra 3"
+wrap_mode = 1
+autowrap_mode = 2
+
+[node name="similares3" type="TextEdit" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.387
+anchor_top = 0.67
+anchor_right = 0.961
+anchor_bottom = 0.729
+offset_left = 0.359985
+offset_top = -61.6
+offset_right = 0.0799561
+offset_bottom = -61.1201
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_ud4bb")
+placeholder_text = "sinonimos
+"
+wrap_mode = 1
+autowrap_mode = 2
+
+[node name="guardar" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.06
@@ -154,16 +228,14 @@ anchor_top = 0.793
 anchor_right = 0.247
 anchor_bottom = 0.834
 offset_left = -0.200001
-offset_top = -0.0400391
+offset_top = -6.03998
 offset_right = 0.159988
-offset_bottom = -0.52002
+offset_bottom = -6.52002
 theme_override_font_sizes/font_size = 12
 theme_override_styles/normal = SubResource("StyleBoxFlat_14n16")
 text = "guardar"
-horizontal_alignment = 1
-vertical_alignment = 1
 
-[node name="borrador" type="Label" parent="."]
+[node name="borrador" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.262
@@ -171,57 +243,67 @@ anchor_top = 0.795
 anchor_right = 0.462
 anchor_bottom = 0.833
 offset_left = 0.359985
-offset_top = -0.600037
+offset_top = -6.60004
 offset_right = 0.359985
-offset_bottom = -0.240112
+offset_bottom = -6.24011
 theme_override_font_sizes/font_size = 12
 theme_override_styles/normal = SubResource("StyleBoxFlat_14n16")
 text = "borrador"
-horizontal_alignment = 1
-vertical_alignment = 1
 
-[node name="eliminar" type="Label" parent="."]
+[node name="eliminar" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.474
 anchor_top = 0.795
 anchor_right = 0.665
 anchor_bottom = 0.831
-offset_left = -0.280029
-offset_top = -0.600037
-offset_right = 0.199982
-offset_bottom = 0.319946
+offset_left = -0.28006
+offset_top = -6.60004
+offset_right = 0.199951
+offset_bottom = -5.68005
 theme_override_font_sizes/font_size = 12
 theme_override_styles/normal = SubResource("StyleBoxFlat_14n16")
 text = "eliminar"
-horizontal_alignment = 1
-vertical_alignment = 1
 
-[node name="previsualizar" type="Label" parent="."]
+[node name="previsualizar" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.672
 anchor_top = 0.795
 anchor_right = 0.937
 anchor_bottom = 0.831
-offset_left = 3.15997
-offset_top = -0.600037
-offset_right = 0.359985
-offset_bottom = 0.319946
+offset_left = 3.16
+offset_top = -6.60004
+offset_right = 0.360046
+offset_bottom = -5.68005
 theme_override_font_sizes/font_size = 12
 theme_override_styles/normal = SubResource("StyleBoxFlat_14n16")
 text = "previsualizar"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="volver" type="Button" parent="."]
 layout_mode = 0
 offset_left = 59.0
-offset_top = 903.0
+offset_top = 897.0
 offset_right = 195.0
-offset_bottom = 991.0
+offset_bottom = 985.0
 theme_override_styles/focus = SubResource("StyleBoxTexture_14n16")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_k7usp")
 theme_override_styles/normal = SubResource("StyleBoxTexture_nrf4l")
 
+[node name="Mensaje" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.149
+anchor_top = 0.857
+anchor_right = 0.817
+anchor_bottom = 0.947
+offset_left = -0.280006
+offset_top = 13.0399
+offset_right = 36.7599
+offset_bottom = 12.84
+
+[connection signal="pressed" from="guardar" to="." method="_on_guardar_pressed"]
+[connection signal="pressed" from="borrador" to="." method="_on_borrador_pressed"]
+[connection signal="pressed" from="eliminar" to="." method="_on_eliminar_pressed"]
+[connection signal="pressed" from="previsualizar" to="." method="_on_previsualizar_pressed"]
 [connection signal="pressed" from="volver" to="." method="_on_volver_pressed"]
