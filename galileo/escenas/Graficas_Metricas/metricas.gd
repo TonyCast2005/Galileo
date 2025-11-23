@@ -18,10 +18,10 @@ var label_info: Array[String] = [
     " \nDemuestra tu dominio en aplicaciones prácticas con Arduino y electrónica."
 ]
 
-# referencia al panel, título y texto
-@onready var panel_info = $Panel_Info
-@onready var label_title = $Panel_Info/Label_Title
-@onready var label_info_text = $Panel_Info/Label_Info
+
+@onready var panel_info = get_parent().get_node("Panel_Info")
+@onready var label_title = panel_info.get_node("Label_Title")
+@onready var label_info_text = panel_info.get_node("Label_Info")
 
 # parámetros del efecto flotante
 var float_speed: float = 1.5
