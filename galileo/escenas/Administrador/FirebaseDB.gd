@@ -27,11 +27,10 @@ func save_question_VF(data: Dictionary) -> Dictionary:
 	var result = JSON.parse_string(body.get_string_from_utf8())
 	return result
 
+
 # ==========================================================
 # GUARDAR PREGUNTAS OPCIÓN MÚLTIPLE
 # ==========================================================
-
-
 func save_question_OPC(data: Dictionary) -> Dictionary:
 	var url = "%s/preguntas_opc.json" % DB_URL
 
@@ -52,6 +51,7 @@ func save_question_OPC(data: Dictionary) -> Dictionary:
 
 	var result = JSON.parse_string(body.get_string_from_utf8())
 	return result
+
 
 # ==========================================================
 # GUARDAR PREGUNTAS SEMIABIERTAS
@@ -76,9 +76,10 @@ func save_question_semiabierta(data: Dictionary) -> Dictionary:
 
 	var result = JSON.parse_string(body.get_string_from_utf8())
 	return result
-	
-	# ==========================================================
-# GUARDAR arrastrar y soltar
+
+
+# ==========================================================
+# GUARDAR PREGUNTAS ARRASTRAR Y SOLTAR
 # ==========================================================
 func save_question_arrastrarSoltar(data: Dictionary) -> Dictionary:
 	var url = "%s/arrastrar_soltar.json" % DB_URL
@@ -96,6 +97,36 @@ func save_question_arrastrarSoltar(data: Dictionary) -> Dictionary:
 	var response = await http.request_completed
 	var body = response[3]
 
+	http.queue_free()
+
+	var result = JSON.parse_string(body.get_string_from_utf8())
+	return result
+
+
+# ==========================================================
+# GUARDAR LECCIÓN
+# ==========================================================
+func save_leccion(data: Dictionary) -> Dictionary:
+	var url = "%s/lecciones.json" % DB_URL
+	print("URL usada para guardar lección:", url)
+
+	var http := HTTPRequest.new()
+	add_child(http)
+
+	var headers = ["Content-Type: application/json"]
+	var json = JSON.stringify(data)
+
+	var err = http.request(url, headers, HTTPClient.METHOD_POST, json)
+
+	if err != OK:
+		print("ERROR al enviar POST:", err)
+		return {"error": "No se pudo enviar POST"}
+
+	var response = await http.request_completed
+
+	print("HTTP Response:", response)
+
+	var body = response[3]
 	http.queue_free()
 
 	var result = JSON.parse_string(body.get_string_from_utf8())
