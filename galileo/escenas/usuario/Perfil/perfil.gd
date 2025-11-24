@@ -5,7 +5,7 @@ extends Control
 @onready var profile_pic = $FotoPerfil
 @onready var contenedor = $ScrollContainer/logrosVbox
 @onready var iconloading = $loadingicon
-@onready var labelloading = $cargando_label
+@onready var labelloading = $Cargando_label
 @onready var prefab_logro = preload("res://escenas/usuario/Perfil/Logro.tscn")
 
 func _ready():
