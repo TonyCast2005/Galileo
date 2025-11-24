@@ -75,3 +75,7 @@ func _on_anterior_pressed():
     if indice_actual > 0:
         indice_actual -= 1
         cargar_tema(indice_actual, -1)
+
+
+func _on_ayuda_pressed() -> void:
+    pass # Replace with function body.
