@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://c4q4i2a048g8c"]
+[gd_scene load_steps=5 format=3 uid="uid://c4q4i2a048g8c"]
 
+[ext_resource type="Script" uid="uid://d23gw3m2cvmov" path="res://escenas/usuario/MenuInicial/Temas_Principiante/Temas_ProgramacionBasica/tema_programacion_basica.gd" id="1_lq2qr"]
 [ext_resource type="Texture2D" uid="uid://b2ppqu3em387w" path="res://assets/sprites/ui/iconoMorado (1).png" id="1_o41s5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4yaf0"]
@@ -23,6 +24,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_lq2qr")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -156,3 +158,8 @@ theme_override_font_sizes/font_size = 29
 text = "4"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[connection signal="pressed" from="Panel/VBoxContainer/Button1" to="." method="_on_button_1_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/Button4" to="." method="_on_button_4_pressed"]

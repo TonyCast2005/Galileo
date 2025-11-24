@@ -12,21 +12,21 @@ extends Control
 @export var color_fondo : Color = Color(1, 1, 1)
 
 func _ready():
-    _actualizar_visuales()
+	_actualizar_visuales()
 
 func _actualizar_visuales():
-    # título
-    if tema:
-        tema.text = titulo_tema
-    
-    # texto de estado (por ejemplo "1/2 lecciones")
-    if estado:
-        estado.text = estado_texto
-    
-    # icono del tema
-    if icono and icono_texture:
-        icono.texture = icono_texture
-    
-    # color del fondo
-    if color_rect:
-        color_rect.color = color_fondo
+	# título
+	if tema:
+		tema.text = titulo_tema
+	
+	# texto de estado (por ejemplo "1/2 lecciones")
+	if estado:
+		estado.text = estado_texto
+	
+	# icono del tema
+	if icono and icono_texture:
+		icono.texture = icono_texture
+	
+	# color del fondo
+	if color_rect:
+		color_rect.color = color_fondo
