@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dakur4qpeuka6"]
 
-[ext_resource type="Texture2D" uid="uid://dg3hdkwyh3ras" path="res://assets/sprites/primerapresa.png" id="1_4eias"]
 [ext_resource type="Script" uid="uid://ok7pjck72ghu" path="res://escenas/usuario/registro/recuperar_contrasena.gd" id="1_xxx5m"]
+[ext_resource type="Texture2D" uid="uid://bgnffnt45rlhx" path="res://assets/sprites/ui/lupa.png" id="2_3py6r"]
 [ext_resource type="FontFile" uid="uid://cu62bdhamv7ue" path="res://assets/fonts/PressStart2P-Regular.ttf" id="3_3py6r"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xxx5m"]
@@ -80,8 +80,9 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_xxx5m")
 text = "recuperar"
 
 [node name="Primerapresa" type="Sprite2D" parent="."]
-position = Vector2(366, 408)
-texture = ExtResource("1_4eias")
+position = Vector2(367, 349)
+scale = Vector2(0.505092, 0.459948)
+texture = ExtResource("2_3py6r")
 
 [node name="Mensaje" type="Label" parent="."]
 layout_mode = 0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://d8mx0onmxk4s"]
+[gd_scene load_steps=4 format=3 uid="uid://d8mx0onmxk4s"]
 
 [ext_resource type="Script" uid="uid://bfutogcebcw16" path="res://escenas/Administrador/inicial.gd" id="1_gvp2n"]
 
@@ -14,17 +14,6 @@ corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gvp2n"]
-bg_color = Color(0.147575, 0.0936971, 0.221111, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-corner_radius_top_left = 40
-corner_radius_top_right = 40
-corner_radius_bottom_right = 40
-corner_radius_bottom_left = 40
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xxwe7"]
 bg_color = Color(0.147575, 0.0936971, 0.221111, 1)
 border_width_left = 5
 border_width_top = 5
@@ -83,21 +72,5 @@ theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_gvp2n")
 text = "Agregar preguntas"
 
-[node name="logros" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.115
-anchor_top = 0.416
-anchor_right = 0.904
-anchor_bottom = 0.484
-offset_left = -12.8
-offset_top = 188.52
-offset_right = -4.88
-offset_bottom = 187.48
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_xxwe7")
-text = "Agregar logros"
-
 [connection signal="pressed" from="leccion" to="." method="_on_leccion_pressed"]
 [connection signal="pressed" from="preguntas" to="." method="_on_preguntas_pressed"]
-[connection signal="pressed" from="logros" to="." method="_on_logros_pressed"]
