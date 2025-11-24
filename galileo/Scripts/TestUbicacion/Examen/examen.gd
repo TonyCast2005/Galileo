@@ -119,9 +119,9 @@ func _on_pregunta_respondida(texto: String, color: Color, correcta: bool):
 
         if correcta:
             correctas += 1
-            mostrar_retroalimentacion("✅ " + texto, color)
+            mostrar_retroalimentacion(" " + texto, color)
         else:
-            mostrar_retroalimentacion("❌ Incorrecto. La respuesta era: " + pregunta.get("respuesta_correcta", ""), Color.RED)
+            mostrar_retroalimentacion(" Incorrecto. La respuesta era: " + pregunta.get("respuesta_correcta", ""), Color.RED)
 
     boton_retro.visible = true
     boton_retro.disabled = false

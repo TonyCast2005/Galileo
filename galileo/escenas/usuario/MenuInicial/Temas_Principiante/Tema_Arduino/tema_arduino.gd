@@ -19,18 +19,21 @@ var candados := []
 # Control de desbloqueo: cuántos botones están desbloqueados
 var max_desbloqueado := 1
 
-# Rutas de escenas por botón
-var escenas := [
-    "res://escenas/tema1/lectura.tscn",
-    "res://escenas/tema1/ejercicio2.tscn",
-    "res://escenas/tema1/ejercicio3.tscn",
-    "res://escenas/tema1/ejercicio4.tscn"
+# Botón 1 siempre es lectura
+var escena_lectura := "res://escenas/Tipos_preguntas/Lectura/Lectura.tscn"
+
+# Ejercicios disponibles para Arduino (principiantes)
+var ejercicios_arduino := [
+    {"tipo": "OpcionMultiple", "ruta": "res://escenas/Tipos_preguntas/OpcionMultiple/OpcionMultiple.tscn"},
+    {"tipo": "VerdaderoFalso", "ruta": "res://escenas/Tipos_preguntas/VerdaderoFalso/VF.tscn"},
+    {"tipo": "OpcionMultiple", "ruta": "res://escenas/Tipos_preguntas/OpcionMultiple/OpcionMultiple2.tscn"},
 ]
 
 func _ready():
     # Guardamos los candados en orden
     candados = [null, candado2, candado3, candado4]  # null para botón 1
     _actualizar_estado_botones()
+    randomize() # Para que randi() genere aleatorios distintos cada ejecución
 
 # ----------------------------
 # Actualiza botones y candados según max_desbloqueado
@@ -55,20 +58,45 @@ func desbloquear_siguiente():
         _actualizar_estado_botones()
 
 # ----------------------------
+# Función para escoger un ejercicio aleatorio
+# ----------------------------
+func ejercicio_aleatorio() -> Dictionary:
+    var indice = randi() % ejercicios_arduino.size()
+    return ejercicios_arduino[indice]
+
+# ----------------------------
+# Función para cargar escena de ejercicio
+# ----------------------------
+func cargar_escena_ejercicio(ejercicio: Dictionary) -> void:
+    var escena = load(ejercicio.ruta).instantiate()
+    get_tree().current_scene.add_child(escena)
+
+    # Si la escena tiene un método para recibir la pregunta desde Firebase
+    if escena.has_method("set_pregunta"):
+        var preguntas = Globals.preguntas_arduino   # Lista de preguntas cargadas previamente
+        if preguntas.size() > 0:
+            var pregunta = preguntas[randi() % preguntas.size()]
+            escena.set_pregunta(pregunta)
+
+
+# ----------------------------
 # Funciones de los botones
 # ----------------------------
 func _on_button_1_pressed() -> void:
-    get_tree().change_scene_to_file(escenas[0])
+    get_tree().change_scene_to_file(escena_lectura)
     desbloquear_siguiente()
 
 func _on_button_2_pressed() -> void:
-    get_tree().change_scene_to_file(escenas[1])
+    var ejercicio = ejercicio_aleatorio()
+    cargar_escena_ejercicio(ejercicio)
     desbloquear_siguiente()
 
 func _on_button_3_pressed() -> void:
-    get_tree().change_scene_to_file(escenas[2])
+    var ejercicio = ejercicio_aleatorio()
+    cargar_escena_ejercicio(ejercicio)
     desbloquear_siguiente()
 
 func _on_button_4_pressed() -> void:
-    get_tree().change_scene_to_file(escenas[3])
+    var ejercicio = ejercicio_aleatorio()
+    cargar_escena_ejercicio(ejercicio)
     desbloquear_siguiente()

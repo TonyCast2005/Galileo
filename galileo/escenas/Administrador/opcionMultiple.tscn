@@ -250,6 +250,7 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_ih8du")
 theme_override_styles/normal = SubResource("StyleBoxTexture_l0v8d")
 
 [node name="Mensaje" type="Label" parent="."]
+layout_mode = 0
 offset_left = 140.0
 offset_top = 1093.0
 offset_right = 560.0

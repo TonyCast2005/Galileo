@@ -126,11 +126,12 @@ position = Vector2(364, 759)
 scale = Vector2(5.28125, 5.48438)
 sprite_frames = SubResource("SpriteFrames_vhyui")
 animation = &"loading"
+frame_progress = 0.154818
 
 [node name="Cargando_label" type="Label" parent="."]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 16.0
 
-[connection signal="pressed" from="Editarperfil" to="." method="_on_editar_perfil_pressed"]
 [connection signal="pressed" from="Editarperfil" to="." method="_on_editarperfil_pressed"]
+[connection signal="pressed" from="Editarperfil" to="." method="_on_editar_perfil_pressed"]

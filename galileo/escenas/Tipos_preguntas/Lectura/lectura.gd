@@ -3,51 +3,59 @@ extends Control
 @onready var Texto = $TextoPregunta
 @onready var NombreLeccion = $NombreLección
 @onready var lectura = $ScrollContainer/textoLectura
-@onready var http = $HTTPRequest   # Debe existir un nodo HTTPRequest
+@onready var http = $HTTPRequest
 
-var leccion_id = "arduino_basico"   # 🔹 Aquí pones la lección a cargar
+var leccion_id = "arduino_basico"  # Se puede cambiar desde otra escena
+
+func _ready():
+    cargar_leccion()
+ 
 
 
-   
+# ======================================
+# 🔹 Cargar la PISTA desde Globals
+# ======================================
 
 
+
+# ======================================
+# 🔹 Pedir datos de Firebase
+# ======================================
+func cargar_leccion():
+    var url = "https://galileo-af640-default-rtdb.firebaseio.com/lecturas/%s.json" % leccion_id
+    http.request(url)
+
+
+# ======================================
+# 🔹 Procesar respuesta de Firebase
+# ======================================
 func _on_request_completed(result, response_code, headers, body):
     if response_code != 200:
-        NombreLeccion.text = "❌ Error al cargar lección"
+        NombreLeccion.text = "❌ Error al cargar"
         lectura.text = ""
-        Texto.text = ""
         return
 
     var data = JSON.parse_string(body.get_string_from_utf8())
     if typeof(data) != TYPE_DICTIONARY:
-        NombreLeccion.text = "⚠️ Lección inválida"
+        NombreLeccion.text = "⚠️ Lectura inválida"
         return
 
-    # ==============================
-    # Cargar datos en los labels
-    # ==============================
     NombreLeccion.text = data.get("titulo", "Sin título")
     lectura.text = data.get("contenido", "")
-    Texto.text = data.get("pregunta", "")
-    print("📘 Lección cargada correctamente:", data)
+    print("📘 Lectura cargada:", data)
 
 
-
-
+# ======================================
+# 🔹 Botón continuar
+# ======================================
 func _on_continuar_pressed():
-    var nivel_actual = Globals.get("nivel_actual")
-    if nivel_actual == null:
-        nivel_actual = 1
-
-    var nivel_desbloqueado = Globals.get("nivel_desbloqueado")
-
-    if nivel_actual >= nivel_desbloqueado:
-        Globals.set("nivel_desbloqueado", nivel_actual + 1)
-
     get_tree().change_scene_to_file("res://escenas/usuario/MenuInicial/MenuInicial.tscn")
 
 
-
-func _on_ayuda_pressed() -> void:
-    # Aquí puedes mostrar pop-ups, textos o ayudas del tema
-    print("🔍 Mostrando ayuda...")
+# ======================================
+# 🔹 AYUDA (gato hablando)
+# ======================================
+func _on_ayuda_pressed():
+    var escena_gato = preload("res://escenas/Pistas/Pistas_Contenedor.tscn").instantiate()
+    add_child(escena_gato)
+    escena_gato.set_pista(Globals.pista_lectura)

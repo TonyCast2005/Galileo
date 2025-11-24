@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dmimjjslrumcs"]
+[gd_scene load_steps=5 format=3 uid="uid://dmimjjslrumcs"]
 
 [ext_resource type="Texture2D" uid="uid://b2ppqu3em387w" path="res://assets/sprites/ui/iconoMorado (1).png" id="1_k0ep0"]
+[ext_resource type="Texture2D" uid="uid://4sapvjr4jbjq" path="res://assets/sprites/ui/bloqueado.png" id="2_8jw7r"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4yaf0"]
 bg_color = Color(0.247059, 0.231373, 0.501961, 0.627451)
@@ -124,6 +125,17 @@ text = "2"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="TextureRect2" type="TextureRect" parent="Panel/VBoxContainer/Button2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.5
+offset_left = 5.0
+offset_top = 4.0
+offset_right = 158.0
+offset_bottom = 79.0
+texture = ExtResource("2_8jw7r")
+expand_mode = 1
+
 [node name="Button3" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2
 icon = ExtResource("1_k0ep0")
@@ -140,6 +152,17 @@ text = "3"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="TextureRect3" type="TextureRect" parent="Panel/VBoxContainer/Button3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.5
+offset_left = 5.0
+offset_top = 4.0
+offset_right = 158.0
+offset_bottom = 79.0
+texture = ExtResource("2_8jw7r")
+expand_mode = 1
+
 [node name="Button4" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2
 icon = ExtResource("1_k0ep0")
@@ -155,3 +178,14 @@ theme_override_font_sizes/font_size = 29
 text = "4"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="TextureRect4" type="TextureRect" parent="Panel/VBoxContainer/Button4"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.5
+offset_left = 5.0
+offset_top = 4.0
+offset_right = 158.0
+offset_bottom = 79.0
+texture = ExtResource("2_8jw7r")
+expand_mode = 1

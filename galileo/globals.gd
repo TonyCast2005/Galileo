@@ -207,3 +207,12 @@ func parse_fecha(fecha_str: String) -> Dictionary:
         "month": partes[1].to_int(),
         "day": partes[2].to_int()
     }
+
+#PISTA PARA LA LECTURAS
+
+
+
+var datos := {
+    "pista_lectura": "Lee con atención, esta lectura es importante para comprender el tema.",
+    "nivel_desbloqueado": 1
+}
