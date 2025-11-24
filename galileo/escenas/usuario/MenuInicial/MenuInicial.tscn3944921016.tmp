@@ -94,19 +94,9 @@ vertical_alignment = 1
 [node name="Carrusel" type="Control" parent="."]
 anchors_preset = 0
 offset_left = 28.0
-offset_top = 160.0
+offset_top = 154.0
 offset_right = 699.0
-offset_bottom = 1020.0
-
-[node name="LabelContador" type="Label" parent="."]
-layout_mode = 0
-offset_left = 301.0
-offset_top = 1035.0
-offset_right = 402.0
-offset_bottom = 1098.0
-theme_override_font_sizes/font_size = 25
-horizontal_alignment = 1
-vertical_alignment = 1
+offset_bottom = 1017.0
 
 [connection signal="pressed" from="Anterior" to="." method="_on_anterior_pressed"]
 [connection signal="pressed" from="Siguiente" to="." method="_on_siguiente_pressed"]

@@ -1,79 +1,78 @@
 extends Control
 
-@onready var niveles_container = $ScrollContainer/VBoxContainer
-var selector_scene = preload("res://escenas/usuario/MenuInicial/selectorNivel.tscn")
+@onready var contenedor = $Carrusel
 
-# 1. Mapeo de Niveles a Escenas de Ejercicios
-# IMPORTANTE: Debes reemplazar los paths a la derecha (e.g., "res://...") 
-# con las rutas reales de tus escenas de ejercicios de Godot (.tscn).
-var exercise_scenes: Dictionary = {
-    1: "res://escenas/Tipos_preguntas/Lectura/Lectura.tscn",
-    2: "res://escenas/ejercicios/ejercicio_02_arrastrar_soltar.tscn",
-    3: "res://escenas/ejercicios/ejercicio_03_preguntas_abiertas.tscn",
-    4: "res://escenas/ejercicios/ejercicio_04_otro_tipo.tscn",
-    # Continúa agregando las rutas para el resto de tus niveles (hasta el 12)
-    # ...
-    12: "res://escenas/ejercicios/ejercicio_12_final.tscn",
-}
+# Lista de escenas del carrusel en orden
+var temas := [
+    preload("res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Arduino.tscn"),
+    preload("res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Electronica.tscn"),
+    preload("res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Programacion_Basica.tscn"),
+    preload("res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_EntradasDigitales.tscn")
+]
 
-# Número total de niveles
-@export var total_niveles : int = 12
-
-# Último nivel desbloqueado (usado para la lógica de bloqueo/desbloqueo)
-@export var nivel_desbloqueado_global : int = 1
+var indice_actual := 0
+var escena_actual: Control = null
 
 func _ready():
-    
-    nivel_desbloqueado_global = Globals.nivel_desbloqueado
-    _crear_niveles()
+    cargar_tema(indice_actual, 0) # posición inicial = 0
 
+# ------------------------------
+# Cargar la escena del tema actual con animación
+# direccion: 1 = siguiente, -1 = anterior, 0 = inicial
+# ------------------------------
+func cargar_tema(i: int, direccion: int):
+    var nueva_escena = temas[i].instantiate() as Control
+    contenedor.add_child(nueva_escena)
 
+    # Ajustar tamaño y anclas
+    nueva_escena.anchor_left = 0.0
+    nueva_escena.anchor_right = 1.0
+    nueva_escena.anchor_top = 0.0
+    nueva_escena.anchor_bottom = 1.0
+    nueva_escena.position = Vector2.ZERO
+    nueva_escena.size_flags_horizontal = Control.SIZE_FILL
+    nueva_escena.size_flags_vertical = Control.SIZE_FILL
 
-func _crear_niveles():
-    if niveles_container == null:
-        push_error("niveles_container no encontrado. Revisa la ruta en @onready.")
+    var ancho = contenedor.size.x
+
+    # Primera escena
+    if escena_actual == null:
+        nueva_escena.position = Vector2.ZERO
+        escena_actual = nueva_escena
         return
 
-    # Limpiar botones previos
-    for child in niveles_container.get_children():
-        child.queue_free()
-    
-    for i in range(total_niveles):
-        # Instanciar el botón y usar el 'class_name' para un mejor tipado
-        var boton = selector_scene.instantiate() as SelectorNivel 
+    # Posición inicial de la nueva escena (entrando desde derecha o izquierda)
+    nueva_escena.position = Vector2(direccion * ancho, 0)
 
-        boton.level_num = i + 1
+    # Crear Tween
+    var tween = create_tween()
 
-        # Lógica de desbloqueo
-        boton.locked = i + 1 > nivel_desbloqueado_global
+# Animación de salida de la escena actual
+    tween.tween_property(escena_actual, "position:x", -direccion * ancho, 0.25).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 
-        # Tamaño y centrado
-        boton.custom_minimum_size = Vector2(150, 50)
-        boton.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+# Animación de entrada de la nueva escena
+    tween.tween_property(nueva_escena, "position:x", 0, 0.50).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
 
-        ## ----------------------------------------------------
-        ## 2. Conexión de la Señal
-        ## Conecta la señal 'level_selected' del botón a la función local 
-        ## '_on_level_selected'.
-        boton.level_selected.connect(_on_level_selected)
-        ## ----------------------------------------------------
-
-        niveles_container.add_child(boton)
+# Callback al completar todo el tween
+    tween.finished.connect(func():
+        if escena_actual:
+            escena_actual.queue_free()
+        escena_actual = nueva_escena
+    )
 
 
-## ----------------------------------------------------
-## 3. Función para Manejar la Carga de Escena
-## Esta función se ejecuta cuando se presiona un botón.
-func _on_level_selected(level: int):
-    # Busca la ruta de la escena en el diccionario usando el número de nivel
-    var scene_path = exercise_scenes.get(level)
-    Globals.set("nivel_actual", level)
+# ------------------------------
+# Botón: Siguiente Tema
+# ------------------------------
+func _on_siguiente_pressed():
+    if indice_actual < temas.size() - 1:
+        indice_actual += 1
+        cargar_tema(indice_actual, 1) # 1 = desde derecha
 
-    
-    if scene_path:
-        print("Cargando nivel ", level, ": ", scene_path)
-        # Cambia la escena actual por la escena del ejercicio
-        get_tree().change_scene_to_file(scene_path)
-    else:
-        push_error("¡ERROR! No hay una ruta de escena definida para el Nivel: " + str(level) + ". Revisa el diccionario 'exercise_scenes'.")
-## ----------------------------------------------------
+# ------------------------------
+# Botón: Tema Anterior
+# ------------------------------
+func _on_anterior_pressed():
+    if indice_actual > 0:
+        indice_actual -= 1
+        cargar_tema(indice_actual, -1) # -1 = desde izquierda
