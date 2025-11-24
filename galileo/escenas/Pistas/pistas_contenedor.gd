@@ -9,7 +9,7 @@ var tween_habla: Tween = null
 var tween_idle: Tween = null
 var escribiendo := false
 
-var texto_final := "hola como estas esta es un apista galileo espero que a todos les guste este proyecto "   # ← La pista que se va a mostrar
+var texto_final := " "   # ← La pista que se va a mostrar
 
 func _ready():
     ok.hide()
