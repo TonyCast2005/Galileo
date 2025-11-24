@@ -4,7 +4,7 @@ extends Control
 
 # Lista de escenas del carrusel en orden
 var temas := [
-    preload("res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Arduino.tscn"),
+    preload("res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Arduino/Tema_Arduino.tscn"),
     preload("res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Electronica.tscn"),
     preload("res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Programacion_Basica.tscn"),
     preload("res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_EntradasDigitales.tscn")
