@@ -1,0 +1,96 @@
+[gd_scene load_steps=5 format=3 uid="uid://gnv7i8ysft2s"]
+
+[ext_resource type="Texture2D" uid="uid://baykhnqxwooqw" path="res://assets/sprites/ui/ventana.png" id="1_gle0j"]
+[ext_resource type="Script" uid="uid://c1a1clbdvqcou" path="res://escenas/usuario/Perfil/contenedores_editar/confirmacion_borrar.gd" id="1_havp8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_havp8"]
+bg_color = Color(0.619608, 0.109804, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gle0j"]
+bg_color = Color(0.87451, 0.2, 0.176471, 1)
+
+[node name="ConfirmacionBorrar" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_havp8")
+
+[node name="Ventana" type="Sprite2D" parent="."]
+position = Vector2(360, 594)
+scale = Vector2(0.684631, 0.926056)
+texture = ExtResource("1_gle0j")
+
+[node name="Texto1" type="Label" parent="Ventana"]
+offset_left = -375.385
+offset_top = -242.966
+offset_right = 326.615
+offset_bottom = -172.966
+theme_override_colors/font_color = Color(0.619608, 0, 0, 1)
+theme_override_font_sizes/font_size = 39
+text = "¡ELIMINAR CUENTA!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Input" type="LineEdit" parent="Ventana"]
+offset_left = -354.936
+offset_top = -97.1863
+offset_right = 361.064
+offset_bottom = 12.8137
+theme_override_font_sizes/font_size = 24
+placeholder_text = "NOMBRE DE USUARIO"
+alignment = 1
+
+[node name="Salir" type="Button" parent="Ventana"]
+offset_left = 330.105
+offset_top = -247.285
+offset_right = 431.105
+offset_bottom = -178.285
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_havp8")
+text = "X"
+
+[node name="BtnEliminar" type="Button" parent="Ventana"]
+offset_left = -87.6384
+offset_top = 184.654
+offset_right = 147.362
+offset_bottom = 237.654
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_gle0j")
+text = "ELIMINAR
+"
+
+[node name="Mensaje" type="Label" parent="Ventana"]
+offset_left = -334.487
+offset_top = 296.958
+offset_right = 278.513
+offset_bottom = 342.958
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = -85.0
+offset_top = 433.0
+offset_right = 763.0
+offset_bottom = 496.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Escribe tu nombre de usuario
+  para eliminar tu cuenta"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+offset_left = -66.0
+offset_top = 631.0
+offset_right = 782.0
+offset_bottom = 729.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Esta acción eliminará permanentemente
+ tu cuenta y 
+todos tus datos asociados. Esta 
+acción no se puede deshacer."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Ventana/Salir" to="." method="_on_salir_pressed"]
+[connection signal="pressed" from="Ventana/BtnEliminar" to="." method="_on_btn_eliminar_pressed"]

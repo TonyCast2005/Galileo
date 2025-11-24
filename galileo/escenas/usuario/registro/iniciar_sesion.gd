@@ -23,23 +23,23 @@ func animar_gato():
 
 func _on_aceptar_pressed():
     if usuario.text.is_empty() or contrasena.text.is_empty():
-        mensaje.text = "⚠️ Favor de llenar los campos"
+        mensaje.text = "Favor de llenar los campos"
         return
 
     if usuario.text == "admin@gmail.com":
         get_tree().change_scene_to_file("res://escenas/Administrador/inicial.tscn")
         return
 
-    mensaje.text = "🔄 Iniciando sesión..."
+    mensaje.text = "Iniciando sesión..."
 
     var res = await auth.login_user(usuario.text, contrasena.text)
-    print("📩 Respuesta Firebase:", res)
+    print(" Respuesta Firebase:", res)
 
     if res.has("error"):
         var msg = res["error"].get("message", "Error desconocido")
 
         if msg == "INVALID_LOGIN_CREDENTIALS":
-            mensaje.text = "❌ Credenciales incorrectas"
+            mensaje.text = "¡Credenciales incorrectas!"
         elif msg == "EMAIL_NOT_FOUND":
             mensaje.text = "❌ Correo no registrado"
         elif msg == "INVALID_PASSWORD":
@@ -48,7 +48,7 @@ func _on_aceptar_pressed():
             mensaje.text = "❌ Error: %s" % msg
         return
 
-    mensaje.text = "✅ Inicio de sesión exitoso"
+    mensaje.text = "¡Inicio de sesión exitoso!"
 
     # UID
     var uid = res.get("localId", "")
@@ -57,7 +57,7 @@ func _on_aceptar_pressed():
     var db_data = await auth._get_user_data(uid)
 
     if db_data == null:
-        mensaje.text = "⚠️ No se pudieron cargar los datos del usuario"
+        mensaje.text = "⚠No se pudieron cargar los datos del usuario"
         return
 
     # Guardar todo en Globals.user

@@ -43,14 +43,14 @@ corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xauf2"]
-bg_color = Color(0, 0.530799, 0.21357, 1)
+bg_color = Color(0.748563, 0.167719, 0.454059, 1)
 corner_radius_top_left = 40
 corner_radius_top_right = 40
 corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j03r8"]
-bg_color = Color(0.569535, 0, 0.237151, 1)
+bg_color = Color(0.104855, 0.35577, 0.2436, 1)
 corner_radius_top_left = 40
 corner_radius_top_right = 40
 corner_radius_bottom_right = 40
@@ -126,11 +126,11 @@ text = "¿Sabes tu nivel de conocimiento?"
 
 [node name="Label2" type="Label" parent="."]
 layout_mode = 0
-offset_left = 189.0
+offset_left = 164.0
 offset_top = 1014.0
-offset_right = 544.0
+offset_right = 564.0
 offset_bottom = 1058.0
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 25
 text = "¿No tienes idea?"
 
 [node name="Test" type="Button" parent="."]
@@ -146,7 +146,7 @@ offset_right = 0.343994
 offset_bottom = -0.474976
 theme_override_colors/font_color = Color(0.681906, 0.410838, 0.909475, 1)
 theme_override_fonts/font = ExtResource("2_0tj0f")
-theme_override_font_sizes/font_size = 21
+theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_87wwf")
 text = "Realiza un test!"
 
@@ -191,6 +191,7 @@ offset_left = -4.74002
 offset_top = -0.995026
 offset_right = -4.79004
 offset_bottom = -0.970001
+theme_override_font_sizes/font_size = 20
 theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_8rxlg")
 theme_override_styles/normal = SubResource("StyleBoxFlat_xauf2")
 text = "Seguir viendo"
@@ -206,6 +207,7 @@ offset_left = 0.0499992
 offset_top = -5.13
 offset_right = -0.210022
 offset_bottom = -5.13004
+theme_override_font_sizes/font_size = 22
 theme_override_styles/normal = SubResource("StyleBoxFlat_j03r8")
 text = "Aceptar"
 

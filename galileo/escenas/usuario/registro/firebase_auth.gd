@@ -229,3 +229,15 @@ func _send_request(url: String, data: Dictionary) -> Dictionary:
         return {"error": {"message": "JSON inválido desde Firebase"}}
 
     return result
+    
+    # ----------------------------------------------------------
+# 🔹 ELIMINAR USUARIO
+# ----------------------------------------------------------
+func delete_user(idToken: String) -> Dictionary:
+    if idToken == "":
+        return {"error": {"message": "Token vacío"}}
+
+    var url = "%s:delete?key=%s" % [BASE_URL, API_KEY]
+    var data = {"idToken": idToken}
+
+    return await _send_request(url, data)

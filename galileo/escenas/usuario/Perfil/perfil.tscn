@@ -110,7 +110,7 @@ layout_mode = 0
 offset_left = 50.0
 offset_top = 583.0
 offset_right = 671.0
-offset_bottom = 1102.0
+offset_bottom = 1160.0
 
 [node name="logrosVbox" type="VBoxContainer" parent="ScrollContainer"]
 clip_contents = true
@@ -130,13 +130,13 @@ position = Vector2(355.359, 725.5)
 scale = Vector2(5, 4.547)
 sprite_frames = SubResource("SpriteFrames_vhyui")
 animation = &"loading"
-frame_progress = 0.580453
+frame_progress = 0.65519
 
 [node name="cargando_label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 254.0
+offset_left = 248.0
 offset_top = 789.0
-offset_right = 462.0
+offset_right = 464.0
 offset_bottom = 866.0
 theme_override_font_sizes/font_size = 27
 text = "Cargando"

@@ -59,3 +59,8 @@ theme = SubResource("Theme_hf74p")
 texture = ExtResource("1_m7rug")
 expand_mode = 3
 stretch_mode = 3
+
+[node name="Tema" type="Label" parent="."]
+layout_mode = 0
+offset_right = 9.0
+offset_bottom = 16.0

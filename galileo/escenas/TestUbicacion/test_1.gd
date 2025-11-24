@@ -33,7 +33,7 @@ func _on_experimentado_pressed():
     
 func _on_test_pressed():
     print("test")
-    get_tree().change_scene_to_file("res://escenas/TestUbicacion/preambulo.tscn")
+    get_tree().change_scene_to_file("res://escenas/TestUbicacion/Instrucciones.tscn")
 
 func _mostrar_definicion(texto: String, nivel: String):
     texto_definicion.text = texto

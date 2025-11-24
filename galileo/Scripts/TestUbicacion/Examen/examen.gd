@@ -168,8 +168,8 @@ func _on_boton_retro_pressed():
     }
 
     if uid != "":
-        var path = "usuarios/%s" % uid
-        await auth.update_user_data(path, data_guardar)
+       
+        await auth.update_user_data(uid, data_guardar)
         print("🔥 Resultado guardado en Firebase")
     else:
         print("⚠️ UID vacío, no se guardó en Firebase")

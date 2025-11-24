@@ -12,7 +12,7 @@ signal foto_cambiada(nueva_foto)
 @onready var contenedor_fotos = preload("res://escenas/usuario/Perfil/contenedores_editar/imagenes.tscn")
 @onready var contenedor_nombre = preload("res://escenas/usuario/Perfil/contenedores_editar/contenedor_nombre.tscn")
 @onready var contenedor_contra = preload("res://escenas/usuario/Perfil/contenedores_editar/contenedor_contra.tscn")
-
+@onready var contenedor_eliminar_scene = preload("res://escenas/usuario/Perfil/contenedores_editar/confirmacion_borrar.tscn")
 func _ready():
     foto_btn.pressed.connect(_on_editar_foto)
     Globals.connect("foto_actualizada", Callable(self, "_on_foto_actualizada"))
@@ -119,7 +119,7 @@ func cargar_datos_usuario():
     if ResourceLoader.exists(ruta):
         foto.texture = load(ruta)
     else:
-        foto.texture = load("res://assets/sprites/ui/Logros/el minino resiste.png")
+        foto.texture = load("res://assets/sprites/ui/Logros/teorico_nato.png")
 
 func _on_foto_actualizada(foto_nueva: String):
     cargar_datos_usuario()
@@ -146,3 +146,37 @@ func mostrar_notificacion(texto: String, duracion: float = 2.0) -> void:
 # -----------------------
 func _on_perfil_pressed() -> void:
     get_tree().change_scene_to_file("res://escenas/usuario/Perfil/perfil.tscn")
+
+
+# -----------------------
+# ABRIR VENTANA PARA ELIMINAR CUENTA
+# -----------------------
+func _on_eliminar_cuenta_pressed() -> void:
+    var selector = contenedor_eliminar_scene.instantiate()
+    add_child(selector)
+    # Conectamos la señal de la subventana al método que hará el borrado
+    selector.connect("cuenta_confirmada", Callable(self, "_on_cuenta_confirmada"))
+
+# -----------------------
+# BORRAR LA CUENTA (RECIBE UID e idToken)
+# -----------------------
+func _on_cuenta_confirmada(uid: String, idToken: String) -> void:
+    var auth = load("res://escenas/usuario/registro/firebase_auth.gd").new()
+    add_child(auth)
+
+    # 1️⃣ Borrar datos del usuario en Realtime Database
+    var res_db = await auth.update_user_data(uid, {}) # o un método DELETE si tienes uno
+    if res_db.has("error"):
+        push_error("Error al borrar datos de la DB: %s" % res_db["error"])
+        return
+
+    # 2️⃣ Borrar usuario en Firebase Auth
+    if idToken != "":
+        var res_auth = await auth.delete_user(idToken)
+        if res_auth.has("error"):
+            push_error("Error al borrar usuario de Auth: %s" % res_auth["error"])
+            return
+
+    # 3️⃣ Limpiar Globals y volver al login
+    Globals.user.clear()
+    get_tree().change_scene_to_file("res://escenas/usuario/registro/iniciarSesion.tscn")

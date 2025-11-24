@@ -37,7 +37,7 @@ func _on_logros_recibidos(result, code, headers, body):
     labelloading.visible = false
 
     if code != 200:
-        print("❌ Error cargando logros:", code)
+        print(" Error cargando logros:", code)
         return
 
     var data = JSON.parse_string(body.get_string_from_utf8())
@@ -85,7 +85,7 @@ func cargar_datos_usuario():
     if ResourceLoader.exists(ruta):
         profile_pic.texture = load(ruta)
     else:
-        profile_pic.texture = load("res://assets/sprites/ui/Logros/el minino resiste.png")
+        profile_pic.texture = load("res://assets/sprites/ui/Logros/teorico_nato.png")
 
 func _on_editar_perfil_pressed():
     get_tree().change_scene_to_file("res://escenas/usuario/Perfil/EditarPerfil.tscn")

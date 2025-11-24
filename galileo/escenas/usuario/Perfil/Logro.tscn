@@ -34,8 +34,10 @@ script = ExtResource("1_6n8fs")
 show_behind_parent = true
 custom_minimum_size = Vector2(600, 30)
 layout_mode = 2
-offset_right = 600.0
-offset_bottom = 120.0
+offset_left = 2.0
+offset_top = 1.0
+offset_right = 602.0
+offset_bottom = 121.0
 size_flags_stretch_ratio = 0.0
 
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
@@ -47,19 +49,7 @@ expand_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="Nombre" type="Label" parent="HBoxContainer/VBoxContainer"]
-layout_mode = 2
-text = "Pez Gordo"
-
-[node name="textoLectura" type="Label" parent="HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(10, 70)
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 15
-text = "Descripción del logro"
-vertical_alignment = 1
-autowrap_mode = 2
+theme_override_constants/separation = 4
 
 [node name="OverlayBloqueado" type="TextureRect" parent="."]
 visible = false
@@ -73,3 +63,24 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_6n8fs")
 texture = ExtResource("3_mw6go")
+
+[node name="Nombre" type="Label" parent="."]
+layout_mode = 2
+offset_left = 137.0
+offset_top = 9.0
+offset_right = 281.0
+offset_bottom = 25.0
+text = "Pez Gordo"
+
+[node name="textoLectura" type="Label" parent="."]
+custom_minimum_size = Vector2(10, 70)
+layout_mode = 2
+offset_left = 134.0
+offset_top = 32.0
+offset_right = 610.0
+offset_bottom = 102.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 15
+text = "Descripción del logro"
+vertical_alignment = 1
+autowrap_mode = 2

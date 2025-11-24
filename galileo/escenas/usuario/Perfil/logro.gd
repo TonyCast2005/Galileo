@@ -1,8 +1,8 @@
 extends Panel
 
 @onready var icon_rect: TextureRect = $HBoxContainer/TextureRect
-@onready var title_label: Label = $HBoxContainer/VBoxContainer/Nombre
-@onready var desc_label: Label = $HBoxContainer/VBoxContainer/textoLectura
+@onready var title_label: Label = $Nombre
+@onready var desc_label: Label = $textoLectura
 
 var candado_texture: Texture2D = load("res://assets/sprites/ui/bloqueado.png")
 
