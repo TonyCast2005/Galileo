@@ -1,23 +1,126 @@
 extends Control
+
 @onready var pregunta = $pregunta
 @onready var subpregunta = $subpregunta
 @onready var respuesta = $respuesta
-@onready var mensaje = $Mensaje
+@onready var retro = $Mensaje
 
+var firebase
+var editando_id = null
+
+func _ready():
+	firebase = load("res://escenas/usuario/registro/firebase_auth.gd").new()
+	add_child(firebase)
+
+	var data = Globals.temp_preview_data
+	if data.has("pregunta"):
+		pregunta.text = data["pregunta"]
+	if data.has("subpregunta"):
+		subpregunta.text = data["subpregunta"]
+	if data.has("respuesta_correcta"):
+		respuesta.text = data["respuesta_correcta"]
+
+# ----------------------- Obtener datos del formulario -----------------------
+func get_form_data(estado:String) -> Dictionary:
+	return {
+		"tipo": "semiabierta",
+		"pregunta": pregunta.text,
+		"subpregunta": subpregunta.text,
+		"respuesta_correcta": respuesta.text
+	}
+
+# ----------------------- Borrador temporal -----------------------
+func _on_borrador_pressed():
+	Globals.temp_preview_data = get_form_data("borrador")
+
+# ----------------------- Eliminar pregunta -----------------------
+func _on_eliminar_pressed():
+	if editando_id == null:
+		_clear_fields()
+		return
+
+	var url = "%s/preguntas_semiabiertas/%s.json" % [firebase.DB_URL, editando_id]
+	var http := HTTPRequest.new()
+	add_child(http)
+	await http.request(url, [], HTTPClient.METHOD_DELETE)
+	http.queue_free()
+
+	editando_id = null
+	_clear_fields()
+	print("Pregunta eliminada")
+
+# ----------------------- Limpiar campos -----------------------
+func _clear_fields():
+	pregunta.text = ""
+	subpregunta.text = ""
+	respuesta.text = ""
+
+# ----------------------- Previsualizar -----------------------
+func _on_previsualizar_pressed():
+	Globals.temp_preview_data = get_form_data("preview")
+	get_tree().change_scene_to_file("res://escenas/Administrador/preview_semiAbiertas.tscn")
+
+# ----------------------- Volver -----------------------
 func _on_volver_pressed():
 	get_tree().change_scene_to_file("res://escenas/Administrador/AgregarPregunta.tscn")
 
-func _on_previsualizar_pressed() -> void:
-	pass # Replace with function body.
+# ----------------------- Guardar en Firebase -----------------------
+func _on_guardar_pressed():
+	# Validar campos
+	if pregunta.text.is_empty() or respuesta.text.is_empty():
+		retro.text = "Por favor completa la pregunta y la respuesta correcta."
+		retro.modulate = Color(1,0,0)
+		limpiar_mensaje()
+		return
+
+	# Construir datos
+	var data = {
+		"pregunta": pregunta.text,
+		"subpregunta": subpregunta.text,
+		"respuesta_correcta": respuesta.text
+	}
+
+	# URL Firebase semiabiertas
+	var url = "%s/preguntas_semiabiertas.json" % firebase.DB_URL
+
+	var http := HTTPRequest.new()
+	add_child(http)
+
+	var headers = ["Content-Type: application/json"]
+	var json = JSON.stringify(data)
+
+	# POST simple con json como String
+	var err = http.request(url, headers, HTTPClient.METHOD_POST, json)
+	if err != OK:
+		retro.text = "Error al conectar con el servidor."
+		retro.modulate = Color(1,0,0)
+		limpiar_mensaje()
+		return
+
+	# Esperar respuesta
+	var response = await http.request_completed
+	var body = response[3]  # PackedByteArray
+	var result = JSON.parse_string(body.get_string_from_utf8())
+
+	http.queue_free()
+
+	# Firebase devuelve un "name" si se guardó correctamente
+	if result == null or not result.has("name"):
+		retro.text = "Error al guardar la pregunta."
+		retro.modulate = Color(1,0,0)
+		limpiar_mensaje()
+		return
+
+	# Guardado exitoso
+	retro.text = "Guardado correctamente."
+	retro.modulate = Color(0,1,0)
+	limpiar_mensaje()
+
+	# Vaciar campos
+	_clear_fields()
 
 
-func _on_eliminar_pressed() -> void:
-	pass # Replace with function body.
-
-
-func _on_borrador_pressed() -> void:
-	pass # Replace with function body.
-
-
-func _on_guardar_pressed() -> void:
-	pass # Replace with function body.
+# ----------------------- Limpiar mensaje -----------------------
+func limpiar_mensaje():
+	await get_tree().create_timer(4).timeout
+	retro.text = ""

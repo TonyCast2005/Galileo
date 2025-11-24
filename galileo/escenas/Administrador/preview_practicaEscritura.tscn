@@ -1,0 +1,84 @@
+[gd_scene load_steps=6 format=3 uid="uid://1vrtd60l4xrl"]
+
+[ext_resource type="Texture2D" uid="uid://cwqextjtlqg7j" path="res://assets/sprites/ui/volver.png" id="1_18xm2"]
+[ext_resource type="Script" uid="uid://bwi8xif3k0y22" path="res://escenas/Administrador/preview_practica_escritura.gd" id="1_phaip"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_phaip"]
+texture = ExtResource("1_18xm2")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l5qgf"]
+texture = ExtResource("1_18xm2")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m243g"]
+texture = ExtResource("1_18xm2")
+
+[node name="PreviewPracticaEscritura" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_phaip")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 2.0
+offset_right = 717.0
+offset_bottom = 1280.0
+color = Color(0.227451, 0.152941, 0.329412, 1)
+
+[node name="Enunciado" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.097
+anchor_top = 0.191
+anchor_right = 0.892
+anchor_bottom = 0.33
+offset_left = -66.84
+offset_top = -134.48
+offset_right = 67.76
+offset_bottom = -115.4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Hola esta es una prueba de texto"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Codigo" type="RichTextLabel" parent="."]
+offset_left = 23.0
+offset_top = 388.0
+offset_right = 696.0
+offset_bottom = 705.0
+theme_override_font_sizes/bold_italics_font_size = 5
+theme_override_font_sizes/italics_font_size = 12
+theme_override_font_sizes/normal_font_size = 25
+text = "ejercicio"
+horizontal_alignment = 1
+
+[node name="Campos" type="VBoxContainer" parent="."]
+visibility_layer = 65
+offset_left = 194.0
+offset_top = 658.0
+offset_right = 534.0
+offset_bottom = 821.0
+
+[node name="Retro" type="Label" parent="."]
+offset_left = 177.0
+offset_top = 801.0
+offset_right = 545.0
+offset_bottom = 937.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="volver" type="Button" parent="."]
+offset_left = 70.0
+offset_top = 1064.0
+offset_right = 175.0
+offset_bottom = 1131.0
+theme_override_styles/focus = SubResource("StyleBoxTexture_phaip")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_l5qgf")
+theme_override_styles/normal = SubResource("StyleBoxTexture_m243g")
+
+[connection signal="pressed" from="volver" to="." method="_on_volver_pressed"]

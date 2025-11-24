@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bhrn0jet4kfd"]
+[gd_scene load_steps=9 format=3 uid="uid://bhrn0jet4kfd"]
 
 [ext_resource type="Script" uid="uid://c214clo272fpn" path="res://escenas/Administrador/arrastrar_soltar.gd" id="1_dusqf"]
 [ext_resource type="Texture2D" uid="uid://cwqextjtlqg7j" path="res://assets/sprites/ui/volver.png" id="2_jmcnp"]
@@ -26,17 +26,6 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jmcnp"]
-bg_color = Color(0.147575, 0.0936971, 0.221111, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-corner_radius_top_left = 40
-corner_radius_top_right = 40
-corner_radius_bottom_right = 40
-corner_radius_bottom_left = 40
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cf470"]
 bg_color = Color(0.147575, 0.0936971, 0.221111, 1)
 border_width_left = 5
 border_width_top = 5
@@ -82,9 +71,9 @@ anchor_top = 0.151
 anchor_right = 0.903
 anchor_bottom = 0.218
 offset_left = -0.160004
-offset_top = 16.72
+offset_top = -10.28
 offset_right = -0.160034
-offset_bottom = 16.96
+offset_bottom = -10.04
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_efkv0")
 text = "Arrastrar y soltar"
@@ -113,10 +102,10 @@ anchor_left = 0.176
 anchor_top = 0.252
 anchor_right = 0.849
 anchor_bottom = 0.319
-offset_left = 0.279991
-offset_top = 16.44
+offset_left = 0.279999
+offset_top = -10.56
 offset_right = -0.280029
-offset_bottom = 16.68
+offset_bottom = -10.32
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_dusqf")
 placeholder_text = "Bloque 1"
@@ -129,10 +118,10 @@ anchor_left = 0.176
 anchor_top = 0.334
 anchor_right = 0.849
 anchor_bottom = 0.401
-offset_left = 0.279991
-offset_top = 16.48
+offset_left = 0.279999
+offset_top = -10.52
 offset_right = -0.280029
-offset_bottom = 16.72
+offset_bottom = -10.28
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_dusqf")
 placeholder_text = "Bloque 2"
@@ -145,10 +134,10 @@ anchor_left = 0.176
 anchor_top = 0.418
 anchor_right = 0.849
 anchor_bottom = 0.485
-offset_left = 0.279991
-offset_top = 16.96
+offset_left = 0.279999
+offset_top = -10.04
 offset_right = -0.280029
-offset_bottom = 17.2
+offset_bottom = -9.79999
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_dusqf")
 placeholder_text = "Bloque 3"
@@ -161,10 +150,10 @@ anchor_left = 0.176
 anchor_top = 0.5
 anchor_right = 0.849
 anchor_bottom = 0.569
-offset_left = 0.279991
-offset_top = 19.0
+offset_left = 0.279999
+offset_top = -8.0
 offset_right = -0.280029
-offset_bottom = 16.68
+offset_bottom = -10.32
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_dusqf")
 placeholder_text = "Bloque 4"
@@ -177,10 +166,10 @@ anchor_left = 0.176
 anchor_top = 0.584
 anchor_right = 0.849
 anchor_bottom = 0.651
-offset_left = 0.279991
-offset_top = 16.4799
+offset_left = 0.279999
+offset_top = -10.5201
 offset_right = -0.280029
-offset_bottom = 16.72
+offset_bottom = -10.28
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_dusqf")
 placeholder_text = "Bloque 5"
@@ -193,83 +182,60 @@ anchor_left = 0.176
 anchor_top = 0.668
 anchor_right = 0.849
 anchor_bottom = 0.735
-offset_left = 0.279991
-offset_top = 16.96
+offset_left = 0.279999
+offset_top = -10.04
 offset_right = -0.280029
-offset_bottom = 17.2
+offset_bottom = -9.79999
 scale = Vector2(1, 0.990686)
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_dusqf")
 placeholder_text = "Bloque 6"
 autowrap_mode = 2
 
-[node name="guardar" type="Label" parent="."]
+[node name="guardar" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.06
 anchor_top = 0.793
 anchor_right = 0.247
 anchor_bottom = 0.834
-offset_left = -0.200001
+offset_left = 99.8
 offset_top = -0.0400391
-offset_right = 0.159988
+offset_right = 100.16
 offset_bottom = -0.52002
 theme_override_font_sizes/font_size = 12
 theme_override_styles/normal = SubResource("StyleBoxFlat_jmcnp")
 text = "guardar"
-horizontal_alignment = 1
-vertical_alignment = 1
 
-[node name="borrador" type="Label" parent="."]
+[node name="borrador" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.262
 anchor_top = 0.795
 anchor_right = 0.462
 anchor_bottom = 0.833
-offset_left = 0.359985
-offset_top = -0.600037
-offset_right = 0.359985
-offset_bottom = -0.240112
+offset_left = 100.36
+offset_top = -0.599976
+offset_right = 100.36
+offset_bottom = -0.23999
 theme_override_font_sizes/font_size = 12
 theme_override_styles/normal = SubResource("StyleBoxFlat_jmcnp")
 text = "borrador"
-horizontal_alignment = 1
-vertical_alignment = 1
 
-[node name="eliminar" type="Label" parent="."]
+[node name="eliminar" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.474
 anchor_top = 0.795
 anchor_right = 0.665
 anchor_bottom = 0.831
-offset_left = -0.280029
-offset_top = -0.600037
-offset_right = 0.199982
-offset_bottom = 0.319946
+offset_left = 99.72
+offset_top = -0.599976
+offset_right = 100.2
+offset_bottom = 0.320068
 theme_override_font_sizes/font_size = 12
 theme_override_styles/normal = SubResource("StyleBoxFlat_jmcnp")
 text = "eliminar"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="previsualizar" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.672
-anchor_top = 0.795
-anchor_right = 0.937
-anchor_bottom = 0.831
-offset_left = 3.15997
-offset_top = -0.600037
-offset_right = 0.359985
-offset_bottom = 0.319946
-theme_override_font_sizes/font_size = 12
-theme_override_styles/normal = SubResource("StyleBoxFlat_cf470")
-text = "previsualizar"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="volver" type="Button" parent="."]
 layout_mode = 0
@@ -281,4 +247,17 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_cf470")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_u86mw")
 theme_override_styles/normal = SubResource("StyleBoxTexture_k2ktv")
 
+[node name="Mensaje" type="Label" parent="."]
+layout_mode = 0
+offset_left = 218.0
+offset_top = 1087.0
+offset_right = 507.0
+offset_bottom = 1207.0
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[connection signal="pressed" from="guardar" to="." method="_on_guardar_pressed"]
+[connection signal="pressed" from="borrador" to="." method="_on_borrador_pressed"]
+[connection signal="pressed" from="eliminar" to="." method="_on_eliminar_pressed"]
 [connection signal="pressed" from="volver" to="." method="_on_volver_pressed"]

@@ -1,0 +1,119 @@
+[gd_scene load_steps=11 format=3 uid="uid://cepty6hyt2cp7"]
+
+[ext_resource type="Script" uid="uid://c8mudoob82b7f" path="res://escenas/Administrador/preview_arrastrar_soltar.gd" id="1_6pepo"]
+[ext_resource type="PackedScene" uid="uid://ce1i46eqi8dlt" path="res://escenas/Tipos_preguntas/Arrastrar_y_Soltar/Prueba_Nueva/RestZone.tscn" id="2_6uvmh"]
+[ext_resource type="Script" uid="uid://bn3gqs5hb5slw" path="res://escenas/Tipos_preguntas/Arrastrar_y_Soltar/verificador.gd" id="3_wb55m"]
+[ext_resource type="Script" uid="uid://bmt4wekmaxqgc" path="res://escenas/Tipos_preguntas/Arrastrar_y_Soltar/zona_trabajo.gd" id="4_updip"]
+[ext_resource type="PackedScene" uid="uid://b1g855tc0yp2q" path="res://escenas/Tipos_preguntas/Arrastrar_y_Soltar/Bloques_Tipos/Prueba_Drag&Drop.tscn" id="5_6k8xx"]
+[ext_resource type="Texture2D" uid="uid://cwqextjtlqg7j" path="res://assets/sprites/ui/volver.png" id="6_r4hm7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t6n32"]
+bg_color = Color(0.498931, 0.372092, 0.680037, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4rsb6"]
+texture = ExtResource("6_r4hm7")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xy1ts"]
+texture = ExtResource("6_r4hm7")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ov8xp"]
+texture = ExtResource("6_r4hm7")
+
+[node name="PreviewArrastrarSoltar" type="Node2D"]
+script = ExtResource("1_6pepo")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(600, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 718.0
+offset_bottom = 1271.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.227451, 0.152941, 0.329412, 1)
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 21.0
+offset_top = 398.0
+offset_right = 699.0
+offset_bottom = 1156.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_t6n32")
+
+[node name="Drop_Zone" parent="Panel" groups=["zone_respuesta"] instance=ExtResource("2_6uvmh")]
+position = Vector2(138, 433)
+palabra_correcta = "Loop"
+
+[node name="Drop_Zone4" parent="Panel" groups=["zone_respuesta"] instance=ExtResource("2_6uvmh")]
+position = Vector2(225, 194)
+palabra_correcta = "Setup"
+
+[node name="verificador" type="Node2D" parent="Panel"]
+position = Vector2(647, 50)
+script = ExtResource("3_wb55m")
+
+[node name="zonaTrabajo" type="Node2D" parent="."]
+script = ExtResource("4_updip")
+
+[node name="Panel" type="Panel" parent="zonaTrabajo"]
+offset_left = 16.0
+offset_top = 130.0
+offset_right = 704.0
+offset_bottom = 356.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_t6n32")
+
+[node name="Drop_Zone2" parent="zonaTrabajo/Panel" instance=ExtResource("2_6uvmh")]
+position = Vector2(495, 115)
+
+[node name="Drop_Zone3" parent="zonaTrabajo/Panel" instance=ExtResource("2_6uvmh")]
+position = Vector2(140, 113)
+
+[node name="Setup" parent="zonaTrabajo/Panel" instance=ExtResource("5_6k8xx")]
+position = Vector2(492, 107)
+palabra = "Setup"
+
+[node name="Loop" parent="zonaTrabajo/Panel" instance=ExtResource("5_6k8xx")]
+position = Vector2(138, 117)
+palabra = "Loop"
+
+[node name="Label" type="Label" parent="zonaTrabajo/Panel"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 433.0
+offset_right = 164.0
+offset_bottom = 502.0
+theme_override_font_sizes/font_size = 23
+text = "Void"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Instrucciones" type="Label" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 84.0
+offset_top = 46.0
+offset_right = 621.0
+offset_bottom = 132.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 19
+text = "instrucción"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="volver" type="Button" parent="."]
+offset_left = 49.0
+offset_top = 1161.0
+offset_right = 185.0
+offset_bottom = 1249.0
+theme_override_styles/focus = SubResource("StyleBoxTexture_4rsb6")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_xy1ts")
+theme_override_styles/normal = SubResource("StyleBoxTexture_ov8xp")
+
+[connection signal="pressed" from="volver" to="." method="_on_volver_pressed"]

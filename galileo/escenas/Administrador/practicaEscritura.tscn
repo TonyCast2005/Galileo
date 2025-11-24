@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cvepiqyk74li2"]
+[gd_scene load_steps=10 format=3 uid="uid://cvepiqyk74li2"]
 
 [ext_resource type="Script" uid="uid://daxilfo2or3uh" path="res://escenas/Administrador/practica_escritura.gd" id="1_jxbsq"]
 [ext_resource type="Texture2D" uid="uid://cwqextjtlqg7j" path="res://assets/sprites/ui/volver.png" id="2_bdkn7"]
@@ -33,6 +33,28 @@ texture = ExtResource("2_bdkn7")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j03rn"]
 texture = ExtResource("2_bdkn7")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bdkn7"]
+bg_color = Color(0.147575, 0.0936971, 0.221111, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oxi5e"]
+bg_color = Color(0.147575, 0.0936971, 0.221111, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
 
 [node name="PracticaEscritura" type="Control"]
 layout_mode = 3
@@ -69,22 +91,7 @@ text = "Practica de escritura"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.079
-anchor_right = 1.0
-anchor_bottom = 0.13
-offset_left = 4.0
-offset_top = -32.12
-offset_right = -3.0
-offset_bottom = -32.4
-theme_override_font_sizes/font_size = 20
-text = "Nombre administrador"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="pregunta" type="TextEdit" parent="."]
+[node name="instruccion" type="TextEdit" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.115
@@ -100,7 +107,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_jxbsq")
 placeholder_text = "Instrucción"
 autowrap_mode = 2
 
-[node name="respuesta" type="TextEdit" parent="."]
+[node name="codigo" type="TextEdit" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.115
@@ -113,10 +120,10 @@ offset_right = -0.160034
 offset_bottom = 0.319946
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_jxbsq")
-placeholder_text = "Espacio para escribir el código y seleccionar el espacio a responder"
+placeholder_text = "Espacio para escribir el código "
 autowrap_mode = 2
 
-[node name="sinonimo" type="TextEdit" parent="."]
+[node name="respuesta" type="TextEdit" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.126
@@ -133,6 +140,7 @@ placeholder_text = "Respuesta"
 autowrap_mode = 2
 
 [node name="volver" type="Button" parent="."]
+layout_mode = 0
 offset_left = 60.0
 offset_top = 938.0
 offset_right = 196.0
@@ -141,4 +149,77 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_oxi5e")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_5ykqm")
 theme_override_styles/normal = SubResource("StyleBoxTexture_j03rn")
 
+[node name="guardar" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.06
+anchor_top = 0.793
+anchor_right = 0.247
+anchor_bottom = 0.834
+offset_left = -0.200001
+offset_top = 34.96
+offset_right = 0.159988
+offset_bottom = 34.48
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_bdkn7")
+text = "guardar"
+
+[node name="borrador" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.262
+anchor_top = 0.795
+anchor_right = 0.462
+anchor_bottom = 0.833
+offset_left = 0.359985
+offset_top = 34.4
+offset_right = 0.359985
+offset_bottom = 34.7599
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_bdkn7")
+text = "borrador"
+
+[node name="eliminar" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.474
+anchor_top = 0.795
+anchor_right = 0.665
+anchor_bottom = 0.831
+offset_left = -0.280029
+offset_top = 34.4
+offset_right = 0.199982
+offset_bottom = 35.3199
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_bdkn7")
+text = "eliminar"
+
+[node name="previsualizar" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.672
+anchor_top = 0.795
+anchor_right = 0.937
+anchor_bottom = 0.831
+offset_left = 3.16
+offset_top = 34.4
+offset_right = 0.360046
+offset_bottom = 35.3199
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_oxi5e")
+text = "previsualizar"
+
+[node name="Mensaje" type="Label" parent="."]
+layout_mode = 0
+offset_left = 190.0
+offset_top = 914.0
+offset_right = 544.0
+offset_bottom = 1036.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="pressed" from="volver" to="." method="_on_volver_pressed"]
+[connection signal="pressed" from="guardar" to="." method="_on_guardar_pressed"]
+[connection signal="pressed" from="borrador" to="." method="_on_borrador_pressed"]
+[connection signal="pressed" from="eliminar" to="." method="_on_eliminar_pressed"]
+[connection signal="pressed" from="previsualizar" to="." method="_on_previsualizar_pressed"]

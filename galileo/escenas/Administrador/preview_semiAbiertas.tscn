@@ -1,0 +1,115 @@
+[gd_scene load_steps=7 format=3 uid="uid://bxs14s1agxrwy"]
+
+[ext_resource type="Script" uid="uid://dvm4mv6q8wm34" path="res://escenas/Administrador/preview_semi_abiertas.gd" id="1_v53vr"]
+[ext_resource type="Texture2D" uid="uid://cwqextjtlqg7j" path="res://assets/sprites/ui/volver.png" id="2_y1s8c"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n68r2"]
+bg_color = Color(0.184314, 0.12549, 0.278431, 0.686275)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3erk2"]
+texture = ExtResource("2_y1s8c")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rn1xa"]
+texture = ExtResource("2_y1s8c")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3duif"]
+texture = ExtResource("2_y1s8c")
+
+[node name="PreviewSemiAbiertas" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v53vr")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.227451, 0.152941, 0.329412, 1)
+
+[node name="TextoPregunta1" type="Label" parent="."]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 163.0
+offset_right = 645.0
+offset_bottom = 349.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Hola esta es una prueba de texto"
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 2
+
+[node name="TextoPregunta2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 531.0
+offset_right = 645.0
+offset_bottom = 717.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Hola esta es una prueba de texto"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="respuesta" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.207
+anchor_top = 0.33
+anchor_right = 0.801
+anchor_bottom = 0.391
+offset_left = -0.0400085
+offset_top = -19.4
+offset_right = 0.279968
+offset_bottom = -20.48
+
+[node name="validar" type="Button" parent="."]
+layout_mode = 0
+offset_left = 216.0
+offset_top = 750.0
+offset_right = 533.0
+offset_bottom = 811.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_n68r2")
+text = "Validar"
+
+[node name="Mensaje" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.738
+anchor_right = 0.906
+anchor_bottom = 0.886
+offset_left = 4.0
+offset_top = 4.36005
+offset_right = 3.67999
+offset_bottom = 3.92004
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="volver" type="Button" parent="."]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 828.0
+offset_right = 191.0
+offset_bottom = 916.0
+theme_override_styles/focus = SubResource("StyleBoxTexture_3erk2")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_rn1xa")
+theme_override_styles/normal = SubResource("StyleBoxTexture_3duif")
+
+[connection signal="pressed" from="volver" to="." method="_on_volver_pressed"]
