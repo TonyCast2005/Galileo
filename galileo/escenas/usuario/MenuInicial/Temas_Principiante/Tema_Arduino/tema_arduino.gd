@@ -24,9 +24,9 @@ var escena_lectura := "res://escenas/Tipos_preguntas/Lectura/Lectura.tscn"
 
 # Lista de escenas de ejercicios para escoger al azar
 var ejercicios_arduino := [
-    {"tipo": "OM1", "ruta": "res://escenas/Tipos_preguntas/OpcionMultiple/OpcionMultiple.tscn"},
-    {"tipo": "VF", "ruta": "res://escenas/Tipos_preguntas/practicaEscritura/practicaEscritura.tscn"},
-    {"tipo": "OM2", "ruta": "res://escenas/Tipos_preguntas/PreguntasAbiertas/PreguntasAbiertas.tscn"},
+    {"tipo": "OM1", "ruta": "res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Arduino/OpcMultiple_1.tscn"},
+   # {"tipo": "VF", "ruta": "res://escenas/Tipos_preguntas/practicaEscritura/practicaEscritura.tscn"},
+    #{"tipo": "OM2", "ruta": "res://escenas/Tipos_preguntas/PreguntasAbiertas/PreguntasAbiertas.tscn"},
 ]
 
 func _ready():

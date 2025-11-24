@@ -9,7 +9,7 @@ var tween_habla: Tween = null
 var tween_idle: Tween = null
 var escribiendo := false
 
-var texto_final := " "   # ← La pista que se va a mostrar
+var texto_final := " "
 
 func _ready():
     ok.hide()
@@ -18,16 +18,18 @@ func _ready():
     if texto_final != "":
         escribir_texto(texto_final)
 
-# ---------------------------------------
-# Llamar esta función desde otra escena
-# para enviar la pista
-# ---------------------------------------
+
+# ============================================
+# RECIBIR TEXTO DE PISTA
+# ============================================
 func set_pista(texto: String) -> void:
     texto_final = texto
+    escribir_texto(texto)
 
-# ---------------------------------------
-# Escritura tipo máquina
-# ---------------------------------------
+
+# ============================================
+# EFECTO DE ESCRITURA
+# ============================================
 func escribir_texto(texto: String) -> void:
     texto_pista.text = ""
     escribiendo = true
@@ -45,9 +47,10 @@ func escribir_texto(texto: String) -> void:
     escribiendo = false
     ok.show()
 
-# ---------------------------------------
-# Animación de hablar
-# ---------------------------------------
+
+# ============================================
+# ANIMACIÓN HABLAR
+# ============================================
 func animar_habla(habla: bool):
     if habla:
         gato.texture = preload("res://assets/sprites/ui/Galileo/Galileo Hablando 1.png")
@@ -60,9 +63,10 @@ func animar_habla(habla: bool):
             tween_habla.kill()
             tween_habla = null
 
-# ---------------------------------------
-# Animación idle
-# ---------------------------------------
+
+# ============================================
+# ANIMACIÓN IDLE
+# ============================================
 func animar_idle(activo: bool):
     if activo:
         if tween_idle:
@@ -78,7 +82,5 @@ func animar_idle(activo: bool):
         gato.rotation_degrees = 0
 
 
-
-
 func _on_ok_pressed() -> void:
-    queue_free() 
+    queue_free()
