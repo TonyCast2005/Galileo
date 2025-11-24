@@ -83,6 +83,7 @@ offset_right = 699.0
 offset_bottom = 977.0
 
 [node name="Ayuda" type="Button" parent="Carrusel"]
+layout_mode = 0
 offset_left = 598.0
 offset_top = -69.0
 offset_right = 672.0
