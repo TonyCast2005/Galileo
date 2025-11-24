@@ -1,0 +1,98 @@
+[gd_scene load_steps=5 format=3 uid="uid://drl2e5w4jtqnl"]
+
+[ext_resource type="Script" uid="uid://v3cfo0n01q8c" path="res://escenas/Tipos_preguntas/Lectura/lectura.gd" id="1_g3ml7"]
+[ext_resource type="Texture2D" uid="uid://chwx61jh6pohf" path="res://assets/sprites/ui/Menu/ayuda.png" id="2_fvtm2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_53kx0"]
+bg_color = Color(0.184314, 0.12549, 0.278431, 0.686275)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_calah"]
+texture = ExtResource("2_fvtm2")
+
+[node name="Lectura" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g3ml7")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.227451, 0.152941, 0.329412, 1)
+
+[node name="TextoPregunta" type="Label" parent="."]
+layout_mode = 0
+offset_left = 66.0
+offset_top = 73.0
+offset_right = 638.0
+offset_bottom = 252.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "QUE ES ARDUINO?"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="NombreLección" type="Label" parent="."]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 18.0
+offset_right = 570.0
+offset_bottom = 76.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Arduino"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_left = 77.0
+offset_top = 235.0
+offset_right = 636.0
+offset_bottom = 1043.0
+
+[node name="textoLectura" type="Label" parent="ScrollContainer"]
+custom_minimum_size = Vector2(550, 800)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 21
+text = "Texto de la lectura "
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Continuar" type="Button" parent="."]
+layout_mode = 0
+offset_left = 212.0
+offset_top = 1080.0
+offset_right = 497.0
+offset_bottom = 1137.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_53kx0")
+text = "Continuar"
+
+[node name="Ayuda" type="Button" parent="."]
+layout_mode = 0
+offset_left = 614.0
+offset_top = 21.0
+offset_right = 688.0
+offset_bottom = 90.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_calah")
+
+[connection signal="pressed" from="Continuar" to="." method="_on_continuar_pressed"]
+[connection signal="pressed" from="Ayuda" to="." method="_on_ayuda_pressed"]

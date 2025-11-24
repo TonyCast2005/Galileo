@@ -2,77 +2,76 @@ extends Control
 
 @onready var contenedor = $Carrusel
 
-# Lista de escenas del carrusel en orden
 var temas := [
-	preload("res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Arduino/Tema_Arduino.tscn"),
-	preload("res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Electronica.tscn"),
-	preload("res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Programacion_Basica.tscn"),
-	preload("res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_EntradasDigitales.tscn")
+    preload("res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Arduino/Tema_Arduino.tscn"),
+    preload("res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Electronica/Tema_Electronica.tscn"),
+    preload("res://escenas/usuario/MenuInicial/Temas_Principiante/Temas_ProgramacionBasica/Tema_Programacion_Basica.tscn"),
+    preload("res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_EntradasDigitales/Tema_EntradasDigitales.tscn")
 ]
 
 var indice_actual := 0
 var escena_actual: Control = null
+var animando := false  # <-- bandera para bloquear botones
 
 func _ready():
-	cargar_tema(indice_actual, 0) # posición inicial = 0
+    cargar_tema(indice_actual, 0) # posición inicial = 0
 
 # ------------------------------
 # Cargar la escena del tema actual con animación
 # direccion: 1 = siguiente, -1 = anterior, 0 = inicial
 # ------------------------------
 func cargar_tema(i: int, direccion: int):
-	var nueva_escena = temas[i].instantiate() as Control
-	contenedor.add_child(nueva_escena)
+    if animando:
+        return # ignorar si hay animación en curso
+    animando = true
 
-	# Ajustar tamaño y anclas
-	nueva_escena.anchor_left = 0.0
-	nueva_escena.anchor_right = 1.0
-	nueva_escena.anchor_top = 0.0
-	nueva_escena.anchor_bottom = 1.0
-	nueva_escena.position = Vector2.ZERO
-	nueva_escena.size_flags_horizontal = Control.SIZE_FILL
-	nueva_escena.size_flags_vertical = Control.SIZE_FILL
+    var nueva_escena = temas[i].instantiate() as Control
+    contenedor.add_child(nueva_escena)
 
-	var ancho = contenedor.size.x
+    # Ajustar tamaño y anclas
+    nueva_escena.anchor_left = 0.0
+    nueva_escena.anchor_right = 1.0
+    nueva_escena.anchor_top = 0.0
+    nueva_escena.anchor_bottom = 1.0
+    nueva_escena.position = Vector2.ZERO
+    nueva_escena.size_flags_horizontal = Control.SIZE_FILL
+    nueva_escena.size_flags_vertical = Control.SIZE_FILL
 
-	# Primera escena
-	if escena_actual == null:
-		nueva_escena.position = Vector2.ZERO
-		escena_actual = nueva_escena
-		return
+    var ancho = contenedor.size.x
 
-	# Posición inicial de la nueva escena (entrando desde derecha o izquierda)
-	nueva_escena.position = Vector2(direccion * ancho, 0)
+    if escena_actual == null:
+        nueva_escena.position = Vector2.ZERO
+        escena_actual = nueva_escena
+        animando = false
+        return
 
-	# Crear Tween
-	var tween = create_tween()
+    nueva_escena.position = Vector2(direccion * ancho, 0)
 
-# Animación de salida de la escena actual
-	tween.tween_property(escena_actual, "position:x", -direccion * ancho, 0.25).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+    var tween = create_tween()
+    tween.tween_property(escena_actual, "position:x", -direccion * ancho, 0.25).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+    tween.tween_property(nueva_escena, "position:x", 0, 0.50).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
 
-# Animación de entrada de la nueva escena
-	tween.tween_property(nueva_escena, "position:x", 0, 0.50).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
-
-# Callback al completar todo el tween
-	tween.finished.connect(func():
-		if escena_actual:
-			escena_actual.queue_free()
-		escena_actual = nueva_escena
-	)
-
+    tween.finished.connect(func():
+        if escena_actual:
+            escena_actual.queue_free()
+        escena_actual = nueva_escena
+        animando = false  # <-- desbloquea la interacción
+    )
 
 # ------------------------------
 # Botón: Siguiente Tema
 # ------------------------------
 func _on_siguiente_pressed():
-	if indice_actual < temas.size() - 1:
-		indice_actual += 1
-		cargar_tema(indice_actual, 1) # 1 = desde derecha
+    if animando: return
+    if indice_actual < temas.size() - 1:
+        indice_actual += 1
+        cargar_tema(indice_actual, 1)
 
 # ------------------------------
 # Botón: Tema Anterior
 # ------------------------------
 func _on_anterior_pressed():
-	if indice_actual > 0:
-		indice_actual -= 1
-		cargar_tema(indice_actual, -1) # -1 = desde izquierda
+    if animando: return
+    if indice_actual > 0:
+        indice_actual -= 1
+        cargar_tema(indice_actual, -1)
