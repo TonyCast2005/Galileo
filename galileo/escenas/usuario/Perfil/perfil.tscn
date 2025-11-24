@@ -137,5 +137,5 @@ offset_bottom = 882.0
 theme_override_font_sizes/font_size = 17
 text = "Cargando..."
 
-[connection signal="pressed" from="Editarperfil" to="." method="_on_editarperfil_pressed"]
 [connection signal="pressed" from="Editarperfil" to="." method="_on_editar_perfil_pressed"]
+[connection signal="pressed" from="Editarperfil" to="." method="_on_editarperfil_pressed"]
