@@ -1,0 +1,198 @@
+[gd_scene load_steps=6 format=3 uid="uid://c21ipnnhoqibf"]
+
+[ext_resource type="Script" uid="uid://wjlw8pwhh1hu" path="res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Arduino/tema_arduino.gd" id="1_uyorv"]
+[ext_resource type="Texture2D" uid="uid://b2ppqu3em387w" path="res://assets/sprites/ui/iconoMorado (1).png" id="2_4tp1y"]
+[ext_resource type="Texture2D" uid="uid://4sapvjr4jbjq" path="res://assets/sprites/ui/bloqueado.png" id="3_4tp1y"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4yaf0"]
+bg_color = Color(0.247059, 0.231373, 0.501961, 0.627451)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wu1au"]
+bg_color = Color(0.333333, 0.317647, 0.643137, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[node name="TemaArduino" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uyorv")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4yaf0")
+
+[node name="Tema_Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 20.0
+offset_right = 651.0
+offset_bottom = 115.0
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_wu1au")
+text = "Introduccion A Arduino"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label1" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 202.0
+offset_top = 210.0
+offset_right = 581.0
+offset_bottom = 317.0
+theme_override_font_sizes/font_size = 25
+text = "¿QUE ES ARDUINO?"
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 193.0
+offset_top = 690.0
+offset_right = 593.0
+offset_bottom = 797.0
+theme_override_font_sizes/font_size = 25
+text = "PRUEBA "
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 199.0
+offset_top = 533.0
+offset_right = 599.0
+offset_bottom = 640.0
+theme_override_font_sizes/font_size = 25
+text = "EJERCICIO 2"
+vertical_alignment = 1
+
+[node name="Label4" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 202.0
+offset_top = 366.0
+offset_right = 602.0
+offset_bottom = 473.0
+theme_override_font_sizes/font_size = 25
+text = "EJERCICIO 1"
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 175.0
+offset_right = 192.0
+offset_bottom = 846.0
+
+[node name="Button1" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+icon = ExtResource("2_4tp1y")
+flat = true
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/Button1"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 56.0
+offset_right = 117.0
+offset_bottom = 103.0
+theme_override_font_sizes/font_size = 29
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button2" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+icon = ExtResource("2_4tp1y")
+flat = true
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/Button2"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 56.0
+offset_right = 117.0
+offset_bottom = 103.0
+theme_override_font_sizes/font_size = 29
+text = "2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/VBoxContainer/Button2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.5
+offset_left = 5.0
+offset_top = 4.0
+offset_right = 158.0
+offset_bottom = 79.0
+texture = ExtResource("3_4tp1y")
+expand_mode = 1
+
+[node name="Button3" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+icon = ExtResource("2_4tp1y")
+flat = true
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/Button3"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 62.0
+offset_right = 120.0
+offset_bottom = 109.0
+theme_override_font_sizes/font_size = 29
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect3" type="TextureRect" parent="Panel/VBoxContainer/Button3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.5
+offset_left = 5.0
+offset_top = 4.0
+offset_right = 158.0
+offset_bottom = 79.0
+texture = ExtResource("3_4tp1y")
+expand_mode = 1
+
+[node name="Button4" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+icon = ExtResource("2_4tp1y")
+flat = true
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/Button4"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 56.0
+offset_right = 117.0
+offset_bottom = 103.0
+theme_override_font_sizes/font_size = 29
+text = "4"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect4" type="TextureRect" parent="Panel/VBoxContainer/Button4"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.5
+offset_left = 5.0
+offset_top = 4.0
+offset_right = 158.0
+offset_bottom = 79.0
+texture = ExtResource("3_4tp1y")
+expand_mode = 1
+
+[connection signal="pressed" from="Panel/VBoxContainer/Button1" to="." method="_on_button_1_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/Button4" to="." method="_on_button_4_pressed"]
