@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=3 uid="uid://bwhyvp8crydcm"]
+
+[ext_resource type="Script" uid="uid://dekaigxseklr1" path="res://escenas/Pistas/pistas_contenedor.gd" id="1_fwew3"]
+[ext_resource type="Texture2D" uid="uid://baykhnqxwooqw" path="res://assets/sprites/ui/ventana.png" id="1_oatbd"]
+[ext_resource type="Texture2D" uid="uid://cjum5jl505mim" path="res://assets/sprites/ui/Galileo/Galileo Base.png" id="2_pvynm"]
+[ext_resource type="Texture2D" uid="uid://feyahj0mae46" path="res://assets/sprites/globoTexto .png" id="3_fwew3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pvynm"]
+bg_color = Color(2.88785e-06, 0.705422, 0.528971, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[node name="PistasContenedor" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_fwew3")
+
+[node name="Ventana" type="Sprite2D" parent="."]
+position = Vector2(360, 609)
+scale = Vector2(0.684631, 1.24296)
+texture = ExtResource("1_oatbd")
+
+[node name="Ok" type="Button" parent="Ventana"]
+offset_left = -148.0
+offset_top = 182.0
+offset_right = 139.0
+offset_bottom = 264.0
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_pvynm")
+text = "OK"
+
+[node name="Sprite2D" type="Sprite2D" parent="Ventana"]
+position = Vector2(-278.982, 90.9121)
+scale = Vector2(1.56818, 0.993034)
+texture = ExtResource("2_pvynm")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Ventana"]
+offset_left = -501.0
+offset_top = -348.0
+offset_right = 498.0
+offset_bottom = 76.0
+texture = ExtResource("3_fwew3")
+
+[node name="TextoInstrucciones" type="Label" parent="Ventana/NinePatchRect"]
+layout_mode = 0
+offset_left = 171.0
+offset_top = 108.0
+offset_right = 827.0
+offset_bottom = 312.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 29
+text = "Hola esta es una prueba de texto"
+autowrap_mode = 2
+
+[connection signal="pressed" from="Ventana/Ok" to="." method="_on_ok_pressed"]
