@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cc022o50d31ko"]
+[gd_scene load_steps=8 format=3 uid="uid://cc022o50d31ko"]
 
 [ext_resource type="Script" uid="uid://c6vuy751ejkaw" path="res://escenas/Tipos_preguntas/SemiAbiertas/semi_abiertas.gd" id="1_t1jeb"]
 [ext_resource type="Texture2D" uid="uid://bgnffnt45rlhx" path="res://assets/sprites/ui/lupa.png" id="1_xfnho"]
+[ext_resource type="PackedScene" uid="uid://ij704rh06ujv" path="res://escenas/volverBTN.tscn" id="3_s0hp4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7arhx"]
 bg_color = Color(0.184314, 0.12549, 0.278431, 0.686275)
@@ -123,3 +124,6 @@ offset_bottom = -0.0800781
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
+
+[node name="VolverBtn" parent="." instance=ExtResource("3_s0hp4")]
+layout_mode = 1

@@ -1,121 +1,110 @@
 extends Control
 
-@onready var campo_pregunta = $pregunta
-@onready var campo_op1 = $Respuesta1
-@onready var campo_op2 = $Respuesta2
-@onready var campo_op3 = $Respuesta3
-@onready var campo_correcta = $respuesta_correcta  # debe ser 1,2 o 3
-@onready var mensaje = $Mensaje
+@onready var label_pregunta = $TextoPregunta
+@onready var boton_v = $Verdadero
+@onready var boton_f = $Falso
+@onready var boton_pistas = $Pista
+@onready var http := $HTTPRequest
+@onready var mensaje := $Mensaje 
 
-var firebase
-var editando_id = null
+# Preload escena de pistas
+var escena_pista := preload("res://escenas/Pistas/Pistas_Contenedor.tscn")
+
+var pregunta_actual: Dictionary = {
+	"pregunta": "",
+	"respuesta_correcta": true,
+	"pistas": []
+}
+
+var preguntas_lista: Array = []
+
+signal respondida(correcta: bool)
 
 func _ready():
-    firebase = load("res://escenas/usuario/registro/firebase_auth.gd").new()
-    add_child(firebase)
+	boton_v.pressed.connect(func(): _evaluar_respuesta(true))
+	boton_f.pressed.connect(func(): _evaluar_respuesta(false))
+	boton_pistas.pressed.connect(_mostrar_pista)
 
-    if Globals.temp_preview_data:
-        _fill_preview_data()
-
-
-# =========================================================
-# LLENAR DATOS SI VIENE PREVIEW
-# =========================================================
-func _fill_preview_data():
-    var data = Globals.temp_preview_data
-    if data.has("pregunta"):
-        campo_pregunta.text = data["pregunta"]
-    if data.has("opciones"):
-        campo_op1.text = data["opciones"][0]
-        campo_op2.text = data["opciones"][1]
-        campo_op3.text = data["opciones"][2]
-    if data.has("correcta"):
-        campo_correcta.text = str(data["correcta"])
+	_cargar_preguntas()
 
 
-# =========================================================
-# OBTENER DATOS DEL FORMULARIO
-# =========================================================
-func get_form_data(estado:String) -> Dictionary:
-    return {
-        "pregunta": campo_pregunta.text,
-        "opciones": [campo_op1.text, campo_op2.text, campo_op3.text],
-        "correcta": int(campo_correcta.text),
-        "estado": estado
-    }
+# ======================================================
+#       CARGAR PREGUNTAS DESDE FIREBASE
+# ======================================================
+func _cargar_preguntas():
+	var url = "https://galileo-af640-default-rtdb.firebaseio.com/preguntas_arduino_vf.json"
+	http.request(url)
+
+func _on_http_request_request_completed(result, response_code, headers, body):
+	if response_code != 200:
+		print("Error al cargar preguntas: ", response_code)
+		return
+
+	var datos = JSON.parse_string(body.get_string_from_utf8())
+	if typeof(datos) != TYPE_DICTIONARY:
+		print("Formato incorrecto en Firebase")
+		return
+
+	# Convertir diccionario en array
+	preguntas_lista = datos.values()
+
+	# Seleccionar solo 4 preguntas aleatorias
+	var temp = preguntas_lista.duplicate()
+	temp.shuffle()
+	preguntas_lista = temp.slice(0, 4)
+
+	_mostrar_siguiente_pregunta()
 
 
-# =========================================================
-# GUARDAR
-# =========================================================
-func _on_guardar_pressed():
+# ======================================================
+#         MOSTRAR SIGUIENTE PREGUNTA
+# ======================================================
+func _mostrar_siguiente_pregunta():
+	if preguntas_lista.is_empty():
+		label_pregunta.text = "¡Has terminado!"
+		return
 
-    var data = get_form_data("publicado")
-
-    var res = await firebase.save_question_OPC(data)
-
-    if res == null or res.has("error"):
-        _show_message("Error al guardar :(", Color.RED)
-    else:
-        _show_message("Pregunta guardada correctamente", Color.GREEN)
-        _clear_fields()
+	var p = preguntas_lista.pop_front()
+	set_pregunta(p)
 
 
-# =========================================================
-# BORRADOR
-# =========================================================
-func _on_borrador_pressed():
-    Globals.temp_preview_data = get_form_data("borrador")
-    _show_message("Borrador guardado", Color(Color.DARK_ORANGE))
-    _clear_fields()
+# ======================================================
+#                ASIGNAR DATOS
+# ======================================================
+func set_pregunta(data: Dictionary) -> void:
+	pregunta_actual = data.duplicate(true)
+	label_pregunta.text = data.get("pregunta", "Pregunta desconocida")
 
 
-# =========================================================
-# ELIMINAR
-# =========================================================
-func _on_eliminar_pressed():
-    if editando_id == null:
-        _show_message("Nada que eliminar", Color.YELLOW)
-        return
+# ======================================================
+#          EVALUAR RESPUESTA
+# ======================================================
+func _evaluar_respuesta(resp: bool):
+	var correcta = resp == pregunta_actual["respuesta_correcta"]
+	emit_signal("respondida", correcta)
+	
+	if correcta:
+		mensaje.text = "¡Correcto!"
+		mensaje.modulate = Color.GREEN
+	else:
+		mensaje.text = "Incorrecto :("
+		mensaje.modulate = Color.RED
 
-    var url = "%s/preguntas_opc/%s.json" % [firebase.DB_URL, editando_id]
+	await get_tree().create_timer(1.2).timeout
+	mensaje.text = ""
 
-    var http := HTTPRequest.new()
-    add_child(http)
-    await http.request(url, [], HTTPClient.METHOD_DELETE)
-    http.queue_free()
-
-    editando_id = null
-    _clear_fields()
-    _show_message("Pregunta eliminada", Color.RED)
-
-
-# =========================================================
-# PREVISUALIZAR
-# =========================================================
-func _on_previsualizar_pressed():
-    Globals.temp_preview_data = get_form_data("preview")
-    get_tree().change_scene_to_file("res://escenas/Administrador/preview_opcion_multiple.tscn")
+	_mostrar_siguiente_pregunta()
 
 
-# =========================================================
-# MENSAJE TEMPORAL
-# =========================================================
-func _show_message(texto, color:Color):
-    mensaje.text = texto
-    mensaje.modulate = color
-    mensaje.visible = true
+# ======================================================
+#                MOSTRAR PISTA
+# ======================================================
+func _mostrar_pista():
+	if pregunta_actual["pistas"].is_empty():
+		return
 
-    await get_tree().create_timer(4).timeout
-    mensaje.visible = false
+	var texto: String = str(pregunta_actual["pistas"].pop_front())
 
-
-# =========================================================
-# LIMPIAR FORMULARIO
-# =========================================================
-func _clear_fields():
-    campo_pregunta.text = ""
-    campo_op1.text = ""
-    campo_op2.text = ""
-    campo_op3.text = ""
-    campo_correcta.text = ""
+	var ventana = escena_pista.instantiate()
+	add_child(ventana)
+	ventana.set_pista(texto)

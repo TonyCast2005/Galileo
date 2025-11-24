@@ -123,5 +123,9 @@ offset_right = 718.0
 offset_bottom = 140.0
 
 [node name="VolverBtn" parent="." instance=ExtResource("7_ar1np")]
+offset_left = 16.0
+offset_top = 1165.0
+offset_right = 16.0
+offset_bottom = 1165.0
 
 [connection signal="pressed" from="Panel/verificar" to="Panel/verificador" method="_on_verificar_pressed"]

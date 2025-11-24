@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://ekyoo2cnhvk"]
+[gd_scene load_steps=9 format=3 uid="uid://ekyoo2cnhvk"]
 
 [ext_resource type="Script" uid="uid://dj2341133ve6o" path="res://escenas/Tipos_preguntas/VerdaderoFalso/verdadero_falso.gd" id="1_8s5ou"]
 [ext_resource type="Texture2D" uid="uid://bgnffnt45rlhx" path="res://assets/sprites/ui/lupa.png" id="1_bed3i"]
+[ext_resource type="PackedScene" uid="uid://ij704rh06ujv" path="res://escenas/volverBTN.tscn" id="3_4ev06"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_whnp4"]
 bg_color = Color(0.121993, 0.443719, 0.14763, 0.686275)
@@ -116,3 +117,13 @@ offset_bottom = 0.559937
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
+
+[node name="VolverBtn" parent="." instance=ExtResource("3_4ev06")]
+layout_mode = 1
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[connection signal="pressed" from="Verdadero" to="." method="_on_verdadero_pressed"]
+[connection signal="pressed" from="Falso" to="." method="_on_falso_pressed"]
+[connection signal="pressed" from="Pista" to="." method="_on_pista_pressed"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
