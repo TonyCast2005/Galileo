@@ -11,7 +11,7 @@ var respuestas_correctas = []
 var campos = []
 
 const FIREBASE_URL = "https://galileo-af640-default-rtdb.firebaseio.com/practica_escritura.json"
-
+	
 func _ready():
 	cargar_preguntas()
 
