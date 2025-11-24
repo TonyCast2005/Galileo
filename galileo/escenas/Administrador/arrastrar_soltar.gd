@@ -71,7 +71,7 @@ func _clear_fields():
 # ----------------------- Previsualizar -----------------------
 func _on_previsualizar_pressed():
 	Globals.temp_preview_data = get_form_data("preview")
-	get_tree().change_scene_to_file("res://escenas/Administrador/preview_semiAbiertas.tscn")
+	get_tree().change_scene_to_file("res://escenas/Administrador/preview_arrastrarSoltar.tscn")
 
 # ----------------------- Volver -----------------------
 func _on_volver_pressed():
