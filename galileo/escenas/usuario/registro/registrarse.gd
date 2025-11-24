@@ -11,7 +11,8 @@ var auth
 func _ready():
     auth = load("res://escenas/usuario/registro/firebase_auth.gd").new()
     add_child(auth)
-
+    contrasena.secret = true;
+    confirmar.secret = true;
 
 func _on_aceptar_pressed():
 

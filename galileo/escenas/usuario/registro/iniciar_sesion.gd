@@ -80,3 +80,7 @@ func _on_aceptar_pressed():
 
 func _on_registrarse_pressed():
     get_tree().change_scene_to_file("res://escenas/usuario/registro/registrarse.tscn")
+
+
+func _on_reccontrasenna_pressed():
+    get_tree().change_scene_to_file("res://escenas/usuario/registro/RecuperarContrasena.tscn")

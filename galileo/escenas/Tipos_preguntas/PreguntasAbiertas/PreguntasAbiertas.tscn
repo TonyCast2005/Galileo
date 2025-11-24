@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://daypjsaufgcyw"]
+[gd_scene load_steps=11 format=3 uid="uid://daypjsaufgcyw"]
 
 [ext_resource type="Texture2D" uid="uid://bgnffnt45rlhx" path="res://assets/sprites/ui/lupa.png" id="1_3pmav"]
 [ext_resource type="Script" uid="uid://cjxdblhn4g47c" path="res://escenas/Tipos_preguntas/PreguntasAbiertas/preguntas_abiertas.gd" id="1_88pd7"]
+[ext_resource type="PackedScene" uid="uid://ij704rh06ujv" path="res://escenas/volverBTN.tscn" id="3_4torv"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4torv"]
 
@@ -131,5 +132,8 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "Nombre de la lección"
 autowrap_mode = 2
+
+[node name="VolverBtn" parent="." instance=ExtResource("3_4torv")]
+layout_mode = 1
 
 [connection signal="pressed" from="validar" to="." method="_on_validar_pressed"]

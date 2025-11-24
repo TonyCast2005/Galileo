@@ -1,11 +1,11 @@
 extends Control
 
-# Candados (íconos de bloqueo)
+# --- Candados ---
 @onready var candado2 = $Panel/VBoxContainer/Button2/TextureRect2
 @onready var candado3 = $Panel/VBoxContainer/Button3/TextureRect3
 @onready var candado4 = $Panel/VBoxContainer/Button4/TextureRect4
 
-# Lista de botones para poder iterar fácilmente
+# --- Botones ---
 @onready var botones = [
     $Panel/VBoxContainer/Button1,
     $Panel/VBoxContainer/Button2,
@@ -17,27 +17,30 @@ extends Control
 var candados := []
 
 # Control de desbloqueo: cuántos botones están desbloqueados
-var max_desbloqueado := 1
+var max_desbloqueado := 4
 
-# Botón 1 siempre es lectura
+# Botón 1 → siempre lectura
 var escena_lectura := "res://escenas/Tipos_preguntas/Lectura/Lectura.tscn"
 
-# Ejercicios disponibles para Arduino (principiantes)
+# Lista de escenas de ejercicios para escoger al azar
 var ejercicios_arduino := [
-    {"tipo": "OpcionMultiple", "ruta": "res://escenas/Tipos_preguntas/OpcionMultiple/OpcionMultiple.tscn"},
-    {"tipo": "VerdaderoFalso", "ruta": "res://escenas/Tipos_preguntas/VerdaderoFalso/VF.tscn"},
-    {"tipo": "OpcionMultiple", "ruta": "res://escenas/Tipos_preguntas/OpcionMultiple/OpcionMultiple2.tscn"},
+    {"tipo": "OM1", "ruta": "res://escenas/Tipos_preguntas/OpcionMultiple/OpcionMultiple.tscn"},
+    {"tipo": "VF", "ruta": "res://escenas/Tipos_preguntas/practicaEscritura/practicaEscritura.tscn"},
+    {"tipo": "OM2", "ruta": "res://escenas/Tipos_preguntas/PreguntasAbiertas/PreguntasAbiertas.tscn"},
 ]
 
 func _ready():
-    # Guardamos los candados en orden
-    candados = [null, candado2, candado3, candado4]  # null para botón 1
-    _actualizar_estado_botones()
-    randomize() # Para que randi() genere aleatorios distintos cada ejecución
+    randomize()
 
-# ----------------------------
-# Actualiza botones y candados según max_desbloqueado
-# ----------------------------
+    # Guardamos los candados alineados con los botones
+    candados = [null, candado2, candado3, candado4]
+
+    _actualizar_estado_botones()
+
+
+# --------------------------------------------------------
+# Actualiza los candados y botones según progreso
+# --------------------------------------------------------
 func _actualizar_estado_botones():
     for i in range(botones.size()):
         if i < max_desbloqueado:
@@ -49,54 +52,50 @@ func _actualizar_estado_botones():
             if candados[i]:
                 candados[i].visible = true
 
-# ----------------------------
-# Función para avanzar al siguiente nivel (desbloquear)
-# ----------------------------
+
+# --------------------------------------------------------
+# Llamado cuando un ejercicio termina
+# (lo llamas desde el botón "Continuar" dentro del ejercicio)
+# --------------------------------------------------------
 func desbloquear_siguiente():
     if max_desbloqueado < botones.size():
         max_desbloqueado += 1
         _actualizar_estado_botones()
 
-# ----------------------------
-# Función para escoger un ejercicio aleatorio
-# ----------------------------
+
+# --------------------------------------------------------
+# Devuelve un ejercicio aleatorio
+# --------------------------------------------------------
 func ejercicio_aleatorio() -> Dictionary:
-    var indice = randi() % ejercicios_arduino.size()
-    return ejercicios_arduino[indice]
-
-# ----------------------------
-# Función para cargar escena de ejercicio
-# ----------------------------
-func cargar_escena_ejercicio(ejercicio: Dictionary) -> void:
-    var escena = load(ejercicio.ruta).instantiate()
-    get_tree().current_scene.add_child(escena)
-
-    # Si la escena tiene un método para recibir la pregunta desde Firebase
-    if escena.has_method("set_pregunta"):
-        var preguntas = Globals.preguntas_arduino   # Lista de preguntas cargadas previamente
-        if preguntas.size() > 0:
-            var pregunta = preguntas[randi() % preguntas.size()]
-            escena.set_pregunta(pregunta)
+    var index = randi() % ejercicios_arduino.size()
+    return ejercicios_arduino[index]
 
 
-# ----------------------------
-# Funciones de los botones
-# ----------------------------
-func _on_button_1_pressed() -> void:
+# --------------------------------------------------------
+# Cargar escena completa de ejercicio (cambia de pantalla)
+# --------------------------------------------------------
+func cargar_escena_ejercicio(ejercicio: Dictionary):
+    Globals.desbloquear_pendiente = true
+    get_tree().change_scene_to_file(ejercicio["ruta"])
+
+
+
+# --------------------------------------------------------
+# Botones
+# --------------------------------------------------------
+func _on_button_1_pressed():
+   
     get_tree().change_scene_to_file(escena_lectura)
-    desbloquear_siguiente()
+
 
 func _on_button_2_pressed() -> void:
-    var ejercicio = ejercicio_aleatorio()
-    cargar_escena_ejercicio(ejercicio)
+    cargar_escena_ejercicio(ejercicio_aleatorio())
     desbloquear_siguiente()
 
 func _on_button_3_pressed() -> void:
-    var ejercicio = ejercicio_aleatorio()
-    cargar_escena_ejercicio(ejercicio)
+    cargar_escena_ejercicio(ejercicio_aleatorio())
     desbloquear_siguiente()
 
 func _on_button_4_pressed() -> void:
-    var ejercicio = ejercicio_aleatorio()
-    cargar_escena_ejercicio(ejercicio)
+    cargar_escena_ejercicio(ejercicio_aleatorio())
     desbloquear_siguiente()

@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bcmm724vdp5j8"]
+[gd_scene load_steps=5 format=3 uid="uid://bcmm724vdp5j8"]
 
 [ext_resource type="Script" uid="uid://b0pfi4hdgcwxu" path="res://escenas/Tipos_preguntas/OpcionMultiple/opcion_multiple.gd" id="1_vs0lo"]
+[ext_resource type="PackedScene" uid="uid://ij704rh06ujv" path="res://escenas/volverBTN.tscn" id="2_b1vbc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vs0lo"]
 bg_color = Color(0.145247, 0.104291, 0.19048, 0.607843)
@@ -96,6 +97,9 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 autowrap_mode = 2
+
+[node name="VolverBtn" parent="." instance=ExtResource("2_b1vbc")]
+layout_mode = 1
 
 [connection signal="pressed" from="Opcion1" to="." method="_on_opcion_1_pressed"]
 [connection signal="pressed" from="Opcion2" to="." method="_on_opcion_2_pressed"]

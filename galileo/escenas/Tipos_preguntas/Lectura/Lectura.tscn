@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cp5gtqqelpka8"]
+[gd_scene load_steps=6 format=3 uid="uid://cp5gtqqelpka8"]
 
 [ext_resource type="Texture2D" uid="uid://chwx61jh6pohf" path="res://assets/sprites/ui/Menu/ayuda.png" id="1_4ji3i"]
 [ext_resource type="Script" uid="uid://v3cfo0n01q8c" path="res://escenas/Tipos_preguntas/Lectura/lectura.gd" id="1_53kx0"]
+[ext_resource type="PackedScene" uid="uid://ij704rh06ujv" path="res://escenas/volverBTN.tscn" id="3_calah"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_53kx0"]
 bg_color = Color(0.184314, 0.12549, 0.278431, 0.686275)
@@ -93,6 +94,9 @@ offset_bottom = 90.0
 theme_override_styles/normal = SubResource("StyleBoxTexture_calah")
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="VolverBtn" parent="." instance=ExtResource("3_calah")]
+layout_mode = 1
 
 [connection signal="pressed" from="Continuar" to="." method="_on_continuar_pressed"]
 [connection signal="pressed" from="Ayuda" to="." method="_on_ayuda_pressed"]

@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://ij704rh06ujv"]
+
+[ext_resource type="Script" uid="uid://btq1t5hl7t3ms" path="res://escenas/volver_btn.gd" id="1_buq1p"]
+[ext_resource type="Texture2D" uid="uid://cwqextjtlqg7j" path="res://assets/sprites/ui/volver.png" id="2_hsaj3"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a3a2a"]
+texture = ExtResource("2_hsaj3")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s1gym"]
+texture = ExtResource("2_hsaj3")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3pxmy"]
+texture = ExtResource("2_hsaj3")
+
+[node name="VolverBtn" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_buq1p")
+
+[node name="volver" type="Button" parent="."]
+offset_left = 10.0
+offset_top = 1174.0
+offset_right = 146.0
+offset_bottom = 1262.0
+theme_override_styles/focus = SubResource("StyleBoxTexture_a3a2a")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_s1gym")
+theme_override_styles/normal = SubResource("StyleBoxTexture_3pxmy")
+
+[connection signal="pressed" from="volver" to="." method="_on_volver_pressed"]
