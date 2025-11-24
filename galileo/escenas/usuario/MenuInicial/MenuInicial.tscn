@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cc8ijaeiqvdmn"]
+[gd_scene load_steps=4 format=3 uid="uid://cc8ijaeiqvdmn"]
 
 [ext_resource type="Script" uid="uid://dacga1gqodln0" path="res://escenas/usuario/MenuInicial/menu_inicial.gd" id="1_abg4q"]
 [ext_resource type="PackedScene" uid="uid://cs6y8btdpwblb" path="res://escenas/menu.tscn" id="2_b7vfa"]
-[ext_resource type="Texture2D" uid="uid://dfi3wp0ch4mgf" path="res://assets/sprites/ui/arrow_isometric.png" id="3_14jc8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3w2ru"]
 bg_color = Color(0.331572, 0.315741, 0.643277, 1)
@@ -10,10 +9,6 @@ corner_radius_top_left = 40
 corner_radius_top_right = 40
 corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_r8thd"]
-atlas = ExtResource("3_14jc8")
-region = Rect2(64, 32, 35, 35)
 
 [node name="MenuInicial" type="Control"]
 layout_mode = 3
@@ -68,12 +63,3 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 48
-
-[node name="Flecha" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 323.0
-offset_top = 182.0
-offset_right = 385.0
-offset_bottom = 247.0
-texture = SubResource("AtlasTexture_r8thd")
-expand_mode = 1
