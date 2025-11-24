@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cp5gtqqelpka8"]
+[gd_scene load_steps=5 format=3 uid="uid://drl2e5w4jtqnl"]
 
-[ext_resource type="Texture2D" uid="uid://chwx61jh6pohf" path="res://assets/sprites/ui/Menu/ayuda.png" id="1_4ji3i"]
-[ext_resource type="Script" uid="uid://v3cfo0n01q8c" path="res://escenas/Tipos_preguntas/Lectura/lectura.gd" id="1_53kx0"]
+[ext_resource type="Script" uid="uid://v3cfo0n01q8c" path="res://escenas/Tipos_preguntas/Lectura/lectura.gd" id="1_g3ml7"]
+[ext_resource type="Texture2D" uid="uid://chwx61jh6pohf" path="res://assets/sprites/ui/Menu/ayuda.png" id="2_fvtm2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_53kx0"]
 bg_color = Color(0.184314, 0.12549, 0.278431, 0.686275)
@@ -11,7 +11,7 @@ corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_calah"]
-texture = ExtResource("1_4ji3i")
+texture = ExtResource("2_fvtm2")
 
 [node name="Lectura" type="Control"]
 layout_mode = 3
@@ -20,7 +20,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_53kx0")
+script = ExtResource("1_g3ml7")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -40,21 +40,23 @@ offset_bottom = 252.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 25
-text = "Hola esta es una prueba de texto"
+text = "QUE ES ARDUINO?"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="NombreLección" type="Label" parent="."]
 layout_mode = 0
-offset_left = 7.0
-offset_top = 10.0
-offset_right = 579.0
-offset_bottom = 68.0
+offset_left = 140.0
+offset_top = 18.0
+offset_right = 570.0
+offset_bottom = 76.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
-text = "Nombre de la lección"
+theme_override_font_sizes/font_size = 25
+text = "Arduino"
+horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]

@@ -1,0 +1,66 @@
+[gd_scene load_steps=4 format=3 uid="uid://cc8ijaeiqvdmn"]
+
+[ext_resource type="Script" uid="uid://dacga1gqodln0" path="res://escenas/usuario/MenuInicial/menu_inicial.gd" id="1_abg4q"]
+[ext_resource type="PackedScene" uid="uid://cs6y8btdpwblb" path="res://escenas/menu.tscn" id="2_b7vfa"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3w2ru"]
+bg_color = Color(0.331572, 0.315741, 0.643277, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[node name="MenuInicial" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_abg4q")
+nivel_desbloqueado_global = 4
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.283202, 0.267178, 0.564503, 1)
+
+[node name="Control" parent="ColorRect" instance=ExtResource("2_b7vfa")]
+layout_mode = 1
+offset_right = -5.67999
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 29.0
+offset_right = 681.0
+offset_bottom = 124.0
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_3w2ru")
+text = "Tema"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
+anchor_left = 0.036
+anchor_top = 0.17
+anchor_right = 0.962
+anchor_bottom = 0.83
+offset_left = 0.079998
+offset_top = -0.600006
+offset_right = 3.35999
+offset_bottom = 55.6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 48

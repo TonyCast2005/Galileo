@@ -1,8 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://cc8ijaeiqvdmn"]
+[gd_scene load_steps=6 format=3 uid="uid://cc8ijaeiqvdmn"]
 
 [ext_resource type="Script" uid="uid://dacga1gqodln0" path="res://escenas/usuario/MenuInicial/menu_inicial.gd" id="1_abg4q"]
 [ext_resource type="PackedScene" uid="uid://cs6y8btdpwblb" path="res://escenas/menu.tscn" id="2_b7vfa"]
 [ext_resource type="Texture2D" uid="uid://b2ppqu3em387w" path="res://assets/sprites/ui/iconoMorado (1).png" id="3_14jc8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3w2ru"]
+bg_color = Color(0.331572, 0.315741, 0.643277, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r8thd"]
 atlas = ExtResource("3_14jc8")
@@ -31,6 +38,20 @@ color = Color(0.283202, 0.267178, 0.564503, 1)
 layout_mode = 1
 offset_right = -5.67999
 
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 29.0
+offset_right = 681.0
+offset_bottom = 137.0
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_3w2ru")
+text = "
+Principiante
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Anterior" type="Button" parent="."]
 layout_mode = 2
 offset_left = 53.0
@@ -41,7 +62,6 @@ icon = ExtResource("3_14jc8")
 flat = true
 
 [node name="Label" type="Label" parent="Anterior"]
-layout_mode = 0
 offset_left = 51.0
 offset_top = 50.0
 offset_right = 109.0
@@ -74,19 +94,9 @@ vertical_alignment = 1
 [node name="Carrusel" type="Control" parent="."]
 anchors_preset = 0
 offset_left = 28.0
-offset_top = 57.0
+offset_top = 154.0
 offset_right = 699.0
-offset_bottom = 977.0
-
-[node name="LabelContador" type="Label" parent="."]
-layout_mode = 0
-offset_left = 301.0
-offset_top = 1035.0
-offset_right = 402.0
-offset_bottom = 1098.0
-theme_override_font_sizes/font_size = 25
-horizontal_alignment = 1
-vertical_alignment = 1
+offset_bottom = 1017.0
 
 [connection signal="pressed" from="Anterior" to="." method="_on_anterior_pressed"]
 [connection signal="pressed" from="Siguiente" to="." method="_on_siguiente_pressed"]

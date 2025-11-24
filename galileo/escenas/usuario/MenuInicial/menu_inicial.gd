@@ -1,101 +1,77 @@
 extends Control
 
-@onready var niveles_container = $ScrollContainer/VBoxContainer
-@onready var tema = $TemaLabel
-@onready var scroll = $ScrollContainer
-@onready var flecha = $Flecha   # <---- flecha en escena
+@onready var contenedor = $Carrusel
 
-var selector_scene = preload("res://escenas/usuario/MenuInicial/selectorNivel.tscn")
+var temas := [
+    preload("res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Arduino/Tema_Arduino.tscn"),
+    preload("res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Electronica/Tema_Electronica.tscn"),
+    preload("res://escenas/usuario/MenuInicial/Temas_Principiante/Temas_ProgramacionBasica/Tema_Programacion_Basica.tscn"),
+    preload("res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_EntradasDigitales/Tema_EntradasDigitales.tscn")
+]
 
-# 1. Rutas de escenas por nivel
-var exercise_scenes: Dictionary = {
-    1: "res://escenas/Tipos_preguntas/Lectura/Lectura.tscn",
-    2: "res://escenas/ejercicios/ejercicio_02_arrastrar_soltar.tscn",
-    3: "res://escenas/ejercicios/ejercicio_03_preguntas_abiertas.tscn",
-    4: "res://escenas/ejercicios/ejercicio_04_otro_tipo.tscn",
-    12: "res://escenas/ejercicios/ejercicio_12_final.tscn",
-}
-
-# 2. Tema por nivel
-var temas_por_nivel := {
-    1: "Introducción a Arduino",
-    2: "Variables y Datos",
-    3: "Entradas Digitales",
-    4: "Salidas Digitales",
-    5: "PWM y LEDs",
-    6: "Sensores Analógicos",
-    7: "Motores",
-    8: "Comunicaciones",
-    9: "Temporizadores",
-    10: "Interrupciones",
-    11: "Práctica Final",
-    12: "Proyecto Final",
-}
-
-@export var total_niveles : int = 12
-@export var nivel_desbloqueado_global : int = 1
-
+var indice_actual := 0
+var escena_actual: Control = null
+var animando := false  # <-- bandera para bloquear botones
 
 func _ready():
-    _crear_niveles()
-    scroll.get_v_scroll_bar().value_changed.connect(_on_scroll_changed)
-    _on_scroll_changed(0) # Primera actualización
+    cargar_tema(indice_actual, 0) # posición inicial = 0
 
+# ------------------------------
+# Cargar la escena del tema actual con animación
+# direccion: 1 = siguiente, -1 = anterior, 0 = inicial
+# ------------------------------
+func cargar_tema(i: int, direccion: int):
+    if animando:
+        return # ignorar si hay animación en curso
+    animando = true
 
-func _crear_niveles():
-    for child in niveles_container.get_children():
-        child.queue_free()
-    
-    for i in range(total_niveles):
-        var boton = selector_scene.instantiate() as SelectorNivel
-        boton.level_num = i + 1
-        boton.locked = i + 1 > nivel_desbloqueado_global
+    var nueva_escena = temas[i].instantiate() as Control
+    contenedor.add_child(nueva_escena)
 
-        boton.custom_minimum_size = Vector2(150, 50)
+    # Ajustar tamaño y anclas
+    nueva_escena.anchor_left = 0.0
+    nueva_escena.anchor_right = 1.0
+    nueva_escena.anchor_top = 0.0
+    nueva_escena.anchor_bottom = 1.0
+    nueva_escena.position = Vector2.ZERO
+    nueva_escena.size_flags_horizontal = Control.SIZE_FILL
+    nueva_escena.size_flags_vertical = Control.SIZE_FILL
 
-        boton.level_selected.connect(_on_level_selected)
-        niveles_container.add_child(boton)
+    var ancho = contenedor.size.x
 
-
-func _on_level_selected(level: int):
-    var scene_path = exercise_scenes.get(level)
-    if scene_path:
-        get_tree().change_scene_to_file(scene_path)
-    else:
-        push_error("No hay escena para nivel " + str(level))
-
-
-# --- 4. Flecha sincronizada con scroll ---
-func _on_scroll_changed(value: float):
-    var botones = niveles_container.get_children()
-    if botones.size() == 0:
+    if escena_actual == null:
+        nueva_escena.position = Vector2.ZERO
+        escena_actual = nueva_escena
+        animando = false
         return
 
-    var scroll_top = scroll.global_position.y
-    var scroll_bottom = scroll_top + scroll.size.y
-    var scroll_center = scroll_top + scroll.size.y / 2.0
+    nueva_escena.position = Vector2(direccion * ancho, 0)
 
-    var mejor_boton = null
-    var mejor_distancia = INF
+    var tween = create_tween()
+    tween.tween_property(escena_actual, "position:x", -direccion * ancho, 0.25).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+    tween.tween_property(nueva_escena, "position:x", 0, 0.50).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
 
-    # Buscar el botón más cercano al centro del scroll
-    for boton in botones:
-        var boton_center = boton.global_position.y + boton.size.y / 2.0
-        var distancia = abs(boton_center - scroll_center)
+    tween.finished.connect(func():
+        if escena_actual:
+            escena_actual.queue_free()
+        escena_actual = nueva_escena
+        animando = false  # <-- desbloquea la interacción
+    )
 
-        if distancia < mejor_distancia:
-            mejor_distancia = distancia
-            mejor_boton = boton
+# ------------------------------
+# Botón: Siguiente Tema
+# ------------------------------
+func _on_siguiente_pressed():
+    if animando: return
+    if indice_actual < temas.size() - 1:
+        indice_actual += 1
+        cargar_tema(indice_actual, 1)
 
-    if mejor_boton == null:
-        return
-
-    # Cambiar tema según el botón detectado
-    var lvl = mejor_boton.level_num
-    tema.text = temas_por_nivel.get(lvl, "Tema no definido")
-
-    # Mover flecha encima del botón detectado
-    var boton_pos = mejor_boton.global_position
-    
-    flecha.global_position.x = boton_pos.x - 50   # Ajusta para poner la flecha a la izquierda
-    flecha.global_position.y = boton_pos.y - 20   # Ajusta para que quede encima del botón
+# ------------------------------
+# Botón: Tema Anterior
+# ------------------------------
+func _on_anterior_pressed():
+    if animando: return
+    if indice_actual > 0:
+        indice_actual -= 1
+        cargar_tema(indice_actual, -1)
