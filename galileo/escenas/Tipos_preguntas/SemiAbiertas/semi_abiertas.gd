@@ -23,7 +23,6 @@ var pistas_actuales: Array[String] = []
 # READY
 # ======================================================
 func _ready() -> void:
-	nombre_leccion.text = "Preguntas semiabiertas - Arduino"
 	boton_validar.pressed.connect(_on_validar_pressed)
 	boton_pista.pressed.connect(_mostrar_pista)
 

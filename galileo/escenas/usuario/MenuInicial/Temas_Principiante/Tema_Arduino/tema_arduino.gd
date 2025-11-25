@@ -28,8 +28,7 @@ var ejercicios_arduino := [
    	{"tipo": "VF", "ruta": "res://escenas/Tipos_preguntas/VerdaderoFalso/VerdaderoFalso.tscn"},
 	{"tipo": "OM2", "ruta": "res://escenas/Tipos_preguntas/PreguntasAbiertas/PreguntasAbiertas.tscn"},
 	{"tipo": "SA", "ruta": "res://escenas/Tipos_preguntas/SemiAbiertas/SemiAbiertas.tscn"},
-	{"tipo": "PE", "ruta": "res://escenas/Tipos_preguntas/practicaEscritura/practica_escritura.gd"},
-	
+	{"tipo": "PE", "ruta": "res://escenas/Tipos_preguntas/practicaEscritura/practicaEscritura.tscn"},	
 ]
 
 func _ready():
