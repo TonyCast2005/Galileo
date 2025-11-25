@@ -1,7 +1,8 @@
 extends Node
 
 var desbloquear = false
-
+var repetir_bloque=false
+var bloque_actual = 0
 # -----------------------------
 #        SEÑALES
 # -----------------------------

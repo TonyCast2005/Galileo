@@ -78,9 +78,16 @@ func mostrar_pregunta() -> void:
 	if indice_pregunta >= claves.size():
 		label_pregunta.text = ""
 		mensaje.text = "¡Has terminado todas las preguntas!"
-		get_tree().change_scene_to_file("res://escenas/usuario/MenuInicial/MenuInicial.tscn")
+		
+		# Emitir señal para desbloquear el siguiente bloque
+		emit_signal("ejercicio_completado")
+		
 		validar.disabled = true
 		boton_pista.visible = false
+		
+		# Regresar al menú inicial después de un pequeño delay (opcional)
+		await get_tree().create_timer(1.0).timeout
+		get_tree().change_scene_to_file("res://escenas/usuario/MenuInicial/MenuInicial.tscn")
 		return
 
 	pregunta_actual = String(claves[indice_pregunta])

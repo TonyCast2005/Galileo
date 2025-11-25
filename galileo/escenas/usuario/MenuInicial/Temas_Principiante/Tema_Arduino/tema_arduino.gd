@@ -28,34 +28,26 @@ var max_desbloqueado := 1
 # Lectura
 var escena_lectura := "res://escenas/usuario/MenuInicial/Temas_Principiante/Temas_ProgramacionBasica/Lectura/Lectura_ProgramaciónBásica.tscn"
 
-# Ejercicios
+# Ejercicios disponibles
 var ejercicios_arduino := [
-	{"tipo": "OM1", "ruta": "res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Arduino/Ejercicios/OpcMultiple_1.tscn"},
+	{"tipo": "OM", "ruta": "res://escenas/Tipos_preguntas/OpcionMultiple/OpcionMultiple.tscn"},
 	{"tipo": "VF", "ruta": "res://escenas/Tipos_preguntas/VerdaderoFalso/VerdaderoFalso.tscn"},
-	{"tipo": "PA", "ruta": "res://escenas/Tipos_preguntas/PreguntasAbiertas/PreguntasAbiertas.tscn"},
 	{"tipo": "SA", "ruta": "res://escenas/Tipos_preguntas/SemiAbiertas/SemiAbiertas.tscn"},
-	{"tipo": "PE", "ruta": "res://escenas/Tipos_preguntas/practicaEscritura/practicaEscritura.tscn"},
 ]
 
 # ============================================================
-# READY — CONTROL DE FALLO O PROGRESO NORMAL
+# READY
 # ============================================================
 func _ready():
 	randomize()
 	candados = [null, candado2, candado3, candado4]
 
-	# ------------------------------------------------------
-	# Caso 1: viene de FALLAR un ejercicio → NO reiniciar nada
-	# ------------------------------------------------------
 	if Globals.repetir_bloque:
 		Globals.repetir_bloque = false
 		_actualizar_estado_botones()
 		_animar_todas_las_cajas()
 		return
 
-	# ------------------------------------------------------
-	# Caso 2: viene de completar correctamente un ejercicio
-	# ------------------------------------------------------
 	if Globals.desbloquear:
 		Globals.desbloquear = false
 		max_desbloqueado += 1
@@ -64,7 +56,7 @@ func _ready():
 	_animar_todas_las_cajas()
 
 # ============================================================
-# ACTUALIZAR CANDADOS Y BOTONES
+# Actualizar candados y botones
 # ============================================================
 func _actualizar_estado_botones():
 	for i in range(botones.size()):
@@ -78,7 +70,7 @@ func _actualizar_estado_botones():
 				candados[i].visible = true
 
 # ============================================================
-# DESBLOQUEAR SIGUIENTE LUEGO DE COMPLETAR EJERCICIO
+# Desbloquear siguiente bloque
 # ============================================================
 func desbloquear_siguiente():
 	if max_desbloqueado < botones.size():
@@ -86,20 +78,32 @@ func desbloquear_siguiente():
 		_actualizar_estado_botones()
 
 # ============================================================
-# EJERCICIO ALEATORIO
+# Ejercicio aleatorio
 # ============================================================
 func ejercicio_aleatorio() -> Dictionary:
 	var index = randi() % ejercicios_arduino.size()
 	return ejercicios_arduino[index]
 
 # ============================================================
-# CAMBIO DE ESCENA
+# Cargar escena ejercicio
 # ============================================================
 func cargar_escena_ejercicio(ejercicio: Dictionary):
-	get_tree().change_scene_to_file(ejercicio["ruta"])
+	var escena = load(ejercicio["ruta"]).instantiate()
+	
+	# 🔹 Conectamos la señal 'ejercicio_completado' si existe
+	if escena.has_signal("ejercicio_completado"):
+		escena.connect("ejercicio_completado", Callable(self, "_on_ejercicio_completado"))
+	
+	add_child(escena)
 
 # ============================================================
-# BOTONES
+# Callback cuando el ejercicio se completa
+# ============================================================
+func _on_ejercicio_completado():
+	desbloquear_siguiente()
+
+# ============================================================
+# Botones
 # ============================================================
 func _on_button_1_pressed():
 	get_tree().change_scene_to_file(escena_lectura)
@@ -107,20 +111,17 @@ func _on_button_1_pressed():
 func _on_button_2_pressed():
 	Globals.bloque_actual = 2
 	cargar_escena_ejercicio(ejercicio_aleatorio())
-	desbloquear_siguiente()
 
 func _on_button_3_pressed():
 	Globals.bloque_actual = 3
 	cargar_escena_ejercicio(ejercicio_aleatorio())
-	desbloquear_siguiente()
 
 func _on_button_4_pressed():
 	Globals.bloque_actual = 4
 	cargar_escena_ejercicio(ejercicio_aleatorio())
-	desbloquear_siguiente()
 
 # ============================================================
-# ANIMACIONES
+# Animaciones
 # ============================================================
 func _animar_todas_las_cajas():
 	_animar_caja_flotante(caja1, 0.0)

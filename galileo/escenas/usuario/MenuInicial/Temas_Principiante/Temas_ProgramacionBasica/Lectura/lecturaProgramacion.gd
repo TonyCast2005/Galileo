@@ -75,6 +75,11 @@ func _on_atras_pressed() -> void:
 
 func _on_adelante_pressed() -> void:
 	if animando: return
+
 	if indice_actual < temas.size() - 1:
 		indice_actual += 1
 		cargar_tema(indice_actual, 1)
+	else:
+		Globals.desbloquear = true
+		Globals.repetir_bloque = false
+		get_tree().change_scene_to_file("res://escenas/usuario/MenuInicial/MenuInicial.tscn")

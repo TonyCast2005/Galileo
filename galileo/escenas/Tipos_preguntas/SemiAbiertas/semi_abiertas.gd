@@ -89,11 +89,16 @@ func _on_request_completed(result: int, response_code: int, headers: PackedStrin
 func mostrar_pregunta() -> void:
 
 	if indice_actual >= preguntas_seleccionadas.size():
-		texto_pregunta1.text = "¡Has completado todas las preguntas!"
-		texto_pregunta2.text = ""
-		entrada_respuesta.editable = false
-		boton_validar.disabled = true
+		mensaje.text = "¡Has terminado todas las preguntas!"
+		
+		# Emitir señal para desbloquear el siguiente bloque
+		emit_signal("ejercicio_completado")
+		
 		boton_pista.visible = false
+		Globals.desbloquear = true;
+		# Opcional: volver al menú inicial después de un pequeño delay
+		await get_tree().create_timer(1.0).timeout
+		get_tree().change_scene_to_file("res://escenas/usuario/MenuInicial/MenuInicial.tscn")
 		return
 
 	var p: Dictionary = preguntas_seleccionadas[indice_actual]

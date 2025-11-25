@@ -87,10 +87,12 @@ func _on_request_completed(result: int, response_code: int, _headers: PackedStri
 func mostrar_pregunta() -> void:
 
 	if indice_actual >= seleccionadas.size():
-		lbl_enunciado.text = "¡Terminaste la práctica!"
-		lbl_codigo.visible = false
-		cont_campos.visible = false
-		btn_pista.visible = false
+		# Emitir señal para desbloquear el siguiente bloque
+		emit_signal("ejercicio_completado")
+		Globals.desbloquear = true;
+		# Opcional: volver al menú inicial después de un pequeño delay
+		await get_tree().create_timer(1.0).timeout
+		get_tree().change_scene_to_file("res://escenas/usuario/MenuInicial/MenuInicial.tscn")
 		return
 
 	var pregunta: Dictionary = seleccionadas[indice_actual]

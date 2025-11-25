@@ -37,5 +37,5 @@ theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_jxw60")
 text = "Entendido"
 
-[connection signal="pressed" from="botoncontinuar" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="botoncontinuar" to="." method="_on_botoncontinuar_pressed"]
+[connection signal="pressed" from="botoncontinuar" to="." method="_on_button_pressed"]
