@@ -1,0 +1,128 @@
+[gd_scene load_steps=5 format=3 uid="uid://brub75geaapjo"]
+
+[ext_resource type="Script" uid="uid://dmvgfovsk6rm0" path="res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_EntradasDigitales/Lectura/pagina_1_entradas.gd" id="1_di802"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_07reo"]
+bg_color = Color(0.166519, 0.107691, 0.24685, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ov05"]
+bg_color = Color(0.275472, 0.702548, 0.341987, 1)
+corner_radius_top_left = 4000
+corner_radius_top_right = 4000
+corner_radius_bottom_right = 4000
+corner_radius_bottom_left = 4000
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_di802"]
+bg_color = Color(0.377438, 0.692172, 0.725079, 1)
+corner_radius_top_left = 4000
+corner_radius_top_right = 4000
+corner_radius_bottom_right = 4000
+corner_radius_bottom_left = 4000
+
+[node name="Pagina1" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_di802")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_07reo")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -772.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "Las Entradas Digitales son la forma más simple en que Arduino \"lee\" el mundo exterior. A diferencia de las entradas analógicas (que leen un rango de valores, como la luz), las digitales solo entienden dos estados:"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="High" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 486.0
+offset_right = 323.0
+offset_bottom = 733.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_8ov05")
+
+[node name="Label" type="Label" parent="High"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 60
+text = "HIGH"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="High_btn" type="Button" parent="High"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+
+[node name="Low" type="Panel" parent="."]
+offset_left = 380.0
+offset_top = 480.0
+offset_right = 643.0
+offset_bottom = 727.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_di802")
+
+[node name="Label" type="Label" parent="Low"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 60
+text = "LOW"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Low_btn" type="Button" parent="Low"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+
+[node name="Explicacion" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = 779.0
+offset_right = -22.0
+offset_bottom = -76.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[connection signal="pressed" from="High/High_btn" to="." method="_on_high_btn_pressed"]
+[connection signal="pressed" from="Low/Low_btn" to="." method="_on_low_btn_pressed"]

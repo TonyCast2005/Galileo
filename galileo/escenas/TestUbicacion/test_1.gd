@@ -56,7 +56,7 @@ func _on_aceptar_pressed():
         await auth.update_user_data(uid, {"nivel": nivel, "progreso": {"nivel_actual": nivel}})
 
     # 3️⃣ Ir al perfil
-    get_tree().change_scene_to_file("res://escenas/usuario/Perfil/perfil.tscn")
+    get_tree().change_scene_to_file("res://escenas/usuario/MenuInicial/MenuInicial.tscn")
 
 
     

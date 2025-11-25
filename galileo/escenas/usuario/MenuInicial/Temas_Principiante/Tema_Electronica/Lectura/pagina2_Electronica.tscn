@@ -1,0 +1,111 @@
+[gd_scene load_steps=8 format=3 uid="uid://clr7d5ru5utp3"]
+
+[ext_resource type="Texture2D" uid="uid://0hrk2jpub6ac" path="res://assets/sprites/misc/Cat_Grey_White.png" id="2_tw7dh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_07reo"]
+bg_color = Color(0.166519, 0.107691, 0.24685, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_awcix"]
+atlas = ExtResource("2_tw7dh")
+region = Rect2(0, 2343, 32, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ano7f"]
+atlas = ExtResource("2_tw7dh")
+region = Rect2(32, 2343, 32, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xwahu"]
+atlas = ExtResource("2_tw7dh")
+region = Rect2(64, 2343, 32, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ido2l"]
+atlas = ExtResource("2_tw7dh")
+region = Rect2(96, 2343, 32, 33)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3u2s5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_awcix")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ano7f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xwahu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ido2l")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[node name="Pagina1" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_07reo")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 5.0
+offset_right = -34.0
+offset_bottom = -760.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "El Voltaje (medido en Voltios, V) es la fuerza o presión que empuja a los electrones a moverse a través de un circuito."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Label2" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 446.0
+offset_right = 665.0
+offset_bottom = 641.0
+theme_override_font_sizes/font_size = 30
+text = "El Arduino Uno trabaja con 5V (presión) en sus pines y usa 0V (Tierra/GND) como referencia."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 790.0
+offset_right = 718.0
+offset_bottom = 1218.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 3
+position = Vector2(349, 1164)
+scale = Vector2(16.6914, 13.5208)
+sprite_frames = SubResource("SpriteFrames_3u2s5")
+frame_progress = 0.96341
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_right = 715.0
+offset_bottom = 132.0
+theme_override_font_sizes/font_size = 60
+text = "VOLTAJE"
+horizontal_alignment = 1
+vertical_alignment = 1

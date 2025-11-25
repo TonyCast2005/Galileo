@@ -3,9 +3,10 @@ extends Control
 @onready var contenedor: Control = $Carrusel
 
 var temas: Array = [
-    preload("res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Arduino/Ejercicios/Lectura/pagina1.tscn"),
-    preload("res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Arduino/Ejercicios/Lectura/pagina2.tscn"),
-    preload("res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Arduino/Ejercicios/Lectura/pagina3.tscn"),
+    preload("res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Electronica/Lectura/pagina1_Electronica.tscn"),
+    preload("res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Electronica/Lectura/pagina2_Electronica.tscn"),
+    preload("res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Electronica/Lectura/pagina3_Electronica.tscn"),
+    preload("res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Electronica/Lectura/pagina4_Electronica.tscn")
 ]
 
 var indice_actual := 0
@@ -83,3 +84,5 @@ func _on_adelante_pressed() -> void:
         Globals.desbloquear = true
         Globals.repetir_bloque = false
         get_tree().change_scene_to_file("res://escenas/usuario/MenuInicial/MenuInicial.tscn")
+        
+        

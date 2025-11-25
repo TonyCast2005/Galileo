@@ -1,0 +1,115 @@
+[gd_scene load_steps=5 format=3 uid="uid://bylt7levkumc0"]
+
+[ext_resource type="Script" uid="uid://bnyemjafhg0fx" path="res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_EntradasDigitales/Lectura/pagina_3_entradas.gd" id="1_uu2r7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_07reo"]
+bg_color = Color(0.166519, 0.107691, 0.24685, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pkdb4"]
+bg_color = Color(0.142054, 0.339313, 0.601232, 1)
+corner_radius_top_left = 130
+corner_radius_top_right = 130
+corner_radius_bottom_right = 130
+corner_radius_bottom_left = 130
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_35d28"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[node name="Pagina3" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uu2r7")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_07reo")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 47.0
+offset_right = -19.0
+offset_bottom = -694.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Para que el Arduino sepa en qué estado está el botón (presionado o suelto), usamos la función digitalRead(). Esta función es la que le permite al microcontrolador leer el voltaje presente en un pin digital."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Panel2" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 43.0
+offset_top = 581.0
+offset_right = -45.0
+offset_bottom = -568.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pkdb4")
+
+[node name="Label" type="Label" parent="Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 37
+text = "digitalRead()"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 26.0
+offset_top = 718.0
+offset_right = -28.0
+offset_bottom = -200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+text = "SU SINTAXIS ES:
+
+digitalRead(NúmeroDePin);
+
+Devuelve	 HIGH	 : 
+
+ pin tiene 5V (Botón presionado).
+
+Devuelve LOW :
+	 El pin tiene 0V (Botón suelto, o a Tierra)."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 3
+position = Vector2(569, 1179)
+scale = Vector2(13.5645, 13.446)
+sprite_frames = SubResource("SpriteFrames_35d28")
+frame_progress = 0.952125
