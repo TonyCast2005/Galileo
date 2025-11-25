@@ -1,16 +1,29 @@
 extends Node
 
 var desbloquear = false
+var bloque_actual = 0
 
+
+
+# 🌟 NUEVO: Diccionario para guardar el progreso de todos los temas.
+# La llave es el nombre del tema y el valor es el número de botones desbloqueados.
+var theme_progress = {
+    "Arduino": 2, # Ejemplo: Inicia con 2 botones desbloqueados (0 y 1)
+    "Electronica": 2, 
+    "Programacion": 2,
+    "Entradas": 2,
+    # Añade aquí las llaves para tus otros 4 temas
+}
 # -----------------------------
 #        SEÑALES
 # -----------------------------
 signal foto_actualizada(foto_nueva)
 signal datos_cargados_correctamente(uid)
 
-var desbloquear_pendiente: bool = false
+var desbloquear_pendiente = false # Lo usarás para saber si debe desbloquear en el menú
+var examen_aprobado = false
 var niveles_desbloqueados: int = 1  
-var desbloquear = false
+
 var repetir_bloque = false
 
 # -----------------------------
