@@ -26,7 +26,16 @@ func _ready() -> void:
 	btn_pista.pressed.connect(_mostrar_pista)
 	cargar_preguntas()
 
+# ===============================
+# SISTEMA DE ERRORES
+# ===============================
+var errores: int = 0
+var errores_maximos: int = 3   # Puedes ajustar libremente
 
+func fallar_demasiado() -> void:
+	Globals.desbloquear = false
+	get_tree().change_scene_to_file("res://escenas/Tipos_preguntas/RepiteLeccion.tscn")
+	
 # ============================================================
 # CARGAR PREGUNTAS
 # ============================================================
@@ -154,6 +163,11 @@ func _on_btn_validar_pressed() -> void:
 			retro.modulate = Color.RED
 			await get_tree().create_timer(1.2).timeout
 			indice_actual += 1
+			errores += 1
+			if errores >= errores_maximos:
+				fallar_demasiado()
+				return 
+				
 			mostrar_pregunta()
 			return
 

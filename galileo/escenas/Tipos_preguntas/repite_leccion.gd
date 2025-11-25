@@ -3,11 +3,9 @@ extends Control
 var gato_dialogo
 var indice_dialogo = 0
 var dialogos = [
-	"¡Hola! mi nombre es Galileo, yo te acompañaré a lo largo de tu aprendizaje.",
-	"A continuación realizaremos un examen diagnostico,",
-	"de este modo sabremos dónde posicionarte",
-	"y podrás comenzar con tu aprendizaje!",
-	"¿Listo?"
+	"Oh no!!!",
+	"has cometido demasiados errores",
+	"deberás volver a realizar el bloque"
 ]
 
 func _ready():
@@ -45,4 +43,4 @@ func _on_botoncontinuar_pressed():
 		print("✅ Diálogo finalizado. Cambiando de escena...")
 		
 		await get_tree().create_timer(0.5).timeout
-		get_tree().change_scene_to_file("res://escenas/TestUbicacion/Examen.tscn")
+		get_tree().change_scene_to_file("res://escenas/usuario/MenuInicial/MenuInicial.tscn")

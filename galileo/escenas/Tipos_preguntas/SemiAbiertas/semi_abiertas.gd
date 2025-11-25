@@ -28,6 +28,16 @@ func _ready() -> void:
 
 	cargar_preguntas()
 
+# ===============================
+# SISTEMA DE ERRORES
+# ===============================
+var errores: int = 0
+var errores_maximos: int = 3   # Puedes ajustar libremente
+
+func fallar_demasiado() -> void:
+	Globals.desbloquear = false
+	get_tree().change_scene_to_file("res://escenas/Tipos_preguntas/RepiteLeccion.tscn")
+	
 # ======================================================
 # Cargar preguntas desde Firebase
 # ======================================================
@@ -132,7 +142,10 @@ func _on_validar_pressed() -> void:
 		mensaje.text = "✔ ¡Correcto!"
 	else:
 		mensaje.text = "✖ Incorrecto.\nCorrecta: " + correcta
-
+		errores += 1
+	if errores >= errores_maximos:
+				fallar_demasiado()
+				return 
 	await get_tree().create_timer(1.3).timeout
 
 	mensaje.text = ""

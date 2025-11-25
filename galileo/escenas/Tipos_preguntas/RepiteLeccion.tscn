@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2qck27mt2a15"]
+
+[ext_resource type="Script" uid="uid://exqqcxbc5jdb" path="res://escenas/Tipos_preguntas/repite_leccion.gd" id="1_jxw60"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jxw60"]
+bg_color = Color(0.288392, 0.602267, 0, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[node name="RepiteLeccion" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jxw60")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.227451, 0.152941, 0.329412, 1)
+
+[node name="botoncontinuar" type="Button" parent="."]
+layout_mode = 0
+offset_left = 248.0
+offset_top = 1115.0
+offset_right = 490.0
+offset_bottom = 1194.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_jxw60")
+text = "Entendido"
+
+[connection signal="pressed" from="botoncontinuar" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="botoncontinuar" to="." method="_on_botoncontinuar_pressed"]

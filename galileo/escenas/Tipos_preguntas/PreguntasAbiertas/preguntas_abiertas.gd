@@ -33,6 +33,15 @@ func _ready() -> void:
 	else:
 		mensaje.text = "No se pudieron cargar las preguntas."
 
+# ===============================
+# SISTEMA DE ERRORES
+# ===============================
+var errores: int = 0
+var errores_maximos: int = 3   # Puedes ajustar libremente
+
+func fallar_demasiado() -> void:
+	Globals.desbloquear = false
+	get_tree().change_scene_to_file("res://escenas/Tipos_preguntas/RepiteLeccion.tscn")
 
 # ======================================================
 # Cargar preguntas desde Firebase
@@ -201,7 +210,6 @@ func evaluar_respuesta(pregunta: String, resp_user: String) -> Dictionary:
 		"mensaje":"Incorrecto.\nRespuesta correcta:\n" + data["respuesta_modelo"]
 	}
 
-
 # ======================================================
 # Validar
 # ======================================================
@@ -212,11 +220,20 @@ func _on_validar_pressed() -> void:
 	var r: Dictionary = evaluar_respuesta(pregunta_actual, respuesta.text)
 
 	mensaje.text = r["mensaje"]
+	if r["resultado"] == "incorrecta":
+		errores += 1
+		if errores >= errores_maximos:
+			fallar_demasiado()
+			return  # <-- IMPORTANTE: No continúa a la siguiente pregunta
+		
+		return  # solo falló, puede seguir intentando
 
-	if r["resultado"] != "incorrecta":
-		indice_pregunta += 1
-		await get_tree().create_timer(1.4).timeout
-		mostrar_pregunta()
+	# =====================
+	# RESPUESTA CORRECTA
+	# =====================
+	indice_pregunta += 1
+	await get_tree().create_timer(1.4).timeout
+	mostrar_pregunta()
 
 
 # ======================================================
