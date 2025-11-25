@@ -47,6 +47,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_53kx0")
 text = "<"
 
 [node name="Adelante" type="Button" parent="."]
+layout_mode = 0
 offset_left = 387.0
 offset_top = 1108.0
 offset_right = 484.0

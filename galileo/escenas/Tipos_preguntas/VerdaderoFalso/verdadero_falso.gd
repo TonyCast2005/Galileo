@@ -1,31 +1,40 @@
 extends Control
 
+# --- Señal para desbloquear siguiente bloque
+signal ejercicio_completado
+
 @onready var label_pregunta = $TextoPregunta
-@onready var boton_v = $Verdadero
-@onready var boton_f = $Falso
-@onready var boton_pistas = $Pista
-@onready var http := $HTTPRequest
-@onready var mensaje := $Mensaje 
+@onready var respuesta = $Respuesta
+@onready var mensaje = $Mensaje
+@onready var validar = $validar
+@onready var titulo = $NombreLección
+@onready var boton_pista = $Pista
+@onready var http = $HTTPRequest
 
-# Preload escena de pistas
-var escena_pista := preload("res://escenas/Pistas/Pistas_Contenedor.tscn")
+var escena_pista: PackedScene = preload("res://escenas/Pistas/Pistas_Contenedor.tscn")
 
-var pregunta_actual: Dictionary = {
-	"pregunta": "",
-	"respuesta_correcta": true,
-	"pistas": []
-}
+const DB_URL: String = "https://galileo-af640-default-rtdb.firebaseio.com/preguntas_abiertas.json"
 
-var preguntas_lista: Array = []
+var preguntas: Dictionary = {}
+var pregunta_actual: String = ""
+var indice_pregunta: int = 0
+var pistas_actuales: Array[String] = []
 
-signal respondida(correcta: bool)
+# ======================================================
+# READY
+# ======================================================
+func _ready() -> void:
+	titulo.text = "Preguntas abiertas - Arduino nivel novato"
 
-func _ready():
-	boton_v.pressed.connect(func(): _evaluar_respuesta(true))
-	boton_f.pressed.connect(func(): _evaluar_respuesta(false))
-	boton_pistas.pressed.connect(_mostrar_pista)
+	validar.pressed.connect(_on_validar_pressed)
+	boton_pista.pressed.connect(_mostrar_pista)
 
-	_cargar_preguntas()
+	await cargar_preguntas()
+
+	if preguntas.size() > 0:
+		mostrar_pregunta()
+	else:
+		mensaje.text = "No se pudieron cargar las preguntas."
 
 # ===============================
 # SISTEMA DE ERRORES
@@ -36,89 +45,211 @@ var errores_maximos: int = 3   # Puedes ajustar libremente
 func fallar_demasiado() -> void:
 	Globals.desbloquear = false
 	get_tree().change_scene_to_file("res://escenas/Tipos_preguntas/RepiteLeccion.tscn")
-	
-# ======================================================
-#       CARGAR PREGUNTAS DESDE FIREBASE
-# ======================================================
-func _cargar_preguntas():
-	var url = "https://galileo-af640-default-rtdb.firebaseio.com/preguntas_arduino_vf.json"
-	http.request(url)
 
-func _on_http_request_request_completed(result, response_code, headers, body):
-	if response_code != 200:
-		print("Error al cargar preguntas: ", response_code)
+# ======================================================
+# Cargar preguntas desde Firebase
+# ======================================================
+func cargar_preguntas() -> void:
+	var err: int = http.request(DB_URL)
+	if err != OK:
+		push_error("Error al conectar con Firebase")
 		return
 
-	var datos = JSON.parse_string(body.get_string_from_utf8())
-	if typeof(datos) != TYPE_DICTIONARY:
-		print("Formato incorrecto en Firebase")
-		return
+	var response: Array = await http.request_completed
+	var body: PackedByteArray = response[3]
 
-	# Convertir diccionario en array
-	preguntas_lista = datos.values()
+	var texto: String = body.get_string_from_utf8()
+	var data: Variant = JSON.parse_string(texto)
 
-	# Seleccionar solo 4 preguntas aleatorias
-	var temp = preguntas_lista.duplicate()
-	temp.shuffle()
-	preguntas_lista = temp.slice(0, 4)
-
-	_mostrar_siguiente_pregunta()
-
+	if typeof(data) == TYPE_DICTIONARY:
+		for key: String in data.keys():
+			var item: Dictionary = data[key]
+			if typeof(item) == TYPE_DICTIONARY:
+				var pregunta: String = item.get("pregunta", "")
+				if pregunta != "":
+					preguntas[pregunta] = item
+	else:
+		push_error("Formato incorrecto en Firebase")
 
 # ======================================================
-#         MOSTRAR SIGUIENTE PREGUNTA
+# Mostrar pregunta
 # ======================================================
-func _mostrar_siguiente_pregunta():
-	if preguntas_lista.is_empty():
-		label_pregunta.text = "¡Has terminado!"
+func mostrar_pregunta() -> void:
+	var claves: Array = preguntas.keys()
+
+	if indice_pregunta >= claves.size():
+		label_pregunta.text = ""
+		mensaje.text = "¡Has terminado todas las preguntas!"
+		
+		# Emitir señal para desbloquear el siguiente bloque
+		emit_signal("ejercicio_completado")
+		
+		validar.disabled = true
+		boton_pista.visible = false
+		
+		# Opcional: volver al menú inicial después de un pequeño delay
+		await get_tree().create_timer(1.0).timeout
 		get_tree().change_scene_to_file("res://escenas/usuario/MenuInicial/MenuInicial.tscn")
 		return
 
-	var p = preguntas_lista.pop_front()
-	set_pregunta(p)
+	pregunta_actual = String(claves[indice_pregunta])
+	var data: Dictionary = preguntas[pregunta_actual]
 
-
-# ======================================================
-#                ASIGNAR DATOS
-# ======================================================
-func set_pregunta(data: Dictionary) -> void:
-	pregunta_actual = data.duplicate(true)
-	label_pregunta.text = data.get("pregunta", "Pregunta desconocida")
-
-
-# ======================================================
-#          EVALUAR RESPUESTA
-# ======================================================
-func _evaluar_respuesta(resp: bool):
-	var correcta = resp == pregunta_actual["respuesta_correcta"]
-	emit_signal("respondida", correcta)
-	
-	if correcta:
-		mensaje.text = "¡Correcto!"
-		mensaje.modulate = Color.GREEN
-	else:
-		mensaje.text = "Incorrecto :("
-		mensaje.modulate = Color.RED
-		errores += 1
-	if errores >= errores_maximos:
-				fallar_demasiado()
-				return 
-
-	await get_tree().create_timer(1.2).timeout
+	label_pregunta.text = pregunta_actual
+	respuesta.text = ""
 	mensaje.text = ""
 
-	_mostrar_siguiente_pregunta()
+	# Pistas
+	if data.has("pistas") and typeof(data["pistas"]) == TYPE_ARRAY:
+		var arr: Array = data["pistas"]
+		pistas_actuales = []
+		for p in arr:
+			pistas_actuales.append(String(p))
+	else:
+		pistas_actuales = []
 
+	boton_pista.visible = pistas_actuales.size() > 0
 
 # ======================================================
-#                MOSTRAR PISTA
+# Normalizar texto
 # ======================================================
-func _mostrar_pista():
-	if pregunta_actual["pistas"].is_empty():
+func normalizar_texto(texto: String) -> String:
+	var t: String = texto.strip_edges().to_lower()
+
+	var acentos := {
+		"á":"a","é":"e","í":"i","ó":"o","ú":"u","ñ":"n"
+	}
+
+	for a in acentos.keys():
+		t = t.replace(a, acentos[a])
+
+	var signos: Array[String] = [",",".",";","?", "¿", "¡", "!", ":"]
+	for s in signos:
+		t = t.replace(s, "")
+
+	return t.strip_edges()
+
+# ======================================================
+# Levenshtein
+# ======================================================
+func levenshtein(a: String, b: String) -> int:
+	var m: int = a.length()
+	var n: int = b.length()
+
+	var matrix: Array = []
+
+	for i in range(m + 1):
+		matrix.append([])
+		for j in range(n + 1):
+			matrix[i].append(0)
+
+	for i in range(m + 1):
+		matrix[i][0] = i
+	for j in range(n + 1):
+		matrix[0][j] = j
+
+	for i in range(1, m + 1):
+		for j in range(1, n + 1):
+			var cost: int = 0 if a[i-1] == b[j-1] else 1
+			matrix[i][j] = min(
+				matrix[i-1][j] + 1,
+				matrix[i][j-1] + 1,
+				matrix[i-1][j-1] + cost
+			)
+
+	return matrix[m][n]
+
+func similitud_ortografica(a: String, b: String) -> float:
+	if a.is_empty() or b.is_empty():
+		return 0.0
+	var dist: int = levenshtein(a, b)
+	var max_len: int = max(a.length(), b.length())
+	return 1.0 - float(dist) / float(max_len)
+
+func porcentaje_palabras_clave(resp: String, claves: Array, sinonimos: Dictionary) -> float:
+	if claves.is_empty():
+		return 0.0
+
+	var total: int = claves.size()
+	var ok: int = 0
+
+	for p in claves:
+		var palabra: String = String(p)
+		if palabra in resp:
+			ok += 1
+		elif sinonimos.has(palabra):
+			var arr: Array = sinonimos[palabra]
+			for s in arr:
+				if String(s) in resp:
+					ok += 1
+					break
+
+	return float(ok) / float(total)
+
+# ======================================================
+# Evaluar respuesta
+# ======================================================
+func evaluar_respuesta(pregunta: String, resp_user: String) -> Dictionary:
+	var data: Dictionary = preguntas[pregunta]
+
+	var modelo: String = normalizar_texto(data["respuesta_modelo"])
+	var resp: String = normalizar_texto(resp_user)
+
+	var palabras: Array = data.get("palabras_clave", [])
+	var sinonimos: Dictionary = data.get("sinonimos", {})
+
+	var pct: float = porcentaje_palabras_clave(resp, palabras, sinonimos)
+	var sim: float = similitud_ortografica(resp, modelo)
+
+	if sim >= 0.80:
+		return {"resultado":"correcta","mensaje":"¡Excelente!"}
+
+	if pct >= 0.80 and sim >= 0.60:
+		return {"resultado":"correcta","mensaje":"Muy bien!"}
+
+	if pct >= 0.33 and sim >= 0.60:
+		return {"resultado":"parcial","mensaje":"Vas bien, falta un poco."}
+
+	return {
+		"resultado":"incorrecta",
+		"mensaje":"Incorrecto.\nRespuesta correcta:\n" + data["respuesta_modelo"]
+	}
+
+# ======================================================
+# Validar
+# ======================================================
+func _on_validar_pressed() -> void:
+	if pregunta_actual == "":
 		return
 
-	var texto: String = str(pregunta_actual["pistas"].pop_front())
+	var r: Dictionary = evaluar_respuesta(pregunta_actual, respuesta.text)
 
-	var ventana = escena_pista.instantiate()
+	mensaje.text = r["mensaje"]
+	if r["resultado"] == "incorrecta":
+		errores += 1
+		
+		if errores >= errores_maximos:
+			fallar_demasiado()
+			return
+		
+		return
+
+	# =====================
+	# RESPUESTA CORRECTA
+	# =====================
+	indice_pregunta += 1
+	await get_tree().create_timer(1.4).timeout
+	mostrar_pregunta()
+
+# ======================================================
+# MOSTRAR PISTA
+# ======================================================
+func _mostrar_pista() -> void:
+	if pistas_actuales.is_empty():
+		return
+
+	var texto: String = pistas_actuales.pop_front()
+
+	var ventana: Control = escena_pista.instantiate()
 	add_child(ventana)
 	ventana.set_pista(texto)

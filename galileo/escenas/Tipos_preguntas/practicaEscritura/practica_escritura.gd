@@ -30,7 +30,7 @@ func _ready() -> void:
 # SISTEMA DE ERRORES
 # ===============================
 var errores: int = 0
-var errores_maximos: int = 3   # Puedes ajustar libremente
+var errores_maximos: int = 3
 
 func fallar_demasiado() -> void:
 	Globals.desbloquear = false

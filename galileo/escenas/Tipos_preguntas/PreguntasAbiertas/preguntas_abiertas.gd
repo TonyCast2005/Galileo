@@ -78,6 +78,7 @@ func mostrar_pregunta() -> void:
 	if indice_pregunta >= claves.size():
 		label_pregunta.text = ""
 		mensaje.text = "¡Has terminado todas las preguntas!"
+		get_tree().change_scene_to_file("res://escenas/usuario/MenuInicial/MenuInicial.tscn")
 		validar.disabled = true
 		boton_pista.visible = false
 		return
@@ -208,6 +209,7 @@ func evaluar_respuesta(pregunta: String, resp_user: String) -> Dictionary:
 	return {
 		"resultado":"incorrecta",
 		"mensaje":"Incorrecto.\nRespuesta correcta:\n" + data["respuesta_modelo"]
+		
 	}
 
 # ======================================================
@@ -222,6 +224,7 @@ func _on_validar_pressed() -> void:
 	mensaje.text = r["mensaje"]
 	if r["resultado"] == "incorrecta":
 		errores += 1
+		
 		if errores >= errores_maximos:
 			fallar_demasiado()
 			return  # <-- IMPORTANTE: No continúa a la siguiente pregunta
