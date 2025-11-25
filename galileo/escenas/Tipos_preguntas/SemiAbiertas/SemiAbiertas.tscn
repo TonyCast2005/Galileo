@@ -98,18 +98,6 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_t1jeb")
 theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_s0hp4")
 theme_override_styles/normal = SubResource("StyleBoxTexture_0241m")
 
-[node name="NombreLección" type="Label" parent="."]
-layout_mode = 0
-offset_left = 7.0
-offset_top = 10.0
-offset_right = 579.0
-offset_bottom = 68.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
-text = "Nombre de la lección"
-autowrap_mode = 2
-
 [node name="Mensaje" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1

@@ -51,18 +51,18 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="Codigo" type="Label" parent="."]
+[node name="Codigo" type="RichTextLabel" parent="."]
 layout_mode = 0
 offset_left = 23.0
 offset_top = 388.0
 offset_right = 696.0
 offset_bottom = 705.0
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/bold_italics_font_size = 5
+theme_override_font_sizes/italics_font_size = 12
+theme_override_font_sizes/normal_font_size = 25
 text = "ejercicio"
-horizontal_alignment = 1
-vertical_alignment = 1
 autowrap_mode = 2
-justification_flags = 130
+horizontal_alignment = 1
 
 [node name="Campos" type="VBoxContainer" parent="."]
 visibility_layer = 65
@@ -91,6 +91,18 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 28
 theme_override_styles/normal = SubResource("StyleBoxFlat_m7gwd")
 text = "Validar"
+
+[node name="NombreLección" type="Label" parent="."]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 29.0
+offset_right = 579.0
+offset_bottom = 87.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Nombre de la lección"
+autowrap_mode = 2
 
 [node name="VolverBtn" parent="." instance=ExtResource("2_bqm5n")]
 layout_mode = 1
