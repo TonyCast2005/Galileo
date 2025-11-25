@@ -17,7 +17,6 @@ var pregunta_actual: String = ""
 var indice_pregunta: int = 0
 var pistas_actuales: Array[String] = []
 
-
 # ======================================================
 # READY
 # ======================================================

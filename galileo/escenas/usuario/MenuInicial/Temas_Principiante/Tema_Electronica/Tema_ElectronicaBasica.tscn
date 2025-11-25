@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://53k84xlogwy4"]
 
-[ext_resource type="Script" uid="uid://wjlw8pwhh1hu" path="res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Arduino/tema_arduino.gd" id="1_qp6oq"]
+[ext_resource type="Script" uid="uid://byqq4wb35h51h" path="res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Electronica/tema_electronica_basica.gd" id="1_qivy0"]
 [ext_resource type="Script" uid="uid://b60mmgliwke2m" path="res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Arduino/ola.gd" id="2_fu7wn"]
 [ext_resource type="Texture2D" uid="uid://b2ppqu3em387w" path="res://assets/sprites/ui/iconoMorado (1).png" id="3_qb3m5"]
 [ext_resource type="Texture2D" uid="uid://4sapvjr4jbjq" path="res://assets/sprites/ui/bloqueado.png" id="4_2bl8r"]
@@ -33,7 +33,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_qp6oq")
+script = ExtResource("1_qivy0")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1

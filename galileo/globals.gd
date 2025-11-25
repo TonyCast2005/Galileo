@@ -1,5 +1,7 @@
 extends Node
 
+var desbloquear = false
+
 # -----------------------------
 #        SEÑALES
 # -----------------------------

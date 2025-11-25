@@ -14,8 +14,6 @@ extends Control
 @onready var caja4 = $Panel/HBoxContainer4
 
 
-
-
 # --- Botones ---
 @onready var botones = [
 	$Panel/HBoxContainer1/Panel1/Button1,
