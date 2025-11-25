@@ -3,9 +3,10 @@ extends Control
 @onready var contenedor: Control = $Carrusel
 
 var temas: Array = [
-    preload("res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Arduino/Ejercicios/Lectura/pagina1.tscn"),
-    preload("res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Arduino/Ejercicios/Lectura/pagina2.tscn"),
-    preload("res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Arduino/Ejercicios/Lectura/pagina3.tscn"),
+    preload("res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_EntradasDigitales/Lectura/pagina1_entradas.tscn"),
+    preload("res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_EntradasDigitales/Lectura/pagina2_entradas.tscn"),
+    preload("res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_EntradasDigitales/Lectura/pagina3_entradas.tscn"),
+    preload("res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_EntradasDigitales/Lectura/pagina4_entradas.tscn")
 ]
 
 var indice_actual := 0

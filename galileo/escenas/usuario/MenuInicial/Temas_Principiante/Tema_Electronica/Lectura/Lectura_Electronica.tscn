@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bwsf6plh4n86e"]
+[gd_scene load_steps=5 format=3 uid="uid://cdx75q5w12l32"]
 
-[ext_resource type="Script" uid="uid://doun1yt58wwhf" path="res://escenas/usuario/MenuInicial/Temas_Principiante/Temas_ProgramacionBasica/Lectura/lecturaProgramacion.gd" id="1_2es35"]
-[ext_resource type="Texture2D" uid="uid://8eje2sopujd8" path="res://assets/sprites/misc/arrow_left_normal.png" id="2_pn8al"]
-[ext_resource type="Texture2D" uid="uid://ddf6dcuy8h6x8" path="res://assets/sprites/misc/arrow_right_normal.png" id="3_ceo8e"]
+[ext_resource type="Script" uid="uid://5h5qcxdfi3db" path="res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Electronica/Lectura/lectura_electronica.gd" id="1_7bct0"]
+[ext_resource type="Texture2D" uid="uid://8eje2sopujd8" path="res://assets/sprites/misc/arrow_left_normal.png" id="2_m441p"]
+[ext_resource type="Texture2D" uid="uid://ddf6dcuy8h6x8" path="res://assets/sprites/misc/arrow_right_normal.png" id="3_p6ogj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_53kx0"]
 bg_color = Color(0, 0, 0, 0.686275)
@@ -11,14 +11,14 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
-[node name="LecturaProgramacion" type="Control"]
+[node name="LecturaElectronica" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_2es35")
+script = ExtResource("1_7bct0")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -43,7 +43,7 @@ offset_left = 75.0
 offset_top = 1114.0
 offset_right = 181.0
 offset_bottom = 1229.0
-texture = ExtResource("2_pn8al")
+texture = ExtResource("2_m441p")
 
 [node name="atras" type="Button" parent="TextureRect"]
 layout_mode = 1
@@ -63,7 +63,7 @@ offset_left = 571.0
 offset_top = 1111.0
 offset_right = 677.0
 offset_bottom = 1226.0
-texture = ExtResource("3_ceo8e")
+texture = ExtResource("3_p6ogj")
 
 [node name="Adelante" type="Button" parent="TextureRect2"]
 layout_mode = 1

@@ -158,9 +158,9 @@ script = ExtResource("2_s2676")
 [node name="HBoxContainer1" type="HBoxContainer" parent="Panel"]
 layout_mode = 0
 offset_left = 32.0
-offset_top = 202.0
-offset_right = 664.0
-offset_bottom = 791.0
+offset_top = 205.0
+offset_right = 670.0
+offset_bottom = 794.0
 
 [node name="Panel1" type="Panel" parent="Panel/HBoxContainer1"]
 layout_mode = 2

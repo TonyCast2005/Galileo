@@ -31,7 +31,7 @@ var candados := []
 var max_desbloqueado := 4
 
 # Botón 1 → siempre lectura
-var escena_lectura := "res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Electronica/Lectura/Lectura_Electronica.tscn"
+var escena_lectura := "res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_EntradasDigitales/Lectura/Lectura_Entradas.tscn"
 
 # Lista de escenas de ejercicios para escoger al azar
 var ejercicios_arduino := [

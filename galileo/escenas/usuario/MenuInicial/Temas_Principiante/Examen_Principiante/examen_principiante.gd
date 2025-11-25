@@ -7,7 +7,7 @@ extends Control
 @onready var boton_examen = $Estrella/Empezar_Examen
 
 # Rutas de Escena
-var escena_destino := "res://escenas/usuario/MenuInicial/Temas_Principiante/Examen_Principiante/ExamenPrincipiante.tscn"
+var escena_destino := "res://escenas/usuario/MenuInicial/Temas_Principiante/Examen_Principiante/Examen_Escena/ExamenNovato.tscn"
 
 # Posición inicial para la animación
 var pos_inicial_estrella: Vector2

@@ -1,0 +1,145 @@
+[gd_scene load_steps=10 format=3 uid="uid://cseandvwwiwsy"]
+
+[ext_resource type="Script" uid="uid://bnyemjafhg0fx" path="res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_EntradasDigitales/Lectura/pagina_3_entradas.gd" id="1_aydvh"]
+[ext_resource type="Texture2D" uid="uid://0hrk2jpub6ac" path="res://assets/sprites/misc/Cat_Grey_White.png" id="2_eka82"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_07reo"]
+bg_color = Color(0.166519, 0.107691, 0.24685, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aydvh"]
+bg_color = Color(0.909348, 0.339968, 0.425551, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_irmbk"]
+atlas = ExtResource("2_eka82")
+region = Rect2(0, 1551, 32, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4hqob"]
+atlas = ExtResource("2_eka82")
+region = Rect2(32, 1551, 32, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dsn46"]
+atlas = ExtResource("2_eka82")
+region = Rect2(64, 1551, 32, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10h6r"]
+atlas = ExtResource("2_eka82")
+region = Rect2(96, 1551, 32, 33)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_35d28"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_irmbk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4hqob")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dsn46")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_10h6r")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Pagina4" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_aydvh")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_07reo")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 47.0
+offset_right = -19.0
+offset_bottom = -744.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Para que Arduino actúe sobre el mundo (encender un LED, activar un relé), usamos el comando digitalWrite(). Este comando le permite al Arduino enviar una señal de HIGH (5V) o LOW (0V) a un pin:"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Panel2" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 43.0
+offset_top = 524.0
+offset_right = -45.0
+offset_bottom = -625.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_aydvh")
+
+[node name="Label" type="Label" parent="Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 37
+text = "digitalWrite()"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 23.0
+offset_top = 701.0
+offset_right = -25.0
+offset_bottom = -190.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+text = "SU SINTAXIS ES:
+
+digitalWrite(NúmeroDePin, Valor);
+
+Valor HIGH :
+Envía 5V (Encender/Activar).
+
+Valor LOW:
+Envía 0V (Apagar/Desactivar).
+
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 3
+position = Vector2(340, 1273)
+scale = Vector2(15.126, 14.2079)
+sprite_frames = SubResource("SpriteFrames_35d28")
+frame_progress = 0.15641

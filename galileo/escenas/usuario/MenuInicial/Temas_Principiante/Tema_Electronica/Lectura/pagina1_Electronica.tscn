@@ -1,0 +1,193 @@
+[gd_scene load_steps=7 format=3 uid="uid://bo1y76p5lkjjt"]
+
+[ext_resource type="Script" uid="uid://ykq4p0cgnmga" path="res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Electronica/Lectura/pagina_1_electronica.gd" id="1_i0ep8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_07reo"]
+bg_color = Color(0.166519, 0.107691, 0.24685, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2srpq"]
+bg_color = Color(0.116972, 0.0707758, 0.181576, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5yn0h"]
+bg_color = Color(0.640455, 0.156535, 0.162161, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i0ep8"]
+bg_color = Color(0.72466, 0.594262, 1.92523e-07, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lodai"]
+bg_color = Color(0.46106, 0.317954, 0.642416, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[node name="Pagina1" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i0ep8")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_07reo")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 23.0
+offset_top = 5.0
+offset_right = -25.0
+offset_bottom = -790.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "Para entender la electricidad, vamos a usar una metáfora muy simple: la del flujo de agua en una tubería."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Panel2" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 793.0
+offset_right = 681.0
+offset_bottom = 1229.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2srpq")
+
+[node name="Explicacion" type="Label" parent="Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "mswda"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Voltaje" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 101.0
+offset_top = 389.0
+offset_right = 618.0
+offset_bottom = 493.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_5yn0h")
+
+[node name="Label" type="Label" parent="Voltaje"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "VOLTAJE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Voltaje" type="Button" parent="Voltaje"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+
+[node name="Corriente" type="Panel" parent="."]
+offset_left = 101.0
+offset_top = 524.0
+offset_right = 618.0
+offset_bottom = 628.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_i0ep8")
+
+[node name="Label" type="Label" parent="Corriente"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "CORRIENTE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Corriente" type="Button" parent="Corriente"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+
+[node name="Resistencia" type="Panel" parent="."]
+offset_left = 101.0
+offset_top = 660.0
+offset_right = 618.0
+offset_bottom = 764.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_lodai")
+
+[node name="Label" type="Label" parent="Resistencia"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "RESISTENCIA"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Resistencia" type="Button" parent="Resistencia"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -8.0
+offset_right = 58.0
+offset_bottom = 55.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="pressed" from="Voltaje/Voltaje" to="." method="_on_voltaje_pressed"]
+[connection signal="pressed" from="Corriente/Corriente" to="." method="_on_corriente_pressed"]
+[connection signal="pressed" from="Resistencia/Resistencia" to="." method="_on_resistencia_pressed"]
