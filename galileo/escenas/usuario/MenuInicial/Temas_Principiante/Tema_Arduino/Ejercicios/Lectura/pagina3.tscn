@@ -1,0 +1,46 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnvwuj0dh3val"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_17yof"]
+bg_color = Color(0.166519, 0.107691, 0.24685, 1)
+
+[node name="Pagina3" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_17yof")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 5.0
+offset_right = -3.0
+offset_bottom = -131.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "El Entorno de Desarrollo (IDE) es el software donde escribes tu código (sketch), lo compilas y lo subes a la placa.
+
+Todo programa usa dos funciones clave:
+
+void setup(): Se ejecuta una sola vez al inicio. Se usa para inicializar pines y componentes.
+
+void loop(): Se ejecuta continuamente en un bucle. Contiene la lógica central de tu proyecto.
+
+Estas funciones son la base para usar comandos como digitalWrite() (para encender algo) y digitalRead() (para leer un sensor)."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2

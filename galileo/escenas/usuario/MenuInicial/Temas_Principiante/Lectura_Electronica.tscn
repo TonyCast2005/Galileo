@@ -1,0 +1,60 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxfo61at3e3j8"]
+
+[ext_resource type="Script" uid="uid://cnaocxf0fwuk0" path="res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Arduino/Ejercicios/Lectura/lectura_arduino.gd" id="1_njuth"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_53kx0"]
+bg_color = Color(0, 0, 0, 0.686275)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="LecturaArduino" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_njuth")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.227451, 0.152941, 0.329412, 1)
+
+[node name="Carrusel" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="atras" type="Button" parent="."]
+layout_mode = 0
+offset_left = 230.0
+offset_top = 1108.0
+offset_right = 327.0
+offset_bottom = 1212.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_53kx0")
+text = "<"
+
+[node name="Adelante" type="Button" parent="."]
+offset_left = 387.0
+offset_top = 1108.0
+offset_right = 484.0
+offset_bottom = 1212.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_53kx0")
+text = ">"
+
+[connection signal="pressed" from="atras" to="." method="_on_atras_pressed"]
+[connection signal="pressed" from="Adelante" to="." method="_on_adelante_pressed"]

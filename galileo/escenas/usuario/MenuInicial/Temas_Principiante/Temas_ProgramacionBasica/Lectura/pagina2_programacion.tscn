@@ -1,0 +1,131 @@
+[gd_scene load_steps=4 format=3 uid="uid://mphj631uhp1"]
+
+[ext_resource type="Script" uid="uid://dkueh127d67uu" path="res://escenas/usuario/MenuInicial/Temas_Principiante/Temas_ProgramacionBasica/Lectura/pagina_2_programacion.gd" id="1_7oq6m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_07reo"]
+bg_color = Color(0.166519, 0.107691, 0.24685, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7oq6m"]
+bg_color = Color(0.754434, 0.419729, 0.972153, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[node name="Pagina2" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7oq6m")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_07reo")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -546.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "En programación, la información se guarda en variables. Piensa en una variable como una caja etiquetada que contiene un valor que puede cambiar.
+
+Para usar una variable, debes declararla, diciendo al Arduino: ¿Qué tipo de cosa guarda? y ¿Cómo se llama la caja?
+
+La sintaxis básica es: "
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="tipo" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 53.0
+offset_top = 766.0
+offset_right = 250.0
+offset_bottom = 891.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7oq6m")
+
+[node name="Label" type="Label" parent="tipo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 22
+text = "tipo de variable"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Nombre" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 254.0
+offset_top = 712.0
+offset_right = 451.0
+offset_bottom = 837.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7oq6m")
+
+[node name="Label" type="Label" parent="Nombre"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 22
+text = "Nombre"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="valor" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 461.0
+offset_top = 744.0
+offset_right = 658.0
+offset_bottom = 869.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7oq6m")
+
+[node name="Label" type="Label" parent="valor"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 22
+text = "Valor"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 910.0
+offset_right = -1.0
+offset_bottom = -213.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "EJEMPLO
+
+int pinLed = 13;"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2

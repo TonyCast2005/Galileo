@@ -1,6 +1,6 @@
 extends Control
 
-@onready var Texto = $TextoPregunta
+@onready var Titulo = $TituloLectura
 @onready var NombreLeccion = $NombreLección
 @onready var lectura = $ScrollContainer/textoLectura
 @onready var http = $HTTPRequest

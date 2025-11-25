@@ -29,7 +29,7 @@ func _ready():
     boton_retro.pressed.connect(_on_boton_retro_pressed)
 
     http.request_completed.connect(_on_request_completed)
-    http.request("https://galileo-af640-default-rtdb.firebaseio.com/preguntas_opc.json")
+    http.request("https://galileo-af640-default-rtdb.firebaseio.com/preguntas_opc_tema1.json")
         
 
 # ============================================

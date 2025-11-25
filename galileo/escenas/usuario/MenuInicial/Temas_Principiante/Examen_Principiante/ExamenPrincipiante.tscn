@@ -1,9 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bl213xmg4ptlr"]
+[gd_scene load_steps=8 format=3 uid="uid://c5ak0a4ttn6f5"]
 
-[ext_resource type="Script" uid="uid://wjlw8pwhh1hu" path="res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Arduino/tema_arduino.gd" id="1_b3pb1"]
-[ext_resource type="Script" uid="uid://b60mmgliwke2m" path="res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Arduino/ola.gd" id="2_er4gs"]
-[ext_resource type="Texture2D" uid="uid://b2ppqu3em387w" path="res://assets/sprites/ui/iconoMorado (1).png" id="3_47yir"]
-[ext_resource type="Texture2D" uid="uid://4sapvjr4jbjq" path="res://assets/sprites/ui/bloqueado.png" id="4_1gp8q"]
+[ext_resource type="Script" uid="uid://wjlw8pwhh1hu" path="res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Arduino/tema_arduino.gd" id="1_wvd64"]
+[ext_resource type="Script" uid="uid://b60mmgliwke2m" path="res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Arduino/ola.gd" id="2_s2676"]
+[ext_resource type="Texture2D" uid="uid://b2ppqu3em387w" path="res://assets/sprites/ui/iconoMorado (1).png" id="3_1qrjy"]
+[ext_resource type="Texture2D" uid="uid://4sapvjr4jbjq" path="res://assets/sprites/ui/bloqueado.png" id="4_77sfb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4yaf0"]
 bg_color = Color(0.247059, 0.231373, 0.501961, 0.627451)
@@ -33,7 +33,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_b3pb1")
+script = ExtResource("1_wvd64")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -52,10 +52,10 @@ offset_right = 651.0
 offset_bottom = 115.0
 theme_override_font_sizes/normal_font_size = 26
 theme_override_styles/normal = SubResource("StyleBoxFlat_wu1au")
-text = "Introduccion A Arduino"
+text = "EXAMEN DE NIVEL"
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("2_er4gs")
+script = ExtResource("2_s2676")
 
 [node name="HBoxContainer1" type="HBoxContainer" parent="Panel"]
 layout_mode = 0
@@ -86,7 +86,7 @@ offset_left = -8.0
 offset_top = -22.0
 offset_right = 150.0
 offset_bottom = 136.0
-icon = ExtResource("3_47yir")
+icon = ExtResource("3_1qrjy")
 flat = true
 
 [node name="Label" type="Label" parent="Panel/HBoxContainer1/Panel1/Button1"]
@@ -101,6 +101,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Panel"]
+layout_mode = 0
 offset_left = 22.0
 offset_top = 346.0
 offset_right = 654.0
@@ -128,7 +129,7 @@ offset_left = -8.0
 offset_top = -22.0
 offset_right = 150.0
 offset_bottom = 136.0
-icon = ExtResource("3_47yir")
+icon = ExtResource("3_1qrjy")
 flat = true
 
 [node name="Label" type="Label" parent="Panel/HBoxContainer2/Panel2/Button2"]
@@ -148,10 +149,11 @@ offset_left = 7.0
 offset_top = 6.0
 offset_right = 157.0
 offset_bottom = 154.0
-texture = ExtResource("4_1gp8q")
+texture = ExtResource("4_77sfb")
 expand_mode = 1
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="Panel"]
+layout_mode = 0
 offset_left = 23.0
 offset_top = 487.0
 offset_right = 655.0
@@ -179,7 +181,7 @@ offset_left = -8.0
 offset_top = -22.0
 offset_right = 150.0
 offset_bottom = 136.0
-icon = ExtResource("3_47yir")
+icon = ExtResource("3_1qrjy")
 flat = true
 
 [node name="Label" type="Label" parent="Panel/HBoxContainer3/Panel3/Button3"]
@@ -194,14 +196,16 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="candado3" type="TextureRect" parent="Panel/HBoxContainer3/Panel3/Button3"]
+layout_mode = 0
 offset_left = 7.0
 offset_top = 6.0
 offset_right = 154.0
 offset_bottom = 154.0
-texture = ExtResource("4_1gp8q")
+texture = ExtResource("4_77sfb")
 expand_mode = 1
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="Panel"]
+layout_mode = 0
 offset_left = 25.0
 offset_top = 632.0
 offset_right = 657.0
@@ -229,7 +233,7 @@ offset_left = -8.0
 offset_top = -22.0
 offset_right = 150.0
 offset_bottom = 136.0
-icon = ExtResource("3_47yir")
+icon = ExtResource("3_1qrjy")
 flat = true
 
 [node name="Label" type="Label" parent="Panel/HBoxContainer4/Panel4/Button4"]
@@ -244,16 +248,15 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="candado4" type="TextureRect" parent="Panel/HBoxContainer4/Panel4/Button4"]
+layout_mode = 0
 offset_left = 7.0
 offset_top = 6.0
 offset_right = 154.0
 offset_bottom = 154.0
-texture = ExtResource("4_1gp8q")
+texture = ExtResource("4_77sfb")
 expand_mode = 1
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
-[connection signal="pressed" from="Panel/HBoxContainer1/Panel1/Button1" to="." method="_on_button_1_pressed"]
-[connection signal="pressed" from="Panel/HBoxContainer2/Panel2/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="Panel/HBoxContainer3/Panel3/Button3" to="." method="_on_button_3_pressed"]
 [connection signal="pressed" from="Panel/HBoxContainer4/Panel4/Button4" to="." method="_on_button_4_pressed"]

@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://dwnfkbut6jrcv"]
 
-[ext_resource type="Script" uid="uid://npu3eych8ygm" path="res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Arduino/opc_multiple_1.gd" id="1_iwa6m"]
-[ext_resource type="Texture2D" uid="uid://feyahj0mae46" path="res://assets/sprites/globoTexto .png" id="2_pqlth"]
-[ext_resource type="Texture2D" uid="uid://bhtap0c20qsdp" path="res://assets/sprites/ui/Galileo/boca alargada ojos cerrados.png" id="3_5pab4"]
-[ext_resource type="Texture2D" uid="uid://bgnffnt45rlhx" path="res://assets/sprites/ui/lupa.png" id="4_5pab4"]
+[ext_resource type="Script" uid="uid://npu3eych8ygm" path="res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Arduino/Ejercicios/opc_multiple_1.gd" id="1_pxsgt"]
+[ext_resource type="Texture2D" uid="uid://feyahj0mae46" path="res://assets/sprites/globoTexto .png" id="2_cp3ki"]
+[ext_resource type="Texture2D" uid="uid://bhtap0c20qsdp" path="res://assets/sprites/ui/Galileo/boca alargada ojos cerrados.png" id="3_oh2o8"]
+[ext_resource type="Texture2D" uid="uid://bgnffnt45rlhx" path="res://assets/sprites/ui/lupa.png" id="4_gj5v1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iqanf"]
 border_width_left = 5
@@ -24,13 +24,13 @@ corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iqanf"]
-texture = ExtResource("4_5pab4")
+texture = ExtResource("4_gj5v1")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_07pg8"]
-texture = ExtResource("4_5pab4")
+texture = ExtResource("4_gj5v1")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_05gk0"]
-texture = ExtResource("4_5pab4")
+texture = ExtResource("4_gj5v1")
 
 [node name="OpcMultiple1" type="Control"]
 layout_mode = 3
@@ -39,7 +39,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_iwa6m")
+script = ExtResource("1_pxsgt")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -51,6 +51,7 @@ grow_vertical = 2
 color = Color(0.227451, 0.152941, 0.329412, 1)
 
 [node name="Progreso" type="Label" parent="."]
+layout_mode = 0
 offset_left = 54.0
 offset_top = 22.0
 offset_right = 665.0
@@ -99,7 +100,7 @@ offset_left = 104.0
 offset_top = -187.0
 offset_right = 611.0
 offset_bottom = 50.0
-texture = ExtResource("2_pqlth")
+texture = ExtResource("2_cp3ki")
 
 [node name="LabelRetroalimentacion" type="Label" parent="PanelRetroalimentacion"]
 layout_mode = 0
@@ -119,7 +120,7 @@ offset_left = 60.0
 offset_top = -46.0
 offset_right = 316.0
 offset_bottom = 210.0
-texture = ExtResource("3_5pab4")
+texture = ExtResource("3_oh2o8")
 
 [node name="BotonSiguiente" type="Button" parent="PanelRetroalimentacion"]
 layout_mode = 0
