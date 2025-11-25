@@ -1,0 +1,71 @@
+[gd_scene load_steps=4 format=3 uid="uid://3jnqwpfql6cr"]
+
+[ext_resource type="Script" uid="uid://3e5uqnx6xcnt" path="res://escenas/usuario/MenuInicial/Temas_Principiante/Temas_ProgramacionBasica/Lectura/pagina_3_programacion.gd" id="1_cfvbd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_07reo"]
+bg_color = Color(0.166519, 0.107691, 0.24685, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gbrb0"]
+bg_color = Color(0.066105, 0.000275135, 0.0782962, 0.168627)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[node name="Pagina1" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cfvbd")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_07reo")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "Reglas Finales de Programación
+
+
+Para evitar errores comunes, recuerda estos dos puntos:
+
+Terminador: Casi todas las líneas de código que son una instrucción (como declarar una variable) deben terminar con un punto y coma (;).
+
+Sensibilidad a Mayúsculas: Arduino distingue entre mayúsculas y minúsculas. int es diferente de Int. Debes escribir los comandos y tipos de datos exactamente como son."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="panelpunto" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 314.0
+offset_top = 1105.0
+offset_right = 392.0
+offset_bottom = 1176.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_gbrb0")
+
+[node name="puntoycoma" type="Label" parent="panelpunto"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 60
+text = ";"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,0 +1,143 @@
+[gd_scene load_steps=5 format=3 uid="uid://dq5f8amui6deu"]
+
+[ext_resource type="Script" uid="uid://dc254crje6afk" path="res://escenas/usuario/MenuInicial/Temas_Principiante/Temas_ProgramacionBasica/Lectura/pagina_1_programacion.gd" id="1_2srpq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_07reo"]
+bg_color = Color(0.166519, 0.107691, 0.24685, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5lvhh"]
+bg_color = Color(0.615907, 0.506178, 0.978727, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2srpq"]
+bg_color = Color(0.116972, 0.0707758, 0.181576, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[node name="Pagina1" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2srpq")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_07reo")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = 5.0
+offset_right = -9.0
+offset_bottom = -790.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "Todo programa de Arduino (llamado sketch) debe seguir una estructura fija, como el esqueleto de un cuerpo. Si falta una parte, el programa no funciona."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Setup" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 79.0
+offset_top = 424.0
+offset_right = 323.0
+offset_bottom = 656.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_5lvhh")
+
+[node name="Label" type="Label" parent="Setup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "SETUP"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button_Setup" type="Button" parent="Setup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+
+[node name="Loop" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 402.0
+offset_top = 412.0
+offset_right = 646.0
+offset_bottom = 644.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_5lvhh")
+
+[node name="Label" type="Label" parent="Loop"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "LOOP"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button_Loop" type="Button" parent="Loop"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 790.0
+offset_right = 718.0
+offset_bottom = 1218.0
+
+[node name="Panel2" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 677.0
+offset_right = 672.0
+offset_bottom = 1113.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2srpq")
+
+[node name="Explicacion" type="Label" parent="Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 21
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[connection signal="pressed" from="Setup/Button_Setup" to="." method="_on_button_setup_pressed"]
+[connection signal="pressed" from="Loop/Button_Loop" to="." method="_on_button_loop_pressed"]

@@ -1,0 +1,75 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4e3vb8bajotg"]
+
+[ext_resource type="Texture2D" uid="uid://bkcaa6lucvc2a" path="res://assets/sprites/misc/Arduino 110x70.png" id="1_6vm6o"]
+[ext_resource type="Script" uid="uid://g1agdcg54ul7" path="res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Arduino/Ejercicios/Lectura/pagina_2.gd" id="1_7as2g"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4tnoi"]
+bg_color = Color(0.166519, 0.107691, 0.24685, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7as2g"]
+bg_color = Color(0.0819914, 0.0451289, 0.133513, 1)
+corner_radius_top_left = 130
+corner_radius_top_right = 130
+corner_radius_bottom_right = 130
+corner_radius_bottom_left = 130
+
+[node name="Pagina2" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7as2g")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4tnoi")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = 14.0
+offset_right = -6.0
+offset_bottom = -538.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "Los modelos más comunes son el Uno (el estándar para aprender), el Nano (pequeño y portátil) y el Mega (con más pines para proyectos grandes).
+
+El componente más importante es el Microcontrolador (el cerebro), pero también notarás los Pines de Entrada/Salida (I/O), que son los puntos de conexión, y el Conector USB, usado para alimentar la placa y transferir el código desde tu PC."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Panel2" type="Panel" parent="."]
+texture_filter = 3
+layout_mode = 0
+offset_left = 18.0
+offset_top = 759.0
+offset_right = 704.0
+offset_bottom = 1224.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7as2g")
+
+[node name="Arduino" type="TextureRect" parent="."]
+texture_filter = 3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 34.0
+offset_top = 781.0
+offset_right = -38.0
+offset_bottom = -85.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_6vm6o")
+expand_mode = 1

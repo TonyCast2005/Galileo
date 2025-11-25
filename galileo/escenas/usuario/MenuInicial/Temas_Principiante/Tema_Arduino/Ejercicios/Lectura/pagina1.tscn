@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvn5eba6tl7xa"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_07reo"]
+bg_color = Color(0.166519, 0.107691, 0.24685, 1)
+
+[node name="Pagina1" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_07reo")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -138.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "Arduino no es solo una cosa, es una plataforma de desarrollo de código abierto compuesta por hardware y software.
+
+Hardware (La placa): Es una pequeña placa de circuito impreso que contiene un microcontrolador. Piensa en el microcontrolador como el cerebro de tu proyecto. Es capaz de leer entradas (como el pulso de un botón o la luz de un sensor) y producir salidas (como encender un LED o mover un motor).
+
+Software (El IDE): Es un entorno de desarrollo integrado (IDE) que usas en tu computadora para escribir el código (llamado sketch), compilarlo, y cargarlo a la placa Arduino."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2

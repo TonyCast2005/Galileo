@@ -1,0 +1,204 @@
+[gd_scene load_steps=21 format=3 uid="uid://c5ak0a4ttn6f5"]
+
+[ext_resource type="Script" uid="uid://2vpr720hiyty" path="res://escenas/usuario/MenuInicial/Temas_Principiante/Examen_Principiante/examen_principiante.gd" id="1_u7cfh"]
+[ext_resource type="Script" uid="uid://b60mmgliwke2m" path="res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Arduino/ola.gd" id="2_s2676"]
+[ext_resource type="Texture2D" uid="uid://wf2rp87yxiyb" path="res://assets/sprites/misc/Star.png" id="3_u7cfh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4yaf0"]
+bg_color = Color(0.247059, 0.231373, 0.501961, 0.627451)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wu1au"]
+bg_color = Color(0.333333, 0.317647, 0.643137, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4tp1y"]
+bg_color = Color(0.333333, 0.317647, 0.643137, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b30ky"]
+atlas = ExtResource("3_u7cfh")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2bwvc"]
+atlas = ExtResource("3_u7cfh")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0w3nw"]
+atlas = ExtResource("3_u7cfh")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0rgjb"]
+atlas = ExtResource("3_u7cfh")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i8gaa"]
+atlas = ExtResource("3_u7cfh")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qtuqq"]
+atlas = ExtResource("3_u7cfh")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p8uf7"]
+atlas = ExtResource("3_u7cfh")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qa0a0"]
+atlas = ExtResource("3_u7cfh")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dgw02"]
+atlas = ExtResource("3_u7cfh")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ot4aw"]
+atlas = ExtResource("3_u7cfh")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4e0br"]
+atlas = ExtResource("3_u7cfh")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2vdu"]
+atlas = ExtResource("3_u7cfh")
+region = Rect2(352, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jup6g"]
+atlas = ExtResource("3_u7cfh")
+region = Rect2(384, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rkvwt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b30ky")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2bwvc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0w3nw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0rgjb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i8gaa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qtuqq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p8uf7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qa0a0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dgw02")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ot4aw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4e0br")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2vdu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jup6g")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[node name="ExamenPrincipiante" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u7cfh")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4yaf0")
+
+[node name="Tema_Label" type="RichTextLabel" parent="Panel"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 20.0
+offset_right = 651.0
+offset_bottom = 115.0
+theme_override_font_sizes/normal_font_size = 26
+theme_override_styles/normal = SubResource("StyleBoxFlat_wu1au")
+text = "EXAMEN DE NIVEL"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_s2676")
+
+[node name="HBoxContainer1" type="HBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 202.0
+offset_right = 664.0
+offset_bottom = 791.0
+
+[node name="Panel1" type="Panel" parent="Panel/HBoxContainer1"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_4tp1y")
+
+[node name="Label1" type="Label" parent="Panel/HBoxContainer1/Panel1"]
+layout_mode = 2
+offset_left = 29.0
+offset_top = 8.0
+offset_right = 604.0
+offset_bottom = 201.0
+theme_override_font_sizes/font_size = 27
+text = "PRUEBA TUS HABILIDADES SOBRE LOS DIFERENTES TEMAS VISTOS ESTE NIVEL"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="Estrella" type="AnimatedSprite2D" parent="."]
+texture_filter = 3
+position = Vector2(345, 503)
+scale = Vector2(10.4063, 8.375)
+sprite_frames = SubResource("SpriteFrames_rkvwt")
+frame_progress = 0.42236
+
+[node name="Empezar_Examen" type="Button" parent="Estrella"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -14.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+
+[connection signal="pressed" from="Estrella/Empezar_Examen" to="." method="_on_empezar_examen_pressed"]
