@@ -12,75 +12,75 @@ var escribiendo := false
 var texto_final := " "
 
 func _ready():
-    ok.hide()
-    animar_idle(true)
+	ok.hide()
+	animar_idle(true)
 
-    if texto_final != "":
-        escribir_texto(texto_final)
+	if texto_final != "":
+		escribir_texto(texto_final)
 
 
 # ============================================
 # RECIBIR TEXTO DE PISTA
 # ============================================
 func set_pista(texto: String) -> void:
-    texto_final = texto
-    escribir_texto(texto)
+	texto_final = texto
+	escribir_texto(texto)
 
 
 # ============================================
 # EFECTO DE ESCRITURA
 # ============================================
 func escribir_texto(texto: String) -> void:
-    texto_pista.text = ""
-    escribiendo = true
-    ok.hide()
+	texto_pista.text = ""
+	escribiendo = true
+	ok.hide()
 
-    animar_idle(false)
-    animar_habla(true)
+	animar_idle(false)
+	animar_habla(true)
 
-    for i in texto.length():
-        texto_pista.text += texto[i]
-        await get_tree().create_timer(velocidad).timeout
+	for i in texto.length():
+		texto_pista.text += texto[i]
+		await get_tree().create_timer(velocidad).timeout
 
-    animar_habla(false)
-    animar_idle(true)
-    escribiendo = false
-    ok.show()
+	animar_habla(false)
+	animar_idle(true)
+	escribiendo = false
+	ok.show()
 
 
 # ============================================
 # ANIMACIÓN HABLAR
 # ============================================
 func animar_habla(habla: bool):
-    if habla:
-        gato.texture = preload("res://assets/sprites/ui/Galileo/Galileo Hablando 1.png")
-        tween_habla = create_tween().set_loops()
-        tween_habla.tween_property(gato, "position:y", gato.position.y + 3, 0.1)
-        tween_habla.tween_property(gato, "position:y", gato.position.y, 0.1)
-    else:
-        gato.texture = preload("res://assets/sprites/ui/Galileo/Feli.png")
-        if tween_habla:
-            tween_habla.kill()
-            tween_habla = null
+	if habla:
+		gato.texture = preload("res://assets/sprites/ui/Galileo/Galileo Hablando 1.png")
+		tween_habla = create_tween().set_loops()
+		tween_habla.tween_property(gato, "position:y", gato.position.y + 3, 0.1)
+		tween_habla.tween_property(gato, "position:y", gato.position.y, 0.1)
+	else:
+		gato.texture = preload("res://assets/sprites/ui/Galileo/Feli.png")
+		if tween_habla:
+			tween_habla.kill()
+			tween_habla = null
 
 
 # ============================================
 # ANIMACIÓN IDLE
 # ============================================
 func animar_idle(activo: bool):
-    if activo:
-        if tween_idle:
-            tween_idle.kill()
-        tween_idle = create_tween().set_loops()
-        tween_idle.tween_property(gato, "rotation_degrees", 5, 1)
-        tween_idle.tween_property(gato, "rotation_degrees", -5, 2)
-        tween_idle.tween_property(gato, "rotation_degrees", 0, 1)
-    else:
-        if tween_idle:
-            tween_idle.kill()
-            tween_idle = null
-        gato.rotation_degrees = 0
+	if activo:
+		if tween_idle:
+			tween_idle.kill()
+		tween_idle = create_tween().set_loops()
+		tween_idle.tween_property(gato, "rotation_degrees", 5, 1)
+		tween_idle.tween_property(gato, "rotation_degrees", -5, 2)
+		tween_idle.tween_property(gato, "rotation_degrees", 0, 1)
+	else:
+		if tween_idle:
+			tween_idle.kill()
+			tween_idle = null
+		gato.rotation_degrees = 0
 
 
 func _on_ok_pressed() -> void:
-    queue_free()
+	queue_free()
