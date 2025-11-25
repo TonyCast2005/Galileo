@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://ekyoo2cnhvk"]
 
-[ext_resource type="Script" uid="uid://dj2341133ve6o" path="res://escenas/Tipos_preguntas/VerdaderoFalso/verdadero_falso.gd" id="1_8s5ou"]
+[ext_resource type="Script" path="res://escenas/Tipos_preguntas/VerdaderoFalso/verdadero_falso.gd" id="1_8s5ou"]
 [ext_resource type="Texture2D" uid="uid://bgnffnt45rlhx" path="res://assets/sprites/ui/lupa.png" id="1_bed3i"]
-[ext_resource type="PackedScene" uid="uid://ij704rh06ujv" path="res://escenas/volverBTN.tscn" id="3_4ev06"]
+[ext_resource type="PackedScene" path="res://escenas/volverBTN.tscn" id="3_4ev06"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_whnp4"]
 bg_color = Color(0.121993, 0.443719, 0.14763, 0.686275)

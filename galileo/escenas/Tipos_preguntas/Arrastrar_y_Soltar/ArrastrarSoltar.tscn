@@ -15,6 +15,13 @@ corner_radius_top_right = 40
 corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l3lj0"]
+bg_color = Color(0.431109, 0.0722767, 0.658722, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7kqiy"]
 texture = ExtResource("4_mgacq")
 
@@ -39,17 +46,33 @@ color = Color(0.227451, 0.152941, 0.329412, 1)
 
 [node name="Panel" type="Panel" parent="."]
 offset_left = 21.0
-offset_top = 435.0
+offset_top = 372.0
 offset_right = 699.0
-offset_bottom = 1193.0
+offset_bottom = 1130.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_kxkk6")
 
 [node name="Drop_Zone" parent="Panel" groups=["zone_respuesta"] instance=ExtResource("1_mgacq")]
-position = Vector2(138, 433)
+position = Vector2(326, 203)
 palabra_correcta = "Loop"
 
 [node name="Drop_Zone4" parent="Panel" groups=["zone_respuesta"] instance=ExtResource("1_mgacq")]
-position = Vector2(225, 194)
+position = Vector2(325, 93)
+palabra_correcta = "Setup"
+
+[node name="Drop_Zone2" parent="Panel" groups=["zone_respuesta"] instance=ExtResource("1_mgacq")]
+position = Vector2(326, 428)
+palabra_correcta = "Loop"
+
+[node name="Drop_Zone5" parent="Panel" groups=["zone_respuesta"] instance=ExtResource("1_mgacq")]
+position = Vector2(325, 316)
+palabra_correcta = "Setup"
+
+[node name="Drop_Zone3" parent="Panel" groups=["zone_respuesta"] instance=ExtResource("1_mgacq")]
+position = Vector2(326, 648)
+palabra_correcta = "Loop"
+
+[node name="Drop_Zone6" parent="Panel" groups=["zone_respuesta"] instance=ExtResource("1_mgacq")]
+position = Vector2(325, 537)
 palabra_correcta = "Setup"
 
 [node name="verificador" type="Node2D" parent="Panel"]
@@ -58,10 +81,28 @@ script = ExtResource("3_l3lj0")
 
 [node name="verificar" type="Button" parent="Panel"]
 layout_mode = 0
+<<<<<<< Updated upstream
 offset_left = 588.0
 offset_top = 642.0
 offset_right = 676.0
 offset_bottom = 744.0
+=======
+offset_left = 203.0
+offset_top = 791.0
+offset_right = 475.0
+offset_bottom = 847.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_l3lj0")
+text = "Verificar"
+
+[node name="pista" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 576.0
+offset_top = 768.0
+offset_right = 664.0
+offset_bottom = 870.0
+>>>>>>> Stashed changes
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 28
 theme_override_styles/focus = SubResource("StyleBoxTexture_7kqiy")
@@ -72,23 +113,51 @@ script = ExtResource("1_rcjtp")
 
 [node name="Panel" type="Panel" parent="zonaTrabajo"]
 offset_left = 16.0
-offset_top = 167.0
+offset_top = 104.0
 offset_right = 704.0
-offset_bottom = 393.0
+offset_bottom = 330.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_kxkk6")
 
 [node name="Drop_Zone2" parent="zonaTrabajo/Panel" instance=ExtResource("1_mgacq")]
-position = Vector2(495, 115)
+position = Vector2(97, 147)
 
 [node name="Drop_Zone3" parent="zonaTrabajo/Panel" instance=ExtResource("1_mgacq")]
-position = Vector2(140, 113)
+position = Vector2(93, 47)
 
 [node name="Setup" parent="zonaTrabajo/Panel" instance=ExtResource("2_kxkk6")]
-position = Vector2(492, 107)
+position = Vector2(102, 150)
 palabra = "Setup"
 
 [node name="Loop" parent="zonaTrabajo/Panel" instance=ExtResource("2_kxkk6")]
-position = Vector2(138, 117)
+position = Vector2(103, 48)
+palabra = "Loop"
+
+[node name="Drop_Zone4" parent="zonaTrabajo/Panel" instance=ExtResource("1_mgacq")]
+position = Vector2(343, 151)
+
+[node name="Drop_Zone5" parent="zonaTrabajo/Panel" instance=ExtResource("1_mgacq")]
+position = Vector2(339, 51)
+
+[node name="Setup2" parent="zonaTrabajo/Panel" instance=ExtResource("2_kxkk6")]
+position = Vector2(348, 154)
+palabra = "Setup"
+
+[node name="Loop2" parent="zonaTrabajo/Panel" instance=ExtResource("2_kxkk6")]
+position = Vector2(349, 52)
+palabra = "Loop"
+
+[node name="Drop_Zone6" parent="zonaTrabajo/Panel" instance=ExtResource("1_mgacq")]
+position = Vector2(571, 152)
+
+[node name="Drop_Zone7" parent="zonaTrabajo/Panel" instance=ExtResource("1_mgacq")]
+position = Vector2(567, 52)
+
+[node name="Setup3" parent="zonaTrabajo/Panel" instance=ExtResource("2_kxkk6")]
+position = Vector2(576, 155)
+palabra = "Setup"
+
+[node name="Loop3" parent="zonaTrabajo/Panel" instance=ExtResource("2_kxkk6")]
+position = Vector2(577, 53)
 palabra = "Loop"
 
 [node name="Label" type="Label" parent="zonaTrabajo/Panel"]
@@ -98,23 +167,10 @@ offset_top = 433.0
 offset_right = 164.0
 offset_bottom = 502.0
 theme_override_font_sizes/font_size = 23
-text = "Void"
+text = "
+"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="nombreLeccion" type="Label" parent="."]
-anchors_preset = 10
-anchor_right = 1.0
-offset_right = 712.0
-offset_bottom = 79.0
-grow_horizontal = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 19
-text = "Arrastrar y soltar"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
 
 [node name="Instrucciones" type="Label" parent="."]
 offset_left = 6.0
@@ -129,3 +185,4 @@ offset_right = 16.0
 offset_bottom = 1165.0
 
 [connection signal="pressed" from="Panel/verificar" to="Panel/verificador" method="_on_verificar_pressed"]
+[connection signal="pressed" from="Panel/pista" to="Panel/verificador" method="_on_verificar_pressed"]
