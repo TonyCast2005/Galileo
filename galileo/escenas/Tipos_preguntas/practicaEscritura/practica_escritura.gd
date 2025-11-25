@@ -1,12 +1,11 @@
 extends Control
 
-@onready var lbl_enunciado = $Enunciado
-@onready var lbl_codigo = $Codigo
-@onready var cont_campos = $Campos
-@onready var retro = $Retro
-@onready var btn_pista= $Pista
+@onready var lbl_enunciado: Label = $Enunciado
+@onready var lbl_codigo: Label = $Codigo
+@onready var cont_campos: VBoxContainer = $Campos
+@onready var retro: Label = $Retro
+@onready var btn_pista: Button = $Pista
 
-# Preload de la escena con el gato de pistas
 var EscenaPista: PackedScene = preload("res://escenas/Pistas/Pistas_Contenedor.tscn")
 
 var preguntas: Array = []
@@ -15,10 +14,10 @@ var respuestas_correctas: Array = []
 var campos: Array = []
 var pistas: Array = []
 
-const FIREBASE_URL := "https://galileo-af640-default-rtdb.firebaseio.com/practica_escritura.json"
+const FIREBASE_URL: String = "https://galileo-af640-default-rtdb.firebaseio.com/practica_escritura.json"
 
 
-func _ready():
+func _ready() -> void:
 	cargar_preguntas()
 	btn_pista.pressed.connect(_mostrar_pista)
 
@@ -40,11 +39,12 @@ func _on_request_completed(result: int, response_code: int, headers: PackedStrin
 		lbl_enunciado.text = "Error al conectar con Firebase"
 		return
 
-	var data = JSON.parse_string(body.get_string_from_utf8())
+	var texto: String = body.get_string_from_utf8()
+	var data := JSON.parse_string(texto)
 
 	if typeof(data) == TYPE_DICTIONARY:
-		for id in data.keys():
-			var p = data[id]
+		for key in data.keys():
+			var p := data[key]
 			if typeof(p) == TYPE_DICTIONARY:
 				preguntas.append(p)
 
@@ -77,13 +77,17 @@ func mostrar_pregunta(i: int) -> void:
 	lbl_enunciado.text = pregunta.get("enunciado", "Sin enunciado")
 	lbl_codigo.text = pregunta.get("plantilla", "")
 
+	# Respuestas correctas
 	respuestas_correctas = pregunta.get("respuestas_correctas", [])
-	pistas = pregunta.get("pistas", []).duplicate()
+
+	# Pistas con tipado correcto
+	var p_tmp := pregunta.get("pistas", [])
+	pistas = p_tmp.duplicate()
 
 	# Cantidad de campos
 	var cantidad: int = pregunta.get("campos", respuestas_correctas.size())
 
-	# Limpiar campos viejos
+	# Borrar anteriores
 	for c in cont_campos.get_children():
 		c.queue_free()
 
@@ -105,20 +109,21 @@ func mostrar_pregunta(i: int) -> void:
 # NORMALIZAR
 # ============================================================
 func normalizar(s: String) -> String:
-	s = s.to_lower().strip_edges()
+	var t: String = s.to_lower().strip_edges()
 
 	var acentos := {
 		"á":"a","é":"e","í":"i","ó":"o","ú":"u",
 		"ä":"a","ë":"e","ï":"i","ö":"o","ü":"u",
 		"ñ":"n"
 	}
+
 	for a in acentos.keys():
-		s = s.replace(a, acentos[a])
+		t = t.replace(a, acentos[a])
 
-	while "  " in s:
-		s = s.replace("  ", " ")
+	while "  " in t:
+		t = t.replace("  ", " ")
 
-	return s
+	return t
 
 
 # ============================================================
@@ -127,10 +132,10 @@ func normalizar(s: String) -> String:
 func _on_btn_validar_pressed() -> void:
 
 	for i in range(campos.size()):
-		var u: String = normalizar(campos[i].text)
-		var c: String = normalizar(respuestas_correctas[i])
+		var user: String = normalizar(campos[i].text)
+		var correct: String = normalizar(respuestas_correctas[i])
 
-		if u != c:
+		if user != correct:
 			retro.text = "❌ Incorrecto\nRespuesta esperada:\n" + respuestas_correctas[i]
 			retro.modulate = Color.RED
 
@@ -155,7 +160,6 @@ func _mostrar_pista() -> void:
 	if pistas.is_empty():
 		return
 
-	# CORREGIDO: tipado obligatorio
 	var texto_pista: String = String(pistas.pop_front())
 
 	var ventana := EscenaPista.instantiate()
