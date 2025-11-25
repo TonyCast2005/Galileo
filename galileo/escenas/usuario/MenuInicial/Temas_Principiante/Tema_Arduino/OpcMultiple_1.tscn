@@ -51,6 +51,7 @@ grow_vertical = 2
 color = Color(0.227451, 0.152941, 0.329412, 1)
 
 [node name="Progreso" type="Label" parent="."]
+layout_mode = 0
 offset_left = 54.0
 offset_top = 22.0
 offset_right = 665.0

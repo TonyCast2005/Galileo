@@ -136,4 +136,5 @@ autowrap_mode = 2
 [node name="VolverBtn" parent="." instance=ExtResource("3_4torv")]
 layout_mode = 1
 
+[connection signal="pressed" from="Pista" to="." method="_on_pista_pressed"]
 [connection signal="pressed" from="validar" to="." method="_on_validar_pressed"]

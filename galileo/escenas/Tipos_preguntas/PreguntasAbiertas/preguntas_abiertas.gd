@@ -12,11 +12,8 @@ var preguntas = {}
 var pregunta_actual = ""
 var indice_pregunta = 0
 
-# -----------------------------------------------------
-# READY
-# -----------------------------------------------------
 func _ready():
-	titulo.text = "Preguntas abiertas - Lección 1"
+	titulo.text = "Preguntas abiertas - Arduino nivel novato"
 
 	await cargar_preguntas()
 
@@ -26,7 +23,6 @@ func _ready():
 		mensaje.text = "No se pudieron cargar las preguntas."
 
 	validar.pressed.connect(_on_validar_pressed)
-
 
 # -----------------------------------------------------
 # Cargar preguntas desde Firebase
@@ -44,21 +40,14 @@ func cargar_preguntas() -> void:
 	var body = response[3]
 	var data = JSON.parse_string(body.get_string_from_utf8())
 
-	if typeof(data) == TYPE_ARRAY:
-		for item in data:
-			if item != null:
-				preguntas[item["pregunta"]] = item
-
-	elif typeof(data) == TYPE_DICTIONARY:
+	if typeof(data) == TYPE_DICTIONARY:
 		for k in data.keys():
 			var item = data[k]
 			preguntas[item["pregunta"]] = item
-
 	else:
-		push_error("Error al parsear preguntas desde Firebase")
+		push_error("Formato incorrecto en Firebase")
 
 	http.queue_free()
-
 
 # -----------------------------------------------------
 # Mostrar pregunta actual
@@ -77,186 +66,119 @@ func mostrar_pregunta():
 	respuesta.text = ""
 	mensaje.text = ""
 
+
 # -----------------------------------------------------
-# Normalizar texto
+# Normalizar
 # -----------------------------------------------------
 func normalizar_texto(texto: String) -> String:
 	texto = texto.strip_edges().to_lower()
 
-	# Quitar acentos
 	var acentos = {
 		"á":"a","é":"e","í":"i","ó":"o","ú":"u",
-		"ä":"a","ë":"e","ï":"i","ö":"o","ü":"u",
 		"ñ":"n"
 	}
 	for a in acentos.keys():
 		texto = texto.replace(a, acentos[a])
 
-	# Quitar signos
-	var signos = [",", ".", ";", ":", "?", "!", "¿", "¡", "(", ")", "[", "]"]
+	var signos = [",", ".", ";", ":", "?", "!", "¿", "¡"]
 	for s in signos:
 		texto = texto.replace(s, "")
 
-	# Quitar artículos
-	var articulos = [" el ", " la ", " los ", " las ", " un ", " una ", " unos ", " unas "]
-	for a in articulos:
-		texto = texto.replace(a, " ")
-
-	# Colapsar dobles espacios
-	while "  " in texto:
-		texto = texto.replace("  ", " ")
-
 	return texto.strip_edges()
 
-# -----------------------------------------------------
-# Distancia de Levenshtein
-# -----------------------------------------------------
 func levenshtein(a: String, b: String) -> int:
 	var m = a.length()
 	var n = b.length()
-
 	var matrix = []
-	for i in range(m + 1):
+
+	for i in range(m+1):
 		matrix.append([])
-		for j in range(n + 1):
+		for j in range(n+1):
 			matrix[i].append(0)
 
-	for i in range(m + 1): matrix[i][0] = i
-	for j in range(n + 1): matrix[0][j] = j
+	for i in range(m+1): matrix[i][0] = i
+	for j in range(n+1): matrix[0][j] = j
 
-	for i in range(1, m + 1):
-		for j in range(1, n + 1):
-			var costo = 0 if a[i - 1] == b[j - 1] else 1
+	for i in range(1,m+1):
+		for j in range(1,n+1):
+			var cost = 0 if a[i-1] == b[j-1] else 1
 			matrix[i][j] = min(
-				matrix[i - 1][j] + 1,
-				matrix[i][j - 1] + 1,
-				matrix[i - 1][j - 1] + costo
+				matrix[i-1][j] + 1,
+				matrix[i][j-1] + 1,
+				matrix[i-1][j-1] + cost
 			)
 
 	return matrix[m][n]
 
-# -----------------------------------------------------
-# Similitud ortográfica
-# -----------------------------------------------------
 func similitud_ortografica(a: String, b: String) -> float:
 	if a.length() == 0 or b.length() == 0:
 		return 0.0
-
 	var dist = levenshtein(a, b)
 	var max_len = max(a.length(), b.length())
-	return 1.0 - float(dist) / float(max_len)
+	return 1.0 - float(dist) / max_len
 
-# -----------------------------------------------------
-# Porcentaje de palabras clave encontradas
-# -----------------------------------------------------
 func porcentaje_palabras_clave(respuesta: String, palabras_clave: Array, sinonimos: Dictionary) -> float:
 	if palabras_clave.size() == 0:
 		return 0.0
 
 	var total = palabras_clave.size()
-	var encontradas = 0
+	var ok = 0
 
 	for palabra in palabras_clave:
 		if palabra in respuesta:
-			encontradas += 1
+			ok += 1
 		elif sinonimos.has(palabra):
 			for s in sinonimos[palabra]:
 				if s in respuesta:
-					encontradas += 1
+					ok += 1
 					break
 
-	return float(encontradas) / float(total)
+	return float(ok)/total
 
 # -----------------------------------------------------
-# Evaluar respuesta del usuario
+# Evaluar respuesta
 # -----------------------------------------------------
 func evaluar_respuesta(pregunta: String, respuesta_usuario: String) -> Dictionary:
-	if not preguntas.has(pregunta):
-		return {"error": "Pregunta no encontrada"}
-
 	var data = preguntas[pregunta]
 
 	var modelo = normalizar_texto(data["respuesta_modelo"])
-	var palabras_clave = []
-	if data.has("palabras_clave") and typeof(data["palabras_clave"]) == TYPE_ARRAY:
-		palabras_clave = data["palabras_clave"]
-
-	var sinonimos = {}
-	if data.has("sinonimos") and typeof(data["sinonimos"]) == TYPE_DICTIONARY:
-		sinonimos = data["sinonimos"]
+	var palabras = data.get("palabras_clave", [])
+	var sinonimos = data.get("sinonimos", {})
 
 	var resp = normalizar_texto(respuesta_usuario)
 
-	# 1. porcentaje palabras clave
-	var pct_clave = porcentaje_palabras_clave(resp, palabras_clave, sinonimos)
+	var pct = porcentaje_palabras_clave(resp, palabras, sinonimos)
+	var sim = similitud_ortografica(resp, modelo)
 
-	# 2. similitud ortográfica (0..1)
-	var similitud = similitud_ortografica(resp, modelo)
+	if sim >= 0.80:
+		return {"resultado":"correcta","mensaje":"¡Excelente!"}
 
-	# DEBUG: imprime valores para ver por qué falla
-	print("-- DEBUG EVALUAR --")
-	print("Respuesta normalizada: '", resp, "'")
-	print("Modelo normalizado: '", modelo, "'")
-	print("pct_clave:", pct_clave, "similitud:", similitud)
+	if pct >= 0.80 and sim >= 0.60:
+		return {"resultado":"correcta","mensaje":"Muy bien!"}
 
-	# Reglas flexibles:
-	# 1) Si la similitud es muy alta --> correcta (usuario escribió casi lo mismo)
-	if similitud >= 0.80:
-		return {
-			"resultado": "correcta",
-			"mensaje": "¡excelente!",
-			"palabras_clave_pct": pct_clave,
-			"similitud": similitud
-		}
+	if pct >= 0.33 and sim >= 0.60:
+		return {"resultado":"parcial","mensaje":"Vas bien, pero puedes mejorar."}
 
-	# 2) Si cumple la mayoría de palabras clave y similitud razonable --> correcta
-	if pct_clave >= 0.80 and similitud >= 0.60:
-		return {
-			"resultado": "correcta",
-			"mensaje": "Muy bien!",
-			"palabras_clave_pct": pct_clave,
-			"similitud": similitud
-		}
-
-	# 3) Si tiene al menos 1 palabra clave y similitud media --> parcialmente correcta
-	if pct_clave >= 0.33 and similitud >= 0.60:
-		return {
-			"resultado": "parcial",
-			"mensaje": "más o menos, vas bien",
-			"palabras_clave_pct": pct_clave,
-			"similitud": similitud
-		}
-
-	# 4) Si cumple la mitad de claves y similitud mínima --> parcialmente
-	if pct_clave >= 0.50 and similitud >= 0.40:
-		return {
-			"resultado": "parcial",
-			"mensaje": "Tu respuesta está cerca, revisa algunos detalles.",
-			"palabras_clave_pct": pct_clave,
-			"similitud": similitud
-		} 	
-
-	# 5) En cualquier otro caso --> incorrecta
 	return {
-		"resultado": "incorrecta",
-		"mensaje": "✖ Incorrecto.\nLa respuesta correcta es:\n" + data["respuesta_modelo"],
-		"palabras_clave_pct": pct_clave,
-		"similitud": similitud
+		"resultado":"incorrecta",
+		"mensaje":"Incorrecto.\nRespuesta correcta:\n" + data["respuesta_modelo"]
 	}
 
-
 # -----------------------------------------------------
-# Validar respuesta al presionar botón
+# Botón validar
 # -----------------------------------------------------
 func _on_validar_pressed():
 	if pregunta_actual == "":
 		mensaje.text = "No hay pregunta actual."
 		return
 
-	var resultado = evaluar_respuesta(pregunta_actual, respuesta.text)
-	mensaje.text = resultado["mensaje"]
+	var r = evaluar_respuesta(pregunta_actual, respuesta.text)
+	mensaje.text = r["mensaje"]
 
-	if resultado["resultado"] != "incorrecta":
+	if r["resultado"] != "incorrecta":
 		indice_pregunta += 1
 		await get_tree().create_timer(1.5).timeout
 		mostrar_pregunta()
+
+func _on_pista_pressed() -> void:
+	pass # Replace with function body.
