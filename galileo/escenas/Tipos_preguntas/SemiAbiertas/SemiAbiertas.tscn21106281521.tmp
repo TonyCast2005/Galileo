@@ -127,8 +127,3 @@ autowrap_mode = 3
 
 [node name="VolverBtn" parent="." instance=ExtResource("3_s0hp4")]
 layout_mode = 1
-
-[node name="HTTPRequest" type="HTTPRequest" parent="."]
-
-[connection signal="pressed" from="validar" to="." method="_on_validar_pressed"]
-[connection signal="pressed" from="Pista" to="." method="_on_pista_pressed"]
