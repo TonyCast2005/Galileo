@@ -1,19 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://cc8ijaeiqvdmn"]
+[gd_scene load_steps=4 format=3 uid="uid://cc8ijaeiqvdmn"]
 
 [ext_resource type="Script" uid="uid://dacga1gqodln0" path="res://escenas/usuario/MenuInicial/menu_inicial.gd" id="1_abg4q"]
 [ext_resource type="PackedScene" uid="uid://cs6y8btdpwblb" path="res://escenas/menu.tscn" id="2_b7vfa"]
-[ext_resource type="Texture2D" uid="uid://b2ppqu3em387w" path="res://assets/sprites/ui/iconoMorado (1).png" id="3_14jc8"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_r8thd"]
-atlas = ExtResource("3_14jc8")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3w2ru"]
+bg_color = Color(0.331572, 0.315741, 0.643277, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
 
 [node name="MenuInicial" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 1.0
-offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_abg4q")
@@ -29,64 +30,32 @@ color = Color(0.283202, 0.267178, 0.564503, 1)
 
 [node name="Control" parent="ColorRect" instance=ExtResource("2_b7vfa")]
 layout_mode = 1
-offset_right = -5.67999
 
-[node name="Anterior" type="Button" parent="."]
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 79.0
+offset_right = 678.0
+offset_bottom = 174.0
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_3w2ru")
+text = "Tema"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 2
-offset_left = 53.0
-offset_top = 982.0
-offset_right = 211.0
-offset_bottom = 1143.0
-icon = ExtResource("3_14jc8")
-flat = true
+anchor_left = 0.036
+anchor_top = 0.17
+anchor_right = 0.962
+anchor_bottom = 0.83
+offset_left = 0.079998
+offset_top = -0.600006
+offset_right = 0.359924
+offset_bottom = -0.400024
 
-[node name="Label" type="Label" parent="Anterior"]
-layout_mode = 0
-offset_left = 51.0
-offset_top = 50.0
-offset_right = 109.0
-offset_bottom = 116.0
-theme_override_font_sizes/font_size = 28
-text = "<"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Siguiente" type="Button" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+clip_contents = true
 layout_mode = 2
-offset_left = 526.0
-offset_top = 989.0
-offset_right = 684.0
-offset_bottom = 1147.0
-icon = SubResource("AtlasTexture_r8thd")
-flat = true
-
-[node name="Label" type="Label" parent="Siguiente"]
-layout_mode = 0
-offset_left = 51.0
-offset_top = 50.0
-offset_right = 106.0
-offset_bottom = 107.0
-theme_override_font_sizes/font_size = 28
-text = ">"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Carrusel" type="Control" parent="."]
-anchors_preset = 0
-offset_left = 28.0
-offset_top = 44.0
-offset_right = 699.0
-offset_bottom = 977.0
-
-[node name="LabelContador" type="Label" parent="."]
-layout_mode = 0
-offset_left = 314.0
-offset_top = 1041.0
-offset_right = 415.0
-offset_bottom = 1104.0
-theme_override_font_sizes/font_size = 25
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[connection signal="pressed" from="Anterior" to="." method="_on_anterior_pressed"]
-[connection signal="pressed" from="Siguiente" to="." method="_on_siguiente_pressed"]
+size_flags_horizontal = 3
+size_flags_vertical = 3
