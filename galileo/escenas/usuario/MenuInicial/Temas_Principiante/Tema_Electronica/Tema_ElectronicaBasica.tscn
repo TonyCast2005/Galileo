@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://53k84xlogwy4"]
+[gd_scene load_steps=11 format=3 uid="uid://53k84xlogwy4"]
 
 [ext_resource type="Script" uid="uid://hq13cyyqrkhm" path="res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Electronica/tema_electronica_basica.gd" id="1_qivy0"]
 [ext_resource type="Script" uid="uid://b60mmgliwke2m" path="res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Arduino/ola.gd" id="2_fu7wn"]
 [ext_resource type="Texture2D" uid="uid://b2ppqu3em387w" path="res://assets/sprites/ui/iconoMorado (1).png" id="3_qb3m5"]
 [ext_resource type="Texture2D" uid="uid://4sapvjr4jbjq" path="res://assets/sprites/ui/bloqueado.png" id="4_2bl8r"]
+[ext_resource type="Texture2D" uid="uid://b3npth782srbb" path="res://assets/sprites/ui/candad0.png" id="5_0kvld"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4yaf0"]
 bg_color = Color(0.247059, 0.231373, 0.501961, 0.627451)
@@ -25,6 +26,16 @@ corner_radius_top_left = 30
 corner_radius_top_right = 30
 corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0kvld"]
+bg_color = Color(0.135724, 0.00166737, 0.254334, 0.898039)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ej8hd"]
+texture = ExtResource("5_0kvld")
 
 [node name="TemaAElectronica" type="Control"]
 layout_mode = 3
@@ -257,6 +268,21 @@ texture = ExtResource("4_2bl8r")
 expand_mode = 1
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="bloqueado" type="Panel" parent="."]
+offset_left = 5.0
+offset_top = 154.0
+offset_right = 656.0
+offset_bottom = 782.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0kvld")
+
+[node name="Panel" type="Panel" parent="bloqueado"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = -3.0
+offset_right = 634.0
+offset_bottom = 628.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_ej8hd")
 
 [connection signal="pressed" from="Panel/HBoxContainer1/Panel1/Button1" to="." method="_on_button_1_pressed"]
 [connection signal="pressed" from="Panel/HBoxContainer2/Panel2/Button2" to="." method="_on_button_2_pressed"]

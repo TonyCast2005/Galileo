@@ -48,6 +48,7 @@ func _ready():
 	http.request("https://galileo-af640-default-rtdb.firebaseio.com/examen_ubicacion.json")
 
 
+		
 # ================================
 # HTTP RESPONSE
 # ================================

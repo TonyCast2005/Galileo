@@ -14,7 +14,6 @@ var desbloqueados2 = [false, false, false, false] # Tema 2: Electrónica (4 nive
 var desbloqueados3 = [false, false, false, false] # Tema 3: Programación (4 niveles)
 var desbloqueados4 = [false, false, false, false] # Tema 4: Entradas Digitales (4 niveles)
 
-var desbloquear1: bool = false
 var desbloquear2: bool = false
 var desbloquear3: bool = false
 var desbloquear4: bool = false
@@ -48,7 +47,7 @@ var temp_preview_data = {}
 # 	INICIALIZACIÓN
 # -----------------------------
 func _ready():
-    firebase_auth = load("res://escenas/usuario/registro/firebase_auth.gd").new()
+	firebase_auth = load("res://escenas/usuario/registro/firebase_auth.gd").new()
 
 # ============================================================
 # 	FUNCIONES DE DESBLOQUEO DE PROGRESO (NUEVAS)
@@ -56,222 +55,222 @@ func _ready():
 
 # Función auxiliar para obtener el array de desbloqueos por índice de tema
 func _get_topic_unlock_array(tema_indice: int) -> Array:
-    match tema_indice:
-        0: return desbloqueados1
-        1: return desbloqueados2
-        2: return desbloqueados3
-        3: return desbloqueados4
-        _: return []
+	match tema_indice:
+		0: return desbloqueados1
+		1: return desbloqueados2
+		2: return desbloqueados3
+		3: return desbloqueados4
+		_: return []
 
 # Función principal a llamar cuando un nivel se completa
 # (tema_indice va de 0 a 3, nivel_indice va de 0 a 3)
 func desbloquear_siguiente_nivel(tema_indice: int, nivel_indice: int) -> void:
-    # Intentar desbloquear el siguiente nivel dentro del mismo tema
-    var tema_array = _get_topic_unlock_array(tema_indice)
-    var siguiente_nivel = nivel_indice + 1
-    var tema_completado = false
+	# Intentar desbloquear el siguiente nivel dentro del mismo tema
+	var tema_array = _get_topic_unlock_array(tema_indice)
+	var siguiente_nivel = nivel_indice + 1
+	var tema_completado = false
 
-    if siguiente_nivel < tema_array.size():
-        # Desbloquear el siguiente nivel en el mismo tema
-        if !tema_array[siguiente_nivel]:
-            tema_array[siguiente_nivel] = true
-            print("Nivel desbloqueado: Tema ", tema_indice + 1, ", Nivel ", siguiente_nivel + 1)
-            
-    elif siguiente_nivel == tema_array.size():
-        # Es el último nivel del tema actual, pasar al siguiente
-        tema_completado = true
-        
-    # Si el tema se completó, desbloquear el primer nivel del siguiente tema
-    if tema_completado:
-        var siguiente_tema_indice = tema_indice + 1
-        var siguiente_tema_array = _get_topic_unlock_array(siguiente_tema_indice)
+	if siguiente_nivel < tema_array.size():
+		# Desbloquear el siguiente nivel en el mismo tema
+		if !tema_array[siguiente_nivel]:
+			tema_array[siguiente_nivel] = true
+			print("Nivel desbloqueado: Tema ", tema_indice + 1, ", Nivel ", siguiente_nivel + 1)
+			
+	elif siguiente_nivel == tema_array.size():
+		# Es el último nivel del tema actual, pasar al siguiente
+		tema_completado = true
+		
+	# Si el tema se completó, desbloquear el primer nivel del siguiente tema
+	if tema_completado:
+		var siguiente_tema_indice = tema_indice + 1
+		var siguiente_tema_array = _get_topic_unlock_array(siguiente_tema_indice)
 
-        if siguiente_tema_array.size() > 0:
-            # Desbloquear el primer nivel del siguiente tema
-            if !siguiente_tema_array[0]:
-                siguiente_tema_array[0] = true
-                print("Tema desbloqueado: Tema ", siguiente_tema_indice + 1, " (Nivel 1)")
-                
-        elif siguiente_tema_indice == 4:
-            # El índice 4 corresponde al Examen (la quinta escena en MenuInicial.gd)
-            if !desbloquearE:
-                desbloquearE = true
-                print("¡Examen final desbloqueado!")
+		if siguiente_tema_array.size() > 0:
+			# Desbloquear el primer nivel del siguiente tema
+			if !siguiente_tema_array[0]:
+				siguiente_tema_array[0] = true
+				print("Tema desbloqueado: Tema ", siguiente_tema_indice + 1, " (Nivel 1)")
+				
+		elif siguiente_tema_indice == 4:
+			# El índice 4 corresponde al Examen (la quinta escena en MenuInicial.gd)
+			if !desbloquearE:
+				desbloquearE = true
+				print("¡Examen final desbloqueado!")
 
-    # NOTA IMPORTANTE: Estas variables 'desbloqueadosX' son solo estado de la sesión.
-    # Si quieres que el progreso se guarde permanentemente, debes actualizar el diccionario 'progreso'
-    # y luego llamar a 'guardar_progreso()'.
+	# NOTA IMPORTANTE: Estas variables 'desbloqueadosX' son solo estado de la sesión.
+	# Si quieres que el progreso se guarde permanentemente, debes actualizar el diccionario 'progreso'
+	# y luego llamar a 'guardar_progreso()'.
 
 
 # ============================================================
 # 	FUNCIÓN PRINCIPAL: CARGAR USUARIO
 # ============================================================
 func cargar_datos_usuario(uid: String) -> void:
-    user_uid = uid
+	user_uid = uid
 
-    var ruta = "usuarios/%s" % uid
+	var ruta = "usuarios/%s" % uid
 
-    firebase_auth.get_document(ruta, self, "_on_datos_usuario_recibidos")
+	firebase_auth.get_document(ruta, self, "_on_datos_usuario_recibidos")
 
 
 # Callback cuando Firebase responde
 func _on_datos_usuario_recibidos(res: Dictionary) -> void:
-    if not res.has("document"):
-        push_error("Error al cargar datos del usuario")
-        return
+	if not res.has("document"):
+		push_error("Error al cargar datos del usuario")
+		return
 
-    var doc = firebase_auth.parse_document(res.document)
+	var doc = firebase_auth.parse_document(res.document)
 
-    # Guardar todo el documento completo
-    user_data = doc
+	# Guardar todo el documento completo
+	user_data = doc
 
-    # Extraer datos principales
-    email = doc.get("email", "")
-    nombre = doc.get("nombre", "")
-    nivel = doc.get("nivel", "")
-    foto = doc.get("foto", "default")
+	# Extraer datos principales
+	email = doc.get("email", "")
+	nombre = doc.get("nombre", "")
+	nivel = doc.get("nivel", "")
+	foto = doc.get("foto", "default")
 
-    # Extraer progreso
-    progreso = doc.get("progreso", {})
-    
-    # Extraer racha
-    racha = doc.get("racha", {})
-    
-    # Extraer logros
-    logros = doc.get("logros", {})
+	# Extraer progreso
+	progreso = doc.get("progreso", {})
+	
+	# Extraer racha
+	racha = doc.get("racha", {})
+	
+	# Extraer logros
+	logros = doc.get("logros", {})
 
-    emit_signal("foto_actualizada", foto)
-    emit_signal("datos_cargados_correctamente", user_uid)
+	emit_signal("foto_actualizada", foto)
+	emit_signal("datos_cargados_correctamente", user_uid)
 
 # ============================================================
 # 	ACTUALIZAR FOTO DEL PERFIL
 # ============================================================
 func actualizar_foto(nueva_foto: String) -> void:
-    foto = nueva_foto
+	foto = nueva_foto
 
-    var ruta = "usuarios/%s" % user_uid
-    var data = {"foto": nueva_foto}
+	var ruta = "usuarios/%s" % user_uid
+	var data = {"foto": nueva_foto}
 
-    firebase_auth.update_document(ruta, data, self, "_on_foto_actualizada")
+	firebase_auth.update_document(ruta, data, self, "_on_foto_actualizada")
 
 func _on_foto_actualizada(result):
-    emit_signal("foto_actualizada", foto)
+	emit_signal("foto_actualizada", foto)
 
 # ============================================================
 # 	GUARDAR PROGRESO / RACHA / LOGROS
 # ============================================================
 func guardar_progreso():
-    var ruta = "usuarios/%s" % user_uid
-    var data = {"progreso": progreso}
+	var ruta = "usuarios/%s" % user_uid
+	var data = {"progreso": progreso}
 
-    firebase_auth.update_document(ruta, data)
+	firebase_auth.update_document(ruta, data)
 
 func guardar_racha():
-    var ruta = "usuarios/%s" % user_uid
-    var data = {"racha": racha}
+	var ruta = "usuarios/%s" % user_uid
+	var data = {"racha": racha}
 
-    firebase_auth.update_document(ruta, data)
+	firebase_auth.update_document(ruta, data)
 
 func guardar_logros():
-    var ruta = "usuarios/%s" % user_uid
-    var data = {"logros": logros}
+	var ruta = "usuarios/%s" % user_uid
+	var data = {"logros": logros}
 
-    firebase_auth.update_document(ruta, data)
+	firebase_auth.update_document(ruta, data)
 
 # ============================================================
 # 	FUNCIÓN PARA DESBLOQUEAR UN LOGRO AUTOMÁTICAMENTE
 # ============================================================
 func desbloquear_logro(clave: String) -> void:
-    if not logros.has(clave):
-        logros[clave] = true
-        guardar_logros()
-        print("¡Logro desbloqueado!: ", clave)
+	if not logros.has(clave):
+		logros[clave] = true
+		guardar_logros()
+		print("¡Logro desbloqueado!: ", clave)
 
 # ============================================================
 # 	SISTEMA AUTOMÁTICO DE RACHAS
 # ============================================================
 
 func actualizar_racha():
-    if racha.is_empty():
-        racha = {"dias": 0, "ultima_fecha": ""}
+	if racha.is_empty():
+		racha = {"dias": 0, "ultima_fecha": ""}
 
-    var fecha_hoy = _fecha_actual()
+	var fecha_hoy = _fecha_actual()
 
-    # Primera vez entrando
-    if racha.ultima_fecha == "":
-        racha.ultima_fecha = fecha_hoy
-        racha.dias = 1
-        guardar_racha()
-        return
+	# Primera vez entrando
+	if racha.ultima_fecha == "":
+		racha.ultima_fecha = fecha_hoy
+		racha.dias = 1
+		guardar_racha()
+		return
 
-    # Si ya había entrado hoy → no hacer nada
-    if racha.ultima_fecha == fecha_hoy:
-        return
+	# Si ya había entrado hoy → no hacer nada
+	if racha.ultima_fecha == fecha_hoy:
+		return
 
-    # Convertimos fechas a objetos Date para compararlas
-    var date_ultima = parse_date(racha.ultima_fecha)
-    var date_hoy = Time.get_date_dict_from_system()
-    var diff = _dias_de_diferencia(date_ultima, date_hoy)
+	# Convertimos fechas a objetos Date para compararlas
+	var date_ultima = parse_date(racha.ultima_fecha)
+	var date_hoy = Time.get_date_dict_from_system()
+	var diff = _dias_de_diferencia(date_ultima, date_hoy)
 
-    if diff == 1:
-        # Día consecutivo → sumar racha
-        racha.dias += 1
-        racha.ultima_fecha = fecha_hoy
-        guardar_racha()
+	if diff == 1:
+		# Día consecutivo → sumar racha
+		racha.dias += 1
+		racha.ultima_fecha = fecha_hoy
+		guardar_racha()
 
-        # Desbloquear logros si quieres
-        _verificar_logros_racha()
+		# Desbloquear logros si quieres
+		_verificar_logros_racha()
 
-    else:
-        # Más de 1 día sin entrar → reiniciar racha
-        racha.dias = 1
-        racha.ultima_fecha = fecha_hoy
-        guardar_racha()
+	else:
+		# Más de 1 día sin entrar → reiniciar racha
+		racha.dias = 1
+		racha.ultima_fecha = fecha_hoy
+		guardar_racha()
 
 # ------------------------------------------------------------
 # 	FECHA HOY EN FORMATO YYYY-MM-DD
 # ------------------------------------------------------------
 func _fecha_actual() -> String:
-    var t = Time.get_date_dict_from_system()
-    return "%s-%02d-%02d" % [t.year, t.month, t.day]
+	var t = Time.get_date_dict_from_system()
+	return "%s-%02d-%02d" % [t.year, t.month, t.day]
 
 # ------------------------------------------------------------
 # 	DIFERENCIA DE DÍAS ENTRE DOS FECHAS (dict date)
 # ------------------------------------------------------------
 func _dias_de_diferencia(f1: Dictionary, f2: Dictionary) -> int:
-    var t1 = Time.get_unix_time_from_datetime_dict(f1)
-    var t2 = Time.get_unix_time_from_datetime_dict(f2)
-    return int((t2 - t1) / 86400) 	# 86400 = segundos de un día	
+	var t1 = Time.get_unix_time_from_datetime_dict(f1)
+	var t2 = Time.get_unix_time_from_datetime_dict(f2)
+	return int((t2 - t1) / 86400) 	# 86400 = segundos de un día	
 
 # ------------------------------------------------------------
 # 	DESBLOQUEAR LOGROS AUTOMÁTICOS DE RACHAS
 # ------------------------------------------------------------
 func _verificar_logros_racha():
-    if racha.dias == 3:
-        desbloquear_logro("racha_3_dias")
-    elif racha.dias == 7:
-        desbloquear_logro("racha_7_dias")
-    elif racha.dias == 30:
-        desbloquear_logro("racha_30_dias")
+	if racha.dias == 3:
+		desbloquear_logro("racha_3_dias")
+	elif racha.dias == 7:
+		desbloquear_logro("racha_7_dias")
+	elif racha.dias == 30:
+		desbloquear_logro("racha_30_dias")
 
 func parse_date(fecha_texto: String) -> Dictionary:
-    if fecha_texto == "" or not fecha_texto.contains("-"):
-        return {}
+	if fecha_texto == "" or not fecha_texto.contains("-"):
+		return {}
 
-    var partes = fecha_texto.split("-")
-    if partes.size() != 3:
-        return {}
+	var partes = fecha_texto.split("-")
+	if partes.size() != 3:
+		return {}
 
-    return {
-        "year": partes[0].to_int(),
-        "month": partes[1].to_int(),
-        "day": partes[2].to_int()
-    }
+	return {
+		"year": partes[0].to_int(),
+		"month": partes[1].to_int(),
+		"day": partes[2].to_int()
+	}
 
 func parse_fecha(fecha_str: String) -> Dictionary:
-    var partes = fecha_str.split("-")
-    return {
-        "year": partes[0].to_int(),
-        "month": partes[1].to_int(),
-        "day": partes[2].to_int()
-    }
+	var partes = fecha_str.split("-")
+	return {
+		"year": partes[0].to_int(),
+		"month": partes[1].to_int(),
+		"day": partes[2].to_int()
+	}
