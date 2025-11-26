@@ -1,7 +1,7 @@
 extends Control
 
 @onready var contenedor: Control = $Carrusel
-@onready var contador = $LabelContador
+@onready var contador: Label = $LabelContador
 
 var temas: Array = [
     preload("res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Arduino/Tema_Arduino.tscn"),
@@ -9,31 +9,42 @@ var temas: Array = [
     preload("res://escenas/usuario/MenuInicial/Temas_Principiante/Temas_ProgramacionBasica/Tema_ProgramacionBasica.tscn"),
     preload("res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_EntradasDigitales/Tema_EntradasDigitales.tscn"),
     preload("res://escenas/usuario/MenuInicial/Temas_Principiante/Examen_Principiante/ExamenPrincipiante.tscn")
-    
 ]
 
 var indice_actual := 0
 var escena_actual: Control = null
 var animando := false
+var current_tween   # ← sin tipo, sin valor inicial
+
+func start_animation():
+    if current_tween:
+        current_tween.kill()
+
+    current_tween = get_tree().create_tween()
+    current_tween.tween_property($Label, "modulate:a", 1.0, 1.0)
+
 
 func _ready():
     cargar_tema(indice_actual, 0)
-    # 🌟 Llamada inicial al contador 🌟
     actualizar_contador()
 
 
-# ============================================================
-#	CARGAR TEMA CON ANIMACIÓN TIPO "CARRUSEL"
-# ============================================================
 func cargar_tema(i: int, direccion: int):
     if animando:
         return
     animando = true
 
-    var nueva_escena := temas[i].instantiate() as Control
+    # Limpiar tween previo
+    if current_tween != null:
+        if typeof(current_tween) == TYPE_OBJECT and current_tween.is_valid():
+            current_tween.kill()
+        current_tween = null
+
+    # Instanciar nueva escena
+    var nueva_escena: Control = temas[i].instantiate() as Control
     contenedor.add_child(nueva_escena)
 
-    # Anclas y posiciones (sin cambios)
+    # Configurar anclas y posición
     nueva_escena.anchor_left = 0
     nueva_escena.anchor_right = 1
     nueva_escena.anchor_top = 0
@@ -46,57 +57,54 @@ func cargar_tema(i: int, direccion: int):
     if escena_actual == null:
         escena_actual = nueva_escena
         animando = false
-        return # La actualización del contador ya se hizo en _ready()
+        return
 
-    # Nueva escena entra desde derecha o izquierda
+    # Nueva escena entra por izquierda o derecha
     nueva_escena.position = Vector2(direccion * ancho, 0)
 
+    var old_scene := escena_actual
+
+    # Crear tween
     var tween := create_tween()
-    
-    # 🟢 SOLUCIÓN CRÍTICA 1: Asegurar que el Tweener se libera a sí mismo al terminar.
-    # Esto previene que se quede como objeto huérfano en la memoria.
-    tween.finished.connect(tween.queue_free)
+    current_tween = tween
 
-    # ... (código de animación Tween) ...
-    tween.tween_property(escena_actual, "position:x", -direccion * ancho, 0.25)\
-        .set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+    # Animar escena anterior sólo si sigue viva
+    if is_instance_valid(old_scene):
+        tween.tween_property(old_scene, "position:x", -direccion * ancho, 0.25)\
+            .set_trans(Tween.TRANS_QUAD)\
+            .set_ease(Tween.EASE_IN)
 
+    # Animar nueva escena
     tween.tween_property(nueva_escena, "position:x", 0, 0.50)\
-        .set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+        .set_trans(Tween.TRANS_ELASTIC)\
+        .set_ease(Tween.EASE_OUT)
 
-# 🌟 Llamada final al contador 🌟
+    # Actualizar contador
     actualizar_contador()
-    
-    # Conexión para la lógica de la escena
+
+    # Al terminar animación
     tween.finished.connect(func():
-        # 🟢 SOLUCIÓN CRÍTICA 2: Añadimos is_instance_valid() para robustez, 
-        # en caso de que la escena sea liberada por un evento externo (como ir a Métricas).
-        if is_instance_valid(escena_actual):
-            escena_actual.queue_free()
+        if is_instance_valid(old_scene):
+            old_scene.queue_free()
+
         escena_actual = nueva_escena
         animando = false
+        current_tween = null
     )
 
 
-# ============================================================
-#	ACTUALIZA EL CONTADOR DE PÁGINAS (Ej: 1 / 5)
-# ============================================================
 func actualizar_contador():
     var total_temas = temas.size()
-    # El índice es 0, 1, 2, etc. Le sumamos 1 para que sea 1, 2, 3...
     var tema_actual = indice_actual + 1
-    
     contador.text = str(tema_actual) + " / " + str(total_temas)
 
 
-# ============================================================
-#	BOTONES (sin cambios, ya que llaman a cargar_tema)
-# ============================================================
 func _on_siguiente_pressed():
     if animando: return
     if indice_actual < temas.size() - 1:
         indice_actual += 1
         cargar_tema(indice_actual, 1)
+
 
 func _on_anterior_pressed():
     if animando: return
