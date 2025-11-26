@@ -80,12 +80,8 @@ func _on_adelante_pressed() -> void:
 		indice_actual += 1
 		cargar_tema(indice_actual, 1)
 	else:
-		# --- TERMINÓ LA LECTURA ---
-		# Bloque 1 completado (Lectura)
-		Globals.desbloqueados[0] = true  
-
 		# Desbloquear el siguiente bloque (Ejercicio 1)
-		Globals.desbloqueados[1] = true  
+		Globals.desbloqueados1[1] = true  
 
 		Globals.repetir_bloque = false
 		Globals.bloque_actual = 1  # ahora empieza en bloque 2

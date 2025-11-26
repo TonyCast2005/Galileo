@@ -8,10 +8,20 @@ signal datos_cargados_correctamente(uid)
 
 var desbloquear_pendiente: bool = false
 var niveles_desbloqueados: int = 1  
-var desbloqueados = [true, false, false, false]
+
+var desbloqueados1 = [true, false, false, false]
+var desbloqueados2 = [false, false, false, false]
+var desbloqueados3 = [false, false, false, false]
+var desbloqueados4 = [false, false, false, false]
+
+var desbloquear1: bool = false
+var desbloquear2: bool = false
+var desbloquear3: bool = false
+var desbloquear4: bool = false
+var desbloquearE: bool = false
+
 var repetir_bloque = false
 var bloque_actual = 0
-
 
 # -----------------------------
 #    VARIABLES GLOBALES
@@ -39,7 +49,6 @@ var temp_preview_data = {}
 # -----------------------------
 func _ready():
 	firebase_auth = load("res://escenas/usuario/registro/firebase_auth.gd").new()
-
 
 # ============================================================
 #               FUNCIÓN PRINCIPAL: CARGAR USUARIO
@@ -91,7 +100,6 @@ func actualizar_foto(nueva_foto: String) -> void:
 	var data = {"foto": nueva_foto}
 
 	firebase_auth.update_document(ruta, data, self, "_on_foto_actualizada")
-
 
 func _on_foto_actualizada(result):
 	emit_signal("foto_actualizada", foto)
