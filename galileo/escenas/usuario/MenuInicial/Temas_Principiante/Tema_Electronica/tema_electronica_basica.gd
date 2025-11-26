@@ -38,9 +38,9 @@ var escena_lectura := "res://escenas/usuario/MenuInicial/Temas_Principiante/Tema
 var ejercicios_arduino := [
     {"tipo": "OM1", "ruta": "res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Arduino/Ejercicios/OpcMultiple_1.tscn"},
     {"tipo": "VF", "ruta": "res://escenas/Tipos_preguntas/VerdaderoFalso/VerdaderoFalso.tscn"},
-    {"tipo": "PA", "ruta": "res://escenas/Tipos_preguntas/PreguntasAbiertas/PreguntasAbiertas.tscn"},
-    {"tipo": "SA", "ruta": "res://escenas/Tipos_preguntas/SemiAbiertas/SemiAbiertas.tscn"},
-    {"tipo": "PE", "ruta": "res://escenas/Tipos_preguntas/practicaEscritura/practicaEscritura.tscn"},
+   # {"tipo": "PA", "ruta": "res://escenas/Tipos_preguntas/PreguntasAbiertas/PreguntasAbiertas.tscn"},
+   # {"tipo": "SA", "ruta": "res://escenas/Tipos_preguntas/SemiAbiertas/SemiAbiertas.tscn"},
+    #{"tipo": "PE", "ruta": "res://escenas/Tipos_preguntas/practicaEscritura/practicaEscritura.tscn"},
 ]
 
 func _ready():
@@ -127,16 +127,19 @@ func _on_button_1_pressed():
 func _on_button_2_pressed() -> void:
     cargar_escena_ejercicio(ejercicio_aleatorio())
     Globals.bloque_actual = 2
+    desbloquear_siguiente()
 
 func _on_button_3_pressed() -> void:
     cargar_escena_ejercicio(ejercicio_aleatorio())
     Globals.bloque_actual = 3
+    desbloquear_siguiente()
 
 func _on_button_4_pressed() -> void:
     cargar_escena_ejercicio(ejercicio_aleatorio())
     Globals.bloque_actual = 4
-    Globals.desbloquear_siguiente_nivel(0, 3)
+    Globals.desbloquear_siguiente_nivel(1, 3) # ← ESTA ERA LA QUE FALTABA
     Globals.desbloquear3 = true
+
 
 
     

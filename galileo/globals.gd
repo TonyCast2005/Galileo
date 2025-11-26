@@ -12,9 +12,9 @@ var niveles_desbloqueados: int = 1
 
 # Progreso de temas (4 niveles cada uno)
 var desbloqueados1 = [true, false, false, false]
-var desbloqueados2 = [false, false, false, false]
-var desbloqueados3 = [false, false, false, false]
-var desbloqueados4 = [false, false, false, false]
+var desbloqueados2 = [true, false, false, false]
+var desbloqueados3 = [true, false, false, false]
+var desbloqueados4 = [true, false, false, false]
 
 # Candados grandes
 var desbloquear2: bool = false

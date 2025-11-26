@@ -107,7 +107,7 @@ func _on_button_3_pressed() -> void:
 func _on_button_4_pressed() -> void:
     cargar_escena_ejercicio(ejercicio_aleatorio())
     desbloquear_siguiente()
-    Globals.desbloquear_siguiente_nivel(0, 3)
+    Globals.desbloquear_siguiente_nivel(3, 3)
     Globals.desbloquear5 = true
     
 func _animar_caja_flotante(nodo: Control, delay: float):
