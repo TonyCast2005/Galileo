@@ -51,21 +51,34 @@ func update_methodology_score(exercise_type: String, was_correct: bool):
         
         # 2. Recalcular el score promedio (Dominio)
         if tracker.attempts > 0:
+            # El score siempre es un float entre 0.0 y 1.0
             tracker.score = float(tracker.correct) / float(tracker.attempts)
         else:
-            tracker.score = 1.0
+            tracker.score = 1.0 # Caso inicial o si intentos es 0
             
         print("Métrica de Metodología actualizada en MetricsManager:")
         print(" -> Metodología: %s (Score: %f)" % [methodology_name, tracker.score])
         
         # 3. 💾 LLAMADA A PERSISTENCIA EN BD (Firestore)
-        # Aquí puedes llamar a una función de guardado que envíe solo 'methodology_tracking' a la BD
         # save_metrics_to_firestore(methodology_tracking)
         
     else:
         print("ERROR: Tipo de ejercicio (%s) no mapeado o metodología no encontrada." % exercise_type)
         
         
+# 🟢 NUEVA FUNCIÓN AÑADIDA PARA EL GRÁFICO DE RADAR 🟢
+# Esta función es llamada por el script del radar para obtener los 3 puntajes.
+func get_radar_scores() -> Array[float]:
+    # El orden debe coincidir exactamente con el orden de las etiquetas
+    # en el script del radar: ["Significativo", "Descubrimiento", "ABE"]
+    
+    var significativo = methodology_tracking["Significativo"].score
+    var descubrimiento = methodology_tracking["Descubrimiento"].score
+    var abe = methodology_tracking["ABE"].score
+    
+    return [significativo, descubrimiento, abe]
+
+
 # Función utilizada por el menú para determinar qué ejercicio cargar a continuación.
 func get_weakest_methodology() -> String:
     var weakest_methodology = ""
@@ -80,6 +93,6 @@ func get_weakest_methodology() -> String:
             
     # Si todos los puntajes son 1.0 (ej. al inicio), devolvemos 'ABE' por defecto
     if lowest_score >= 1.0 and weakest_methodology == "":
-        return "ABE" 
+        return "ABE"	
         
     return weakest_methodology

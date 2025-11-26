@@ -1,5 +1,9 @@
 extends Control
 
+# 🌟 1. Variable clave para el mapeo de métricas 🌟
+# "PE" está mapeado a la metodología "Significativo" en MetricsManager.gd
+const EXERCISE_TYPE = "PE"
+
 @onready var lbl_enunciado: Label = $Enunciado
 @onready var lbl_codigo = $Codigo
 @onready var cont_campos = $Campos
@@ -23,8 +27,8 @@ var pistas_actuales: Array[String] = []
 # READY
 # ============================================================
 func _ready() -> void:
-	btn_pista.pressed.connect(_mostrar_pista)
-	cargar_preguntas()
+    btn_pista.pressed.connect(_mostrar_pista)
+    cargar_preguntas()
 
 # ===============================
 # SISTEMA DE ERRORES
@@ -33,51 +37,51 @@ var errores: int = 0
 var errores_maximos: int = 2
 
 func fallar_demasiado() -> void:
-	Globals.repetir_bloque = true
-	get_tree().change_scene_to_file("res://escenas/Tipos_preguntas/RepiteLeccion.tscn")
-	
+    Globals.repetir_bloque = true
+    get_tree().change_scene_to_file("res://escenas/Tipos_preguntas/RepiteLeccion.tscn")
+    
 # ============================================================
 # CARGAR PREGUNTAS
 # ============================================================
 func cargar_preguntas() -> void:
-	var err: int = http.request(FIREBASE_URL)
+    var err: int = http.request(FIREBASE_URL)
 
-	if err != OK:
-		lbl_enunciado.text = "Error al conectar con Firebase"
-		return
+    if err != OK:
+        lbl_enunciado.text = "Error al conectar con Firebase"
+        return
 
-	http.request_completed.connect(_on_request_completed)
+    http.request_completed.connect(_on_request_completed)
 
 
 func _on_request_completed(result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
 
-	if response_code != 200:
-		lbl_enunciado.text = "Error al conectar con Firebase"
-		return
+    if response_code != 200:
+        lbl_enunciado.text = "Error al conectar con Firebase"
+        return
 
-	var data: Variant = JSON.parse_string(body.get_string_from_utf8())
+    var data: Variant = JSON.parse_string(body.get_string_from_utf8())
 
-	# Convertir a array usable
-	if typeof(data) == TYPE_DICTIONARY:
-		for key in data.keys():
-			var p: Variant = data[key]
-			if typeof(p) == TYPE_DICTIONARY:
-				preguntas.append(p)
+    # Convertir a array usable
+    if typeof(data) == TYPE_DICTIONARY:
+        for key in data.keys():
+            var p: Variant = data[key]
+            if typeof(p) == TYPE_DICTIONARY:
+                preguntas.append(p)
 
-	elif typeof(data) == TYPE_ARRAY:
-		for p in data:
-			if typeof(p) == TYPE_DICTIONARY:
-				preguntas.append(p)
+    elif typeof(data) == TYPE_ARRAY:
+        for p in data:
+            if typeof(p) == TYPE_DICTIONARY:
+                preguntas.append(p)
 
-	if preguntas.is_empty():
-		lbl_enunciado.text = "No hay preguntas disponibles."
-		return
+    if preguntas.is_empty():
+        lbl_enunciado.text = "No hay preguntas disponibles."
+        return
 
-	var tmp: Array = preguntas.duplicate()
-	tmp.shuffle()
-	seleccionadas = tmp.slice(0, 4)
+    var tmp: Array = preguntas.duplicate()
+    tmp.shuffle()
+    seleccionadas = tmp.slice(0, 4)
 
-	mostrar_pregunta()
+    mostrar_pregunta()
 
 
 # ============================================================
@@ -85,110 +89,130 @@ func _on_request_completed(result: int, response_code: int, _headers: PackedStri
 # ============================================================
 func mostrar_pregunta() -> void:
 
-	if indice_actual >= seleccionadas.size():
-		lbl_enunciado.text = "¡Terminaste la práctica!"
-		Globals.desbloqueados[Globals.bloque_actual] = true
-		get_tree().change_scene_to_file("res://escenas/usuario/MenuInicial/MenuInicial.tscn")
-		lbl_codigo.visible = false
-		cont_campos.visible = false
-		btn_pista.visible = false
-		return
+    if indice_actual >= seleccionadas.size():
+        lbl_enunciado.text = "¡Terminaste la práctica!"
+        # Lógica de desbloqueo y avance (similar a otros scripts)
+        if not Globals.repetir_bloque:
+            var progreso_array = Globals.desbloqueados1 
+            var next_lesson_index = Globals.bloque_actual
+            
+            if next_lesson_index >= 0 and next_lesson_index < progreso_array.size():
+                progreso_array[next_lesson_index] = true
+            if Globals.bloque_actual < progreso_array.size() - 1:
+                Globals.bloque_actual += 1
+        else:
+            Globals.repetir_bloque = false 
+            
+        get_tree().change_scene_to_file("res://escenas/usuario/MenuInicial/MenuInicial.tscn")
+        lbl_codigo.visible = false
+        cont_campos.visible = false
+        btn_pista.visible = false
+        return
 
-	var pregunta: Dictionary = seleccionadas[indice_actual]
+    var pregunta: Dictionary = seleccionadas[indice_actual]
 
-	lbl_enunciado.text = pregunta.get("enunciado", "Sin enunciado")
-	lbl_codigo.text = pregunta.get("plantilla", "")
+    lbl_enunciado.text = pregunta.get("enunciado", "Sin enunciado")
+    lbl_codigo.text = pregunta.get("plantilla", "")
 
-	# Respuestas correctas
-	respuestas_correctas = []
-	for r in pregunta.get("respuestas_correctas", []):
-		respuestas_correctas.append(String(r))
+    # Respuestas correctas
+    respuestas_correctas = []
+    for r in pregunta.get("respuestas_correctas", []):
+        respuestas_correctas.append(String(r))
 
-	# Pistas
-	pistas_actuales = []
-	for p in pregunta.get("pistas", []):
-		pistas_actuales.append(String(p))
+    # Pistas
+    pistas_actuales = []
+    for p in pregunta.get("pistas", []):
+        pistas_actuales.append(String(p))
 
-	btn_pista.visible = pistas_actuales.size() > 0
+    btn_pista.visible = pistas_actuales.size() > 0
 
-	# Número de campos
-	var cantidad: int = pregunta.get("campos", respuestas_correctas.size())
+    # Número de campos
+    var cantidad: int = pregunta.get("campos", respuestas_correctas.size())
 
-	# Limpiar campos anteriores
-	for c in cont_campos.get_children():
-		c.queue_free()
+    # Limpiar campos anteriores
+    for c in cont_campos.get_children():
+        c.queue_free()
 
-	campos.clear()
+    campos.clear()
 
-	for i in range(cantidad):
-		var input: LineEdit = LineEdit.new()
-		input.placeholder_text = "Respuesta " + str(i + 1)
-		cont_campos.add_child(input)
-		campos.append(input)
+    for i in range(cantidad):
+        var input: LineEdit = LineEdit.new()
+        input.placeholder_text = "Respuesta " + str(i + 1)
+        cont_campos.add_child(input)
+        campos.append(input)
 
-	retro.text = ""
-	retro.modulate = Color.WHITE
+    retro.text = ""
+    retro.modulate = Color.WHITE
 
 
 # ============================================================
 # NORMALIZAR TEXTO
 # ============================================================
 func normalizar(s: String) -> String:
-	var t: String = s.to_lower().strip_edges()
+    var t: String = s.to_lower().strip_edges()
 
-	var acentos := {
-		"á":"a","é":"e","í":"i","ó":"o","ú":"u",
-		"ñ":"n"
-	}
+    var acentos := {
+        "á":"a","é":"e","í":"i","ó":"o","ú":"u",
+        "ñ":"n"
+    }
 
-	for a in acentos.keys():
-		t = t.replace(a, acentos[a])
+    for a in acentos.keys():
+        t = t.replace(a, acentos[a])
 
-	while "  " in t:
-		t = t.replace("  ", " ")
+    while "  " in t:
+        t = t.replace("  ", " ")
 
-	return t
+    return t
 
 
 # ============================================================
 # VALIDAR RESPUESTA
 # ============================================================
 func _on_btn_validar_pressed() -> void:
+    
+    # Verificamos campo por campo
+    for i in range(campos.size()):
+        var u: String = normalizar(campos[i].text)
+        var c: String = normalizar(respuestas_correctas[i])
 
-	for i in range(campos.size()):
-		var u: String = normalizar(campos[i].text)
-		var c: String = normalizar(respuestas_correctas[i])
+        if u != c:
+            retro.text = "❌ Incorrecto\nEsperada:\n" + respuestas_correctas[i]
+            retro.modulate = Color.RED
+            
+            # 🔴 MÉTRICAS: INCORRECTO
+            MetricsManager.update_methodology_score(EXERCISE_TYPE, false)
+            
+            await get_tree().create_timer(1.2).timeout
+            indice_actual += 1
+            errores += 1
+            if errores >= errores_maximos:
+                fallar_demasiado()
+                return 
+                
+            mostrar_pregunta()
+            return # Sale inmediatamente si encuentra el primer error
 
-		if u != c:
-			retro.text = "❌ Incorrecto\nEsperada:\n" + respuestas_correctas[i]
-			retro.modulate = Color.RED
-			await get_tree().create_timer(1.2).timeout
-			indice_actual += 1
-			errores += 1
-			if errores >= errores_maximos:
-				fallar_demasiado()
-				return 
-				
-			mostrar_pregunta()
-			return
+    # Si el bucle termina, significa que todos los campos son correctos
+    retro.text = "✔ ¡Correcto!"
+    retro.modulate = Color.GREEN
 
-	retro.text = "✔ ¡Correcto!"
-	retro.modulate = Color.GREEN
+    # 🟢 MÉTRICAS: CORRECTO
+    MetricsManager.update_methodology_score(EXERCISE_TYPE, true)
 
-	await get_tree().create_timer(1.2).timeout
-	indice_actual += 1
-	mostrar_pregunta()
+    await get_tree().create_timer(1.2).timeout
+    indice_actual += 1
+    mostrar_pregunta()
 
 
 # ============================================================
 # MOSTRAR PISTA (GATITO)
 # ============================================================
 func _mostrar_pista() -> void:
-	if pistas_actuales.is_empty():
-		return
+    if pistas_actuales.is_empty():
+        return
 
-	var texto: String = pistas_actuales.pop_front()
+    var texto: String = pistas_actuales.pop_front()
 
-	var ventana := EscenaPista.instantiate()
-	add_child(ventana)
-	ventana.set_pista(texto)
+    var ventana := EscenaPista.instantiate()
+    add_child(ventana)
+    ventana.set_pista(texto)

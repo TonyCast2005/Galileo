@@ -1,6 +1,11 @@
 extends Control
 
-var data: Array[float] = [0.9, 0.6, 0.7]
+# Nota: Asumimos que los datos devueltos por MetricsManager.get_radar_scores()
+# están en el mismo orden que estas etiquetas:
+# [0] Significativo, [1] Descubrimiento, [2] ABE
+
+# Los datos se actualizarán desde MetricsManager en _ready()
+var data: Array[float] = [0.0, 0.0, 0.0] 
 var labels: Array[String] = ["Significativo", "Descubrimiento", "ABE"]
 var radius: float = 260.0
 
@@ -36,8 +41,22 @@ func _ready() -> void:
     label_title.text = "Información"
     label_info_text.text = "Haz clic en un icono del radar para ver detalles."
     _ajustar_panel_a_pantalla()
+    
+    # ======================================================
+    # 🟢 PASO CLAVE: OBTENER DATOS REALES DE LAS MÉTRICAS
+    # ======================================================
+    # Asegúrate de que esta función exista en tu script MetricsManager.gd
+    if MetricsManager.has_method("get_radar_scores"):
+        data = MetricsManager.get_radar_scores()
+        # Forzamos el redibujado para que el polígono se dibuje inmediatamente
+        queue_redraw()
+    else:
+        # DEBUG: Si la función no existe, mantenemos los valores iniciales (0.0)
+        print("ERROR: MetricsManager no tiene la función get_radar_scores(). Usando datos por defecto.")
+
 
 func _process(delta: float) -> void:
+    # Efecto de flotación, usa Time.get_ticks_msec() para un movimiento suave
     position.y = base_y + sin(Time.get_ticks_msec() / 1000.0 * float_speed) * float_height
     queue_redraw()
 
@@ -47,30 +66,39 @@ func _draw() -> void:
         return
     var angle_step: float = TAU / float(n)
 
+    var center = size / 2.0
     var points: Array[Vector2] = []
     var outer_points: Array[Vector2] = []
 
-    # calcular puntos del radar
+    # calcular puntos del radar y del polígono
     for i in range(n):
         var angle: float = -PI / 2.0 + float(i) * angle_step
-        var r_val: float = radius * float(data[i])
-        points.append(Vector2(size.x / 2.0 + cos(angle) * r_val,
-                              size.y / 2.0 + sin(angle) * r_val))
-        outer_points.append(Vector2(size.x / 2.0 + cos(angle) * radius,
-                                    size.y / 2.0 + sin(angle) * radius))
+        # Aseguramos que data[i] esté entre 0 y 1 para que el polígono no se salga
+        var score_normalized = clampf(data[i], 0.0, 1.0) 
+        var r_val: float = radius * score_normalized
+        
+        points.append(Vector2(center.x + cos(angle) * r_val,
+                              center.y + sin(angle) * r_val))
+                              
+        outer_points.append(Vector2(center.x + cos(angle) * radius,
+                                    center.y + sin(angle) * radius))
 
-    # dibujar radar
+    # Dibujar base del radar (polígono exterior)
     draw_polygon(outer_points, [Color(0.2, 0.2, 0.2, 0.4)])
     draw_polyline(outer_points + [outer_points[0]], Color(1,1,1,0.2), 1.0)
+    
+    # Dibujar polígono de métricas (el área azul)
     draw_polygon(points, [Color(0.2,0.8,1.0,0.5)])
     draw_polyline(points + [points[0]], Color(0.2,0.8,1.0), 2.0)
+    
+    # Dibujar líneas del centro a las esquinas
     for p in outer_points:
-        draw_line(Vector2(size.x/2.0, size.y/2.0), p, Color(1,1,1,0.25), 1.0)
+        draw_line(center, p, Color(1,1,1,0.25), 1.0)
 
-    # dibujar imágenes clickeables (mismo tamaño visual)
+    # dibujar imágenes clickeables
     label_rects.clear()
     for i in range(n):
-        var dir = (outer_points[i] - size / 2.0).normalized()
+        var dir = (outer_points[i] - center).normalized()
         var img = label_textures[i]
 
         var original_size = img.get_size()
@@ -99,7 +127,7 @@ func _gui_input(event):
 
 # 🟢 Función para mover el panel si se sale de la pantalla
 func _ajustar_panel_a_pantalla() -> void:
-    await get_tree().process_frame  # espera a que se actualice el tamaño del texto
+    await get_tree().process_frame	# espera a que se actualice el tamaño del texto
     var viewport_rect = get_viewport_rect()
     var panel_rect = panel_info.get_global_rect()
 

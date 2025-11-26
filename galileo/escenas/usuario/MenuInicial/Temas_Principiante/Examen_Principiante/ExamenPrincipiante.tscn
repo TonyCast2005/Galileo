@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://c5ak0a4ttn6f5"]
+[gd_scene load_steps=22 format=3 uid="uid://c5ak0a4ttn6f5"]
 
 [ext_resource type="Script" uid="uid://2vpr720hiyty" path="res://escenas/usuario/MenuInicial/Temas_Principiante/Examen_Principiante/examen_principiante.gd" id="1_u7cfh"]
 [ext_resource type="Script" uid="uid://b60mmgliwke2m" path="res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Arduino/ola.gd" id="2_s2676"]
@@ -124,6 +124,13 @@ animations = [{
 "speed": 6.0
 }]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u7cfh"]
+bg_color = Color(0.249705, 0.23449, 0.504214, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
 [node name="ExamenPrincipiante" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -184,29 +191,35 @@ autowrap_mode = 2
 
 [node name="Estrella" type="AnimatedSprite2D" parent="."]
 texture_filter = 3
-position = Vector2(332, 509)
+position = Vector2(332, 472)
 scale = Vector2(10.4063, 8.5625)
 sprite_frames = SubResource("SpriteFrames_rkvwt")
 frame_progress = 0.42236
 
-[node name="Empezar_Examen" type="Button" parent="Estrella"]
+[node name="Panel2" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 172.0
+offset_top = 606.0
+offset_right = 514.0
+offset_bottom = 709.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_u7cfh")
+
+[node name="Empezar_Examen" type="Button" parent="Panel2"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -15.7597
-offset_top = -13.9702
-offset_right = -15.7597
-offset_bottom = -15.9702
 grow_horizontal = 2
 grow_vertical = 2
 flat = true
 
 [node name="Label" type="Label" parent="."]
+layout_mode = 0
 offset_left = 200.0
-offset_top = 627.0
+offset_top = 640.0
 offset_right = 472.0
-offset_bottom = 661.0
+offset_bottom = 674.0
 theme_override_font_sizes/font_size = 34
 text = "COMENZAR"
 
-[connection signal="pressed" from="Estrella/Empezar_Examen" to="." method="_on_empezar_examen_pressed"]
+[connection signal="pressed" from="Panel2/Empezar_Examen" to="." method="_on_empezar_examen_pressed"]

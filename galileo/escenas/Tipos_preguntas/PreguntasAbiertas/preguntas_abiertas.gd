@@ -1,5 +1,9 @@
 extends Control
 
+# 🌟 1. Variable clave para el mapeo de métricas 🌟
+# "PA" (Preguntas Abiertas) está mapeado a la metodología "ABE" en MetricsManager.gd
+const EXERCISE_TYPE = "PA"
+
 @onready var label_pregunta = $TextoPregunta
 @onready var respuesta = $Respuesta
 @onready var mensaje = $Mensaje
@@ -37,10 +41,11 @@ func _ready() -> void:
 # SISTEMA DE ERRORES
 # ===============================
 var errores: int = 0
-var errores_maximos: int = 2  # Puedes ajustar libremente
+var errores_maximos: int = 2	# Puedes ajustar libremente
 
 func fallar_demasiado() -> void:
-    Globals.desbloquear = false
+    # Globals.desbloquear ya no se usa aquí; usamos Globals.repetir_bloque
+    Globals.repetir_bloque = true
     get_tree().change_scene_to_file("res://escenas/Tipos_preguntas/RepiteLeccion.tscn")
 
 # ======================================================
@@ -64,6 +69,7 @@ func cargar_preguntas() -> void:
             if typeof(item) == TYPE_DICTIONARY:
                 var pregunta: String = item.get("pregunta", "")
                 if pregunta != "":
+                    # Asumiendo que quieres que se barajen:
                     preguntas[pregunta] = item
     else:
         push_error("Formato incorrecto en Firebase")
@@ -74,12 +80,40 @@ func cargar_preguntas() -> void:
 # ======================================================
 func mostrar_pregunta() -> void:
     var claves: Array = preguntas.keys()
+    
+    # Asegurarse de que las preguntas se barajen una sola vez
+    if indice_pregunta == 0 and claves.size() > 0:
+        claves.shuffle()
+        var temp_dict = {}
+        for key in claves:
+            temp_dict[key] = preguntas[key]
+        preguntas = temp_dict
+        claves = preguntas.keys() # Recargar claves barajadas
 
     if indice_pregunta >= claves.size():
         label_pregunta.text = ""
         mensaje.text = "¡Has terminado todas las preguntas!"
         validar.disabled = true
         boton_pista.visible = false
+        
+        # ================================
+        # TERMINÓ LA LECCIÓN → REGRESAR
+        # ================================
+        if not Globals.repetir_bloque:
+            var progreso_array = Globals.desbloqueados1 
+            var next_lesson_index = Globals.bloque_actual
+            
+            # Desbloquear
+            if next_lesson_index >= 0 and next_lesson_index < progreso_array.size():
+                progreso_array[next_lesson_index] = true
+            
+            # Avanzar al siguiente bloque
+            if Globals.bloque_actual < progreso_array.size() - 1:
+                Globals.bloque_actual += 1
+        else:
+            Globals.repetir_bloque = false	
+            
+        get_tree().change_scene_to_file("res://escenas/usuario/MenuInicial/MenuInicial.tscn")
         return
 
     pregunta_actual = String(claves[indice_pregunta])
@@ -102,7 +136,7 @@ func mostrar_pregunta() -> void:
 
 
 # ======================================================
-# Normalizar texto
+# Normalizar texto (sin cambios)
 # ======================================================
 func normalizar_texto(texto: String) -> String:
     var t: String = texto.strip_edges().to_lower()
@@ -122,7 +156,7 @@ func normalizar_texto(texto: String) -> String:
 
 
 # ======================================================
-# Levenshtein
+# Levenshtein (sin cambios)
 # ======================================================
 func levenshtein(a: String, b: String) -> int:
     var m: int = a.length()
@@ -182,7 +216,7 @@ func porcentaje_palabras_clave(resp: String, claves: Array, sinonimos: Dictionar
 
 
 # ======================================================
-# Evaluar respuesta
+# Evaluar respuesta (sin cambios)
 # ======================================================
 func evaluar_respuesta(pregunta: String, resp_user: String) -> Dictionary:
     var data: Dictionary = preguntas[pregunta]
@@ -211,40 +245,38 @@ func evaluar_respuesta(pregunta: String, resp_user: String) -> Dictionary:
     }
 
 # ======================================================
-# Validar
+# Validar (Llamada a Métricas)
 # ======================================================
 func _on_validar_pressed() -> void:
     if pregunta_actual == "":
         return
 
     var r: Dictionary = evaluar_respuesta(pregunta_actual, respuesta.text)
+    var is_correct: bool = false
 
     mensaje.text = r["mensaje"]
+
     if r["resultado"] == "incorrecta":
+        # 🔴 REGISTRO DE ERROR Y LLAMADA A MÉTRICAS
+        is_correct = false
         errores += 1
+        MetricsManager.update_methodology_score(EXERCISE_TYPE, is_correct)
+        
         if errores >= errores_maximos:
             fallar_demasiado()
-            return  # <-- IMPORTANTE: No continúa a la siguiente pregunta
+            return # <-- IMPORTANTE: No continúa a la siguiente pregunta
+            
+        return # solo falló, se queda en la misma pregunta para seguir intentando
         
-        return  # solo falló, puede seguir intentando
-
-    # =====================
-    # RESPUESTA CORRECTA
-    # =====================
-    indice_pregunta += 1
-    await get_tree().create_timer(1.4).timeout
-    mostrar_pregunta()
-
-
-# ======================================================
-# MOSTRAR PISTA
-# ======================================================
-func _mostrar_pista() -> void:
-    if pistas_actuales.is_empty():
-        return
-
-    var texto: String = pistas_actuales.pop_front()
-
-    var ventana: Control = escena_pista.instantiate()
-    add_child(ventana)
-    ventana.set_pista(texto)
+    elif r["resultado"] == "parcial" or r["resultado"] == "correcta":
+        # 🟢 REGISTRO DE ACIERTO Y LLAMADA A MÉTRICAS
+        # Nota: Consideramos parcial como correcto a nivel de avance de métricas.
+        is_correct = true
+        MetricsManager.update_methodology_score(EXERCISE_TYPE, is_correct)
+        
+        # =====================
+        # AVANZAR A SIGUIENTE PREGUNTA
+        # =====================
+        indice_pregunta += 1
+        await get_tree().create_timer(1.4).timeout
+        mostrar_pregunta()
