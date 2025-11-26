@@ -9,7 +9,9 @@ var dialogos = [
 ]
 
 func _ready():
+	var repetir_bloque = true
 	iniciar_dialogo()
+
 
 func iniciar_dialogo():
 	gato_dialogo = preload("res://escenas/Gato_Instrucciones/Gato_Instrucciones.tscn").instantiate()

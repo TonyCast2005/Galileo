@@ -35,7 +35,7 @@ var errores: int = 0
 var errores_maximos: int = 3   # Puedes ajustar libremente
 
 func fallar_demasiado() -> void:
-	Globals.desbloquear = false
+	Globals.repetir_bloque = true
 	get_tree().change_scene_to_file("res://escenas/Tipos_preguntas/RepiteLeccion.tscn")
 	
 # ======================================================
@@ -90,7 +90,7 @@ func mostrar_pregunta() -> void:
 
 	if indice_actual >= preguntas_seleccionadas.size():
 		texto_pregunta1.text = "¡Has completado todas las preguntas!"
-		Globals.desbloquear = true;
+		Globals.desbloqueados[Globals.bloque_actual] = true
 		get_tree().change_scene_to_file("res://escenas/usuario/MenuInicial/MenuInicial.tscn")
 		texto_pregunta2.text = ""
 		entrada_respuesta.editable = false

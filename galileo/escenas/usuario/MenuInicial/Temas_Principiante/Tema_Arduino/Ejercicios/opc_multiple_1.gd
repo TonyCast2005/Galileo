@@ -31,7 +31,7 @@ var errores: int = 0
 var errores_maximos: int = 2
 
 func fallar_demasiado() -> void:
-	Globals.desbloquear = false
+	Globals.repetir_bloque = true
 	get_tree().change_scene_to_file("res://escenas/Tipos_preguntas/RepiteLeccion.tscn")
 	
 func _ready():
@@ -126,7 +126,13 @@ func _on_boton_retro_pressed():
 	# ================================
 	# TERMINÓ LA LECCIÓN → REGRESAR
 	# ================================
-	Globals.desbloquear = true;
+	if not Globals.repetir_bloque:
+		Globals.desbloqueados[Globals.bloque_actual] = true
+		if Globals.bloque_actual < Globals.desbloqueados.size() - 1:
+			Globals.bloque_actual += 1
+	else:
+		Globals.repetir_bloque = false  # resetear para siguiente vez
+
 	get_tree().change_scene_to_file("res://escenas/usuario/MenuInicial/MenuInicial.tscn")
 
 

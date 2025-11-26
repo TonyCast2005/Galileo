@@ -1,7 +1,5 @@
 extends Node
 
-var desbloquear = false
-
 # -----------------------------
 #        SEÑALES
 # -----------------------------
@@ -10,8 +8,10 @@ signal datos_cargados_correctamente(uid)
 
 var desbloquear_pendiente: bool = false
 var niveles_desbloqueados: int = 1  
-var desbloquear = false
+var desbloqueados = [true, false, false, false]
 var repetir_bloque = false
+var bloque_actual = 0
+
 
 # -----------------------------
 #    VARIABLES GLOBALES

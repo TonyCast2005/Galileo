@@ -14,8 +14,6 @@ extends Control
 @onready var caja4 = $Panel/HBoxContainer4
 
 
-
-
 # --- Botones ---
 @onready var botones = [
 	$Panel/HBoxContainer1/Panel1/Button1,
@@ -28,7 +26,7 @@ extends Control
 var candados := []
 
 # Control de desbloqueo: cuántos botones están desbloqueados
-var max_desbloqueado := 4
+var max_desbloqueado := 1
 
 # Botón 1 → siempre lectura
 var escena_lectura := "res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Arduino/Ejercicios/Lectura/Lectura_Arduino.tscn"
@@ -53,14 +51,12 @@ func _ready():
 	_animar_caja_flotante(caja3, 0.6)
 	_animar_caja_flotante(caja4, 0.9)
 
-
-
 # --------------------------------------------------------
 # Actualiza los candados y botones según progreso
 # --------------------------------------------------------
 func _actualizar_estado_botones():
 	for i in range(botones.size()):
-		if i < max_desbloqueado:
+		if Globals.desbloqueados[i]:
 			botones[i].disabled = false
 			if candados[i]:
 				candados[i].visible = false
@@ -79,7 +75,6 @@ func desbloquear_siguiente():
 		max_desbloqueado += 1
 		_actualizar_estado_botones()
 
-
 # --------------------------------------------------------
 # Devuelve un ejercicio aleatorio
 # --------------------------------------------------------
@@ -95,8 +90,6 @@ func cargar_escena_ejercicio(ejercicio: Dictionary):
 	Globals.desbloquear_pendiente = true
 	get_tree().change_scene_to_file(ejercicio["ruta"])
 
-
-
 # --------------------------------------------------------
 # Botones
 # --------------------------------------------------------
@@ -104,18 +97,17 @@ func _on_button_1_pressed():
    
 	get_tree().change_scene_to_file(escena_lectura)
 
-
 func _on_button_2_pressed() -> void:
+	Globals.bloque_actual = 2  # segundo bloque
 	cargar_escena_ejercicio(ejercicio_aleatorio())
-	desbloquear_siguiente()
 
 func _on_button_3_pressed() -> void:
+	Globals.bloque_actual = 3
 	cargar_escena_ejercicio(ejercicio_aleatorio())
-	desbloquear_siguiente()
 
 func _on_button_4_pressed() -> void:
+	Globals.bloque_actual = 4
 	cargar_escena_ejercicio(ejercicio_aleatorio())
-	desbloquear_siguiente()
 	
 	
 func _animar_caja_flotante(nodo: Control, delay: float):
