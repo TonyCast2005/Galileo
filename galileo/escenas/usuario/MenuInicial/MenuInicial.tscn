@@ -73,10 +73,10 @@ vertical_alignment = 1
 
 [node name="Carrusel" type="Control" parent="."]
 anchors_preset = 0
-offset_left = 28.0
+offset_left = 22.0
 offset_top = 44.0
 offset_right = 699.0
-offset_bottom = 883.0
+offset_bottom = 892.0
 
 [node name="LabelContador" type="Label" parent="."]
 layout_mode = 0

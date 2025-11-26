@@ -60,13 +60,14 @@ func cargar_tema(i: int, direccion: int):
     tween.tween_property(nueva_escena, "position:x", 0, 0.50)\
         .set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
 
+ # 🌟 Llamada final al contador 🌟
+    actualizar_contador()
     tween.finished.connect(func():
         if escena_actual:
             escena_actual.queue_free()
         escena_actual = nueva_escena
         animando = false
-        # 🌟 Llamada final al contador 🌟
-        actualizar_contador()
+       
     )
 
 

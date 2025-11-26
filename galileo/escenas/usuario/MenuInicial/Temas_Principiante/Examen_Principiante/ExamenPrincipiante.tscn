@@ -157,10 +157,10 @@ script = ExtResource("2_s2676")
 
 [node name="HBoxContainer1" type="HBoxContainer" parent="Panel"]
 layout_mode = 0
-offset_left = 32.0
-offset_top = 205.0
-offset_right = 670.0
-offset_bottom = 794.0
+offset_left = 22.0
+offset_top = 195.0
+offset_right = 660.0
+offset_bottom = 784.0
 
 [node name="Panel1" type="Panel" parent="Panel/HBoxContainer1"]
 layout_mode = 2
@@ -184,7 +184,7 @@ autowrap_mode = 2
 
 [node name="Estrella" type="AnimatedSprite2D" parent="."]
 texture_filter = 3
-position = Vector2(345, 503)
+position = Vector2(332, 506)
 scale = Vector2(10.4063, 8.375)
 sprite_frames = SubResource("SpriteFrames_rkvwt")
 frame_progress = 0.42236
@@ -193,10 +193,10 @@ frame_progress = 0.42236
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -16.0
-offset_top = -14.0
-offset_right = -16.0
-offset_bottom = -16.0
+offset_left = -15.7597
+offset_top = -13.9702
+offset_right = -15.7597
+offset_bottom = -15.9702
 grow_horizontal = 2
 grow_vertical = 2
 flat = true
