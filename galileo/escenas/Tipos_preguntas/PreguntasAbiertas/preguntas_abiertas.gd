@@ -27,7 +27,12 @@ var pistas_actuales: Array[String] = []
 func _ready() -> void:
     titulo.text = "Preguntas abiertas - Arduino nivel novato"
 
+    # Corregido: La función debe existir con el mismo nombre.
+    # Asegúrate de que tu función se llama '_on_validar_pressed' y no 'on_validar_pressed'.
     validar.pressed.connect(_on_validar_pressed)
+    
+    # Corregido: La función debe existir con el mismo nombre.
+    # Asegúrate de que tu función se llama '_mostrar_pista' y no 'mostrar_pista'.
     boton_pista.pressed.connect(_mostrar_pista)
 
     await cargar_preguntas()
@@ -280,3 +285,16 @@ func _on_validar_pressed() -> void:
         indice_pregunta += 1
         await get_tree().create_timer(1.4).timeout
         mostrar_pregunta()
+
+# ======================================================
+# MOSTRAR PISTA (La función debe estar en el script)
+# ======================================================
+func _mostrar_pista() -> void:
+    if pistas_actuales.is_empty():
+        return
+
+    var texto: String = pistas_actuales.pop_front()
+
+    var ventana: Control = escena_pista.instantiate()
+    add_child(ventana)
+    ventana.set_pista(texto)

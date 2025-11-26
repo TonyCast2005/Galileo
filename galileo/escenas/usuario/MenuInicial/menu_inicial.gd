@@ -23,7 +23,7 @@ func _ready():
 
 
 # ============================================================
-#    CARGAR TEMA CON ANIMACIÓN TIPO "CARRUSEL"
+#	CARGAR TEMA CON ANIMACIÓN TIPO "CARRUSEL"
 # ============================================================
 func cargar_tema(i: int, direccion: int):
     if animando:
@@ -52,6 +52,10 @@ func cargar_tema(i: int, direccion: int):
     nueva_escena.position = Vector2(direccion * ancho, 0)
 
     var tween := create_tween()
+    
+    # 🟢 SOLUCIÓN CRÍTICA 1: Asegurar que el Tweener se libera a sí mismo al terminar.
+    # Esto previene que se quede como objeto huérfano en la memoria.
+    tween.finished.connect(tween.queue_free)
 
     # ... (código de animación Tween) ...
     tween.tween_property(escena_actual, "position:x", -direccion * ancho, 0.25)\
@@ -60,19 +64,22 @@ func cargar_tema(i: int, direccion: int):
     tween.tween_property(nueva_escena, "position:x", 0, 0.50)\
         .set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
 
- # 🌟 Llamada final al contador 🌟
+# 🌟 Llamada final al contador 🌟
     actualizar_contador()
+    
+    # Conexión para la lógica de la escena
     tween.finished.connect(func():
-        if escena_actual:
+        # 🟢 SOLUCIÓN CRÍTICA 2: Añadimos is_instance_valid() para robustez, 
+        # en caso de que la escena sea liberada por un evento externo (como ir a Métricas).
+        if is_instance_valid(escena_actual):
             escena_actual.queue_free()
         escena_actual = nueva_escena
         animando = false
-       
     )
 
 
 # ============================================================
-#    ACTUALIZA EL CONTADOR DE PÁGINAS (Ej: 1 / 5)
+#	ACTUALIZA EL CONTADOR DE PÁGINAS (Ej: 1 / 5)
 # ============================================================
 func actualizar_contador():
     var total_temas = temas.size()
@@ -83,7 +90,7 @@ func actualizar_contador():
 
 
 # ============================================================
-#    BOTONES (sin cambios, ya que llaman a cargar_tema)
+#	BOTONES (sin cambios, ya que llaman a cargar_tema)
 # ============================================================
 func _on_siguiente_pressed():
     if animando: return
