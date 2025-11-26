@@ -1,6 +1,7 @@
 extends Control
 
 # --- Candados ---
+@onready var candado1 = $Panel/HBoxContainer1/Panel1/Button1/candado1
 @onready var candado2 = $Panel/HBoxContainer2/Panel2/Button2/candado2
 @onready var candado3 = $Panel/HBoxContainer3/Panel3/Button3/candado3
 @onready var candado4 = $Panel/HBoxContainer4/Panel4/Button4/candado4
@@ -49,7 +50,7 @@ func _ready():
     _animar_caja_flotante(caja3, 0.6)
     _animar_caja_flotante(caja4, 0.9)
 
-    if Globals.desbloqueados4:
+    if Globals.desbloquear4:
         bloqueado.hide()
 # --------------------------------------------------------
 # Actualiza los candados y botones según progreso
@@ -106,7 +107,8 @@ func _on_button_3_pressed() -> void:
 func _on_button_4_pressed() -> void:
     cargar_escena_ejercicio(ejercicio_aleatorio())
     desbloquear_siguiente()
-    Globals.desbloquear5 = true 
+    Globals.desbloquear_siguiente_nivel(0, 3)
+    Globals.desbloquear5 = true
     
 func _animar_caja_flotante(nodo: Control, delay: float):
     var tween = get_tree().create_tween()

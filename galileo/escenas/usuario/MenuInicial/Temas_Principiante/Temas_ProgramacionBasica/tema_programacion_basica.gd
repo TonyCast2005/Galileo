@@ -1,20 +1,17 @@
 extends Control
 
 # --- Candados ---
+@onready var candado1 = $Panel/HBoxContainer1/Panel1/Button1/candado1
 @onready var candado2 = $Panel/HBoxContainer2/Panel2/Button2/candado2
 @onready var candado3 = $Panel/HBoxContainer3/Panel3/Button3/candado3
 @onready var candado4 = $Panel/HBoxContainer4/Panel4/Button4/candado4
 @onready var bloqueado = $bloqueado
 
-#-.Cajas
-
+# -.Cajas
 @onready var caja1 = $Panel/HBoxContainer1
 @onready var caja2 = $Panel/HBoxContainer2
 @onready var caja3 = $Panel/HBoxContainer3
 @onready var caja4 = $Panel/HBoxContainer4
-
-
-
 
 # --- Botones ---
 @onready var botones = [
@@ -44,6 +41,13 @@ var ejercicios_arduino := [
 
 func _ready():
     randomize()
+
+    # Sincronizar max_desbloqueado con lo guardado en Globals.desbloqueados3
+    max_desbloqueado = 1
+    for i in range(Globals.desbloqueados3.size()):
+        if Globals.desbloqueados3[i]:
+            max_desbloqueado = i + 1
+
     candados = [null, candado2, candado3, candado4]
     _actualizar_estado_botones()
 
@@ -53,7 +57,7 @@ func _ready():
     _animar_caja_flotante(caja3, 0.6)
     _animar_caja_flotante(caja4, 0.9)
 
-    if Globals.desbloqueados3:
+    if Globals.desbloquear3:
         bloqueado.hide()
 
 # --------------------------------------------------------
@@ -70,16 +74,22 @@ func _actualizar_estado_botones():
             if candados[i]:
                 candados[i].visible = true
 
-
 # --------------------------------------------------------
 # Llamado cuando un ejercicio termina
-# (lo llamas desde el botón "Continuar" dentro del ejercicio)
+# (llámalo desde el botón "Continuar" dentro del ejercicio)
 # --------------------------------------------------------
 func desbloquear_siguiente():
     if max_desbloqueado < botones.size():
         max_desbloqueado += 1
-        _actualizar_estado_botones()
 
+        # 1. Actualizar array global para persistencia
+        Globals.desbloqueados3[max_desbloqueado - 1] = true
+
+        # 2. Guardar en Firebase para que persista
+        Globals.guardar_progreso()
+
+        # 3. Actualizar UI
+        _actualizar_estado_botones()
 
 # --------------------------------------------------------
 # Devuelve un ejercicio aleatorio
@@ -88,7 +98,6 @@ func ejercicio_aleatorio() -> Dictionary:
     var index = randi() % ejercicios_arduino.size()
     return ejercicios_arduino[index]
 
-
 # --------------------------------------------------------
 # Cargar escena completa de ejercicio (cambia de pantalla)
 # --------------------------------------------------------
@@ -96,15 +105,11 @@ func cargar_escena_ejercicio(ejercicio: Dictionary):
     Globals.desbloquear_pendiente = true
     get_tree().change_scene_to_file(ejercicio["ruta"])
 
-
-
 # --------------------------------------------------------
 # Botones
 # --------------------------------------------------------
 func _on_button_1_pressed():
-   
     get_tree().change_scene_to_file(escena_lectura)
-
 
 func _on_button_2_pressed() -> void:
     cargar_escena_ejercicio(ejercicio_aleatorio())
@@ -117,8 +122,10 @@ func _on_button_3_pressed() -> void:
 func _on_button_4_pressed() -> void:
     cargar_escena_ejercicio(ejercicio_aleatorio())
     desbloquear_siguiente()
-    Globals.desbloquear4 = true 
-    
+    # Cuando completas el 4º del Tema 3: desbloqueas Tema 4 (tema_indice = 2)
+    Globals.desbloquear_siguiente_nivel(2, 3)
+    Globals.desbloquear4 = true
+
 func _animar_caja_flotante(nodo: Control, delay: float):
     var tween = get_tree().create_tween()
     tween.set_loops() # Animación infinita

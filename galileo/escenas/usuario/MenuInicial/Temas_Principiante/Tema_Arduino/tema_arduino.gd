@@ -103,7 +103,9 @@ func _on_button_3_pressed() -> void:
 func _on_button_4_pressed() -> void:
     Globals.bloque_actual = 4
     cargar_escena_ejercicio(ejercicio_aleatorio())
-    Globals.desbloquear2 = true 
+    Globals.desbloquear_siguiente_nivel(0, 3)
+    Globals.desbloquear2 = true
+
     
 func _animar_caja_flotante(nodo: Control, delay: float):
     var tween = get_tree().create_tween()

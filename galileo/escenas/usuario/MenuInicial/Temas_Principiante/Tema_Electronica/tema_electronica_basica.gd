@@ -1,6 +1,7 @@
 extends Control
 
 # --- Candados ---
+@onready var candado1 = $Panel/HBoxContainer1/Panel1/Button1/candado1
 @onready var candado2 = $Panel/HBoxContainer2/Panel2/Button2/candado2
 @onready var candado3 = $Panel/HBoxContainer3/Panel3/Button3/candado3
 @onready var candado4 = $Panel/HBoxContainer4/Panel4/Button4/candado4
@@ -44,6 +45,13 @@ var ejercicios_arduino := [
 
 func _ready():
     randomize()
+
+    # Sincronizamos max_desbloqueado según lo que hay en Firebase
+    max_desbloqueado = 1
+    for i in range(Globals.desbloqueados2.size()):
+        if Globals.desbloqueados2[i]:
+            max_desbloqueado = i + 1
+
     candados = [null, candado2, candado3, candado4]
     _actualizar_estado_botones()
 
@@ -53,8 +61,9 @@ func _ready():
     _animar_caja_flotante(caja3, 0.6)
     _animar_caja_flotante(caja4, 0.9)
 
-    if Globals.desbloqueados2:
+    if Globals.desbloquear2:
         bloqueado.hide()
+
 
 
 # --------------------------------------------------------
@@ -80,7 +89,17 @@ func _actualizar_estado_botones():
 func desbloquear_siguiente():
     if max_desbloqueado < botones.size():
         max_desbloqueado += 1
+
+        # Esto sí está bien
+        Globals.desbloqueados2[max_desbloqueado - 1] = true
+
+        # Guardar en Firebase
+        
+        #obals.guardar_progreso()
+
+        # Actualizar UI
         _actualizar_estado_botones()
+
 
 
 # --------------------------------------------------------
@@ -118,7 +137,8 @@ func _on_button_3_pressed() -> void:
 func _on_button_4_pressed() -> void:
     cargar_escena_ejercicio(ejercicio_aleatorio())
     desbloquear_siguiente()
-    Globals.desbloquear3 = true 
+    Globals.desbloquear_siguiente_nivel(0, 3)
+    Globals.desbloquear3 = true
     
 func _animar_caja_flotante(nodo: Control, delay: float):
     var tween = get_tree().create_tween()

@@ -111,6 +111,15 @@ text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="candado1" type="TextureRect" parent="Panel/HBoxContainer1/Panel1/Button1"]
+visible = false
+offset_left = 7.0
+offset_top = 6.0
+offset_right = 157.0
+offset_bottom = 154.0
+texture = ExtResource("4_w6nsw")
+expand_mode = 1
+
 [node name="HBoxContainer2" type="HBoxContainer" parent="Panel"]
 layout_mode = 0
 offset_left = 22.0
