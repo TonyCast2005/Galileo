@@ -28,16 +28,18 @@ extends Control
 var candados := []
 
 # Control de desbloqueo: cuántos botones están desbloqueados
-var max_desbloqueado := 4
+var max_desbloqueado := 1
 
 # Botón 1 → siempre lectura
 var escena_lectura := "res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Electronica/Lectura/Lectura_Electronica.tscn"
 
 # Lista de escenas de ejercicios para escoger al azar
 var ejercicios_arduino := [
-	#{"tipo": "OM1", "ruta": "res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Arduino/Ejercicios/OpcMultiple_1.tscn"},
+	{"tipo": "OM1", "ruta": "res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Arduino/Ejercicios/OpcMultiple_1.tscn"},
 	{"tipo": "VF", "ruta": "res://escenas/Tipos_preguntas/VerdaderoFalso/VerdaderoFalso.tscn"},
-	#{"tipo": "OM2", "ruta": "res://escenas/Tipos_preguntas/PreguntasAbiertas/PreguntasAbiertas.tscn"},
+	{"tipo": "PA", "ruta": "res://escenas/Tipos_preguntas/PreguntasAbiertas/PreguntasAbiertas.tscn"},
+	{"tipo": "SA", "ruta": "res://escenas/Tipos_preguntas/SemiAbiertas/SemiAbiertas.tscn"},
+	{"tipo": "PE", "ruta": "res://escenas/Tipos_preguntas/practicaEscritura/practicaEscritura.tscn"},
 ]
 
 func _ready():
@@ -58,7 +60,7 @@ func _ready():
 # --------------------------------------------------------
 func _actualizar_estado_botones():
 	for i in range(botones.size()):
-		if i < max_desbloqueado:
+		if Globals.desbloqueados2[i]:
 			botones[i].disabled = false
 			if candados[i]:
 				candados[i].visible = false
@@ -66,6 +68,7 @@ func _actualizar_estado_botones():
 			botones[i].disabled = true
 			if candados[i]:
 				candados[i].visible = true
+
 
 
 # --------------------------------------------------------
@@ -92,7 +95,6 @@ func ejercicio_aleatorio() -> Dictionary:
 func cargar_escena_ejercicio(ejercicio: Dictionary):
 	Globals.desbloquear_pendiente = true
 	get_tree().change_scene_to_file(ejercicio["ruta"])
-
 
 
 # --------------------------------------------------------

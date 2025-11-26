@@ -5,14 +5,12 @@ extends Control
 @onready var candado3 = $Panel/HBoxContainer3/Panel3/Button3/candado3
 @onready var candado4 = $Panel/HBoxContainer4/Panel4/Button4/candado4
 
-
 #-.Cajas
 
 @onready var caja1 = $Panel/HBoxContainer1
 @onready var caja2 = $Panel/HBoxContainer2
 @onready var caja3 = $Panel/HBoxContainer3
 @onready var caja4 = $Panel/HBoxContainer4
-
 
 # --- Botones ---
 @onready var botones = [
@@ -56,7 +54,7 @@ func _ready():
 # --------------------------------------------------------
 func _actualizar_estado_botones():
 	for i in range(botones.size()):
-		if Globals.desbloqueados[i]:
+		if Globals.desbloqueados1[i]:
 			botones[i].disabled = false
 			if candados[i]:
 				candados[i].visible = false
@@ -64,7 +62,6 @@ func _actualizar_estado_botones():
 			botones[i].disabled = true
 			if candados[i]:
 				candados[i].visible = true
-
 
 # --------------------------------------------------------
 # Llamado cuando un ejercicio termina
@@ -81,7 +78,6 @@ func desbloquear_siguiente():
 func ejercicio_aleatorio() -> Dictionary:
 	var index = randi() % ejercicios_arduino.size()
 	return ejercicios_arduino[index]
-
 
 # --------------------------------------------------------
 # Cargar escena completa de ejercicio (cambia de pantalla)
@@ -108,7 +104,6 @@ func _on_button_3_pressed() -> void:
 func _on_button_4_pressed() -> void:
 	Globals.bloque_actual = 4
 	cargar_escena_ejercicio(ejercicio_aleatorio())
-	
 	
 func _animar_caja_flotante(nodo: Control, delay: float):
 	var tween = get_tree().create_tween()

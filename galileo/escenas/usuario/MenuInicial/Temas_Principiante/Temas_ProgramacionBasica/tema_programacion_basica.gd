@@ -28,7 +28,7 @@ extends Control
 var candados := []
 
 # Control de desbloqueo: cuántos botones están desbloqueados
-var max_desbloqueado := 4
+var max_desbloqueado := 1
 
 # Botón 1 → siempre lectura
 var escena_lectura := "res://escenas/usuario/MenuInicial/Temas_Principiante/Temas_ProgramacionBasica/Lectura/Lectura_ProgramaciónBásica.tscn"
@@ -60,7 +60,7 @@ func _ready():
 # --------------------------------------------------------
 func _actualizar_estado_botones():
 	for i in range(botones.size()):
-		if i < max_desbloqueado:
+		if Globals.desbloqueados3[i]:
 			botones[i].disabled = false
 			if candados[i]:
 				candados[i].visible = false

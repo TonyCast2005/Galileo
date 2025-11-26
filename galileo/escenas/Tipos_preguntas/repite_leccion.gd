@@ -12,7 +12,6 @@ func _ready():
 	var repetir_bloque = true
 	iniciar_dialogo()
 
-
 func iniciar_dialogo():
 	gato_dialogo = preload("res://escenas/Gato_Instrucciones/Gato_Instrucciones.tscn").instantiate()
 	add_child(gato_dialogo)
@@ -29,7 +28,6 @@ func iniciar_dialogo():
 
 	gato_dialogo.dialogos = [ dialogos[indice_dialogo] ]
 	gato_dialogo.mostrar_dialogo_actual()
-
 
 func _on_botoncontinuar_pressed():
 	if gato_dialogo.hablando:
