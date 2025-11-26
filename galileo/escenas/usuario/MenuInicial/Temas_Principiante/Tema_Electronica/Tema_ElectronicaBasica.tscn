@@ -270,6 +270,7 @@ expand_mode = 1
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
 [node name="bloqueado" type="Panel" parent="."]
+layout_mode = 0
 offset_left = 5.0
 offset_top = 154.0
 offset_right = 656.0

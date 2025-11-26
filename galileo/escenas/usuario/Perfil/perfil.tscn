@@ -69,9 +69,9 @@ color = Color(0.133333, 0.156863, 0.211765, 1)
 [node name="FotoPerfil" type="TextureRect" parent="."]
 layout_mode = 0
 offset_left = 182.0
-offset_top = 67.0
+offset_top = 52.0
 offset_right = 527.0
-offset_bottom = 412.0
+offset_bottom = 397.0
 texture = ExtResource("2_q3e6x")
 expand_mode = 2
 
@@ -87,9 +87,9 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_76iub")
 [node name="NombreUsuario" type="Label" parent="."]
 layout_mode = 0
 offset_left = 127.0
-offset_top = 411.0
-offset_right = 589.0
-offset_bottom = 505.0
+offset_top = 388.0
+offset_right = 620.0
+offset_bottom = 482.0
 theme_override_font_sizes/font_size = 29
 text = "Nombre de usuario"
 horizontal_alignment = 1
@@ -97,10 +97,10 @@ vertical_alignment = 1
 
 [node name="NivelUsuario" type="Label" parent="."]
 layout_mode = 0
-offset_left = 132.0
-offset_top = 512.0
-offset_right = 594.0
-offset_bottom = 566.0
+offset_left = 143.0
+offset_top = 478.0
+offset_right = 605.0
+offset_bottom = 532.0
 theme_override_font_sizes/font_size = 26
 text = "Nivel del usuario"
 horizontal_alignment = 1
@@ -108,7 +108,7 @@ horizontal_alignment = 1
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 0
 offset_left = 26.0
-offset_top = 577.0
+offset_top = 615.0
 offset_right = 691.0
 offset_bottom = 1158.0
 
@@ -122,7 +122,7 @@ layout_mode = 1
 
 [node name="loadingicon" type="AnimatedSprite2D" parent="."]
 texture_filter = 3
-position = Vector2(364, 759)
+position = Vector2(364, 793)
 scale = Vector2(5.28125, 5.48438)
 sprite_frames = SubResource("SpriteFrames_vhyui")
 animation = &"loading"
@@ -131,11 +131,20 @@ frame_progress = 0.154818
 [node name="Cargando_label" type="Label" parent="."]
 layout_mode = 0
 offset_left = 280.0
-offset_top = 860.0
+offset_top = 898.0
 offset_right = 467.0
-offset_bottom = 882.0
+offset_bottom = 920.0
 theme_override_font_sizes/font_size = 17
 text = "Cargando..."
+
+[node name="NivelUsuario2" type="Label" parent="."]
+offset_left = 132.0
+offset_top = 561.0
+offset_right = 594.0
+offset_bottom = 615.0
+theme_override_font_sizes/font_size = 26
+text = "Logros"
+horizontal_alignment = 1
 
 [connection signal="pressed" from="Editarperfil" to="." method="_on_editarperfil_pressed"]
 [connection signal="pressed" from="Editarperfil" to="." method="_on_editar_perfil_pressed"]

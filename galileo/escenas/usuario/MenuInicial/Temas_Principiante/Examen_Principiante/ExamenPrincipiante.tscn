@@ -234,6 +234,7 @@ theme_override_font_sizes/font_size = 34
 text = "COMENZAR"
 
 [node name="bloqueado" type="Panel" parent="."]
+layout_mode = 0
 offset_left = 5.0
 offset_top = 154.0
 offset_right = 656.0
