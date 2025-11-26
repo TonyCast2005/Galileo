@@ -37,7 +37,7 @@ func _ready() -> void:
 # SISTEMA DE ERRORES
 # ===============================
 var errores: int = 0
-var errores_maximos: int = 3   # Puedes ajustar libremente
+var errores_maximos: int = 2
 
 func fallar_demasiado() -> void:
 	Globals.desbloquear = false
@@ -80,6 +80,9 @@ func mostrar_pregunta() -> void:
 		mensaje.text = "¡Has terminado todas las preguntas!"
 		validar.disabled = true
 		boton_pista.visible = false
+		Globals.desbloquear = true;
+		get_tree().change_scene_to_file("res://escenas/usuario/MenuInicial/MenuInicial.tscn")
+
 		return
 
 	pregunta_actual = String(claves[indice_pregunta])

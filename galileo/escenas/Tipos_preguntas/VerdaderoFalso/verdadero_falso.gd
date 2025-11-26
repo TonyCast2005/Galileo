@@ -71,6 +71,7 @@ func _on_http_request_request_completed(result, response_code, headers, body):
 func _mostrar_siguiente_pregunta():
 	if preguntas_lista.is_empty():
 		label_pregunta.text = "¡Has terminado!"
+		Globals.desbloquear = true;
 		get_tree().change_scene_to_file("res://escenas/usuario/MenuInicial/MenuInicial.tscn")
 		return
 

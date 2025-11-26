@@ -28,7 +28,7 @@ var panel_activo = false
 # SISTEMA DE ERRORES
 # ===============================
 var errores: int = 0
-var errores_maximos: int = 3   # Puedes ajustar libremente
+var errores_maximos: int = 2
 
 func fallar_demasiado() -> void:
 	Globals.desbloquear = false
@@ -126,6 +126,7 @@ func _on_boton_retro_pressed():
 	# ================================
 	# TERMINÓ LA LECCIÓN → REGRESAR
 	# ================================
+	Globals.desbloquear = true;
 	get_tree().change_scene_to_file("res://escenas/usuario/MenuInicial/MenuInicial.tscn")
 
 

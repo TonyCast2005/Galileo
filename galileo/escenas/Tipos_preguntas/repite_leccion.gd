@@ -40,7 +40,7 @@ func _on_botoncontinuar_pressed():
 		gato_dialogo.indice = 0
 		gato_dialogo.mostrar_dialogo_actual()
 	else:
-		print("✅ Diálogo finalizado. Cambiando de escena...")
+		print(" Diálogo finalizado. Cambiando de escena...")
 		
 		await get_tree().create_timer(0.5).timeout
 		get_tree().change_scene_to_file("res://escenas/usuario/MenuInicial/MenuInicial.tscn")

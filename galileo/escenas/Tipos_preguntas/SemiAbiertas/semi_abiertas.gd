@@ -90,6 +90,8 @@ func mostrar_pregunta() -> void:
 
 	if indice_actual >= preguntas_seleccionadas.size():
 		texto_pregunta1.text = "¡Has completado todas las preguntas!"
+		Globals.desbloquear = true;
+		get_tree().change_scene_to_file("res://escenas/usuario/MenuInicial/MenuInicial.tscn")
 		texto_pregunta2.text = ""
 		entrada_respuesta.editable = false
 		boton_validar.disabled = true
