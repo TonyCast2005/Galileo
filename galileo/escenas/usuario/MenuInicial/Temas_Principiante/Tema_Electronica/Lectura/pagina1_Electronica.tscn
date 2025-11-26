@@ -71,9 +71,9 @@ autowrap_mode = 2
 [node name="Panel2" type="Panel" parent="."]
 layout_mode = 0
 offset_left = 46.0
-offset_top = 793.0
+offset_top = 780.0
 offset_right = 681.0
-offset_bottom = 1229.0
+offset_bottom = 1200.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_2srpq")
 
 [node name="Explicacion" type="Label" parent="Panel2"]
@@ -119,6 +119,7 @@ grow_vertical = 2
 flat = true
 
 [node name="Corriente" type="Panel" parent="."]
+layout_mode = 0
 offset_left = 101.0
 offset_top = 524.0
 offset_right = 618.0
@@ -147,6 +148,7 @@ grow_vertical = 2
 flat = true
 
 [node name="Resistencia" type="Panel" parent="."]
+layout_mode = 0
 offset_left = 101.0
 offset_top = 660.0
 offset_right = 618.0

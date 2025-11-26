@@ -184,8 +184,8 @@ autowrap_mode = 2
 
 [node name="Estrella" type="AnimatedSprite2D" parent="."]
 texture_filter = 3
-position = Vector2(332, 506)
-scale = Vector2(10.4063, 8.375)
+position = Vector2(332, 509)
+scale = Vector2(10.4063, 8.5625)
 sprite_frames = SubResource("SpriteFrames_rkvwt")
 frame_progress = 0.42236
 
@@ -200,5 +200,13 @@ offset_bottom = -15.9702
 grow_horizontal = 2
 grow_vertical = 2
 flat = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = 200.0
+offset_top = 627.0
+offset_right = 472.0
+offset_bottom = 661.0
+theme_override_font_sizes/font_size = 34
+text = "COMENZAR"
 
 [connection signal="pressed" from="Estrella/Empezar_Examen" to="." method="_on_empezar_examen_pressed"]
