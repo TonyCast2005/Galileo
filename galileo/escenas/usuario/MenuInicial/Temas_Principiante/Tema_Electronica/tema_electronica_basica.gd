@@ -94,11 +94,11 @@ func desbloquear_siguiente():
         Globals.desbloqueados2[max_desbloqueado - 1] = true
 
         # Guardar en Firebase
-        
-        #obals.guardar_progreso()
+        Globals.guardar_progreso()
 
         # Actualizar UI
         _actualizar_estado_botones()
+
 
 
 
@@ -122,23 +122,23 @@ func cargar_escena_ejercicio(ejercicio: Dictionary):
 # Botones
 # --------------------------------------------------------
 func _on_button_1_pressed():
-   
     get_tree().change_scene_to_file(escena_lectura)
-
 
 func _on_button_2_pressed() -> void:
     cargar_escena_ejercicio(ejercicio_aleatorio())
-    desbloquear_siguiente()
+    Globals.bloque_actual = 2
 
 func _on_button_3_pressed() -> void:
     cargar_escena_ejercicio(ejercicio_aleatorio())
-    desbloquear_siguiente()
+    Globals.bloque_actual = 3
 
 func _on_button_4_pressed() -> void:
     cargar_escena_ejercicio(ejercicio_aleatorio())
-    desbloquear_siguiente()
+    Globals.bloque_actual = 4
     Globals.desbloquear_siguiente_nivel(0, 3)
     Globals.desbloquear3 = true
+
+
     
 func _animar_caja_flotante(nodo: Control, delay: float):
     var tween = get_tree().create_tween()
