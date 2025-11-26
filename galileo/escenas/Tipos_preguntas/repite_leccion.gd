@@ -9,7 +9,9 @@ var dialogos = [
 ]
 
 func _ready():
+	var repetir_bloque = true
 	iniciar_dialogo()
+
 
 func iniciar_dialogo():
 	gato_dialogo = preload("res://escenas/Gato_Instrucciones/Gato_Instrucciones.tscn").instantiate()
@@ -40,7 +42,7 @@ func _on_botoncontinuar_pressed():
 		gato_dialogo.indice = 0
 		gato_dialogo.mostrar_dialogo_actual()
 	else:
-		print("✅ Diálogo finalizado. Cambiando de escena...")
+		print(" Diálogo finalizado. Cambiando de escena...")
 		
 		await get_tree().create_timer(0.5).timeout
 		get_tree().change_scene_to_file("res://escenas/usuario/MenuInicial/MenuInicial.tscn")

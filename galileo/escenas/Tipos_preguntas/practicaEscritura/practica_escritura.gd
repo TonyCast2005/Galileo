@@ -30,10 +30,10 @@ func _ready() -> void:
 # SISTEMA DE ERRORES
 # ===============================
 var errores: int = 0
-var errores_maximos: int = 3   # Puedes ajustar libremente
+var errores_maximos: int = 2
 
 func fallar_demasiado() -> void:
-	Globals.desbloquear = false
+	Globals.repetir_bloque = true
 	get_tree().change_scene_to_file("res://escenas/Tipos_preguntas/RepiteLeccion.tscn")
 	
 # ============================================================
@@ -73,7 +73,6 @@ func _on_request_completed(result: int, response_code: int, _headers: PackedStri
 		lbl_enunciado.text = "No hay preguntas disponibles."
 		return
 
-	# Seleccionar 4 aleatorias
 	var tmp: Array = preguntas.duplicate()
 	tmp.shuffle()
 	seleccionadas = tmp.slice(0, 4)
@@ -88,6 +87,8 @@ func mostrar_pregunta() -> void:
 
 	if indice_actual >= seleccionadas.size():
 		lbl_enunciado.text = "¡Terminaste la práctica!"
+		Globals.desbloqueados[Globals.bloque_actual] = true
+		get_tree().change_scene_to_file("res://escenas/usuario/MenuInicial/MenuInicial.tscn")
 		lbl_codigo.visible = false
 		cont_campos.visible = false
 		btn_pista.visible = false

@@ -28,213 +28,200 @@ var panel_activo = false
 # SISTEMA DE ERRORES
 # ===============================
 var errores: int = 0
-var errores_maximos: int = 3   # Puedes ajustar libremente
+var errores_maximos: int = 2
 
-# En tu función fallar_demasiado()
 func fallar_demasiado() -> void:
-    Globals.desbloquear = false
-    # 🌟 NUEVO: Marcar el examen como no aprobado.
-    Globals.examen_aprobado = false 
-    get_tree().change_scene_to_file("res://escenas/Tipos_preguntas/RepiteLeccion.tscn")
-    
+	Globals.repetir_bloque = true
+	get_tree().change_scene_to_file("res://escenas/Tipos_preguntas/RepiteLeccion.tscn")
+	
 func _ready():
-    panel_retro.visible = false
-    boton_retro.pressed.connect(_on_boton_retro_pressed)
+	panel_retro.visible = false
+	boton_retro.pressed.connect(_on_boton_retro_pressed)
 
-    http.request_completed.connect(_on_request_completed)
-    http.request("https://galileo-af640-default-rtdb.firebaseio.com/preguntas_opc.json")
-        
+	http.request_completed.connect(_on_request_completed)
+	http.request("https://galileo-af640-default-rtdb.firebaseio.com/preguntas_opc.json")
+		
 
 # ============================================
 # RECIBIR PREGUNTAS DESDE FIREBASE
 # ============================================
 func _on_request_completed(result, response_code, headers, body):
-    if response_code == 200:
-        var data = JSON.parse_string(body.get_string_from_utf8())
+	if response_code == 200:
+		var data = JSON.parse_string(body.get_string_from_utf8())
 
-        if typeof(data) == TYPE_ARRAY:
-            preguntas = data
-        elif typeof(data) == TYPE_DICTIONARY:
-            preguntas = data.values()
-        else:
-            preguntas = []
+		if typeof(data) == TYPE_ARRAY:
+			preguntas = data
+		elif typeof(data) == TYPE_DICTIONARY:
+			preguntas = data.values()
+		else:
+			preguntas = []
 
-        if preguntas.size() > 0:
-            preguntas = preguntas.slice(0, 10)
-            cargar_pregunta(indice_actual)
-        else:
-            panel_retro.show()
-            label_retro.text = "⚠️ No hay preguntas disponibles"
-    else:
-        panel_retro.show()
-        label_retro.text = "❌ Error al cargar preguntas"
+		if preguntas.size() > 0:
+			preguntas = preguntas.slice(0, 10)
+			cargar_pregunta(indice_actual)
+		else:
+			panel_retro.show()
+			label_retro.text = "⚠️ No hay preguntas disponibles"
+	else:
+		panel_retro.show()
+		label_retro.text = "❌ Error al cargar preguntas"
 
 
 # ============================================
 # CARGAR PREGUNTA
 # ============================================
 func cargar_pregunta(indice: int):
-    if instancia_actual:
-        instancia_actual.queue_free()
+	if instancia_actual:
+		instancia_actual.queue_free()
 
-    var escena = preload("res://escenas/Tipos_preguntas/OpcionMultiple/OpcionMultiple.tscn").instantiate()
-    contenedor_preguntas.add_child(escena)
-    instancia_actual = escena
+	var escena = preload("res://escenas/Tipos_preguntas/OpcionMultiple/OpcionMultiple.tscn").instantiate()
+	contenedor_preguntas.add_child(escena)
+	instancia_actual = escena
 
-    var pregunta = preguntas[indice]
+	var pregunta = preguntas[indice]
 
-    if instancia_actual.has_method("set_pregunta"):
-        instancia_actual.set_pregunta(pregunta)
+	if instancia_actual.has_method("set_pregunta"):
+		instancia_actual.set_pregunta(pregunta)
 
-    if instancia_actual.has_signal("respondida") and not instancia_actual.is_connected("respondida", _on_pregunta_respondida):
-        instancia_actual.respondida.connect(_on_pregunta_respondida)
-        pistas_actuales = []
-        indice_pista = 0
+	if instancia_actual.has_signal("respondida") and not instancia_actual.is_connected("respondida", _on_pregunta_respondida):
+		instancia_actual.respondida.connect(_on_pregunta_respondida)
+		pistas_actuales = []
+		indice_pista = 0
 
-    if pregunta.has("pistas"):
-        pistas_actuales = pregunta["pistas"]
+	if pregunta.has("pistas"):
+		pistas_actuales = pregunta["pistas"]
 
 
 
-# ============================================
-# RESPUESTA DEL USUARIO
-# ============================================
 # ============================================
 # RESPUESTA DEL USUARIO
 # ============================================
 func _on_pregunta_respondida(texto: String, color: Color, correcta: bool):
-    if correcta:
-        # ✅ RESPUESTA CORRECTA: Muestra retroalimentación positiva.
-        mostrar_retroalimentacion(" " + texto, color)
-        
-        # Opcional: Si quieres resetear el contador de errores al contestar bien.
-        # errores = 0 
-        
-    else:
-        # ❌ RESPUESTA INCORRECTA:
-        var correcta_real = preguntas[indice_actual].get("respuesta_correcta", "")
-        mostrar_retroalimentacion(" Incorrecto. La respuesta era: " + correcta_real, Color.RED)
-        
-        # 🌟 ¡Ajuste CRÍTICO AQUÍ! 🌟
-        # Solo incrementamos el contador de errores si la respuesta es INCORRECTA.
-        errores += 1
-        
-    
-    # Después de checar la respuesta, verificamos si el límite ha sido alcanzado
-    if errores >= errores_maximos:
-        fallar_demasiado()
-        return
-            
-    boton_retro.visible = true
-    boton_retro.disabled = false
+	if correcta:
+		mostrar_retroalimentacion(" " + texto, color)
+	else:
+		var correcta_real = preguntas[indice_actual].get("respuesta_correcta", "")
+		mostrar_retroalimentacion(" Incorrecto. La respuesta era: " + correcta_real, Color.RED)
+	errores += 1
+	if errores >= errores_maximos:
+				fallar_demasiado()
+				return 
+	boton_retro.visible = true
+	boton_retro.disabled = false
 
 
 # ============================================
 # BOTÓN SIGUIENTE
 # ============================================
 func _on_boton_retro_pressed():
-    cerrar_panel()
-    indice_actual += 1
-    contador += 1
-    progreso.text = "PREGUNTA " + str(contador)
+	cerrar_panel()
+	indice_actual += 1
+	contador += 1
+	progreso.text = "PREGUNTA " + str(contador)
 
-    if indice_actual < preguntas.size():
-        cargar_pregunta(indice_actual)
-        return
-        
-    # ================================
-    # TERMINÓ LA LECCIÓN → REGRESAR
-    # ================================
-    Globals.desbloquear = true
-    get_tree().change_scene_to_file("res://escenas/usuario/MenuInicial/MenuInicial.tscn")
+	if indice_actual < preguntas.size():
+		cargar_pregunta(indice_actual)
+		return
+
+	# ================================
+	# TERMINÓ LA LECCIÓN → REGRESAR
+	# ================================
+	if not Globals.repetir_bloque:
+		Globals.desbloqueados[Globals.bloque_actual] = true
+		if Globals.bloque_actual < Globals.desbloqueados.size() - 1:
+			Globals.bloque_actual += 1
+	else:
+		Globals.repetir_bloque = false  # resetear para siguiente vez
+
+	get_tree().change_scene_to_file("res://escenas/usuario/MenuInicial/MenuInicial.tscn")
 
 
 # ============================================
 # MOSTRAR RETROALIMENTACIÓN
 # ============================================
 func mostrar_retroalimentacion(texto: String, color: Color):
-    if panel_activo: return
-    panel_activo = true
+	if panel_activo: return
+	panel_activo = true
 
-    label_retro.text = ""
-    color_rect.color = color
-    panel_retro.visible = true
-    image_retro.visible = true
-    boton_retro.visible = false
-    boton_retro.disabled = true
+	label_retro.text = ""
+	color_rect.color = color
+	panel_retro.visible = true
+	image_retro.visible = true
+	boton_retro.visible = false
+	boton_retro.disabled = true
 
-    var viewport_size = get_viewport_rect().size
-    var panel_altura = panel_retro.size.y
-    var fuera_pantalla = viewport_size.y + panel_altura
-    var destino = viewport_size.y - panel_altura
-    panel_retro.position.y = fuera_pantalla
+	var viewport_size = get_viewport_rect().size
+	var panel_altura = panel_retro.size.y
+	var fuera_pantalla = viewport_size.y + panel_altura
+	var destino = viewport_size.y - panel_altura
+	panel_retro.position.y = fuera_pantalla
 
-    var tween = create_tween()
-    tween.tween_property(panel_retro, "position:y", destino, 0.4)
+	var tween = create_tween()
+	tween.tween_property(panel_retro, "position:y", destino, 0.4)
 
-    await get_tree().create_timer(0.2).timeout
+	await get_tree().create_timer(0.2).timeout
 
-    var hablando = true
-    var pos_original = image_retro.position
+	var hablando = true
+	var pos_original = image_retro.position
 
-    var boca_timer = get_tree().create_timer(velocidad * 2, true)
-    boca_timer.timeout.connect(func():
-        if hablando:
-            image_retro.texture = frame_hablando[0]
-    )
+	var boca_timer = get_tree().create_timer(velocidad * 2, true)
+	boca_timer.timeout.connect(func():
+		if hablando:
+			image_retro.texture = frame_hablando[0]
+	)
 
-    var tween_gato = create_tween().set_loops()
-    tween_gato.tween_property(image_retro, "position:y", pos_original.y - 8, 0.12)
-    tween_gato.tween_property(image_retro, "position:y", pos_original.y, 0.12)
+	var tween_gato = create_tween().set_loops()
+	tween_gato.tween_property(image_retro, "position:y", pos_original.y - 8, 0.12)
+	tween_gato.tween_property(image_retro, "position:y", pos_original.y, 0.12)
 
-    for c in texto:
-        label_retro.text += c
-        await get_tree().create_timer(velocidad).timeout
+	for c in texto:
+		label_retro.text += c
+		await get_tree().create_timer(velocidad).timeout
 
-    hablando = false
-    image_retro.texture = frame_idle
-    tween_gato.kill()
-    image_retro.position = pos_original
+	hablando = false
+	image_retro.texture = frame_idle
+	tween_gato.kill()
+	image_retro.position = pos_original
 
-    boton_retro.visible = true
-    boton_retro.disabled = false
+	boton_retro.visible = true
+	boton_retro.disabled = false
 
 
 # ============================================
 # CERRAR PANEL
 # ============================================
 func cerrar_panel():
-    var viewport_size = get_viewport_rect().size
-    var panel_altura = panel_retro.size.y
-    var fuera = viewport_size.y + panel_altura
+	var viewport_size = get_viewport_rect().size
+	var panel_altura = panel_retro.size.y
+	var fuera = viewport_size.y + panel_altura
 
-    var tween = create_tween()
-    tween.tween_property(panel_retro, "position:y", fuera, 0.5)
-    tween.tween_callback(func():
-        panel_retro.hide()
-        image_retro.hide()
-        panel_activo = false)
+	var tween = create_tween()
+	tween.tween_property(panel_retro, "position:y", fuera, 0.5)
+	tween.tween_callback(func():
+		panel_retro.hide()
+		image_retro.hide()
+		panel_activo = false)
 
 
 func _on_pista_pressed() -> void:
-    if pistas_actuales.is_empty():
-        mostrar_retroalimentacion("No hay pistas para esta pregunta.", Color.YELLOW)
-        return
+	if pistas_actuales.is_empty():
+		mostrar_retroalimentacion("No hay pistas para esta pregunta.", Color.YELLOW)
+		return
 
-    if indice_pista >= pistas_actuales.size():
-        indice_pista = 0  # Reinicia si se acabaron
+	if indice_pista >= pistas_actuales.size():
+		indice_pista = 0  # Reinicia si se acabaron
 
-    var pista = pistas_actuales[indice_pista]
-    indice_pista += 1
+	var pista = pistas_actuales[indice_pista]
+	indice_pista += 1
 
-    mostrar_pista(pista)
+	mostrar_pista(pista)
 
-    
+	
 var contenedor_pista = null
 
 func mostrar_pista(pista: String) -> void:
-    if contenedor_pista:
-        contenedor_pista.queue_free()
-    contenedor_pista = preload("res://escenas/Pistas/Pistas_Contenedor.tscn").instantiate()
-    add_child(contenedor_pista)
-    contenedor_pista.set_pista(pista)
+	if contenedor_pista:
+		contenedor_pista.queue_free()
+	contenedor_pista = preload("res://escenas/Pistas/Pistas_Contenedor.tscn").instantiate()
+	add_child(contenedor_pista)
+	contenedor_pista.set_pista(pista)
