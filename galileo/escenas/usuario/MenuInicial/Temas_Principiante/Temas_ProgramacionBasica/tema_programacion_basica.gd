@@ -127,18 +127,20 @@ func _on_button_4_pressed() -> void:
     Globals.desbloquear4 = true
 
 func _animar_caja_flotante(nodo: Control, delay: float):
-    var tween = get_tree().create_tween()
-    tween.set_loops() # Animación infinita
+    if !is_instance_valid(nodo):
+        return
+
+    var pos_inicial = nodo.position
+    var arriba = pos_inicial + Vector2(0, -10)
+    var abajo = pos_inicial + Vector2(0, 10)
+
+    var tween = create_tween()
+    tween.set_loops(true)
     tween.set_trans(Tween.TRANS_SINE)
     tween.set_ease(Tween.EASE_IN_OUT)
 
-    var up = nodo.position + Vector2(0, -10)
-    var down = nodo.position + Vector2(0, 10)
+    tween.tween_interval(delay)  # Espera antes de comenzar
 
-    # Esperamos el tiempo de delay
-    tween.tween_interval(delay)
-
-    # Secuencia de movimiento
-    tween.tween_property(nodo, "position", up, 2.0)
-    tween.tween_property(nodo, "position", down, 2.0)
-    tween.tween_property(nodo, "position", nodo.position, 2.0)
+    tween.tween_property(nodo, "position", arriba, 1.8)
+    tween.tween_property(nodo, "position", abajo, 1.8)
+    tween.tween_property(nodo, "position", pos_inicial, 1.8)

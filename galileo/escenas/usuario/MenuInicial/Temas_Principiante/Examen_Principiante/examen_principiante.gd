@@ -31,23 +31,20 @@ func _ready():
 #    ANIMACIÓN FLOTANTE (Ahora acepta Node2D)
 # ============================================================
 func _animar_caja_flotante(nodo: Node2D, delay: float):
-    # La solución para el error de tipo es que la función acepta Node2D
     var tween = get_tree().create_tween()
-    
-    tween.set_loops()
+
+    tween.set_loops() # INFINITO
     tween.set_trans(Tween.TRANS_SINE)
     tween.set_ease(Tween.EASE_IN_OUT)
 
-    # Definimos el rango de movimiento: 10 píxeles arriba y 10 píxeles abajo
     var up = nodo.position + Vector2(0, -13)
     var down = nodo.position + Vector2(0, 10)
 
     tween.tween_interval(delay)
 
-    # Secuencia de movimiento
     tween.tween_property(nodo, "position", up, 2.5)
     tween.tween_property(nodo, "position", down, 2.5)
-    tween.tween_property(nodo, "position", nodo.position, 2.5)
+
 
 
 # ============================================================
