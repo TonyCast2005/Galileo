@@ -52,13 +52,13 @@ func _on_foto_elegida(nombre_foto: String) -> void:
     tex.create_from_image(img)
     foto.texture = tex
 
-    Globals.user["foto"] = nombre_foto
+    Globals.user_data["foto"] = nombre_foto
     Globals.emit_signal("foto_cambiada", nombre_foto)
 
     # Guardar en Firebase (no bloqueante)
     var auth = load("res://escenas/usuario/registro/firebase_auth.gd").new()
     add_child(auth)
-    var uid = Globals.user.get("uid", "")
+    var uid = Globals.user_data.get("uid", "")
     if uid != "":
         auth.update_user_data(uid, {"foto": nombre_foto}).then(func(res):
             if res.has("error"):
@@ -82,10 +82,10 @@ func _on_ed_nombre_pressed() -> void:
     selector.connect("nombre_guardado", Callable(self, "_on_nombre_guardado"))
 
 func _on_nombre_guardado(nuevo_nombre: String) -> void:
-    Globals.user["nombre"] = nuevo_nombre
+    Globals.user_data["nombre"] = nuevo_nombre
     var auth = load("res://escenas/usuario/registro/firebase_auth.gd").new()
     add_child(auth)
-    var uid = Globals.user.get("uid", "")
+    var uid = Globals.user_data.get("uid", "")
     if uid != "":
         auth.update_user_data(uid, {"nombre": nuevo_nombre})
     mostrar_notificacion("✅ Nombre actualizado")
@@ -105,7 +105,7 @@ func _on_contraseña_guardada(nueva_contra: String) -> void:
     add_child(auth)
     var uid = Globals.user.get("uid", "")
     if uid != "":
-        auth.update_user_data(uid, {"password": nueva_contra})
+        auth.update_user(uid, {"password": nueva_contra})
     mostrar_notificacion("✅ Contraseña actualizada")
 
 # -----------------------

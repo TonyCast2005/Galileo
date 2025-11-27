@@ -113,6 +113,7 @@ vertical_alignment = 1
 
 [node name="candado1" type="TextureRect" parent="Panel/HBoxContainer1/Panel1/Button1"]
 visible = false
+layout_mode = 0
 offset_left = 7.0
 offset_top = 6.0
 offset_right = 157.0

@@ -35,7 +35,7 @@ var nombre = ""
 var nivel = ""
 var foto = ""
 
-var user_data = {}
+var user = {}
 var progreso = {}
 var racha = {}
 var logros = {}
@@ -124,7 +124,7 @@ func _on_datos_usuario_recibidos(res: Dictionary) -> void:
         return
 
     var doc = res.data
-    user_data = doc
+    user = doc
 
     email = doc.get("email", "")
     nombre = doc.get("nombre", "")
