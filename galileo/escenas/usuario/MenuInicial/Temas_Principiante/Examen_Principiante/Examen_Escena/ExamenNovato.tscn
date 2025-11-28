@@ -149,4 +149,15 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_iqanf")
 theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_07pg8")
 theme_override_styles/normal = SubResource("StyleBoxTexture_05gk0")
 
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 226.0
+offset_top = 88.0
+offset_right = 492.0
+offset_bottom = 139.0
+theme_override_font_sizes/font_size = 18
+text = "EXAMEN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="pressed" from="Pista" to="." method="_on_pista_pressed"]

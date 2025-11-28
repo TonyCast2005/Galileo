@@ -62,7 +62,7 @@ texture_filter = 3
 position = Vector2(354.5, 532.5)
 scale = Vector2(11.4063, 10.7188)
 sprite_frames = SubResource("SpriteFrames_ghhr8")
-frame_progress = 0.00796285
+frame_progress = 0.183194
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0

@@ -37,9 +37,9 @@ var escena_lectura := "res://escenas/usuario/MenuInicial/Temas_Principiante/Tema
 # Lista de escenas de ejercicios para escoger al azar
 var ejercicios_arduino := [
     {"tipo": "OM1", "ruta": "res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Electronica/EJercicios/OpcMultiple_Electronica.tscn"},
-    {"tipo": "VF", "ruta": "res://escenas/Tipos_preguntas/VerdaderoFalso/VerdaderoFalso.tscn"},
+    {"tipo": "VF", "ruta": "res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Electronica/EJercicios/verdaderoyfalso/VerdaderoFalso_Electronica.tscn"},
    # {"tipo": "PA", "ruta": "res://escenas/Tipos_preguntas/PreguntasAbiertas/PreguntasAbiertas.tscn"},
-   # {"tipo": "SA", "ruta": "res://escenas/Tipos_preguntas/SemiAbiertas/SemiAbiertas.tscn"},
+    {"tipo": "SA", "ruta": "res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Electronica/EJercicios/semiabiertas/SemiAbiertas_Electronica.tscn"},
     #{"tipo": "PE", "ruta": "res://escenas/Tipos_preguntas/practicaEscritura/practicaEscritura.tscn"},
 ]
 
@@ -122,23 +122,42 @@ func cargar_escena_ejercicio(ejercicio: Dictionary):
 # Botones
 # --------------------------------------------------------
 func _on_button_1_pressed():
-    get_tree().change_scene_to_file(escena_lectura)
+    await Loader.cargar_con_loading(escena_lectura)
+
+
 
 func _on_button_2_pressed() -> void:
-    cargar_escena_ejercicio(ejercicio_aleatorio())
     Globals.bloque_actual = 2
+    Globals.desbloquear_pendiente = true
+
+    var ej = ejercicio_aleatorio()
+
+    await Loader.cargar_con_loading(ej["ruta"])
+
     desbloquear_siguiente()
+
 
 func _on_button_3_pressed() -> void:
-    cargar_escena_ejercicio(ejercicio_aleatorio())
     Globals.bloque_actual = 3
+    Globals.desbloquear_pendiente = true
+
+    var ej = ejercicio_aleatorio()
+
+    await Loader.cargar_con_loading(ej["ruta"])
+
     desbloquear_siguiente()
 
+
 func _on_button_4_pressed() -> void:
-    cargar_escena_ejercicio(ejercicio_aleatorio())
     Globals.bloque_actual = 4
-    Globals.desbloquear_siguiente_nivel(1, 3) # ← ESTA ERA LA QUE FALTABA
     Globals.desbloquear3 = true
+    Globals.desbloquear_siguiente_nivel(1, 3)
+    Globals.desbloquear_pendiente = true
+
+    var ej = ejercicio_aleatorio()
+
+    await Loader.cargar_con_loading(ej["ruta"])
+
 
 
 

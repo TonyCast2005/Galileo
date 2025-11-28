@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://clr7d5ru5utp3"]
+[gd_scene load_steps=9 format=3 uid="uid://clr7d5ru5utp3"]
 
+[ext_resource type="Script" uid="uid://djpi8o2nfo0ak" path="res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Electronica/Lectura/pagina_2_electronica.gd" id="1_tw7dh"]
 [ext_resource type="Texture2D" uid="uid://0hrk2jpub6ac" path="res://assets/sprites/misc/Cat_Grey_White.png" id="2_tw7dh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_07reo"]
@@ -41,13 +42,14 @@ animations = [{
 "speed": 4.0
 }]
 
-[node name="Pagina1" type="Control"]
+[node name="Pagina2" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_tw7dh")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -96,8 +98,8 @@ offset_bottom = 1218.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 3
-position = Vector2(349, 1164)
-scale = Vector2(16.6914, 13.5208)
+position = Vector2(325.531, 1137.55)
+scale = Vector2(18.1582, 15.124)
 sprite_frames = SubResource("SpriteFrames_3u2s5")
 frame_progress = 0.36634
 

@@ -86,7 +86,7 @@ offset_bottom = 221.0
 theme_override_font_sizes/font_size = 30
 placeholder_text = "Correo "
 
-[node name="contraseña" type="TextEdit" parent="ColorRect/ColorRect2"]
+[node name="contraseña" type="LineEdit" parent="ColorRect/ColorRect2"]
 layout_mode = 0
 offset_left = 28.0
 offset_top = 266.0

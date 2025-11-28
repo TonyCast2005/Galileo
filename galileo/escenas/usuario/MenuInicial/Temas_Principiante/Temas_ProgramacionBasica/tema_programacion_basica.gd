@@ -32,11 +32,11 @@ var escena_lectura := "res://escenas/usuario/MenuInicial/Temas_Principiante/Tema
 
 # Lista de escenas de ejercicios para escoger al azar
 var ejercicios_arduino := [
-    {"tipo": "OM1", "ruta": "res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Arduino/Ejercicios/OpcMultiple_1.tscn"},
-    {"tipo": "VF", "ruta": "res://escenas/Tipos_preguntas/VerdaderoFalso/VerdaderoFalso.tscn"},
-    {"tipo": "PA", "ruta": "res://escenas/Tipos_preguntas/PreguntasAbiertas/PreguntasAbiertas.tscn"},
+    {"tipo": "OM1", "ruta": "res://escenas/usuario/MenuInicial/Temas_Principiante/Temas_ProgramacionBasica/ejercicios/opcmultiple/OpcMultiple_ProgramaciónBasica.tscn"},
+    {"tipo": "VF", "ruta": "res://escenas/usuario/MenuInicial/Temas_Principiante/Temas_ProgramacionBasica/ejercicios/verdaderoyfalso/VerdaderoFalso_ProgramacionBasica.tscn"},
+   # {"tipo": "PA", "ruta": "res://escenas/Tipos_preguntas/PreguntasAbiertas/PreguntasAbiertas.tscn"},
     {"tipo": "SA", "ruta": "res://escenas/Tipos_preguntas/SemiAbiertas/SemiAbiertas.tscn"},
-    {"tipo": "PE", "ruta": "res://escenas/Tipos_preguntas/practicaEscritura/practicaEscritura.tscn"},
+    #{"tipo": "PE", "ruta": "res://escenas/Tipos_preguntas/practicaEscritura/practicaEscritura.tscn"},
 ]
 
 func _ready():
@@ -109,22 +109,39 @@ func cargar_escena_ejercicio(ejercicio: Dictionary):
 # Botones
 # --------------------------------------------------------
 func _on_button_1_pressed():
-    get_tree().change_scene_to_file(escena_lectura)
+    await Loader.cargar_con_loading(escena_lectura)
+
 
 func _on_button_2_pressed() -> void:
-    cargar_escena_ejercicio(ejercicio_aleatorio())
+    Globals.desbloquear_pendiente = true
+
+    var ej = ejercicio_aleatorio()
+    await Loader.cargar_con_loading(ej["ruta"])
+
     desbloquear_siguiente()
+
 
 func _on_button_3_pressed() -> void:
-    cargar_escena_ejercicio(ejercicio_aleatorio())
+    Globals.desbloquear_pendiente = true
+
+    var ej = ejercicio_aleatorio()
+    await Loader.cargar_con_loading(ej["ruta"])
+
     desbloquear_siguiente()
 
+
 func _on_button_4_pressed() -> void:
-    cargar_escena_ejercicio(ejercicio_aleatorio())
+    Globals.desbloquear_pendiente = true
+
+    var ej = ejercicio_aleatorio()
+    await Loader.cargar_con_loading(ej["ruta"])
+
     desbloquear_siguiente()
+
     # Cuando completas el 4º del Tema 3: desbloqueas Tema 4 (tema_indice = 2)
     Globals.desbloquear_siguiente_nivel(2, 3)
     Globals.desbloquear4 = true
+
 
 func _animar_caja_flotante(nodo: Control, delay: float):
     if !is_instance_valid(nodo):

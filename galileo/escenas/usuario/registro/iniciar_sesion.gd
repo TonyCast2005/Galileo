@@ -10,6 +10,7 @@ var auth
 func _ready():
     auth = load("res://escenas/usuario/registro/firebase_auth.gd").new()
     add_child(auth)
+    contrasena.secret = true
     animar_gato()
 
 func animar_gato():

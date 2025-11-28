@@ -1,10 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://ekyoo2cnhvk"]
+[gd_scene load_steps=14 format=3 uid="uid://34kpgu2sjr7a"]
 
-[ext_resource type="Script" uid="uid://dj2341133ve6o" path="res://escenas/Tipos_preguntas/VerdaderoFalso/verdadero_falso.gd" id="1_8s5ou"]
-[ext_resource type="Texture2D" uid="uid://bgnffnt45rlhx" path="res://assets/sprites/ui/lupa.png" id="1_bed3i"]
-[ext_resource type="PackedScene" uid="uid://ij704rh06ujv" path="res://escenas/volverBTN.tscn" id="3_4ev06"]
-[ext_resource type="Texture2D" uid="uid://feyahj0mae46" path="res://assets/sprites/globoTexto .png" id="4_a50xa"]
-[ext_resource type="Texture2D" uid="uid://bhtap0c20qsdp" path="res://assets/sprites/ui/Galileo/boca alargada ojos cerrados.png" id="5_e7eb6"]
+[ext_resource type="Script" uid="uid://p3n1nldl55l6" path="res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Electronica/EJercicios/verdaderoyfalso/verdadero_falso_electronica.gd" id="1_w60fa"]
+[ext_resource type="Texture2D" uid="uid://bgnffnt45rlhx" path="res://assets/sprites/ui/lupa.png" id="2_as0v0"]
+[ext_resource type="PackedScene" uid="uid://ij704rh06ujv" path="res://escenas/volverBTN.tscn" id="3_u87lq"]
+[ext_resource type="Texture2D" uid="uid://feyahj0mae46" path="res://assets/sprites/globoTexto .png" id="4_utrcm"]
+[ext_resource type="Texture2D" uid="uid://bhtap0c20qsdp" path="res://assets/sprites/ui/Galileo/boca alargada ojos cerrados.png" id="5_mdd1j"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_whnp4"]
 bg_color = Color(0.121993, 0.443719, 0.14763, 0.686275)
@@ -21,13 +21,13 @@ corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3h0jy"]
-texture = ExtResource("1_bed3i")
+texture = ExtResource("2_as0v0")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3xcck"]
-texture = ExtResource("1_bed3i")
+texture = ExtResource("2_as0v0")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bvi8d"]
-texture = ExtResource("1_bed3i")
+texture = ExtResource("2_as0v0")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a50xa"]
 bg_color = Color(0.204841, 0.0196048, 0.237329, 1)
@@ -54,14 +54,14 @@ corner_radius_top_right = 40
 corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
 
-[node name="VerdaderoFalsoArduino" type="Control"]
+[node name="VerdaderoFalsoElectronica" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_8s5ou")
+script = ExtResource("1_w60fa")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -115,7 +115,7 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 autowrap_mode = 2
 
-[node name="VolverBtn" parent="." instance=ExtResource("3_4ev06")]
+[node name="VolverBtn" parent="." instance=ExtResource("3_u87lq")]
 layout_mode = 1
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
@@ -172,7 +172,7 @@ offset_left = 104.0
 offset_top = -216.0
 offset_right = 611.0
 offset_bottom = 74.0
-texture = ExtResource("4_a50xa")
+texture = ExtResource("4_utrcm")
 
 [node name="LabelRetroalimentacion" type="Label" parent="PanelRetroalimentacion"]
 layout_mode = 0
@@ -192,7 +192,7 @@ offset_left = 48.0
 offset_top = -28.0
 offset_right = 304.0
 offset_bottom = 228.0
-texture = ExtResource("5_e7eb6")
+texture = ExtResource("5_mdd1j")
 
 [node name="BotonSiguiente" type="Button" parent="PanelRetroalimentacion"]
 layout_mode = 0
@@ -203,6 +203,17 @@ offset_bottom = 121.0
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_2rk4c")
 text = "siguiente"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 119.0
+offset_top = 10.0
+offset_right = 624.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 25
+text = "ELECTRONICA BÁSICA"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="Verdadero" to="." method="_on_verdadero_pressed"]
 [connection signal="pressed" from="Falso" to="." method="_on_falso_pressed"]

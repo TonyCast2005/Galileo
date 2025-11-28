@@ -59,7 +59,7 @@ func fallar_demasiado():
 #      CARGAR DESDE FIREBASE
 # ===============================
 func _cargar_preguntas():
-    http.request("https://galileo-af640-default-rtdb.firebaseio.com/VerdaderoFalso/temas/ArduinoBasico.json")
+    http.request("https://galileo-af640-default-rtdb.firebaseio.com/VerdaderoFalso/temas/ProgramacionBasica.json")
 
 func _on_http_request_request_completed(result, code, head, body):
     if code != 200:

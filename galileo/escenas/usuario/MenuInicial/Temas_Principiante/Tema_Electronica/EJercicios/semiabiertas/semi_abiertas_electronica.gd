@@ -21,7 +21,7 @@ const EXERCISE_TYPE = "SA"
 @onready var http: HTTPRequest = $HTTPRequest
 
 var escena_pista: PackedScene = preload("res://escenas/Pistas/Pistas_Contenedor.tscn")
-const FIREBASE_URL: String = "https://galileo-af640-default-rtdb.firebaseio.com/preguntas_semiabiertas/arduino.json"
+const FIREBASE_URL: String = "https://galileo-af640-default-rtdb.firebaseio.com/preguntas_semiabiertas/electronica.json"
 
 var preguntas: Array[Dictionary] = []
 var preguntas_seleccionadas: Array[Dictionary] = []
@@ -116,7 +116,7 @@ func mostrar_pregunta() -> void:
             if Globals.bloque_actual < progreso_array.size() - 1:
                 Globals.bloque_actual += 1
         else:
-            Globals.repetir_bloque = false    
+            Globals.repetir_bloque = false	
 
         get_tree().change_scene_to_file("res://escenas/usuario/MenuInicial/MenuInicial.tscn")
         return
@@ -133,9 +133,7 @@ func mostrar_pregunta() -> void:
     else:
         pistas_actuales = []
 
-    # Solo mostramos el botón si hay pistas y el panel no está activo
-    boton_pista.visible = pistas_actuales.size() > 0 and not panel_activo
-    boton_pista.disabled = false
+    boton_pista.visible = pistas_actuales.size() > 0
 
 # ======================================================
 # Normalizar texto
@@ -181,7 +179,7 @@ func mostrar_retroalimentacion(texto: String, color: Color) -> void:
         return
     panel_activo = true
 
-    # Solo desactivamos el botón mientras el panel está activo
+    boton_pista.visible = false
     boton_pista.disabled = true
 
     label_retro.text = ""
@@ -238,9 +236,6 @@ func cerrar_panel() -> void:
         panel_retro.hide()
         image_retro.hide()
         panel_activo = false
-        # Activamos nuevamente el botón de pista si hay pistas
-        boton_pista.disabled = false
-        boton_pista.visible = pistas_actuales.size() > 0
     )
 
 # ======================================================
