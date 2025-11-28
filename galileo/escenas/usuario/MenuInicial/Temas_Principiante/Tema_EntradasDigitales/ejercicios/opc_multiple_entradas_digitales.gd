@@ -45,7 +45,7 @@ func _ready():
 
     http.request_completed.connect(_on_request_completed)
     # Pide las preguntas a Firebase
-    http.request("https://galileo-af640-default-rtdb.firebaseio.com/OpcionMultiple/arduino.json")
+    http.request("https://galileo-af640-default-rtdb.firebaseio.com/OpcionMultiple/entradas_digitales.json")
         
 
 # ============================================
@@ -58,18 +58,18 @@ func _on_request_completed(result, response_code, headers, body):
         if typeof(data) == TYPE_ARRAY:
             preguntas = data
         elif typeof(data) == TYPE_DICTIONARY:
-            # Si Firebase devuelve un diccionario (que es lo común con las claves automáticas)
             preguntas = data.values()
         else:
             preguntas = []
 
         if preguntas.size() > 0:
-    # Mezclar las preguntas de forma aleatoria
+            # 🔹 Mezclar preguntas aleatoriamente
             preguntas.shuffle()
-    # Limitar a 10 preguntas
+            
+            # Limitar a 10 preguntas si quieres
             preguntas = preguntas.slice(0, 10)
+            
             cargar_pregunta(indice_actual)
-
         else:
             panel_retro.show()
             label_retro.text = "⚠️ No hay preguntas disponibles"

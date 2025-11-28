@@ -1,9 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dwnfkbut6jrcv"]
+[gd_scene load_steps=10 format=3 uid="uid://o4yllflapeiw"]
 
-[ext_resource type="Script" uid="uid://npu3eych8ygm" path="res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Arduino/Ejercicios/opc_multiple_1.gd" id="1_pxsgt"]
-[ext_resource type="Texture2D" uid="uid://feyahj0mae46" path="res://assets/sprites/globoTexto .png" id="2_cp3ki"]
-[ext_resource type="Texture2D" uid="uid://bhtap0c20qsdp" path="res://assets/sprites/ui/Galileo/boca alargada ojos cerrados.png" id="3_oh2o8"]
-[ext_resource type="Texture2D" uid="uid://bgnffnt45rlhx" path="res://assets/sprites/ui/lupa.png" id="4_gj5v1"]
+[ext_resource type="Script" uid="uid://cr2t7mqesrr4t" path="res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Electronica/EJercicios/opc_multiple_electronica.gd" id="1_8lnkf"]
+[ext_resource type="Texture2D" uid="uid://feyahj0mae46" path="res://assets/sprites/globoTexto .png" id="2_lp0ne"]
+[ext_resource type="Texture2D" uid="uid://bhtap0c20qsdp" path="res://assets/sprites/ui/Galileo/boca alargada ojos cerrados.png" id="3_2ag28"]
+[ext_resource type="Texture2D" uid="uid://bgnffnt45rlhx" path="res://assets/sprites/ui/lupa.png" id="4_ju2ta"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iqanf"]
 border_width_left = 5
@@ -24,22 +24,22 @@ corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iqanf"]
-texture = ExtResource("4_gj5v1")
+texture = ExtResource("4_ju2ta")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_07pg8"]
-texture = ExtResource("4_gj5v1")
+texture = ExtResource("4_ju2ta")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_05gk0"]
-texture = ExtResource("4_gj5v1")
+texture = ExtResource("4_ju2ta")
 
-[node name="OpcMultiple1" type="Control"]
+[node name="OpcMultiple_Electronica" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_pxsgt")
+script = ExtResource("1_8lnkf")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -98,17 +98,17 @@ color = Color(0.623529, 0.113725, 1, 1)
 [node name="NinePatchRect" type="NinePatchRect" parent="PanelRetroalimentacion"]
 layout_mode = 0
 offset_left = 104.0
-offset_top = -212.0
+offset_top = -216.0
 offset_right = 611.0
-offset_bottom = 104.0
-texture = ExtResource("2_cp3ki")
+offset_bottom = 74.0
+texture = ExtResource("2_lp0ne")
 
 [node name="LabelRetroalimentacion" type="Label" parent="PanelRetroalimentacion"]
 layout_mode = 0
-offset_left = 197.0
-offset_top = -105.0
-offset_right = 523.0
-offset_bottom = -13.0
+offset_left = 182.0
+offset_top = -135.0
+offset_right = 531.0
+offset_bottom = -1.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 21
 text = "HOLA PRIEBA"
@@ -117,11 +117,11 @@ autowrap_mode = 2
 
 [node name="Galileo" type="TextureRect" parent="PanelRetroalimentacion"]
 layout_mode = 0
-offset_left = 44.0
-offset_top = 10.0
-offset_right = 300.0
-offset_bottom = 266.0
-texture = ExtResource("3_oh2o8")
+offset_left = 48.0
+offset_top = -28.0
+offset_right = 304.0
+offset_bottom = 228.0
+texture = ExtResource("3_2ag28")
 
 [node name="BotonSiguiente" type="Button" parent="PanelRetroalimentacion"]
 layout_mode = 0

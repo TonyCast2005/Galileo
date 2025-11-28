@@ -45,7 +45,7 @@ func _ready():
 
     http.request_completed.connect(_on_request_completed)
     # Pide las preguntas a Firebase
-    http.request("https://galileo-af640-default-rtdb.firebaseio.com/OpcionMultiple/arduino.json")
+    http.request("https://galileo-af640-default-rtdb.firebaseio.com/OpcionMultiple/electronica.json")
         
 
 # ============================================

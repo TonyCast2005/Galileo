@@ -138,6 +138,7 @@ theme_override_font_sizes/font_size = 17
 text = "Cargando..."
 
 [node name="NivelUsuario2" type="Label" parent="."]
+layout_mode = 0
 offset_left = 132.0
 offset_top = 561.0
 offset_right = 594.0
@@ -146,5 +147,5 @@ theme_override_font_sizes/font_size = 26
 text = "Logros"
 horizontal_alignment = 1
 
-[connection signal="pressed" from="Editarperfil" to="." method="_on_editarperfil_pressed"]
 [connection signal="pressed" from="Editarperfil" to="." method="_on_editar_perfil_pressed"]
+[connection signal="pressed" from="Editarperfil" to="." method="_on_editarperfil_pressed"]

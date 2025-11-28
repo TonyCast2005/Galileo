@@ -20,6 +20,7 @@ config/icon="res://assets/icon.svg"
 Globals="*res://globals.gd"
 Firebase="*res://escenas/Administrador/FirebaseDB.gd"
 MetricsManager="*res://MetricsManager.gd"
+Loader="*res://loader.gd"
 
 [display]
 

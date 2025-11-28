@@ -30,6 +30,9 @@ func _ready():
     boton_v.pressed.connect(func(): _evaluar_respuesta(true))
     boton_f.pressed.connect(func(): _evaluar_respuesta(false))
     boton_pistas.pressed.connect(_mostrar_pista)
+    
+    _iniciar_animacion_botones()
+
 
     _cargar_preguntas()
 
@@ -148,3 +151,19 @@ func _mostrar_pista():
     var ventana = escena_pista.instantiate()
     add_child(ventana)
     ventana.set_pista(texto)
+
+
+func _iniciar_animacion_botones():
+    # Guardar posiciones originales
+    var pos_v = boton_v.position
+    var pos_f = boton_f.position
+
+    # --- Tween para Verdadero (sube y baja) ---
+    var tween_v = create_tween().set_loops()
+    tween_v.tween_property(boton_v, "position:y", pos_v.y - 12, 1.6).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+    tween_v.tween_property(boton_v, "position:y", pos_v.y, 1.6).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
+    # --- Tween para Falso (baja mientras V sube, y viceversa) ---
+    var tween_f = create_tween().set_loops()
+    tween_f.tween_property(boton_f, "position:y", pos_f.y + 12, 1.6).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+    tween_f.tween_property(boton_f, "position:y", pos_f.y, 1.6).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)

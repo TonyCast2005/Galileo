@@ -36,7 +36,7 @@ var escena_lectura := "res://escenas/usuario/MenuInicial/Temas_Principiante/Tema
 
 # Lista de escenas de ejercicios para escoger al azar
 var ejercicios_arduino := [
-    {"tipo": "OM1", "ruta": "res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Arduino/Ejercicios/OpcMultiple_1.tscn"},
+    {"tipo": "OM1", "ruta": "res://escenas/usuario/MenuInicial/Temas_Principiante/Tema_Electronica/EJercicios/OpcMultiple_Electronica.tscn"},
     {"tipo": "VF", "ruta": "res://escenas/Tipos_preguntas/VerdaderoFalso/VerdaderoFalso.tscn"},
    # {"tipo": "PA", "ruta": "res://escenas/Tipos_preguntas/PreguntasAbiertas/PreguntasAbiertas.tscn"},
    # {"tipo": "SA", "ruta": "res://escenas/Tipos_preguntas/SemiAbiertas/SemiAbiertas.tscn"},

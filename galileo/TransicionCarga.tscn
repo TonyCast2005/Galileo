@@ -1,0 +1,87 @@
+[gd_scene load_steps=8 format=3 uid="uid://bqhnw8781nbyg"]
+
+[ext_resource type="Script" uid="uid://dk53p8w5s1cnl" path="res://transicion_carga.gd" id="1_fxd8d"]
+[ext_resource type="Texture2D" uid="uid://7ijcy30acwws" path="res://assets/animations/loadingicon/Box3.png" id="2_bl4n4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gvqx2"]
+atlas = ExtResource("2_bl4n4")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5ibl"]
+atlas = ExtResource("2_bl4n4")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5g0i2"]
+atlas = ExtResource("2_bl4n4")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d0hlr"]
+atlas = ExtResource("2_bl4n4")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ghhr8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gvqx2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y5ibl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5g0i2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d0hlr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="TransicionCarga" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fxd8d")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.133333, 0.156863, 0.211765, 1)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 3
+position = Vector2(354.5, 532.5)
+scale = Vector2(11.4063, 10.7188)
+sprite_frames = SubResource("SpriteFrames_ghhr8")
+frame_progress = 0.00796285
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 181.0
+offset_right = 717.0
+offset_bottom = 341.0
+theme_override_font_sizes/font_size = 80
+text = "GALILEO"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 166.0
+offset_top = 717.0
+offset_right = 606.0
+offset_bottom = 796.0
+theme_override_font_sizes/font_size = 40
+text = "cargando..."
+horizontal_alignment = 1
+vertical_alignment = 1

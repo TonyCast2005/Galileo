@@ -90,21 +90,22 @@ func cargar_escena_ejercicio(ejercicio: Dictionary):
 # Botones
 # --------------------------------------------------------
 func _on_button_1_pressed():
-    get_tree().change_scene_to_file(escena_lectura)
+    await Loader.cargar_con_loading(escena_lectura)
 
 func _on_button_2_pressed() -> void:
-    Globals.bloque_actual = 2  # segundo bloque
-    cargar_escena_ejercicio(ejercicio_aleatorio())
+    Globals.bloque_actual = 2
+    await Loader.cargar_con_loading(ejercicio_aleatorio()["ruta"])
 
 func _on_button_3_pressed() -> void:
     Globals.bloque_actual = 3
-    cargar_escena_ejercicio(ejercicio_aleatorio())
+    await Loader.cargar_con_loading(ejercicio_aleatorio()["ruta"])
 
 func _on_button_4_pressed() -> void:
     Globals.bloque_actual = 4
-    cargar_escena_ejercicio(ejercicio_aleatorio())
     Globals.desbloquear_siguiente_nivel(0, 3)
     Globals.desbloquear2 = true
+    await Loader.cargar_con_loading(ejercicio_aleatorio()["ruta"])
+
 
     
 func _animar_caja_flotante(nodo: Control, delay: float):

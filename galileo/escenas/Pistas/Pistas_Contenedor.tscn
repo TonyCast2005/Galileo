@@ -18,21 +18,21 @@ anchors_preset = 0
 script = ExtResource("1_fwew3")
 
 [node name="Ventana" type="Sprite2D" parent="."]
-position = Vector2(360, 609)
-scale = Vector2(0.684631, 1.24296)
+position = Vector2(360, 581)
+scale = Vector2(0.684631, 1.14437)
 texture = ExtResource("1_oatbd")
 
 [node name="Ok" type="Button" parent="Ventana"]
-offset_left = -148.0
-offset_top = 182.0
-offset_right = 139.0
-offset_bottom = 264.0
+offset_left = -134.379
+offset_top = 161.711
+offset_right = 152.621
+offset_bottom = 243.711
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_pvynm")
 text = "OK"
 
 [node name="Sprite2D" type="Sprite2D" parent="Ventana"]
-position = Vector2(-278.982, 90.9121)
+position = Vector2(-292.128, 86.0848)
 scale = Vector2(1.56818, 0.993034)
 texture = ExtResource("2_pvynm")
 

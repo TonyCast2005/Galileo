@@ -77,10 +77,10 @@ autowrap_mode = 2
 
 [node name="Label2" type="Label" parent="Panel"]
 layout_mode = 0
-offset_left = 41.0
-offset_top = 446.0
-offset_right = 665.0
-offset_bottom = 641.0
+offset_left = 44.0
+offset_top = 493.0
+offset_right = 668.0
+offset_bottom = 688.0
 theme_override_font_sizes/font_size = 30
 text = "El Arduino Uno trabaja con 5V (presión) en sus pines y usa 0V (Tierra/GND) como referencia."
 horizontal_alignment = 1
@@ -99,7 +99,7 @@ texture_filter = 3
 position = Vector2(349, 1164)
 scale = Vector2(16.6914, 13.5208)
 sprite_frames = SubResource("SpriteFrames_3u2s5")
-frame_progress = 0.96341
+frame_progress = 0.36634
 
 [node name="Label2" type="Label" parent="."]
 layout_mode = 0
