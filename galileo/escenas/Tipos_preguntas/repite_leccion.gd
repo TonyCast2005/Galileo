@@ -17,8 +17,8 @@ func iniciar_dialogo():
 	add_child(gato_dialogo)
 	gato_dialogo.global_position = Vector2(0, 40)
 
-	gato_dialogo.textura_habla_personal = preload("res://assets/sprites/ui/Galileo/Feli.png")
-	gato_dialogo.textura_idle_personal = preload("res://assets/sprites/ui/Galileo/Galileo Base.png")
+	gato_dialogo.textura_habla_personal = preload("res://assets/sprites/ui/Galileo/hablaTriste.png")
+	gato_dialogo.textura_idle_personal = preload("res://assets/sprites/ui/Galileo/triste.png")
 
 	var tamaño_deseado = Vector2(256,256)
 	var tamaño_textura = gato_dialogo.textura_habla_personal.get_size()
